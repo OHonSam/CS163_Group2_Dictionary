@@ -39,7 +39,7 @@ public:
 	void remove(const std::string& word);					
 	
 	// Check whether a word is in the trie
-	bool check(const std::string& word);					
+	bool checkExist(const std::string& key);//					
 
 	// Returns a list of std::strings which have identical prefix
 	std::vector<std::string> searchPrefix(const std::string& prefix);		
