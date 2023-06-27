@@ -1,4 +1,4 @@
 #include <fstream>
 #include <vector>
 #include <string.h>
-#include <Trie.hpp>
+#include "..\include\HashTable.hpp"

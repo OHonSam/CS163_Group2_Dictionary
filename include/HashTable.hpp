@@ -1,38 +1,38 @@
 // THIS IS THE TEMPLATE COPIED FROM GOOGLE DOCS ONLY, WITH FUNCTION PROTOTYPE SUGGESTION, FOR EASY WORK
 
-
+#pragma once
 class HashTable
 {
 private:
 	int numWords;
     
-    // Buckets 2d vector itialized with size 1e6, approximately greater than the number of words
-	vector<vector<pair<string,string>>> buckets(1000000);
+    // Buckets 2d vector initialized with size 1e6, approximately greater than the number of words
+	std::vector<std::vector<std::pair<std::string,std::string>>> buckets;
 
 	// Hash function
-	int hash(const string& word);						
+	int hash(const std::string& word);						
 
 public:
-	HashTable();								
+	HashTable(): buckets(1000000) {}				
 
 	void clear();									
 
 	// Load from binary file
-	bool import(const string& path);					
+	bool import(const std::string& path);					
 
 	// Save as binary file
-	bool save(const string& path);						
+	bool save(const std::string& path);						
 
 	// Insert a pair of word and definition
-	int insert(const string& word, const string& def);		
+	int insert(const std::string& word, const std::string& def);		
 	
 	// Remove a pair that has a word given in it
-	void remove(const string& word);					
+	void remove(const std::string& word);					
 
 	// Edit definition of existed word
-	void updateDef(const string& word, const string& newDef);	
+	void updateDef(const std::string& word, const std::string& newDef);	
 
 	// Find a definition for a required word
-	string searchDef(const string& word);				
+	std::string searchDef(const std::string& word);				
 };
 

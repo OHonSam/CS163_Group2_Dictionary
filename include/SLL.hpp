@@ -1,5 +1,5 @@
 // SLL is Singly Linked List
-
+#pragma once
 template<class T>
 class SLL
 {
@@ -19,10 +19,10 @@ public:
 	void clear();									
 
 	// Load from a binary file
-	bool import(const string& path);				
+	bool import(const std::string& path);				
 
 	// Save to a binary file
-	bool save(const string& path);						
+	bool save(const std::string& path);						
 
 	// Insert a value
 	void push(const T& val);							
@@ -31,6 +31,6 @@ public:
 	void pop(const T& val);							
 
 	// Remove a value
-	vector<T> getList();							
+	std::vector<T> getList();							
 };
 
