@@ -1,56 +1,63 @@
+#pragma once
+
+#include <Trie.hpp>
+#include <SLL.hpp>
+#include <BTree.hpp>
+#include <HashTable.hpp>
+
 class Dict
 {
 private:
-	SLL history;
+	SLL<std::string> history;
 	HashTable wordDef;
 	Trie words;
 	BTree favList;
 
 public:
-	Dict(const string& path, bool isJson);				
+	Dict(const std::string& path, bool isJson);				
 
 	// Save data structures before deleting
 	~Dict();										
 
 	// Load from json file
-	bool importJson(const string& path); 				
+	bool importJson(const std::string& path); 				
 
 	// Load from binary file
-	bool importBinary(const string& path); 				
+	bool importBinary(const std::string& path); 				
 
 	// Reset to the default dataset
 	void reset();									
 
 	// Edit definition of existed word
-	void updateDef(const string& word, const string& newDef); 
+	void updateDef(const std::string& word, const std::string& newDef); 
 
 	// Add a pair of word and definition
-	void addWord(const string& word, const string& def);		
+	void addWord(const std::string& word, const std::string& def);		
 
 	// Add a word to the favorite list
-	void addFav(const string& word);					
+	void addFav(const std::string& word);					
 
 	// Add a word to the history
-	void addHistory(const string& word);			
+	void addHistory(const std::string& word);			
 
 	// Remove a word and corresponding definition
-	void removeWord(const string& word);				
+	void removeWord(const std::string& word);				
 
  	// Remove a word from the favorite list
-	void removeFav(const string& word);				
+	void removeFav(const std::string& word);				
 
  	// Remove a word from the history
-	void removeHistory(const string& word);				
+	void removeHistory(const std::string& word);				
 
 	// Get the history in the vector
-	vector<string> getHistory();						
+	std::vector<std::string> getHistory();						
 
 	// Get the favorite list
-	vector<string> getFav();						
+	std::vector<std::string> getFav();						
 
    	// Return a definition for a required word
-    string searchDef(const string& word); 			
+    std::string searchDef(const std::string& word); 			
 	
 	// Return the list of words which has an identical given prefix
-	vector<string> searchPrefix(const string& prefix);		
+	std::vector<std::string> searchPrefix(const std::string& prefix);		
 };

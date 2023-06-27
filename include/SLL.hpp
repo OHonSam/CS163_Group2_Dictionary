@@ -1,6 +1,7 @@
 // SLL is Singly Linked List
 
 #include <string>
+#include <vector>
 
 template<class T>
 class SLL
@@ -35,6 +36,6 @@ public:
 	void pop(const T& val);							
 
 	// Remove a value
-	vector<T> getList();							
+	std::vector<T> getList();							
 };
 
