@@ -1,4 +1,4 @@
-#include <Trie.hpp>
+#include<Trie.hpp>
 int Trie::getIndex(char c){
     if (c>='a'&&c<='z') return c-'a';
     if (c>='A'&&c<='Z') return c-'A';
@@ -41,3 +41,20 @@ void Trie::recursiveFind(std::vector<std::string>& res,std::string prefix, Trie:
     }
 }
 
+std::vector<std::string> Trie::searchPrefix(const std::string& prefix){
+    std::vector<std::string> res;
+    Trie::Node* cur=root;
+    int n=prefix.size();
+    for(int i=0;i<n;++i){
+        int index=getIndex(prefix[i]);
+        if(cur->child[index]==nullptr)
+            return {};
+        cur=cur->child[index];
+    }
+    //if(cur->isEnd) res.push_back(prefix);
+    //cur is at the last character of prefix string
+    int cnt=0;
+    recursiveFind(res,prefix, cur, cnt);
+
+    return res;
+}
