@@ -1,5 +1,7 @@
 // SLL is Singly Linked List
 
+#include <string>
+
 template<class T>
 class SLL
 {
@@ -8,6 +10,8 @@ private:
 	{
 		T data;
 		Node* next;
+		Node();
+		Node(const T& val);
 	};
 
 	Node *head, *tail;
@@ -19,10 +23,10 @@ public:
 	void clear();									
 
 	// Load from a binary file
-	bool import(const string& path);				
+	bool import(const std::string& path);				
 
 	// Save to a binary file
-	bool save(const string& path);						
+	bool save(const std::string& path);						
 
 	// Insert a value
 	void push(const T& val);							
