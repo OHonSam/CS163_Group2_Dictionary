@@ -1,7 +1,7 @@
+#pragma once
 // SLL is Singly Linked List
 
-#include <string>
-#include <vector>
+#include<Libraries.hpp>
 
 template<class T>
 class SLL

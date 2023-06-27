@@ -1,7 +1,7 @@
+#pragma once
 // THIS IS THE TEMPLATE COPIED FROM GOOGLE DOCS ONLY, WITH FUNCTION PROTOTYPE SUGGESTION, FOR EASY WORK
 
-#include <string>
-#include <vector>
+#include<Libraries.hpp>
 
 const int ALPHABET_SIZE=26;
 
@@ -17,7 +17,8 @@ private:
 
 	Node* root;
 
-	int getIndex(char c);
+	// Get the index of a character in the alphabet
+	int getIndex(char c);//
 	int rGetIndex(int index);
 	
 public:

@@ -1,9 +1,7 @@
 // THIS IS THE TEMPLATE COPIED FROM GOOGLE DOCS ONLY, WITH FUNCTION PROTOTYPE SUGGESTION, FOR EASY WORK
 #pragma once
 
-#include <vector>
-#include <string>
-#include <utility>
+#include<Libraries.hpp>
 
 class HashTable
 {
