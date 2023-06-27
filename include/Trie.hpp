@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <fstream>
 
 const int ALPHABET_SIZE=26;
 
@@ -19,6 +20,8 @@ private:
 
 	int getIndex(char c);
 	int rGetIndex(int index);
+
+	void save(Node* node, std::ofstream& file);
 	
 public:
 	Trie();			
