@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "*.inl": "cpp",
-        "fstream": "cpp",
-        "vector": "cpp",
-        "string": "cpp"
-    }
-}
