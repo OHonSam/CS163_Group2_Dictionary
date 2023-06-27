@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.inl": "cpp",
         "fstream": "cpp",
         "vector": "cpp"
     }
