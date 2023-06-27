@@ -9,6 +9,8 @@ const int ALPHABET_SIZE=26;
 class Trie
 {
 private:
+	const char TERMINATOR='\0';
+
 	struct Node
 	{
 		int numWords;
@@ -21,6 +23,7 @@ private:
 	int getIndex(char c);
 	int rGetIndex(int index);
 
+	void import(Node* &node, std::ifstream& file);
 	void save(Node* node, std::ofstream& file);
 	
 public:
