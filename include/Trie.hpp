@@ -17,9 +17,10 @@ private:
 
 	Node* root;
 
-	// Get the index of a character in the alphabet
+	// Get the index from the given character in the alphabet
 	int getIndex(char c);//
-	int rGetIndex(int index);
+	// Get the character in the alphabet from the given index
+	char rGetIndex(int index);
 	
 public:
 	Trie();			
@@ -43,7 +44,8 @@ public:
 	bool checkExist(const std::string& key);//					
 
 	// Returns a list of std::strings which have identical prefix
-	std::vector<std::string> searchPrefix(const std::string& prefix);		
+	std::vector<std::string> searchPrefix(const std::string& prefix);//
+	void recursiveFind(std::vector<std::string>& res,std::string prefix, Trie::Node* cur, int& cnt);		
 
 	// Get all the words that was embedded in the trie
 	std::vector<std::string> getList();							

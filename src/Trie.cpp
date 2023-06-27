@@ -4,6 +4,10 @@ int Trie::getIndex(char c){
     if (c>='A'&&c<='Z') return c-'A';
     return -1;
 }
+char Trie::rGetIndex(int index){
+    if(index<0||index>=ALPHABET_SIZE) return '\0';
+    return index+'a';
+}
 bool Trie::checkExist(const std::string& key)
 {
     Trie::Node* cur=root;
@@ -16,3 +20,6 @@ bool Trie::checkExist(const std::string& key)
     }
     return (cur->isEnd);
 }
+
+
+
