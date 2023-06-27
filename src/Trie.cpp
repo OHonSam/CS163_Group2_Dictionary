@@ -8,6 +8,8 @@ char Trie::rGetIndex(int index){
     if(index<0||index>=ALPHABET_SIZE) return '\0';
     return index+'a';
 }
+
+
 bool Trie::checkExist(const std::string& key)
 {
     Trie::Node* cur=root;
@@ -22,4 +24,20 @@ bool Trie::checkExist(const std::string& key)
 }
 
 
+
+void Trie::recursiveFind(std::vector<std::string>& res,std::string prefix, Trie::Node* cur, int& cnt){
+    if(cnt==20) 
+        return;
+    if(cur->isEnd==true) {
+        res.push_back(prefix);
+        ++cnt;
+        return;
+    }
+    for(int i=0;i<ALPHABET_SIZE;++i){
+        if(cur->child[i]!=nullptr){
+            char c=rGetIndex(i);
+            recursiveFind(res,prefix+c,cur->child[i],cnt);
+        }
+    }
+}
 
