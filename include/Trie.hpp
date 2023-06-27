@@ -1,5 +1,9 @@
 // THIS IS THE TEMPLATE COPIED FROM GOOGLE DOCS ONLY, WITH FUNCTION PROTOTYPE SUGGESTION, FOR EASY WORK
 #pragma once
+
+#include <string>
+#include <vector>
+
 const int ALPHABET_SIZE=26;
 
 class Trie

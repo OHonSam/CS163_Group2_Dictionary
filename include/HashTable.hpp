@@ -1,12 +1,16 @@
 // THIS IS THE TEMPLATE COPIED FROM GOOGLE DOCS ONLY, WITH FUNCTION PROTOTYPE SUGGESTION, FOR EASY WORK
-
 #pragma once
+
+#include <vector>
+#include <string>
+#include <utility>
+
 class HashTable
 {
 private:
 	int numWords;
     
-    // Buckets 2d vector initialized with size 1e6, approximately greater than the number of words
+    // Buckets 2d std::vector itialized with size 1e6, approximately greater than the number of words
 	std::vector<std::vector<std::pair<std::string,std::string>>> buckets;
 
 	// Hash function

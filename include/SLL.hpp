@@ -1,5 +1,9 @@
 // SLL is Singly Linked List
 #pragma once
+
+#include <string>
+#include <vector>
+
 template<class T>
 class SLL
 {
@@ -8,6 +12,8 @@ private:
 	{
 		T data;
 		Node* next;
+		Node();
+		Node(const T& val);
 	};
 
 	Node *head, *tail;
