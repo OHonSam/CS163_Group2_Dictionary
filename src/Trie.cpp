@@ -6,5 +6,13 @@ int Trie::getIndex(char c){
 }
 bool Trie::checkExist(const std::string& key)
 {
-   
+    Trie::Node* cur=root;
+    int n=key.size();
+    for(int i=0;i<n;++i){
+        int index=getIndex(key[i]);
+        if(cur->child[index]==nullptr)
+            return false;
+        cur=cur->child[index];
+    }
+    return (cur->isEnd);
 }
