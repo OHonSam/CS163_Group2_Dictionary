@@ -17,5 +17,13 @@ int HashTable::insert(const std::string& word, const std::string& def) {
 }
 
 int HashTable::hash(const std::string& word) {
-    return 0;
+    int res=0;
+    for(int i=0; i<NMOD; i++)
+    {
+        int tot=0;
+        for(char c: word)
+            tot=(1LL*tot*BASE%MOD[i]+c)%MOD[i];
+        res=(res+1LL*i*tot%MOD[i])%MOD[i];
+    }
+    return res;
 }
