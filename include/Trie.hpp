@@ -11,7 +11,7 @@ class Trie
 private:
 	struct Node
 	{
-		int numWords;
+		int numWords; // Number of words that have this prefix
 		bool isEnd;
 		Node* child[ALPHABET_SIZE];
   	};
