@@ -20,6 +20,8 @@ private:
 
 	int getIndex(char c);
 	char rGetIndex(int index);
+
+	void remove(Node* &root, const std::string& word, int index);
 	
 public:
 	Trie();			
