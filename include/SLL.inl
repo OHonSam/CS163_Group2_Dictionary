@@ -6,11 +6,10 @@ SLL<T>::SLL(){
     head=nullptr;
     tail=nullptr;
 }
+
+
 template<class T>
-void SLL<T>::push(const T & val){
-}
-template<class T>
-void SLL<T>::pop(const T & key){
+void SLL<T>::pop(const T& key){
     Node* dummy=new Node;
     dummy->next=head;
     Node* cur=dummy;
@@ -30,6 +29,7 @@ void SLL<T>::pop(const T & key){
         tail=nullptr;
     delete dummy;
 }
+
 template<class T>
 void SLL<T>::clearHistory(){
     while(head!=nullptr){
@@ -38,6 +38,29 @@ void SLL<T>::clearHistory(){
         delete del;
     }
     tail=nullptr;
+}
+
+template<class T>
+int SLL<T>::countNodes(Node* head){
+    int ans=0;
+    while(head!=nullptr){
+        ++ans;
+        head=head->next;
+    }
+    return ans;
+}
+template<class T>
+void SLL<T>::push(const T& key){
+    Node* pNew=new Node(key);
+    if(head==nullptr){
+        head=pNew;
+        tail=head;
+        return;
+    }
+    tail->next=pNew;
+    if(countNodes(head)>20){
+        pop(head->data);
+    }
 }
 
 

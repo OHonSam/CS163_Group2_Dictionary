@@ -28,7 +28,7 @@ public:
 	SLL();									
 	~SLL();										
 	// Deallocate all nodes
-	void clearHistory();									
+	void clearHistory();//									
 
 	// Load from a binary file
 	bool import(const std::string& path);				
@@ -36,11 +36,12 @@ public:
 	// Save to a binary file
 	bool save(const std::string& path);						
 
-	// Insert a value
-	void push(const T& val);							
+	// Insert a value->limit to 20 history nodes 
+	void push(const T& key);//	
+	int countNodes(Node* head);						
 
 	// Remove a value
-	void pop(const T& key);							
+	void pop(const T& key);//						
 
 	// Remove a value
 	std::vector<T> getList();							
