@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string.h>
-#include "..\include\HashTable.hpp"
+#include <HashTable.hpp>
 
 std::string HashTable::searchDef(const std::string& word) {
     HashTable::numWords = HashTable::hash(word);
