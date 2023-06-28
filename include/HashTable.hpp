@@ -6,6 +6,10 @@
 class HashTable
 {
 private:
+	const int NMOD=3;
+	const int BASE=311;
+	const int MOD[3]={1000003, 1000033, 1000037};
+
 	int numWords;
     
     // Buckets 2d std::vector itialized with size 1e6, approximately greater than the number of words
@@ -15,7 +19,7 @@ private:
 	int hash(const std::string& word);						
 
 public:
-	HashTable();								
+	HashTable();				
 
 	void clear();									
 

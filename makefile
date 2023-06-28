@@ -35,3 +35,8 @@ clean:
 	@del /f $(BIN)\*.exe $(OBJ)\*.o
 	@echo "Cleaning is done!"
 
+link:
+	@echo "Linking..."
+	@$(CXX) $(CXXFLAGS) $(INCLUDE) -o $(EXECUTABLE) $(OBJ)/*.o $(LIBRARIES)
+	@echo "Linking successfully!"
+

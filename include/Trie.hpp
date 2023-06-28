@@ -1,5 +1,6 @@
 #pragma once
 // THIS IS THE TEMPLATE COPIED FROM GOOGLE DOCS ONLY, WITH FUNCTION PROTOTYPE SUGGESTION, FOR EASY WORK
+#pragma once
 
 #include<Libraries.hpp>
 
@@ -10,7 +11,7 @@ class Trie
 private:
 	struct Node
 	{
-		int numWords;
+		int numWords; // Number of words that have this prefix
 		bool isEnd;
 		Node* child[ALPHABET_SIZE];
   	};

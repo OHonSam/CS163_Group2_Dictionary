@@ -1,5 +1,6 @@
 #pragma once
 // SLL is Singly Linked List
+#pragma once
 
 #include<Libraries.hpp>
 

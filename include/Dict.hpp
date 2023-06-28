@@ -1,14 +1,15 @@
 #pragma once
-
-#include <Trie.hpp>
-#include <SLL.hpp>
-#include <BTree.hpp>
-#include <HashTable.hpp>
+#include "BTree.hpp"
+#include "HashTable.hpp"
+#include "SLL.hpp"
+#include "Trie.hpp"
+#include <string>
+#include <vector>
 
 class Dict
 {
 private:
-	SLL<std::string> history;
+	SLL <std::string> history;
 	HashTable wordDef;
 	Trie words;
 	BTree favList;
