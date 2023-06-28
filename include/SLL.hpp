@@ -1,5 +1,6 @@
 // SLL is Singly Linked List
-#pragma once
+#ifndef SLL_HPP
+#define SLL_HPP
 
 #include <string>
 #include <vector>
@@ -10,10 +11,15 @@ class SLL
 private:
 	struct Node
 	{
-		T data;
+		T data;//SLL history is a list of nodes, each node contains a keyword
 		Node* next;
-		Node();
-		Node(const T& val);
+		Node(){
+			next=nullptr;
+		}
+		Node(const T& val){
+			data=val;
+			next=nullptr;
+		}
 	};
 
 	Node *head, *tail;
@@ -34,9 +40,10 @@ public:
 	void push(const T& val);							
 
 	// Remove a value
-	void pop(const T& val);							
+	void pop(const T& key);							
 
 	// Remove a value
 	std::vector<T> getList();							
 };
-
+#include "..\include\SLL.inl"
+#endif
