@@ -27,3 +27,8 @@ int HashTable::hash(const std::string& word) {
     }
     return res;
 }
+
+HashTable::HashTable()
+{
+    buckets.resize(MOD[NMOD-1]);
+}

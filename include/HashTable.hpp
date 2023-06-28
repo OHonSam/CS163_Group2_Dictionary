@@ -21,7 +21,7 @@ private:
 	int hash(const std::string& word);						
 
 public:
-	HashTable(): buckets(1000000) {}				
+	HashTable();				
 
 	void clear();									
 
