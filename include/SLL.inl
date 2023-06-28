@@ -26,9 +26,18 @@ void SLL<T>::pop(const T & key){
         cur=cur->next;
     }
     head=dummy->next;
-    if(head==nullptr)   //to be careful, the function still works if removing this condition
+    if(head==nullptr)   //to be careful through the function still works if removing this condition
         tail=nullptr;
     delete dummy;
+}
+template<class T>
+void SLL<T>::clearHistory(){
+    while(head!=nullptr){
+        Node* del=head;
+        head=head->next;
+        delete del;
+    }
+    tail=nullptr;
 }
 
 

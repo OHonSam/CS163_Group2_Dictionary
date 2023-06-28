@@ -1,7 +1,7 @@
-// SLL is Singly Linked List
+
 #ifndef SLL_HPP
 #define SLL_HPP
-
+// SLL is Singly Linked List
 #include <string>
 #include <vector>
 
@@ -27,8 +27,8 @@ private:
 public:
 	SLL();									
 	~SLL();										
-
-	void clear();									
+	// Deallocate all nodes
+	void clearHistory();									
 
 	// Load from a binary file
 	bool import(const std::string& path);				
