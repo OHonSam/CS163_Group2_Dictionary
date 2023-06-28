@@ -15,7 +15,7 @@ private:
 	int numWords;
     
     // Buckets 2d std::vector itialized with size 1e6, approximately greater than the number of words
-	std::vector<std::vector<std::pair<std::string,std::string>>> buckets;
+	std::vector<std::vector<std::pair<std::string, std::string>>> buckets;
 
 	// Hash function
 	int hash(const std::string& word);						
