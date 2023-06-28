@@ -1,6 +1,7 @@
-#pragma once
+#ifndef TRIE_HPP
+#define TRIE_HPP
 // THIS IS THE TEMPLATE COPIED FROM GOOGLE DOCS ONLY, WITH FUNCTION PROTOTYPE SUGGESTION, FOR EASY WORK
-#pragma once
+
 
 #include<Libraries.hpp>
 
@@ -51,4 +52,5 @@ public:
 	// Get all the words that was embedded in the trie
 	std::vector<std::string> getList();							
 };
+#endif
 

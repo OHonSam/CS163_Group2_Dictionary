@@ -1,8 +1,9 @@
-#pragma once
+#ifndef SLL_HPP
+#define SLL_HPP
 // SLL is Singly Linked List
-#pragma once
 
-#include<Libraries.hpp>
+
+#include ".\Libraries.hpp"
 
 template<class T>
 class SLL
@@ -12,10 +13,15 @@ private:
 	{
 		T data;
 		Node* next;
-		Node();
-		Node(const T& val);
+		Node(){
+			next=nullptr;
+		}
+		Node(const T& val){
+			data=val;
+			next=nullptr;
+		}
 	};
-
+	
 	Node *head, *tail;
 
 public:
@@ -39,4 +45,4 @@ public:
 	// Remove a value
 	std::vector<T> getList();							
 };
-
+#endif
