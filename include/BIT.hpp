@@ -8,4 +8,5 @@ private:
     int *bit;
 
 public:
+    BIT(int n);
 };
