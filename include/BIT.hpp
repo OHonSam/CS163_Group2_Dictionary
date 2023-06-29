@@ -9,4 +9,5 @@ private:
 
 public:
     BIT(int n);
+    ~BIT();
 };
