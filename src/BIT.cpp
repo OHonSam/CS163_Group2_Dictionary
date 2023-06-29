@@ -13,6 +13,17 @@ BIT::~BIT()
     delete[] bit;
 }
 
+int BIT::get(int i)
+{
+    int sum = 0;
+    while (i > 0)
+    {
+        sum += bit[i];
+        i -= i & -i;
+    }
+    return sum;
+}
+
 void BIT::add(int i, int x)
 {
     while (i <= n)

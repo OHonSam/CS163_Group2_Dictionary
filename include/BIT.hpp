@@ -12,5 +12,6 @@ public:
     BIT(int n);
     ~BIT();
 
+    int get(int i);
     void add(int i, int x);
 };
