@@ -12,3 +12,12 @@ BIT::~BIT()
 {
     delete[] bit;
 }
+
+void BIT::add(int i, int x)
+{
+    while (i <= n)
+    {
+        bit[i] += x;
+        i += i & -i;
+    }
+}

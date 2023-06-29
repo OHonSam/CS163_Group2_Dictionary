@@ -1,6 +1,7 @@
 #pragma once
 
 // BIT: Binary Indexed Tree - Fenwick Tree
+// Careful: 1-indexed
 class BIT
 {
 private:
@@ -10,4 +11,6 @@ private:
 public:
     BIT(int n);
     ~BIT();
+
+    void add(int i, int x);
 };
