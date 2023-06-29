@@ -58,6 +58,7 @@ void SLL<T>::push(const T& key){
         return;
     }
     tail->next=pNew;
+    tail=pNew;  
     if(countNodes(head)>20){
         pop(head->data);
     }
