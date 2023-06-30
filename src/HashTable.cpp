@@ -18,6 +18,17 @@ int HashTable::insert(const std::string& word, const std::string& def) {
     return HashTable::buckets[key].size();
 }
 
+void HashTable::remove(const std::string &word)
+{
+    int h=hash(word);
+    for(int i=0; i<buckets[h].size(); i++)
+        if(buckets[h][i].first==word)
+        {
+            buckets[h].erase(buckets[h].begin()+i);
+            return;
+        }
+}
+
 int HashTable::hash(const std::string& word) {
     int res=0;
     for(int i=0; i<NMOD; i++)
