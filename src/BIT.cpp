@@ -32,3 +32,17 @@ void BIT::add(int i, int x)
         i += i & -i;
     }
 }
+
+int BIT::lower_bound(int x)
+{
+    int sum = 0, pos = 0;
+    for (int i = LOGN; i >= 0; i--)
+    {
+        if (pos + (1 << i) < n && sum + bit[pos + (1 << i)] < x)
+        {
+            sum += bit[pos + (1 << i)];
+            pos += (1 << i);
+        }
+    }
+    return pos + 1;
+}

@@ -5,6 +5,8 @@
 class BIT
 {
 private:
+    const int LOGN=20;
+
     int n;
     int *bit;
 
@@ -14,4 +16,6 @@ public:
 
     int get(int i);
     void add(int i, int x);
+
+    int lower_bound(int x);
 };
