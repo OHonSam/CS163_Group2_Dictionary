@@ -22,8 +22,16 @@ std::vector<std::pair<std::string, std::string>> HashTable::getRandom(int k)
     {
         int num=rand()%numWords;
         int key=bit.lower_bound(num)-1;
-        int pos=num-bit.get(key);
-        res.push_back(buckets[key][pos]);
+        int pos=num-bit.get(key+1);
+        if(pos<0 || pos>=buckets[key].size()) continue;
+        bool flag=true;
+        for(auto i: res)
+            if(i.first==buckets[key][pos].first)
+            {
+                flag=false;
+                break;
+            }
+        if(flag) res.push_back(buckets[key][pos]);
     }
     return res;
 }
@@ -33,7 +41,7 @@ int HashTable::insert(const std::string& word, const std::string& def) {
     int key = HashTable::hash(word);
     bit.add(key+1,1);
     HashTable::buckets[key].push_back({word, def});
-    return HashTable::buckets[key].size();
+    return key;
 }
 
 int HashTable::hash(const std::string& word) {
