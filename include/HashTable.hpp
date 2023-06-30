@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <utility>
+#include<cstdlib>
 #include "BIT.hpp"
 
 class HashTable
@@ -43,8 +44,11 @@ public:
 	// Edit definition of existed word
 	void updateDef(const std::string& word, const std::string& newDef);	
 
-	// Find a definition for a required word
-	std::string searchDef(const std::string& word);	
+	// Find a definition for a required word	
+	std::string searchDef(const std::string& word);
+
+	//Random a word and its definition
+	std::pair<std::string, std::string> randomWordOfDay();//				
 
 	// Get the list of random k word-definition pairs
 	std::vector<std::pair<std::string, std::string>> getRandom(int k);			
