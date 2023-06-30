@@ -45,7 +45,7 @@ public:
 	// Remove a value
 	void pop(const T& key);//						
 
-	// Remove a value
+	// Get the list of favorite words
 	std::vector<T> getList();							
 };
 #include "..\include\SLL.inl"
