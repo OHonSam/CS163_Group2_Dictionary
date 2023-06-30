@@ -21,15 +21,8 @@ std::vector<std::pair<std::string, std::string>> HashTable::getRandom(int k)
     while(res.size()<k)
     {
         int num=rand()%numWords;
-        int l=0, r=MOD[NMOD-1]-1;
-        while(l<r)
-        {
-            int mid=(l+r)/2;
-            if(bit.get(mid)>=num) r=mid;
-            else l=mid+1;
-        }
-        int key=l;
-        int pos=rand()%buckets[key].size();
+        int key=bit.lower_bound(num)-1;
+        int pos=num-bit.get(key);
         res.push_back(buckets[key][pos]);
     }
     return res;
