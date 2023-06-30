@@ -24,6 +24,8 @@ private:
 	int getIndex(char c);
 	char rGetIndex(int index);
 
+	void remove(Node* &root, const std::string& word, int index);
+
 	void import(Node* &node, std::ifstream& file);
 	void save(Node* node, std::ofstream& file);
 	
