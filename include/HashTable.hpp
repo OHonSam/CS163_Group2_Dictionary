@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <utility>
+#include "BIT.hpp"
 
 class HashTable
 {
@@ -11,6 +12,8 @@ private:
 	const int NMOD=3;
 	const int BASE=311;
 	const int MOD[3]={1000003, 1000033, 1000037};
+
+	BIT bit;
 
 	int numWords;
     
@@ -41,6 +44,9 @@ public:
 	void updateDef(const std::string& word, const std::string& newDef);	
 
 	// Find a definition for a required word
-	std::string searchDef(const std::string& word);				
+	std::string searchDef(const std::string& word);	
+
+	// Get the list of random k word-definition pairs
+	std::vector<std::pair<std::string, std::string>> getRandom(int k);			
 };
 

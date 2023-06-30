@@ -1,7 +1,9 @@
 #include <fstream>
 #include <vector>
 #include <string.h>
-#include <HashTable.hpp>
+#include <cstdlib>
+#include <time.h>
+#include "HashTable.hpp"
 
 std::string HashTable::searchDef(const std::string& word) {
     int key = HashTable::hash(word);
@@ -12,8 +14,31 @@ std::string HashTable::searchDef(const std::string& word) {
     return "";
 }
 
+std::vector<std::pair<std::string, std::string>> HashTable::getRandom(int k)
+{
+    srand(time(NULL));
+    std::vector<std::pair<std::string, std::string>> res;
+    while(res.size()<k)
+    {
+        int num=rand()%numWords;
+        int l=0, r=MOD[NMOD-1]-1;
+        while(l<r)
+        {
+            int mid=(l+r)/2;
+            if(bit.get(mid)>=num) r=mid;
+            else l=mid+1;
+        }
+        int key=l;
+        int pos=rand()%buckets[key].size();
+        res.push_back(buckets[key][pos]);
+    }
+    return res;
+}
+
 int HashTable::insert(const std::string& word, const std::string& def) {
+    numWords++;
     int key = HashTable::hash(word);
+    bit.add(key+1,1);
     HashTable::buckets[key].push_back({word, def});
     return HashTable::buckets[key].size();
 }
@@ -30,7 +55,7 @@ int HashTable::hash(const std::string& word) {
     return res;
 }
 
-HashTable::HashTable()
+HashTable::HashTable():bit(MOD[NMOD-1])
 {
     buckets.resize(MOD[NMOD-1]);
 }
