@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BIT_HPP
+#define BIT_HPP
 
 // BIT: Binary Indexed Tree - Fenwick Tree
 // Careful: 1-indexed
@@ -19,3 +20,4 @@ public:
 
     int lower_bound(int x);
 };
+#endif

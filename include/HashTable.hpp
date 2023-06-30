@@ -1,5 +1,5 @@
-// THIS IS THE TEMPLATE COPIED FROM GOOGLE DOCS ONLY, WITH FUNCTION PROTOTYPE SUGGESTION, FOR EASY WORK
-#pragma once
+#ifndef HASHTABLE_HPP
+#define HASHTABLE_HPP
 
 #include<Libraries.hpp>
 #include "BIT.hpp"
@@ -51,3 +51,4 @@ public:
 	std::vector<std::pair<std::string, std::string>> getRandom(int k);			
 };
 
+#endif

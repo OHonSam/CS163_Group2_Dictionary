@@ -2,10 +2,7 @@
 #ifndef SLL_HPP
 #define SLL_HPP
 // SLL is Singly Linked List
-#include <string>
-#include <vector>
-
-#include ".\Libraries.hpp"
+#include <Libraries.hpp>
 
 template<class T>
 class SLL

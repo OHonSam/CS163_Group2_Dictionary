@@ -1,10 +1,10 @@
-#pragma once
+#ifndef DICT_HPP
+#define DICT_HPP
 #include "BTree.hpp"
 #include "HashTable.hpp"
 #include "SLL.hpp"
 #include "Trie.hpp"
-#include <string>
-#include <vector>
+#include<Libraries.hpp>
 
 class Dict
 {
@@ -62,3 +62,4 @@ public:
 	// Return the list of words which has an identical given prefix
 	std::vector<std::string> searchPrefix(const std::string& prefix);		
 };
+#endif

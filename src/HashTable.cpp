@@ -1,9 +1,5 @@
-#include <fstream>
-#include <vector>
-#include <string.h>
-#include <cstdlib>
-#include <time.h>
-#include "HashTable.hpp"
+#include <Libraties.hpp>
+#include <HashTable.hpp>
 
 std::string HashTable::searchDef(const std::string& word) {
     int key = HashTable::hash(word);

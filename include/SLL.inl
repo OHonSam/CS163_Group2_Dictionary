@@ -1,6 +1,7 @@
 #ifndef SLL_INL
 #define SLL_INL
-#include"..\include\SLL.hpp"
+
+#include<SLL.hpp>
 template<class T>
 SLL<T>::SLL(){
     head=nullptr;
