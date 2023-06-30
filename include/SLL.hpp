@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include ".\Libraries.hpp"
+
 template<class T>
 class SLL
 {
@@ -21,7 +23,7 @@ private:
 			next=nullptr;
 		}
 	};
-
+	
 	Node *head, *tail;
 
 public:
@@ -43,7 +45,7 @@ public:
 	// Remove a value
 	void pop(const T& key);//						
 
-	// Remove a value
+	// Get the list of favorite words
 	std::vector<T> getList();							
 };
 #include "..\include\SLL.inl"
