@@ -32,3 +32,10 @@ HashTable::HashTable()
 {
     buckets.resize(MOD[NMOD-1]);
 }
+
+std::pair<std::string, std::string> HashTable::randomWordOfDay() {
+    srand(time(NULL));
+    int key=rand()%buckets.size();//random a bucket
+    int value=rand()%buckets[key].size();//randoma a pair in that bucket
+    return buckets[key][value];
+}

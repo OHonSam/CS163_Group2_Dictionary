@@ -39,6 +39,9 @@ public:
 	void updateDef(const std::string& word, const std::string& newDef);	
 
 	// Find a definition for a required word
-	std::string searchDef(const std::string& word);				
+	std::string searchDef(const std::string& word);
+
+	//Random a word and its definition
+	std::pair<std::string, std::string> randomWordOfDay();//				
 };
 
