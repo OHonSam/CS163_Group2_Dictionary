@@ -1,4 +1,4 @@
-#include <Libraties.hpp>
+#include <Libraries.hpp>
 #include <HashTable.hpp>
 
 std::string HashTable::searchDef(const std::string& word) {
