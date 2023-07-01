@@ -56,7 +56,7 @@ void TreeNode::traverse() {
   for (i = 0; i < n; i++) {
     if (leaf == false)
       C[i]->traverse();
-    cout << " " << keys[i];
+    std::cout << " " << keys[i];
   }
 
   if (leaf == false)
