@@ -61,5 +61,8 @@ public:
 	
 	// Return the list of words which has an identical given prefix
 	std::vector<std::string> searchPrefix(const std::string& prefix);		
+
+	// Get the list of multple choices
+	void getMultileChoices(std::string& ques, std::vector<std::string>& choices, int numChoices, bool isWord);
 };
 #endif
