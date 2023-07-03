@@ -30,7 +30,7 @@ public:
 	void clearHistory();//									
 
 	// Load from a binary file
-	bool import(const std::string& path);				
+	bool importSLLStr(const std::string& path);				
 
 	// Save to a binary file
 	bool saveSLLStr(const std::string& path);						

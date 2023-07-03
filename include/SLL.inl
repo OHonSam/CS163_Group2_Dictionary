@@ -82,10 +82,14 @@ bool SLL<T>::saveSLLStr(const std::string& path) {
     while (cur != nullptr) {
         std::string keyword = cur->data;
         int len = keyword.size()+1;
+
         char* arr = new char[len];
+
         StrToCharArr(arr, keyword, len);
+
         fout.write((char*)&len, sizeof(int));
         fout.write(arr, len);
+
         cur = cur->next;
     }
 
@@ -93,8 +97,37 @@ bool SLL<T>::saveSLLStr(const std::string& path) {
     fout.write((char*)&end, 1);
 
     fout.close();
+    
     if (fout.bad()) {
         //cout<<"Error occured in writing time
+        return false;
+    }
+    return true;
+}
+template<class T>
+bool SLL<T>::importSLLStr(const std::string& path) {
+    fin.open(path, ios::binary);
+    if (!fin.is_open()) {
+        //cout << "Can't open the file for reading!";
+        return false;
+    }
+    int len;
+    while (fin.read((char*)&len,sizeof(int))) {
+        char* arr = new char[len];
+
+        fin.read(arr, len);
+
+        std::string keyword;
+        keyword = arr;
+        
+        SLL<T>::push(keyword);
+        delete[] arr;
+    }
+
+    fin.close();
+
+    if (fin.bad()) {
+        //cout<<"Error occured in reading time
         return false;
     }
     return true;
