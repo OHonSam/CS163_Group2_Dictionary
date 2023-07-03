@@ -64,6 +64,34 @@ void SLL<T>::push(const T& key){
         pop(head->data);
     }
 }
+template<class T>
+bool SLL<T>::saveSLLStr(const std::string& path) {
 
+    fout.open(path, ios::binary);
+    if (!fout.is_open()) {
+        //cout << "Can't open the file for writing!";
+        return false;
+    }
 
+    Node* cur = head;
+    while (cur != nullptr) {
+        std::string keyword = cur->data;
+        int len = keyword.size()+1;
+        char* arr = new char[len];
+        StrToCharArr(arr, keyword, len);
+        fout.write((char*)&len, sizeof(int));
+        fout.write(arr, len);
+        cur = cur->next;
+    }
+    
+    char end = '\0';
+    fout.write((char*)&end, 1);
+
+    fout.close();
+    if (fout.bad()) {
+        //cout<<"Error occured in writing time
+        return false;
+    }
+    return true;
+}
 #endif
