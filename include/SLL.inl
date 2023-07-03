@@ -64,6 +64,11 @@ void SLL<T>::push(const T& key){
         pop(head->data);
     }
 }
+
+void StrToCharArr(char*& arr, const std::string& str, int len) {//count '\0' in len
+    #pragma warning(suppress : 4996)
+    strcpy(arr, str.c_str());
+}
 template<class T>
 bool SLL<T>::saveSLLStr(const std::string& path) {
 
@@ -83,7 +88,7 @@ bool SLL<T>::saveSLLStr(const std::string& path) {
         fout.write(arr, len);
         cur = cur->next;
     }
-    
+
     char end = '\0';
     fout.write((char*)&end, 1);
 
