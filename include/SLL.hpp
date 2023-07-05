@@ -30,10 +30,10 @@ public:
 	void clearHistory();//									
 
 	// Load from a binary file
-	bool importSLLStr(const std::string& path);				
+	bool importSLLStr(const std::string& path, std::ifstream& fin);				
 
 	// Save to a binary file
-	bool saveSLLStr(const std::string& path);						
+	bool saveSLLStr(const std::string& path, std::ofstream& fout);						
 
 	// Insert a value->limit to 20 history nodes 
 	void push(const T& key);//	

@@ -38,9 +38,9 @@ int main()
     history.display();
      std::cout << std::endl;
 
-    history.saveSLLStr("HistorySLL.bin");
+    history.saveSLLStr("HistorySLL.bin",fout);
     SLL<std::string> historyFFile;
-    historyFFile.importSLLStr("HistorySLL.bin");
+    historyFFile.importSLLStr("HistorySLL.bin",fin);
     std::cout << std::endl;
     historyFFile.display();
 
