@@ -43,9 +43,17 @@ public:
 	void pop(const T& key);//						
 
 	// Get the list of favorite words
-	std::vector<T> getList();							
+	//std::vector<T> getList();
+
+	void display() {
+        Node* cur = head;
+        while (cur != nullptr) {
+            std::cout << cur->data << " ";
+            cur = cur->next;
+        }
+    }							
 };
 //convert characters from string str to array of char arr
 void StrToCharArr(char*& arr, const std::string& str, int len); 
-#include "..\include\SLL.inl"
+#include <SLL.inl>
 #endif
