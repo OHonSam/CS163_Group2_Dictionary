@@ -42,6 +42,7 @@ int HashTable::insert(const std::string& word, const std::string& def) {
 
 void HashTable::remove(const std::string &word)
 {
+    numWords--;
     int h=hash(word);
     for(int i=0; i<buckets[h].size(); i++)
         if(buckets[h][i].first==word)
