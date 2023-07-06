@@ -7,7 +7,10 @@ SLL<T>::SLL(){
     head=nullptr;
     tail=nullptr;
 }
-
+template<class T>
+SLL<T>::~SLL(){
+    clearSLL();
+}
 
 template<class T>
 void SLL<T>::pop(const T& key){
@@ -32,7 +35,7 @@ void SLL<T>::pop(const T& key){
 }
 
 template<class T>
-void SLL<T>::clearHistory(){
+void SLL<T>::clearSLL(){
     while(head!=nullptr){
         Node* del=head;
         head=head->next;

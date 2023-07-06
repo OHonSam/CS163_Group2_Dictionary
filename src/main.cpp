@@ -1,6 +1,6 @@
 #include<Libraries.hpp>
 #include<SLL.hpp>
-#include<Trie.hpp>
+//#include<Trie.hpp>
 std::ifstream fin;
 std::ofstream fout;
 int main()
@@ -44,6 +44,6 @@ int main()
     std::cout << std::endl;
     historyFFile.display();
 
-    history.clearHistory();
+    history.clearSLL();
     history.display();
 }
