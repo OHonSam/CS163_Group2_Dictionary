@@ -27,7 +27,9 @@ public:
 	SLL();									
 	~SLL();										
 	// Deallocate all nodes
-	void clearSLL();//									
+	void clearSLL();//
+	// Delete history
+	bool clearHistory(const std::string& path);
 
 	// Load from a binary file
 	bool importSLLStr(const std::string& path, std::ifstream& fin);				

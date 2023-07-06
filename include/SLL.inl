@@ -45,6 +45,19 @@ void SLL<T>::clearSLL(){
 }
 
 template<class T>
+bool SLL<T>::clearHistory(const std::string& path){
+    clearSLL();
+    std::ofstream fout;
+    fout.open(path,std::ios::binary|std::ios::trunc);
+    if(!fout.is_open())
+        return false;
+    fout.close();
+    if(fout.bad())
+        return false;
+    return true;
+}
+
+template<class T>
 int SLL<T>::countNodes(Node* head){
     int ans=0;
     while(head!=nullptr){

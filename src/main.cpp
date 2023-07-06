@@ -44,6 +44,8 @@ int main()
     std::cout << std::endl;
     historyFFile.display();
 
-    history.clearSLL();
+    if(history.clearHistory("HistorySLL.bin"))
+        std::cout << "Clear history successfully!" << std::endl;
+
     history.display();
 }
