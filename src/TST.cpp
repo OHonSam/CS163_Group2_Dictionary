@@ -1,7 +1,7 @@
 #include "Libraries.hpp"
 #include "TST.hpp"
 
-TSTNode *TSTNode::put(TSTNode *node, const std::string &str, int index)
+TSTNode *TSTNode::insert(TSTNode *node, const std::string &str, int index)
 {
     if (!node)
     {
@@ -9,17 +9,28 @@ TSTNode *TSTNode::put(TSTNode *node, const std::string &str, int index)
     }
 
     if (node->c > str[index])
-        node->left = put(node->left, str, index);
+        node->left = insert(node->left, str, index);
     else if (node->c < str[index])
-        node->right = put(node->right, str, index);
+        node->right = insert(node->right, str, index);
     else if (index < str.size() - 1)
     {
-        node->mid = put(node->mid, str, index + 1);
+        node->mid = insert(node->mid, str, index + 1);
     }
     else
         node->isEnd = true;
 
     return node;
+}
+
+void TST::deletion(const std::string &word)
+{
+    TSTNode *p = root->get(root, word, 0);
+    root->isEnd = false;
+}
+
+void TST::insert(const std::string &word)
+{
+    root = root->insert(root, word, 0);
 }
 
 TSTNode *TSTNode::get(TSTNode *node, const std::string &str, int index)
@@ -34,17 +45,6 @@ TSTNode *TSTNode::get(TSTNode *node, const std::string &str, int index)
     if (index < str.size() - 1)
         return get(node->mid, str, index + 1);
     return node;
-}
-
-void TST::deletion(const std::string &word)
-{
-    TSTNode *p = root->get(root, word, 0);
-    root->isEnd = false;
-}
-
-void TST::insert(const std::string &word)
-{
-    root = root->put(root, word, 0);
 }
 
 bool TST::search(const std::string &word)
@@ -117,18 +117,12 @@ void TST::save(TSTNode *node, std::ofstream &file)
     char _c = root->c;
 
     file.write((char *)&_c, sizeof(char));
-    if (_c < root->c)
-    {
         save(root->left, file);
-    }
-    else if (_c > root->c)
-    {
-        save(root->right, file);
-    }
-    else
-    {
+    
         save(root->mid, file);
-    }
+
+        save(root->right, file);
+    
 
     char marker = TERMINATOR;
     file.write((char *)&marker, sizeof(char));
