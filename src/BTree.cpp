@@ -1,50 +1,38 @@
 #include "Libraries.hpp"
+#include "BTree.hpp"
 
-class TreeNode
+BTree::BTree(int temp)
 {
-  int *keys;
-  int minimum_degree;
-  TreeNode **Children;
-  int order;
-  bool leaf;
+  root = NULL;
+  minimum_degree = temp;
+}
 
-public:
-  TreeNode(int temp, bool bool_leaf);
 
-  void insertNonFull(int k);
-  void splitChild(int i, TreeNode *y);
-  void traverse();
-
-  TreeNode *search(int k);
-
-  friend class BTree;
-};
-
-class BTree
+BTree::~BTree()
 {
-  TreeNode *root;
-  int minimum_degree;
-
-public:
-  BTree(int temp)
+  int i;
+  for (i = 0; i < order; i++)
   {
-    root = NULL;
-    minimum_degree = temp;
+    if (leaf == false)
+      Children[i]->traverse();
+    delete keys[i];
   }
 
-  void traverse()
-  {
-    if (root != NULL)
-      root->traverse();
-  }
+  if (leaf == false)
+    Children[i]->traverse();
+}
 
-  TreeNode *search(int k)
-  {
-    return (root == NULL) ? NULL : root->search(k);
-  }
+TreeNode *BTree::search(int k)
+{
+  return (root == NULL) ? NULL : root->search(k);
+}
 
-  void insert(int k);
-};
+void BTree::traverse()
+
+{
+  if (root != NULL)
+    root->traverse();
+}
 
 TreeNode::TreeNode(int t1, bool leaf1)
 {
