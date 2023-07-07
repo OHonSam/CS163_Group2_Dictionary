@@ -391,5 +391,3 @@ void TreeNode::merge(int idx)
   delete (sibling);
   return;
 }
-
-#endif
