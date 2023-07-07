@@ -1,7 +1,7 @@
 #include "Libraries.hpp"
 #include "TST.hpp"
 
-TSTNode* TSTNode::get(TSTNode *node, const std::string &str, int index)
+TSTNode *TSTNode::put(TSTNode *node, const std::string &str, int index)
 {
     if (!node)
     {
@@ -9,12 +9,12 @@ TSTNode* TSTNode::get(TSTNode *node, const std::string &str, int index)
     }
 
     if (node->c > str[index])
-        node->left = get(node->left, str, index);
+        node->left = put(node->left, str, index);
     else if (node->c < str[index])
-        node->right = get(node->right, str, index);
+        node->right = put(node->right, str, index);
     else if (index < str.size() - 1)
     {
-        node->mid = get(node->mid, str, index + 1);
+        node->mid = put(node->mid, str, index + 1);
     }
     else
         node->is_end = true;
@@ -22,19 +22,39 @@ TSTNode* TSTNode::get(TSTNode *node, const std::string &str, int index)
     return node;
 }
 
-void TST::insert(const std::string& word)
+TSTNode *TSTNode::get(TSTNode *node, const std::string &str, int index)
 {
-    root = root->get(root, word, 0);
+    if (node == NULL)
+        return NULL;
+
+    if (node->c > str[index])
+        return get(node->left, str, index);
+    if (node->c < str[index])
+        return get(node->right, str, index);
+    if (index < str.size() - 1)
+        return get(node->mid, str, index + 1);
+    return node;
 }
 
-bool TST::search(const std::string& word)
+void TST::deletion(const std::string &word)
+{
+    TSTNode *p = root->get(root, word, 0);
+    root->is_end = false;
+}
+
+void TST::insert(const std::string &word)
+{
+    root = root->put(root, word, 0);
+}
+
+bool TST::search(const std::string &word)
 {
     TSTNode *p = root->get(root, word, 0);
 
     return p && p->is_end;
 }
 
-bool TST::startsWith(const std::string& prefix)
+bool TST::startsWith(const std::string &prefix)
 {
     TSTNode *p = root->get(root, prefix, 0);
 

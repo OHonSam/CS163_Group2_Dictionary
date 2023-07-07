@@ -10,7 +10,8 @@ class TSTNode
 
     friend class TST;
 
-    TSTNode* get(TSTNode* node, const std::string & str, int index);
+    TSTNode *put(TSTNode *node, const std::string &str, int index);
+    TSTNode *get(TSTNode *node, const std::string &str, int index);
 
 public:
     TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr) {}
@@ -44,10 +45,10 @@ public:
         root = nullptr;
     }
 
-    void insert(const std::string& word);
-    void deletion(const std::string& word);
-    bool search(const std::string& word);
-    bool startsWith(const std::string& prefix);
+    void insert(const std::string &word);
+    void deletion(const std::string &word);
+    bool search(const std::string &word);
+    bool startsWith(const std::string &prefix);
 };
 
 #endif
