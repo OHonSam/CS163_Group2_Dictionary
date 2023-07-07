@@ -9,10 +9,6 @@ class TreeNode
 	int deg;
 	bool leaf;
 
-public:
-	TreeNode(int temp, bool bool_leaf);
-	~TreeNode();
-
 	void insertNonFull(int k);
 	void splitChild(int i, TreeNode *y);
 	void traverse();
@@ -30,6 +26,10 @@ public:
 	void borrowFromNext(int idx);
 	void merge(int idx);
 
+public:
+	TreeNode(int temp, bool bool_leaf);
+	~TreeNode();
+
 	friend class BTree;
 };
 
@@ -39,7 +39,7 @@ class BTree
 	int minDeg;
 
 public:
-	BTree(int temp);
+	BTree(int minDeg1);
 
 	void traverse();
 

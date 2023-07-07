@@ -1,10 +1,10 @@
 #include "Libraries.hpp"
 #include "BTree.hpp"
 
-BTree::BTree(int temp)
+BTree::BTree(int minDeg1)
 {
   root = nullptr;
-  minDeg = temp;
+  minDeg = minDeg1;
 }
 
 TreeNode::~TreeNode()
@@ -19,7 +19,6 @@ TreeNode::~TreeNode()
     {
       continue;
     }
-
     delete[] keys;
     keys = nullptr;
   }
@@ -34,7 +33,6 @@ TreeNode *BTree::search(int k)
 }
 
 void BTree::traverse()
-
 {
   if (root != nullptr)
     root->traverse();
@@ -168,15 +166,18 @@ void TreeNode::splitChild(int i, TreeNode *y)
   deg = deg + 1;
 }
 
-void BTree::deletion(int k) {
-  if (!root) {
+void BTree::deletion(int k)
+{
+  if (!root)
+  {
     std::cout << "The tree is empty\n";
     return;
   }
 
   root->deletion(k);
 
-  if (root->deg == 0) {
+  if (root->deg == 0)
+  {
     TreeNode *tmp = root;
     if (root->leaf)
       root = NULL;
