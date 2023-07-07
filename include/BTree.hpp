@@ -4,13 +4,14 @@
 class TreeNode
 {
 	int *keys;
-	int minimum_degree;
+	int minDeg;
 	TreeNode **Children;
-	int order;
+	int deg;
 	bool leaf;
 
 public:
 	TreeNode(int temp, bool bool_leaf);
+	~TreeNode();
 
 	void insertNonFull(int k);
 	void splitChild(int i, TreeNode *y);
@@ -18,13 +19,24 @@ public:
 
 	TreeNode *search(int k);
 
+	void deletion(int k);
+	int findKey(int k);
+	void removeFromLeaf(int idx);
+	void removeFromNonLeaf(int idx);
+	int getPredecessor(int idx);
+	int getSuccessor(int idx);
+	void fill(int idx);
+	void borrowFromPrev(int idx);
+	void borrowFromNext(int idx);
+	void merge(int idx);
+
 	friend class BTree;
 };
 
 class BTree
 {
 	TreeNode *root;
-	int minimum_degree;
+	int minDeg;
 
 public:
 	BTree(int temp);
@@ -34,6 +46,6 @@ public:
 	TreeNode *search(int k);
 	void insert(int k);
 
-	~BTree();
+	void deletion(int k);
 };
 #endif
