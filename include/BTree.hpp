@@ -40,6 +40,7 @@ class BTree
 
 public:
 	BTree(int minDeg1);
+	~BTree();
 
 	void traverse();
 

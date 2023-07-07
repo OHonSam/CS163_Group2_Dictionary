@@ -7,6 +7,14 @@ BTree::BTree(int minDeg1)
   minDeg = minDeg1;
 }
 
+BTree::~BTree()
+{
+  if (root != nullptr)
+  {
+    root->~TreeNode();
+  }
+}
+
 TreeNode::~TreeNode()
 {
   int i;
