@@ -11,28 +11,27 @@ BTree::~BTree()
 {
   if (root != nullptr)
   {
-    root->~TreeNode();
+    delete root;
+    root = nullptr;
   }
 }
 
 TreeNode::~TreeNode()
 {
-  int i;
-  for (i = 0; i < deg; i++)
-  {
-    if (leaf == false)
-      Children[i]->traverse();
-
-    if (keys == nullptr)
-    {
-      continue;
-    }
-    delete[] keys;
+    delete []keys;
     keys = nullptr;
-  }
 
-  if (leaf == false)
-    Children[i]->traverse();
+    if (Children != nullptr) {
+      for (int i = 0; i <= deg; ++i)
+      {
+        if (Children[i] != nullptr) {
+          delete Children[i];
+        }
+      }
+
+      delete []Children;
+      Children = nullptr;
+    }
 }
 
 TreeNode *BTree::search(int k)
