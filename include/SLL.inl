@@ -7,7 +7,10 @@ SLL<T>::SLL(){
     head=nullptr;
     tail=nullptr;
 }
-
+template<class T>
+SLL<T>::~SLL(){
+    clearSLL();
+}
 
 template<class T>
 void SLL<T>::pop(const T& key){
@@ -32,13 +35,26 @@ void SLL<T>::pop(const T& key){
 }
 
 template<class T>
-void SLL<T>::clearHistory(){
+void SLL<T>::clearSLL(){
     while(head!=nullptr){
         Node* del=head;
         head=head->next;
         delete del;
     }
     tail=nullptr;
+}
+
+template<class T>
+bool SLL<T>::clearHistory(const std::string& path){
+    clearSLL();
+    std::ofstream fout;
+    fout.open(path,std::ios::binary|std::ios::trunc);
+    if(!fout.is_open())
+        return false;
+    fout.close();
+    if(fout.bad())
+        return false;
+    return true;
 }
 
 template<class T>
@@ -65,5 +81,71 @@ void SLL<T>::push(const T& key){
     }
 }
 
+void StrToCharArr(char*& arr, const std::string& str, int len) {//count '\0' in len
+    #pragma warning(suppress : 4996)
+    strcpy(arr, str.c_str());
+}
+template<class T>
+bool SLL<T>::saveSLLStr(const std::string& path,std::ofstream& fout) {
 
+    fout.open(path,std::ios::binary);
+    if (!fout.is_open()) {
+        //cout << "Can't open the file for writing!";
+        return false;
+    }
+
+    Node* cur = head;
+    while (cur != nullptr) {
+        std::string keyword = cur->data;
+        int len = keyword.size()+1;
+
+        char* arr = new char[len];
+
+        StrToCharArr(arr, keyword, len);
+
+        fout.write((char*)&len, sizeof(int));
+        fout.write(arr, len);
+
+        cur = cur->next;
+    }
+
+    char end = '\0';
+    fout.write((char*)&end, 1);
+
+    fout.close();
+    
+    if (fout.bad()) {
+        //cout<<"Error occured in writing time
+        return false;
+    }
+    return true;
+}
+template<class T>
+bool SLL<T>::importSLLStr(const std::string& path,std::ifstream& fin) {
+    fin.open(path, std::ios::binary);
+    if (!fin.is_open()) {
+        //cout << "Can't open the file for reading!";
+        return false;
+    }
+    int len;
+    while (fin.read((char*)&len,sizeof(int))) {
+        char* arr = new char[len];
+
+        fin.read(arr, len);
+
+        std::string keyword;
+        keyword = arr;
+        
+        SLL<T>::push(keyword);
+        delete[] arr;
+    }
+
+    fin.close();
+
+    if (fin.bad()) {
+        //cout<<"Error occured in reading time
+        return false;
+    }
+    return true;
+}
 #endif

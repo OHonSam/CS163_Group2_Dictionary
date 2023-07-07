@@ -27,13 +27,15 @@ public:
 	SLL();									
 	~SLL();										
 	// Deallocate all nodes
-	void clearHistory();//									
+	void clearSLL();//
+	// Delete history
+	bool clearHistory(const std::string& path);
 
 	// Load from a binary file
-	bool import(const std::string& path);				
+	bool importSLLStr(const std::string& path, std::ifstream& fin);				
 
 	// Save to a binary file
-	bool save(const std::string& path);						
+	bool saveSLLStr(const std::string& path, std::ofstream& fout);						
 
 	// Insert a value->limit to 20 history nodes 
 	void push(const T& key);//	
@@ -43,7 +45,17 @@ public:
 	void pop(const T& key);//						
 
 	// Get the list of favorite words
-	std::vector<T> getList();							
+	//std::vector<T> getList();
+
+	void display() {
+        Node* cur = head;
+        while (cur != nullptr) {
+            std::cout << cur->data << " ";
+            cur = cur->next;
+        }
+    }							
 };
-#include "..\include\SLL.inl"
+//convert characters from string str to array of char arr
+void StrToCharArr(char*& arr, const std::string& str, int len); 
+#include <SLL.inl>
 #endif
