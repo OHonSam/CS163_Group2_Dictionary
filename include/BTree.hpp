@@ -2,12 +2,12 @@
 #define BTREE_HPP
 class BTree
 {
-private:
-	
+	BTree** root;
+	int* children;
+
 
 public:
 	BTree();
 	~BTree();
-
 };
 #endif
