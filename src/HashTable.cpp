@@ -1,16 +1,20 @@
 #include <Libraries.hpp>
 #include <HashTable.hpp>
 
-std::string HashTable::searchDef(const std::string& word) {
+Word* HashTable::searchDef(const std::string& word) {
     int key = HashTable::hash(word);
     for (int i = 0; i < HashTable::buckets[key].size(); i++)
     {
-        if (HashTable::buckets[key][i].first == word) return HashTable::buckets[key][i].second;
+        if (HashTable::buckets[key][i] -> word == word) {
+            return HashTable::buckets[key][i];
+        }
     }
-    return "";
+    // remember to check if a word exist on Trie
+    Word* trash;
+    return trash;
 }
 
-std::vector<std::pair<std::string, std::string>> HashTable::getRandom(int k)
+std::vector<Word*> HashTable::getRandom(int k)
 {
     srand(time(NULL));
     std::vector<std::pair<std::string, std::string>> res;
@@ -32,11 +36,11 @@ std::vector<std::pair<std::string, std::string>> HashTable::getRandom(int k)
     return res;
 }
 
-int HashTable::insert(const std::string& word, const std::string& def) {
+int HashTable::insert(Word* word) {
     numWords++;
-    int key = HashTable::hash(word);
+    int key = HashTable::hash(word -> word);
     bit.add(key+1,1);
-    HashTable::buckets[key].push_back({word, def});
+    HashTable::buckets[key].push_back(word);
     return key;
 }
 
@@ -47,9 +51,11 @@ void HashTable::remove(const std::string &word)
     for(int i=0; i<buckets[h].size(); i++)
         if(buckets[h][i].first==word)
         {
+            delete buckets[h][i];
             buckets[h].erase(buckets[h].begin()+i);
             return;
         }
+    return;
 }
 
 int HashTable::hash(const std::string& word) {
@@ -69,22 +75,23 @@ HashTable::HashTable():bit(MOD[NMOD-1])
     buckets.resize(MOD[NMOD-1]);
 }
 
-std::pair<std::string, std::string> HashTable::randomWordOfDay() {
+Word* HashTable::randomWordOfDay() {
     srand(time(NULL));
     int key=rand()%buckets.size();//random a bucket
     int pos=rand()%buckets[key].size();//randoma an index in that bucket
     return buckets[key][pos];
 }
-void HashTable::updateDef(const std::string& word, const std::string& newDef) {
+void HashTable::updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef) {
     int key = HashTable::hash(word);
     for (int i = 0; i < HashTable::buckets[key].size(); i++)
     {
-        if (HashTable::buckets[key][i].first == word) {
-            std::vector<std::pair<std::string, std::string>>::iterator it;
-            it = HashTable::buckets[key].begin() + i;
-            HashTable::buckets[key].erase(it);
-            HashTable::buckets[key].push_back({word, newDef});
-            return;
+        if (HashTable::buckets[key][i] -> word == word) {
+            for(int i = 0; i < POS::Count; i++) {
+                if(type & (1 << i)) {
+                    for (int j = 0; j < buckets[key][i]->def[i].size(); j++) if (buckets[key][i]->def[i][j] == oldDef) buckets[key][i]->def[i][j] = newDef;
+                }
+                return;
+            }
         }
     }
     return;
