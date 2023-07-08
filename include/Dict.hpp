@@ -4,6 +4,7 @@
 #include "HashTable.hpp"
 #include "SLL.hpp"
 #include "Trie.hpp"
+#include "Word.hpp"
 #include<Libraries.hpp>
 
 class Dict
