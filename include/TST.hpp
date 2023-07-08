@@ -2,6 +2,8 @@
 #ifndef TST_HPP
 #define TST_HPP
 
+#include "Libraries.hpp"
+
 class TSTNode
 {
     TSTNode *left, *mid, *right;
