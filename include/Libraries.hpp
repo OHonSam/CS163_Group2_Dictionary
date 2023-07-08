@@ -4,3 +4,4 @@
 #include<utility>//to use pair
 #include<string>
 #include <time.h>
+#include<cstring>
