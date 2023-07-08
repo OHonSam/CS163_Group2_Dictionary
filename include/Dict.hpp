@@ -39,7 +39,7 @@ public:
 	void addFav(const std::string& word);					
 
 	// Add a word to the history
-	void addHistory(const std::string& word);			
+	void addHistory(const std::string& word);//			
 
 	// Remove a word and corresponding definition
 	void removeWord(const std::string& word);				
