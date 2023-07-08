@@ -1,14 +1,14 @@
-
-#pragma once
-
-#include <string>
-#include <vector>
+#ifndef TRIE_HPP
+#define TRIE_HPP
+#include<Libraries.hpp>
 
 const int ALPHABET_SIZE=26;
 
 class Trie
 {
 private:
+	const char TERMINATOR='\0';
+
 	struct Node
 	{
 		int numWords; // Number of words that have this prefix
@@ -18,8 +18,15 @@ private:
 
 	Node* root;
 
-	int getIndex(char c);
+	// Get the index from the given character in the alphabet
+	int getIndex(char c);//
+	// Get the character in the alphabet from the given index
 	char rGetIndex(int index);
+
+	void remove(Node* &root, const std::string& word, int index);
+
+	void import(Node* &node, std::ifstream& file);
+	void save(Node* node, std::ofstream& file);
 	
 public:
 	Trie();			
@@ -40,12 +47,14 @@ public:
 	void remove(const std::string& word);					
 	
 	// Check whether a word is in the trie
-	bool check(const std::string& word);					
+	bool checkExist(const std::string& key);//					
 
-	// Returns a list of strings which have identical prefix
-	std::vector<std::string> searchPrefix(const std::string& prefix);		
+	// Returns a list of std::strings which have identical prefix
+	std::vector<std::string> searchPrefix(const std::string& prefix);//
+	void recursiveFind(std::vector<std::string>& res,std::string prefix, Trie::Node* cur, int& cnt);		
 
 	// Get all the words that was embedded in the trie
 	std::vector<std::string> getList();							
 };
+#endif
 
