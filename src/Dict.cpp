@@ -1,7 +1,10 @@
 #include <Dict.hpp>
 #include <json/json.h>
 #include<Libraries.hpp>
-
+bool Dict::reset(){
+    if(!history.clearHistory("HistorySLL.bin"))
+        return false;
+}
 bool Dict::importJson(const std::string &path)
 {
     // Open the JSON file
