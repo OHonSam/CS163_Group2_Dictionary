@@ -4,6 +4,7 @@
 bool Dict::reset(){
     if(!history.clearHistory("HistorySLL.bin"))
         return false;
+    //waiting for others
 }
 bool Dict::importJson(const std::string &path)
 {
@@ -72,4 +73,9 @@ void Dict::addHistory(const std::string& word){
 }
 void Dict::removeHistory(const std::string& word){
     history.pop(word);
+}
+
+void Dict::removeWord(const std::string& word){
+    removeHistory(word);
+    //waiting for others
 }
