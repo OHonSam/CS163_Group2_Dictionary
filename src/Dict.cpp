@@ -63,3 +63,7 @@ void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choice
             choices.push_back(p.first);
     }
 }
+
+void Dict::addHistory(const std::string& word){
+    history.push(word);
+}
