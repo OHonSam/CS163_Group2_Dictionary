@@ -74,6 +74,10 @@ void Dict::addHistory(const std::string& word){
 void Dict::removeHistory(const std::string& word){
     history.pop(word);
 }
+std::vector<std::string> Dict::getHistory(){
+    return history.SLLintoVector();
+}
+
 
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
