@@ -1,8 +1,5 @@
 #ifndef TRIE_HPP
 #define TRIE_HPP
-// THIS IS THE TEMPLATE COPIED FROM GOOGLE DOCS ONLY, WITH FUNCTION PROTOTYPE SUGGESTION, FOR EASY WORK
-
-
 #include<Libraries.hpp>
 
 const int ALPHABET_SIZE=26;
@@ -10,6 +7,8 @@ const int ALPHABET_SIZE=26;
 class Trie
 {
 private:
+	const char TERMINATOR='\0';
+
 	struct Node
 	{
 		int numWords; // Number of words that have this prefix
@@ -23,6 +22,11 @@ private:
 	int getIndex(char c);//
 	// Get the character in the alphabet from the given index
 	char rGetIndex(int index);
+
+	void remove(Node* &root, const std::string& word, int index);
+
+	void import(Node* &node, std::ifstream& file);
+	void save(Node* node, std::ofstream& file);
 	
 public:
 	Trie();			

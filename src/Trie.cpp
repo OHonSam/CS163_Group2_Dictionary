@@ -1,4 +1,5 @@
-#include "..\include\Trie.hpp"
+#include <fstream>
+#include <Trie.hpp>
 int Trie::getIndex(char c){
     if (c>='a'&&c<='z') return c-'a';
     if (c>='A'&&c<='Z') return c-'A';
@@ -57,4 +58,78 @@ std::vector<std::string> Trie::searchPrefix(const std::string& prefix){
     recursiveFind(res,prefix, cur, cnt);
 
     return res;
+}
+
+void Trie::import(Node *&node, std::ifstream &file)
+{
+    if(root==nullptr) root=new Node;
+    file.read((char*)&root->numWords,sizeof(int));
+    file.read((char*)&root->isEnd,sizeof(bool));
+    char c;
+    while(1)
+    {
+        file.read((char*)&c,sizeof(char));
+        if(c==TERMINATOR) break;
+        int pos=getIndex(c);
+        import(root->child[pos],file);
+    }
+}
+
+void Trie::save(Node *node, std::ofstream &file)
+{
+    if(root==nullptr) return;
+    file.write((char*)&root->numWords,sizeof(int));
+    file.write((char*)&root->isEnd,sizeof(bool));
+    for(int i=0;i<ALPHABET_SIZE;i++)
+        if(root->child[i]!=nullptr)
+        {
+            char c=rGetIndex(i);
+            file.write((char*)&c,sizeof(char));
+            save(root->child[i],file);
+        }
+    char marker=TERMINATOR;
+    file.write((char*)&marker,sizeof(char));
+}
+
+bool Trie::import(const std::string &path)
+{
+    std::ifstream file(path,std::ios::binary);
+    if(!file.is_open()) return false;
+    import(root,file);
+    file.close();
+    return true;
+}
+
+bool Trie::save(const std::string &path)
+{
+    std::ofstream file(path,std::ios::binary);
+    if(!file.is_open()) return false;
+    save(root,file);
+    file.close();
+    return true;
+}
+
+
+void Trie::remove(Node *&root, const std::string &word, int index)
+{
+    if (root == NULL) return;
+    root->numWords--;
+        
+    if (index == word.length()) root->isEnd = false;
+    else
+    {
+        int i = getIndex(word[index]);
+        remove(root->child[i], word, index + 1);
+    }
+    
+    if (root->numWords == 0)
+    {
+        delete root;
+        root = NULL;
+    }
+}
+
+void Trie::remove(const std::string &word)
+{
+    remove(root, word, 0);
 }
