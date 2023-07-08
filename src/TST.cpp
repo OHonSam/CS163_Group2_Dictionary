@@ -87,7 +87,7 @@ void TST::import(TSTNode *&node, std::ifstream &file)
         root = new TSTNode;
     file.read((char *)&root->numWords, sizeof(int));
     file.read((char *)&root->isEnd, sizeof(bool));
-    int _c;
+    int _c;     //character read in binary file
     while (true)
     {
         file.read((char *)&_c, sizeof(char));
@@ -114,7 +114,7 @@ void TST::save(TSTNode *node, std::ofstream &file)
         return;
     file.write((char *)&root->numWords, sizeof(int));
     file.write((char *)&root->isEnd, sizeof(bool));
-    char _c = root->c;
+    char _c = root->c; //temporary storage of character contained in a TSTNode
 
     file.write((char *)&_c, sizeof(char));
         save(root->left, file);

@@ -5,7 +5,7 @@
 class TSTNode
 {
     TSTNode *left, *mid, *right;
-    char c;
+    char c; //character contained in TSTNode
     bool isEnd;
     int numWords; // Number of words that have this prefix
 
@@ -21,7 +21,7 @@ public:
     TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr)
     {
     }
-    TSTNode() {}
+    TSTNode(){}
 
     ~TSTNode()
     {
@@ -61,8 +61,7 @@ public:
 
     bool search(const std::string &word);
     
-    // Returns if there is any word in the trie
-    // that starts with the given prefix.
+    // Returns if there is any word in the trie that starts with the given prefix.
     bool startsWith(const std::string &prefix);
 
     bool import(const std::string &path);
