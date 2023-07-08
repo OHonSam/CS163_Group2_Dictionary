@@ -70,8 +70,12 @@ HashTable::HashTable():bit(MOD[NMOD-1])
     buckets.resize(MOD[NMOD-1]);
 }
 
-std::pair<std::string, std::string> HashTable::randomWordOfDay() {
+void initSeedForRandom(){
     srand(time(NULL));
+}
+
+std::pair<std::string, std::string> HashTable::randomWordOfDay() {
+    //srand(time(NULL));
     int key=rand()%buckets.size();//random a bucket
     int pos=rand()%buckets[key].size();//randoma an index in that bucket
     return buckets[key][pos];
