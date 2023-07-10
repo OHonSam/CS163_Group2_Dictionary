@@ -17,7 +17,7 @@ Word* HashTable::searchDef(const std::string& word) {
 std::vector<Word*> HashTable::getRandom(int k)
 {
     srand(time(NULL));
-    std::vector<std::pair<std::string, std::string>> res;
+    std::vector<Word*> res;
     while(res.size()<k)
     {
         int num=rand()%numWords;
@@ -26,7 +26,7 @@ std::vector<Word*> HashTable::getRandom(int k)
         if(pos<0 || pos>=buckets[key].size()) continue;
         bool flag=true;
         for(auto i: res)
-            if(i.first==buckets[key][pos].first)
+            if(i->word==buckets[key][pos]->word)
             {
                 flag=false;
                 break;
