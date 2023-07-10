@@ -18,7 +18,7 @@ Word* HashTable::searchDef(const std::string& word) {
 std::vector<Word> HashTable::getRandom(int k)
 {
     srand(time(NULL));
-    std::vector<std::pair<std::string, std::string>> res;
+    std::vector<Word*> res;
     while(res.size()<k)
     {
         int num=rand()%numWords;
@@ -27,7 +27,7 @@ std::vector<Word> HashTable::getRandom(int k)
         if(pos<0 || pos>=buckets[key].size()) continue;
         bool flag=true;
         for(auto i: res)
-            if(i.first==buckets[key][pos].first)
+            if(i->word==buckets[key][pos]->word)
             {
                 flag=false;
                 break;
@@ -76,12 +76,29 @@ HashTable::HashTable():bit(MOD[NMOD-1])
     buckets.resize(MOD[NMOD-1]);
 }
 
+HashTable::~HashTable()
+{
+    clear();
+}
+
+void HashTable::clear()
+{
+    for(int i = 0; i < buckets.size(); i++)
+        for(int j = 0; j < buckets[i].size(); j++)
+            delete buckets[i][j];
+    buckets.clear();
+    buckets.resize(MOD[NMOD-1]);
+    bit.clear();
+    numWords = 0;
+}
+
 Word* HashTable::randomWordOfDay() {
     srand(time(NULL));
     int key=rand()%buckets.size();//random a bucket
     int value=rand()%buckets[key].size();//random a pair in that bucket
     return buckets[key][value];
 }
+
 void HashTable::updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef) {
     int key = HashTable::hash(word);
     for (int i = 0; i < HashTable::buckets[key].size(); i++)
