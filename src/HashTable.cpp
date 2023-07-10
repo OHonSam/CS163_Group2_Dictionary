@@ -74,12 +74,29 @@ HashTable::HashTable():bit(MOD[NMOD-1])
     buckets.resize(MOD[NMOD-1]);
 }
 
+HashTable::~HashTable()
+{
+    clear();
+}
+
+void HashTable::clear()
+{
+    for(int i = 0; i < buckets.size(); i++)
+        for(int j = 0; j < buckets[i].size(); j++)
+            delete buckets[i][j];
+    buckets.clear();
+    buckets.resize(MOD[NMOD-1]);
+    bit.clear();
+    numWords = 0;
+}
+
 Word* HashTable::randomWordOfDay() {
     srand(time(NULL));
     int key=rand()%buckets.size();//random a bucket
     int value=rand()%buckets[key].size();//randoma a pair in that bucket
     return buckets[key][value];
 }
+
 void HashTable::updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef) {
     int key = HashTable::hash(word);
     for (int i = 0; i < HashTable::buckets[key].size(); i++)

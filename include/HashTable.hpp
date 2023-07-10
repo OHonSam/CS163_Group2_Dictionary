@@ -23,7 +23,8 @@ private:
 	int hash(const std::string& word);						
 
 public:
-	HashTable();				
+	HashTable();
+	~HashTable();				
 
 	void clear();									
 
