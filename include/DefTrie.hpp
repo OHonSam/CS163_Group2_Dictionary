@@ -3,6 +3,8 @@
 
 #include <Libraries.hpp>
 
+const int ALPHABET_SIZE=26;
+
 class DefTrie
 {
 private:
