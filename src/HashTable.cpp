@@ -6,8 +6,8 @@ Word* HashTable::searchDef(const std::string& word) {
     Word* res;
     for (int i = 0; i < HashTable::buckets[key].size(); i++)
     {
-        if (HashTable::buckets[key][i].word == word) {
-            res = &HashTable::buckets[key][i];
+        if (HashTable::buckets[key][i] -> word == word) {
+            res = HashTable::buckets[key][i];
             break;
         }
     }
@@ -15,7 +15,7 @@ Word* HashTable::searchDef(const std::string& word) {
     return res;
 }
 
-std::vector<Word> HashTable::getRandom(int k)
+std::vector<Word*> HashTable::getRandom(int k)
 {
     srand(time(NULL));
     std::vector<Word*> res;
@@ -42,7 +42,7 @@ int HashTable::insert(Word* word) {
     // check if this word already exist
     int key = HashTable::hash(word->word);
     bit.add(key+1,1);
-    HashTable::buckets[key].push_back(*word);
+    HashTable::buckets[key].push_back(word);
     return key;
 }
 
@@ -50,11 +50,11 @@ void HashTable::remove(const std::string &word)
 {
     int h = hash(word);
     for(int i = 0; i < buckets[h].size(); i++)
-        if(buckets[h][i].word == word)
+        if(buckets[h][i] -> word == word)
         {
-            // delete buckets[h][i];
+            delete buckets[h][i];
             buckets[h].erase(buckets[h].begin()+i);
-            return;
+            break;
         }
     return;
 }
@@ -103,11 +103,11 @@ void HashTable::updateDef(const std::string& word, unsigned int type, const std:
     int key = HashTable::hash(word);
     for (int i = 0; i < HashTable::buckets[key].size(); i++)
     {
-        if (HashTable::buckets[key][i].word == word) {
+        if (HashTable::buckets[key][i] -> word == word) {
             for(int j = 0; j < POS::Count; j++) {
                 if (type & (1 << j)) {
-                    for (int k = 0; k < buckets[key][i].def[j].size(); k++) if (buckets[key][i].def[j][k] == oldDef) {
-                        buckets[key][i].def[j][k] = newDef;
+                    for (int k = 0; k < buckets[key][i] -> def[j].size(); k++) if (buckets[key][i] -> def[j][k] == oldDef) {
+                        buckets[key][i] -> def[j][k] = newDef;
                         break;
                     }
                 }

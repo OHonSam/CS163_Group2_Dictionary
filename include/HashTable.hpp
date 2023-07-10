@@ -17,7 +17,7 @@ private:
 	int numWords;
     
     // Buckets 2d std::vector initialized with size 1e6, approximately greater than the number of words
-	std::vector<std::vector<Word>> buckets;
+	std::vector<std::vector<Word*>> buckets;
 
 	// Hash function
 	int hash(const std::string& word);						
@@ -50,7 +50,7 @@ public:
 	Word* randomWordOfDay();//				
 
 	// Get the list of random k word-definition pairs
-	std::vector<Word> getRandom(int k);			
+	std::vector<Word*> getRandom(int k);			
 };
 
 #endif
