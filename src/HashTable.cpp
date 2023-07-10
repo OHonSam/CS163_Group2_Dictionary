@@ -3,18 +3,19 @@
 
 Word* HashTable::searchDef(const std::string& word) {
     int key = HashTable::hash(word);
+    Word* res;
     for (int i = 0; i < HashTable::buckets[key].size(); i++)
     {
-        if (HashTable::buckets[key][i] -> word == word) {
-            return HashTable::buckets[key][i];
+        if (HashTable::buckets[key][i].word == word) {
+            res = &HashTable::buckets[key][i];
+            break;
         }
     }
     // remember to check if a word exist on Trie
-    Word* trash;
-    return trash;
+    return res;
 }
 
-std::vector<Word*> HashTable::getRandom(int k)
+std::vector<Word> HashTable::getRandom(int k)
 {
     srand(time(NULL));
     std::vector<std::pair<std::string, std::string>> res;
@@ -38,9 +39,10 @@ std::vector<Word*> HashTable::getRandom(int k)
 
 int HashTable::insert(Word* word) {
     numWords++;
-    int key = HashTable::hash(word -> word);
+    // check if this word already exist
+    int key = HashTable::hash(word->word);
     bit.add(key+1,1);
-    HashTable::buckets[key].push_back(word);
+    HashTable::buckets[key].push_back(*word);
     return key;
 }
 
@@ -48,9 +50,9 @@ void HashTable::remove(const std::string &word)
 {
     int h = hash(word);
     for(int i = 0; i < buckets[h].size(); i++)
-        if(buckets[h][i] -> word == word)
+        if(buckets[h][i].word == word)
         {
-            delete buckets[h][i];
+            // delete buckets[h][i];
             buckets[h].erase(buckets[h].begin()+i);
             return;
         }
@@ -77,19 +79,22 @@ HashTable::HashTable():bit(MOD[NMOD-1])
 Word* HashTable::randomWordOfDay() {
     srand(time(NULL));
     int key=rand()%buckets.size();//random a bucket
-    int value=rand()%buckets[key].size();//randoma a pair in that bucket
+    int value=rand()%buckets[key].size();//random a pair in that bucket
     return buckets[key][value];
 }
 void HashTable::updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef) {
     int key = HashTable::hash(word);
     for (int i = 0; i < HashTable::buckets[key].size(); i++)
     {
-        if (HashTable::buckets[key][i] -> word == word) {
-            for(int i = 0; i < POS::Count; i++) {
-                if(type & (1 << i)) {
-                    for (int j = 0; j < buckets[key][i]->def[i].size(); j++) if (buckets[key][i]->def[i][j] == oldDef) buckets[key][i]->def[i][j] = newDef;
+        if (HashTable::buckets[key][i].word == word) {
+            for(int j = 0; j < POS::Count; j++) {
+                if (type & (1 << j)) {
+                    for (int k = 0; k < buckets[key][i].def[j].size(); k++) if (buckets[key][i].def[j][k] == oldDef) {
+                        buckets[key][i].def[j][k] = newDef;
+                        break;
+                    }
                 }
-                return;
+                break;
             }
         }
     }
