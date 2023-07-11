@@ -33,6 +33,7 @@ public:
 	friend class BTree;
 };
 
+#include "Word.hpp"
 class BTree
 {
 	TreeNode *root;

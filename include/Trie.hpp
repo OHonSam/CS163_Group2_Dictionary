@@ -1,5 +1,7 @@
 #ifndef TRIE_HPP
 #define TRIE_HPP
+#include "Word.hpp"
+#include<Libraries.hpp>
 #include <Libraries.hpp>
 
 const int ALPHABET_SIZE = 26;

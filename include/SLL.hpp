@@ -2,6 +2,7 @@
 #ifndef SLL_HPP
 #define SLL_HPP
 // SLL is Singly Linked List
+#include "Word.hpp"
 #include <Libraries.hpp>
 
 template<class T>
