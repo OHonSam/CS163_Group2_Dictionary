@@ -60,7 +60,7 @@ std::vector<std::string> Trie::searchPrefix(const std::string& prefix){
     return res;
 }
 
-void Trie::import(Node *&node, std::ifstream &file)
+void Trie::import(Node *&root, std::ifstream &file)
 {
     if(root==nullptr) root=new Node;
     file.read((char*)&root->numWords,sizeof(int));
@@ -75,7 +75,7 @@ void Trie::import(Node *&node, std::ifstream &file)
     }
 }
 
-void Trie::save(Node *node, std::ofstream &file)
+void Trie::save(Node *root, std::ofstream &file)
 {
     if(root==nullptr) return;
     file.write((char*)&root->numWords,sizeof(int));
