@@ -1,14 +1,17 @@
-#include "Trie.hpp"
+// #include "Trie.hpp"
 
-int main()
-{
-    Trie trie;
-    trie.insert("hello");
-    trie.insert("world");
-    trie.insert("hi");
-    trie.insert("hey");
+// int main()
+// {
+//     Trie trie;
+//     trie.insert("hello");
+//     trie.insert("hi");
+//     trie.insert("hey");
+//     std::vector<std::string> s = trie.searchPrefix("he");
 
-    trie.save("test'\'output.bin");    
+//     for (auto &i : s)
+//         std::cout << i << std::endl;
+
+//     trie.save("test\\output.bin");    
     
-    return 0;
-}
+//     return 0;
+// }
