@@ -26,6 +26,15 @@ private:
 			for (int i = 0; i < ALPHABET_SIZE; ++i)
 				child[i] = nullptr;
 		}
+
+		~Node()
+		{
+			for (int i = 0; i < ALPHABET_SIZE; ++i)
+				if (child[i] != nullptr)
+				{
+					delete child[i];
+				};
+		}
 	};
 
 	Node *root;
@@ -42,7 +51,18 @@ private:
 	void save(Node *node, std::ofstream &file);
 
 public:
-	Trie();
+	Trie()
+	{
+		root = nullptr;
+	}
+	~Trie()
+	{
+		if (root != nullptr)
+		{
+			delete root;
+			root = nullptr;
+		}
+	}
 
 	// Deallocate all nodes
 	void clear();
