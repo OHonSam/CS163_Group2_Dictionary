@@ -8,6 +8,8 @@ int main()
     trie.insert("hell");
     trie.insert("hi");
     trie.insert("hey");
+
     
     
+    return 0;
 }
