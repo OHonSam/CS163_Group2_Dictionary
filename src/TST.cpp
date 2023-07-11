@@ -6,17 +6,23 @@ TSTNode *TSTNode::insert(TSTNode *node, const std::string &str, int index)
     {
         node = new TSTNode(str[index]);
     }
-
-    if (node->c > str[index])
-        node->left = insert(node->left, str, index);
-    else if (node->c < str[index])
-        node->right = insert(node->right, str, index);
-    else if (index < str.size() - 1)
-    {
-        node->mid = insert(node->mid, str, index + 1);
-    }
     else
-        node->isEnd = true;
+    {
+        if (node->c > str[index])
+        {
+            node->left = insert(node->left, str, index);
+        }
+        else if (node->c < str[index])
+        {
+            node->right = insert(node->right, str, index);
+        }
+        else if (index < str.size() - 1)
+        {
+            node->mid = insert(node->mid, str, index + 1);
+        }
+        else
+            node->isEnd = true;
+    }
 
     return node;
 }
@@ -86,7 +92,7 @@ void TST::import(TSTNode *&node, std::ifstream &file)
         root = new TSTNode;
     file.read((char *)&root->numWords, sizeof(int));
     file.read((char *)&root->isEnd, sizeof(bool));
-    int _c;     //character read in binary file
+    int _c; // character read in binary file
     while (true)
     {
         file.read((char *)&_c, sizeof(char));
@@ -113,15 +119,14 @@ void TST::save(TSTNode *node, std::ofstream &file)
         return;
     file.write((char *)&root->numWords, sizeof(int));
     file.write((char *)&root->isEnd, sizeof(bool));
-    char _c = root->c; //temporary storage of character contained in a TSTNode
+    char _c = root->c; // temporary storage of character contained in a TSTNode
 
     file.write((char *)&_c, sizeof(char));
-        save(root->left, file);
-    
-        save(root->mid, file);
+    save(root->left, file);
 
-        save(root->right, file);
-    
+    save(root->mid, file);
+
+    save(root->right, file);
 
     char marker = TERMINATOR;
     file.write((char *)&marker, sizeof(char));

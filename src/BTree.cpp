@@ -1,6 +1,17 @@
 #include "Libraries.hpp"
 #include "BTree.hpp"
 
+TreeNode::TreeNode(int minDeg1, bool leaf1)
+{
+  minDeg = minDeg1;
+  leaf = leaf1;
+
+  keys = new int[2 * minDeg - 1];
+  Children = new TreeNode *[2 * minDeg];
+
+  deg = 0;
+}
+
 BTree::BTree(int minDeg1)
 {
   root = nullptr;
@@ -43,17 +54,6 @@ void BTree::traverse()
 {
   if (root != nullptr)
     root->traverse();
-}
-
-TreeNode::TreeNode(int minDeg1, bool leaf1)
-{
-  minDeg = minDeg1;
-  leaf = leaf1;
-
-  keys = new int[2 * minDeg - 1];
-  Children = new TreeNode *[2 * minDeg];
-
-  deg = 0;
 }
 
 void TreeNode::traverse()
