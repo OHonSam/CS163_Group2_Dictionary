@@ -3,6 +3,7 @@
 #define TST_HPP
 
 #include "Libraries.hpp"
+#include "Word.hpp"
 
 class TSTNode
 {
