@@ -67,7 +67,7 @@ public:
 	}
 
 	// Deallocate all nodes
-	void clear();
+	// void clear();
 
 	// Load from binary file
 	bool import(const std::string &path);
@@ -89,6 +89,6 @@ public:
 	void recursiveFind(std::vector<std::string> &res, std::string prefix, Trie::Node *cur, int &cnt);
 
 	// Get all the words that was embedded in the trie
-	std::vector<std::string> getList();
+	// std::vector<std::string> getList();
 };
 #endif

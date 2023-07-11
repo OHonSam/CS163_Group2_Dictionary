@@ -88,45 +88,45 @@ bool TST::save(const std::string &path)
 
 void TST::import(TSTNode *&node, std::ifstream &file)
 {
-    if (root == nullptr)
-        root = new TSTNode;
-    file.read((char *)&root->numWords, sizeof(int));
-    file.read((char *)&root->isEnd, sizeof(bool));
+    if (node == nullptr)
+        node = new TSTNode;
+    file.read((char *)&node->numWords, sizeof(int));
+    file.read((char *)&node->isEnd, sizeof(bool));
     int _c; // character read in binary file
     while (true)
     {
         file.read((char *)&_c, sizeof(char));
         if (_c == TERMINATOR)
             break;
-        if (_c < root->c)
+        if (_c < node->c)
         {
-            import(root->left, file);
+            import(node->left, file);
         }
-        else if (_c > root->c)
+        else if (_c > node->c)
         {
-            import(root->right, file);
+            import(node->right, file);
         }
         else
         {
-            import(root->mid, file);
+            import(node->mid, file);
         }
     }
 }
 
 void TST::save(TSTNode *node, std::ofstream &file)
 {
-    if (root == nullptr)
+    if (node == nullptr)
         return;
-    file.write((char *)&root->numWords, sizeof(int));
-    file.write((char *)&root->isEnd, sizeof(bool));
-    char _c = root->c; // temporary storage of character contained in a TSTNode
+    file.write((char *)&node->numWords, sizeof(int));
+    file.write((char *)&node->isEnd, sizeof(bool));
+    char _c = node->c; // temporary storage of character contained in a TSTNode
 
     file.write((char *)&_c, sizeof(char));
-    save(root->left, file);
+    save(node->left, file);
 
-    save(root->mid, file);
+    save(node->mid, file);
 
-    save(root->right, file);
+    save(node->right, file);
 
     char marker = TERMINATOR;
     file.write((char *)&marker, sizeof(char));
