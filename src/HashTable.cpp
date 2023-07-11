@@ -14,6 +14,23 @@ Word* HashTable::searchDef(const std::string& word) {
     // remember to check if a word exist on Trie
     return res;
 }
+void HashTable::displayDef(const std::string& word){
+    Word* res=searchDef(word);
+    if(res==nullptr){
+        std::cout<<"There's no definition for this word"<<std::endl;
+    }
+    else{
+        std::cout<<res->word<<std::endl;
+        for(int type=0;type<POS::Count;++type){
+            if(res->def[type].empty()) 
+                continue;
+            std::cout<<POS::TypeString[type]<<": "<<std::endl;
+            for(int idx=0;idx<res->def[idx].size();++idx){
+                std::cout<<"\t"<<idx+1<<". "<<res->def[type][idx]<<std::endl;
+            }
+        }
+    }
+}
 
 std::vector<Word*> HashTable::getRandom(int k)
 {

@@ -45,6 +45,7 @@ public:
 
 	// Find a definition for a required word	
 	Word* searchDef(const std::string& word);
+	void displayDef(const std::string& word);
 
 	// Find a word for a required definition
 	//Word* searchKey(const std::string& def);
