@@ -8,23 +8,21 @@
 class TSTNode
 {
     TSTNode *left, *mid, *right;
-    char c; //character contained in TSTNode
+    char c; // character contained in TSTNode
     bool isEnd;
     int numWords; // Number of words that have this prefix
 
-    //Insert into the TST
+    // Insert into the TST
     TSTNode *insert(TSTNode *node, const std::string &str, int index);
 
-    //Get Node containing the last word in the string
+    // Get Node containing the last word in the string
     TSTNode *get(TSTNode *node, const std::string &str, int index);
 
     friend class TST;
 
 public:
-    TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr)
-    {
-    }
-    TSTNode(){}
+    TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr) {}
+    TSTNode() {}
 
     ~TSTNode()
     {
@@ -63,7 +61,7 @@ public:
     void deletion(const std::string &word);
 
     bool search(const std::string &word);
-    
+
     // Returns if there is any word in the trie that starts with the given prefix.
     bool startsWith(const std::string &prefix);
 

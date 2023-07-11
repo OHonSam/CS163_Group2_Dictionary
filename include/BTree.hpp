@@ -1,12 +1,14 @@
 #ifndef BTREE_HPP
 #define BTREE_HPP
+#include "Word.hpp"
+#include "Libraries.hpp"
 
 class TreeNode
 {
 	int *keys;
 	int minDeg;
 	TreeNode **Children;
-	int deg;
+	int numNode;
 	bool leaf;
 
 	void insertNonFull(int k);
@@ -33,7 +35,6 @@ public:
 	friend class BTree;
 };
 
-#include "Word.hpp"
 class BTree
 {
 	TreeNode *root;

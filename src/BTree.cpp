@@ -9,7 +9,7 @@ TreeNode::TreeNode(int minDeg1, bool leaf1)
   keys = new int[2 * minDeg - 1];
   Children = new TreeNode *[2 * minDeg];
 
-  deg = 0;
+  numNode = 0;
 }
 
 BTree::BTree(int minDeg1)
@@ -33,7 +33,7 @@ TreeNode::~TreeNode()
     keys = nullptr;
 
     if (Children != nullptr) {
-      for (int i = 0; i <= deg; ++i)
+      for (int i = 0; i <= numNode; ++i)
       {
         if (Children[i] != nullptr) {
           delete Children[i];
@@ -59,7 +59,7 @@ void BTree::traverse()
 void TreeNode::traverse()
 {
   int i;
-  for (i = 0; i < deg; i++)
+  for (i = 0; i < numNode; i++)
   {
     if (leaf == false)
       Children[i]->traverse();
@@ -73,7 +73,7 @@ void TreeNode::traverse()
 TreeNode *TreeNode::search(int k)
 {
   int i = 0;
-  while (i < deg && k > keys[i])
+  while (i < numNode && k > keys[i])
     i++;
 
   if (keys[i] == k)
@@ -91,11 +91,11 @@ void BTree::insert(int k)
   {
     root = new TreeNode(minDeg, true);
     root->keys[0] = k;
-    root->deg = 1;
+    root->numNode = 1;
   }
   else
   {
-    if (root->deg == 2 * minDeg - 1)
+    if (root->numNode == 2 * minDeg - 1)
     {
       TreeNode *s = new TreeNode(minDeg, false);
 
@@ -117,7 +117,7 @@ void BTree::insert(int k)
 
 void TreeNode::insertNonFull(int k)
 {
-  int i = deg - 1;
+  int i = numNode - 1;
 
   if (leaf == true)
   {
@@ -128,14 +128,14 @@ void TreeNode::insertNonFull(int k)
     }
 
     keys[i + 1] = k;
-    deg = deg + 1;
+    numNode = numNode + 1;
   }
   else
   {
     while (i >= 0 && keys[i] > k)
       i--;
 
-    if (Children[i + 1]->deg == 2 * minDeg - 1)
+    if (Children[i + 1]->numNode == 2 * minDeg - 1)
     {
       splitChild(i + 1, Children[i + 1]);
 
@@ -149,7 +149,7 @@ void TreeNode::insertNonFull(int k)
 void TreeNode::splitChild(int i, TreeNode *y)
 {
   TreeNode *z = new TreeNode(y->minDeg, y->leaf);
-  z->deg = minDeg - 1;
+  z->numNode = minDeg - 1;
 
   for (int j = 0; j < minDeg - 1; j++)
     z->keys[j] = y->keys[j + minDeg];
@@ -160,17 +160,17 @@ void TreeNode::splitChild(int i, TreeNode *y)
       z->Children[j] = y->Children[j + minDeg];
   }
 
-  y->deg = minDeg - 1;
-  for (int j = deg; j >= i + 1; j--)
+  y->numNode = minDeg - 1;
+  for (int j = numNode; j >= i + 1; j--)
     Children[j + 1] = Children[j];
 
   Children[i + 1] = z;
 
-  for (int j = deg - 1; j >= i; j--)
+  for (int j = numNode - 1; j >= i; j--)
     keys[j + 1] = keys[j];
 
   keys[i] = y->keys[minDeg - 1];
-  deg = deg + 1;
+  numNode = numNode + 1;
 }
 
 void BTree::deletion(int k)
@@ -183,7 +183,7 @@ void BTree::deletion(int k)
 
   root->deletion(k);
 
-  if (root->deg == 0)
+  if (root->numNode == 0)
   {
     TreeNode *tmp = root;
     if (root->leaf)
@@ -198,7 +198,7 @@ void BTree::deletion(int k)
 int TreeNode::findKey(int k)
 {
   int idx = 0;
-  while (idx < deg && keys[idx] < k)
+  while (idx < numNode && keys[idx] < k)
     ++idx;
   return idx;
 }
@@ -207,7 +207,7 @@ void TreeNode::deletion(int k)
 {
   int idx = findKey(k);
 
-  if (idx < deg && keys[idx] == k)
+  if (idx < numNode && keys[idx] == k)
   {
     if (leaf)
       removeFromLeaf(idx);
@@ -222,12 +222,12 @@ void TreeNode::deletion(int k)
       return;
     }
 
-    bool flag = ((idx == deg) ? true : false);
+    bool flag = ((idx == numNode) ? true : false);
 
-    if (Children[idx]->deg < minDeg)
+    if (Children[idx]->numNode < minDeg)
       fill(idx);
 
-    if (flag && idx > deg)
+    if (flag && idx > numNode)
       Children[idx - 1]->deletion(k);
     else
       Children[idx]->deletion(k);
@@ -237,10 +237,10 @@ void TreeNode::deletion(int k)
 
 void TreeNode::removeFromLeaf(int idx)
 {
-  for (int i = idx + 1; i < deg; ++i)
+  for (int i = idx + 1; i < numNode; ++i)
     keys[i - 1] = keys[i];
 
-  deg--;
+  numNode--;
 
   return;
 }
@@ -250,14 +250,14 @@ void TreeNode::removeFromNonLeaf(int idx)
 {
   int k = keys[idx];
 
-  if (Children[idx]->deg >= minDeg)
+  if (Children[idx]->numNode >= minDeg)
   {
     int pred = getPredecessor(idx);
     keys[idx] = pred;
     Children[idx]->deletion(pred);
   }
 
-  else if (Children[idx + 1]->deg >= minDeg)
+  else if (Children[idx + 1]->numNode >= minDeg)
   {
     int succ = getSuccessor(idx);
     keys[idx] = succ;
@@ -276,9 +276,9 @@ int TreeNode::getPredecessor(int idx)
 {
   TreeNode *cur = Children[idx];
   while (!cur->leaf)
-    cur = cur->Children[cur->deg];
+    cur = cur->Children[cur->numNode];
 
-  return cur->keys[cur->deg - 1];
+  return cur->keys[cur->numNode - 1];
 }
 
 int TreeNode::getSuccessor(int idx)
@@ -292,15 +292,15 @@ int TreeNode::getSuccessor(int idx)
 
 void TreeNode::fill(int idx)
 {
-  if (idx != 0 && Children[idx - 1]->deg >= minDeg)
+  if (idx != 0 && Children[idx - 1]->numNode >= minDeg)
     borrowFromPrev(idx);
 
-  else if (idx != deg && Children[idx + 1]->deg >= minDeg)
+  else if (idx != numNode && Children[idx + 1]->numNode >= minDeg)
     borrowFromNext(idx);
 
   else
   {
-    if (idx != deg)
+    if (idx != numNode)
       merge(idx);
     else
       merge(idx - 1);
@@ -313,24 +313,24 @@ void TreeNode::borrowFromPrev(int idx)
   TreeNode *child = Children[idx];
   TreeNode *sibling = Children[idx - 1];
 
-  for (int i = child->deg - 1; i >= 0; --i)
+  for (int i = child->numNode - 1; i >= 0; --i)
     child->keys[i + 1] = child->keys[i];
 
   if (!child->leaf)
   {
-    for (int i = child->deg; i >= 0; --i)
+    for (int i = child->numNode; i >= 0; --i)
       child->Children[i + 1] = child->Children[i];
   }
 
   child->keys[0] = keys[idx - 1];
 
   if (!child->leaf)
-    child->Children[0] = sibling->Children[sibling->deg];
+    child->Children[0] = sibling->Children[sibling->numNode];
 
-  keys[idx - 1] = sibling->keys[sibling->deg - 1];
+  keys[idx - 1] = sibling->keys[sibling->numNode - 1];
 
-  child->deg += 1;
-  sibling->deg -= 1;
+  child->numNode += 1;
+  sibling->numNode -= 1;
 
   return;
 }
@@ -340,24 +340,24 @@ void TreeNode::borrowFromNext(int idx)
   TreeNode *child = Children[idx];
   TreeNode *sibling = Children[idx + 1];
 
-  child->keys[(child->deg)] = keys[idx];
+  child->keys[(child->numNode)] = keys[idx];
 
   if (!(child->leaf))
-    child->Children[(child->deg) + 1] = sibling->Children[0];
+    child->Children[(child->numNode) + 1] = sibling->Children[0];
 
   keys[idx] = sibling->keys[0];
 
-  for (int i = 1; i < sibling->deg; ++i)
+  for (int i = 1; i < sibling->numNode; ++i)
     sibling->keys[i - 1] = sibling->keys[i];
 
   if (!sibling->leaf)
   {
-    for (int i = 1; i <= sibling->deg; ++i)
+    for (int i = 1; i <= sibling->numNode; ++i)
       sibling->Children[i - 1] = sibling->Children[i];
   }
 
-  child->deg += 1;
-  sibling->deg -= 1;
+  child->numNode += 1;
+  sibling->numNode -= 1;
 
   return;
 }
@@ -369,23 +369,23 @@ void TreeNode::merge(int idx)
 
   child->keys[minDeg - 1] = keys[idx];
 
-  for (int i = 0; i < sibling->deg; ++i)
+  for (int i = 0; i < sibling->numNode; ++i)
     child->keys[i + minDeg] = sibling->keys[i];
 
   if (!child->leaf)
   {
-    for (int i = 0; i <= sibling->deg; ++i)
+    for (int i = 0; i <= sibling->numNode; ++i)
       child->Children[i + minDeg] = sibling->Children[i];
   }
 
-  for (int i = idx + 1; i < deg; ++i)
+  for (int i = idx + 1; i < numNode; ++i)
     keys[i - 1] = keys[i];
 
-  for (int i = idx + 2; i <= deg; ++i)
+  for (int i = idx + 2; i <= numNode; ++i)
     Children[i - 1] = Children[i];
 
-  child->deg += sibling->deg + 1;
-  deg--;
+  child->numNode += sibling->numNode + 1;
+  numNode--;
 
   delete (sibling);
   return;

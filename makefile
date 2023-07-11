@@ -39,4 +39,3 @@ link:
 	@echo "Linking..."
 	@$(CXX) $(CXXFLAGS) $(INCLUDE) -o $(EXECUTABLE) $(OBJ)/*.o $(LIBRARIES)
 	@echo "Linking successfully!"
-
