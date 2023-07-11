@@ -51,7 +51,7 @@ void HashTable::remove(const std::string &word)
     numWords--;
     int h=hash(word);
     for(int i=0; i<buckets[h].size(); i++)
-        if(buckets[h][i]->word==word)
+        if(buckets[h][i].first==word)
         {
             delete buckets[h][i];
             buckets[h].erase(buckets[h].begin()+i);

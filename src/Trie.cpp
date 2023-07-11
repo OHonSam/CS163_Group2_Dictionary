@@ -69,7 +69,7 @@ std::vector<std::string> Trie::searchPrefix(const std::string &prefix)
     return res;
 }
 
-void Trie::import(Node *&node, std::ifstream &file)
+void Trie::import(Node *&root, std::ifstream &file)
 {
     if (node == nullptr)
         node = new Node;
@@ -86,7 +86,7 @@ void Trie::import(Node *&node, std::ifstream &file)
     }
 }
 
-void Trie::save(Node *node, std::ofstream &file)
+void Trie::save(Node *root, std::ofstream &file)
 {
     if (node == nullptr)
         return;
