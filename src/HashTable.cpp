@@ -3,7 +3,7 @@
 
 Word* HashTable::searchDef(const std::string& word) {
     int key = HashTable::hash(word);
-    Word* res;
+    Word* res=nullptr;
     for (int i = 0; i < HashTable::buckets[key].size(); i++)
     {
         if (HashTable::buckets[key][i] -> word == word) {
@@ -51,7 +51,7 @@ void HashTable::remove(const std::string &word)
     numWords--;
     int h=hash(word);
     for(int i=0; i<buckets[h].size(); i++)
-        if(buckets[h][i].first==word)
+        if(buckets[h][i]->word==word)
         {
             delete buckets[h][i];
             buckets[h].erase(buckets[h].begin()+i);
