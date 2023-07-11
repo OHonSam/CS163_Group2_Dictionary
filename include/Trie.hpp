@@ -26,8 +26,8 @@ private:
 
 	void remove(Node* &root, const std::string& word, int index);
 
-	void import(Node* &node, std::ifstream& file);
-	void save(Node* node, std::ofstream& file);
+	void import(Node* &root, std::ifstream& file);
+	void save(Node* root, std::ofstream& file);
 	
 public:
 	Trie();			
