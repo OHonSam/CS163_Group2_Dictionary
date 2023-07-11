@@ -71,10 +71,10 @@ std::vector<std::string> Trie::searchPrefix(const std::string &prefix)
 
 void Trie::import(Node *&root, std::ifstream &file)
 {
-    if (node == nullptr)
-        node = new Node;
-    file.read((char *)&node->numWords, sizeof(int));
-    file.read((char *)&node->isEnd, sizeof(bool));
+    if (root == nullptr)
+        root = new Node;
+    file.read((char *)&root->numWords, sizeof(int));
+    file.read((char *)&root->isEnd, sizeof(bool));
     char c;
     while (1)
     {
@@ -82,22 +82,22 @@ void Trie::import(Node *&root, std::ifstream &file)
         if (c == TERMINATOR)
             break;
         int pos = getIndex(c);
-        import(node->child[pos], file);
+        import(root->child[pos], file);
     }
 }
 
 void Trie::save(Node *root, std::ofstream &file)
 {
-    if (node == nullptr)
+    if (root == nullptr)
         return;
-    file.write((char *)&node->numWords, sizeof(int));
-    file.write((char *)&node->isEnd, sizeof(bool));
+    file.write((char *)&root->numWords, sizeof(int));
+    file.write((char *)&root->isEnd, sizeof(bool));
     for (int i = 0; i < ALPHABET_SIZE; i++)
-        if (node->child[i] != nullptr)
+        if (root->child[i] != nullptr)
         {
             char c = rGetIndex(i);
             file.write((char *)&c, sizeof(char));
-            save(node->child[i], file);
+            save(root->child[i], file);
         }
     char marker = TERMINATOR;
     file.write((char *)&marker, sizeof(char));

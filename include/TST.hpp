@@ -42,8 +42,8 @@ class TST
     TSTNode *root;
     const char TERMINATOR = '\0';
 
-    void import(TSTNode *&node, std::ifstream &file);
-    void save(TSTNode *node, std::ofstream &file);
+    void import(TSTNode *&root, std::ifstream &file);
+    void save(TSTNode *root, std::ofstream &file);
 
 public:
     TST()
