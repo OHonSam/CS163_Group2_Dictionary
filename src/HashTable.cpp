@@ -123,7 +123,7 @@ bool HashTable::import(const std::string& path) {
     if (!in.is_open()) return false;
     int temp;
     int tempora;
-    std::string w, d;
+    std::string w;
     in.read((char*)& temp, sizeof (int));
     buckets.resize(temp);
     for (int i = 0; i < buckets.size(); i++)
@@ -135,10 +135,27 @@ bool HashTable::import(const std::string& path) {
         {
             int tempor;
             in.read((char*)& tempor, sizeof (int));
-                // size_t size;
-                // in.read((char*)&size, sizeof(size));
-                // w.resize(size);
-                // in.read(&w[0], size);
+                size_t size;
+                in.read((char*)&size, sizeof(size));
+                w.resize(size);
+                in.read(&w[0], size);
+                unsigned int type;
+                in.read((char*) &type, sizeof (unsigned int));
+                Word* word = new Word(w, type);
+                for(int k = 0; k < POS::Count; k++) {
+                    if (buckets[i][j] -> type & (1 << k)) {
+                        in.read((char*) &tempora, sizeof (int));
+                        int temporar;
+                        in.read((char*) &temporar, sizeof (int));
+                        word -> def[tempora].resize(temporar);
+                        for (int l = 0; l < temporar; l++) {
+                            in.read((char*)&size, sizeof(size));
+                            word -> def[k][l].resize(size);
+                            in.read(&word -> def[k][l][0], size);
+                        }
+                    }
+                }
+                buckets[i][j] = word;
                 // in.read((char*)&size, sizeof(size));
                 // d.resize(size);
                 // in.read(&d[0], size);
@@ -167,6 +184,22 @@ bool HashTable::save(const std::string& path) {
                 // size = buckets[i][j].second.size();
                 // out.write((char*) &size,sizeof(size));
                 // out.write(&buckets[i][j].second[0],size);
+                size_t size = buckets[i][j] -> word.size();
+                out.write((char*) &size,sizeof(size));
+                out.write(&buckets[i][j] -> word[0],size);
+                out.write((char*) &buckets[i][j] -> type, sizeof (unsigned int));
+                for(int k = 0; k < POS::Count; k++) {
+                    if (buckets[i][j] -> type & (1 << k)) {
+                        out.write((char*) &k, sizeof (int));
+                        int sizedef = buckets[i][j] -> def[k].size();
+                        out.write((char*) &sizedef, sizeof (int));
+                        for (int l = 0; l < sizedef; l++) {
+                            size = buckets[i][j] -> def[k][l].size();
+                            out.write((char*) &size,sizeof(size));
+                            out.write(&buckets[i][j] -> def[k][l][0], size);
+                        }
+                    }
+                }
         }
     }
     out.close();
