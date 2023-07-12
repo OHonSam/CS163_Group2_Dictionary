@@ -83,21 +83,21 @@ bool Dict::importCsv(const std::string &path)
     return true;
 }
 
-void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord)
-{
-    choices.clear();
+// void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord)
+// {
+//     choices.clear();
 
-    std::vector<std::pair<std::string,std::string>> set=wordDef.getRandom(numChoices);
-    if(isWord)
-    {
-        ques=set[0].first;
-        for(auto p:set)
-            choices.push_back(p.second);
-    }
-    else
-    {
-        ques=set[0].second;
-        for(auto p:set)
-            choices.push_back(p.first);
-    }
-}
+//     std::vector<std::pair<std::string,std::string>> set=wordDef.getRandom(numChoices);
+//     if(isWord)
+//     {
+//         ques=set[0].first;
+//         for(auto p:set)
+//             choices.push_back(p.second);
+//     }
+//     else
+//     {
+//         ques=set[0].second;
+//         for(auto p:set)
+//             choices.push_back(p.first);
+//     }
+// }
