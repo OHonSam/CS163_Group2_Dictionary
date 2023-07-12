@@ -12,7 +12,7 @@ std::string HashTable::searchDef(const std::string& word) {
 
 std::vector<std::pair<std::string, std::string>> HashTable::getRandom(int k)
 {
-    srand(time(NULL));
+    //srand(time(NULL));
     std::vector<std::pair<std::string, std::string>> res;
     while(res.size()<k)
     {
