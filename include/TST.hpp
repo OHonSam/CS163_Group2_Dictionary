@@ -36,6 +36,7 @@ class TST
 {
     TSTNode *root;
     const char TERMINATOR = '\0';
+    const int LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST = 20;
 
     void import(TSTNode *&root, std::ifstream &file);
     void save(TSTNode *root, std::ofstream &file);
@@ -43,6 +44,8 @@ class TST
     // Insert into the TST
     void TST::recursiveInsert(TSTNode *&node, const std::string &str, int index);
     // TSTNode *recursiveInsert(TSTNode *&node, const std::string &str, int index);
+
+    void deletion(TSTNode *&node, const std::string &str, int index);
 
     // Get Node containing the last word in the string
     TSTNode *getNodeLastChar(TSTNode *node, const std::string &str, int index);
@@ -65,12 +68,12 @@ public:
     // Return true if the word is in the TST
     bool wordExists(const std::string &word);
 
-    // Return true if there is any word in the trie that starts with the given prefix.
-    bool startsWith(const std::string &prefix);
+    // Return true if there is any word in the trie that starts with the given prefix
+    bool isStartedWith(const std::string &prefix);
 
-    TSTNode *samePrefix(const std::string &prefix);
-
-    TSTNode *searchWord(const std::string &word);
+    //Return words in the trie that starts with the given prefix
+    std::vector<std::string>startsWith(const std::string &prefix);
+    std::vector<std::string>startsWithRecursiveSearch(std::vector<std::string> &res, const std::string &prefix, TSTNode *cur, int &cnt);
 
     bool import(const std::string &path);
     bool save(const std::string &path);

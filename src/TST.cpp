@@ -71,8 +71,80 @@ void TST::recursiveInsert(TSTNode *&node, const std::string &str, int index)
 
 void TST::deletion(const std::string &word)
 {
-    TSTNode *p = getNodeLastChar(root, word, 0);
-    p->isEnd = false;
+    deletion(root, word, 0);
+}
+
+void TST::deletion(TSTNode *&node, const std::string &str, int index)
+{
+    if (!node)
+    {
+        return;
+    }
+
+    if (node->c > str[index])
+    {
+        deletion(node->left, str, index);
+    }
+    else if (node->c < str[index])
+    {
+        deletion(node->right, str, index);
+    }
+    else
+    {
+        node->numWords--;
+        if (index < str.size() - 1)
+        {
+            recursiveInsert(node->mid, str, index + 1);
+        }
+        else
+        {
+            node->isEnd = false;
+        }
+    }
+}
+std::vector<std::string> TST::startsWith(const std::string &prefix)
+{
+    std::vector<std::string> res;
+
+    if (isStartedWith(prefix) == false)
+    {
+        return {};
+    }
+
+    TSTNode *start = getNodeLastChar(root, prefix, 0);
+
+    int cnt = 0;
+    startsWithRecursiveSearch(res, prefix, start, cnt);
+    return res;
+}
+
+std::vector<std::string> TST::startsWithRecursiveSearch(std::vector<std::string> &res, const std::string &prefix, TSTNode *cur, int &cnt)
+{
+
+    if (cnt == LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST)
+        return;
+    if (cur->isEnd == true)
+    {
+        res.push_back(prefix);
+        ++cnt;
+        return;
+    }
+    char _c; //value of character contained in a TSTNode
+    if (cur->left != nullptr)
+    {
+        _c = cur->left->c;
+        startsWithRecursiveSearch(res, prefix + _c, cur->left, cnt);
+    }
+    if (cur->mid != nullptr)
+    {
+        _c = cur->mid->c;
+        startsWithRecursiveSearch(res, prefix + _c, cur->mid, cnt);
+    }
+    if (cur->right != nullptr)
+    {
+        _c = cur->right->c;
+        startsWithRecursiveSearch(res, prefix + _c, cur->right, cnt);
+    }
 }
 
 TSTNode *TST::getNodeLastChar(TSTNode *node, const std::string &str, int index)
@@ -129,7 +201,7 @@ bool TST::wordExists(const std::string &word)
     return p && p->isEnd;
 }
 
-bool TST::startsWith(const std::string &prefix)
+bool TST::isStartedWith(const std::string &prefix)
 {
     TSTNode *p = getNodeLastChar(root, prefix, 0);
 
