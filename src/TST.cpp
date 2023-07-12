@@ -102,7 +102,7 @@ void TST::deletion(TSTNode *&node, const std::string &str, int index)
         }
     }
 }
-std::vector<std::string> TST::startsWith(const std::string &prefix)
+std::vector<std::string> TST::startWith(const std::string &prefix)
 {
     std::vector<std::string> res;
 
