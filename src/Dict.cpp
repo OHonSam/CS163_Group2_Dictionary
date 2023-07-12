@@ -51,9 +51,11 @@ bool Dict::importJson(const std::string &path)
     return true;
 }
 
-void removeWord(const std::string& word) {
+// INGORE AND DO NOT DELETE
+// void removeWord(const std::string& word) {
     // remove in deftrie
-    
+    // std::string str = Dict::wordDef.searchDef(word);
+    // std::stringstream s(str);
     // remove in fav, history
 
     // remove in trie

@@ -47,3 +47,27 @@ void DefTrie::remove(Node *&root, const std::string &word, const std::string &ke
     }
     return;
 }
+
+std::vector<std::string> DefTrie::defWord(const std::string def) {
+    std::stringstream s(def);
+    std::string word;
+    std::vector <std::string> res;
+    while (s >> word) res.push_back(word);
+    return res;
+}
+
+void DefTrie::insert(Node* &root, const std::string& word, const std::string &keyword, int index) {
+    if (!root) root = new Node();
+    root -> numWords++;
+    if (index == word.length()) {
+        root -> isEnd = true;
+        root -> keywords.push_back(keyword);
+    }
+    else {
+        int i = getIndex(word[index]);
+        insert(root -> child[i], word, keyword, index + 1);
+    }
+    return;
+}
+
+// I need to test it before continue
