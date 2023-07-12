@@ -32,7 +32,7 @@ private:
 	// Get the character in the alphabet from the given index
 	char rGetIndex(int index);
 
-    void remove(Node* &root, const std::string& word, int index);
+    void remove(Node* &root, const std::string& word, const std::string &keyword, int index);
 
     void import(Node* &node, std::ifstream& file);
     void save(Node* node, std::ofstream& file);
@@ -56,7 +56,8 @@ public:
     void insert(const std::string& word, const std::string& def);
 
     // Remove a word out of trie
-    void remove(const std::string& word);
+    // void remove(const std::string& word); move to dict.cpp
+    std::vector<std::string> defWord(const std::string def);
 
     // Check whether a word is in the trie
     // bool checkExist(const std::string& key);

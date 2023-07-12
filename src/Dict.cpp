@@ -2,6 +2,12 @@
 #include <json/json.h>
 #include<Libraries.hpp>
 
+Dict::Dict() {
+    wordDef.import("../CS163_Group2_Dictionary/ASSETS/DataStructure/default/HashTable.bin");
+    // deftrie import
+}
+
+
 bool Dict::importJson(const std::string &path)
 {
     // Open the JSON file
@@ -43,4 +49,15 @@ bool Dict::importJson(const std::string &path)
     }
 
     return true;
+}
+
+void removeWord(const std::string& word) {
+    // remove in deftrie
+    
+    // remove in fav, history
+
+    // remove in trie
+
+    // remove in hash table
+
 }

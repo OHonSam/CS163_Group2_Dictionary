@@ -21,17 +21,23 @@ char DefTrie::rGetIndex(int index) {
     return index + 'a';
 }
 
-void DefTrie::remove(Node *&root, const std::string &word, int index)
+void DefTrie::remove(Node *&root, const std::string &word, const std::string &keyword, int index)
 {
     // index initialized with 0, word's length = max index including root
     if (root == NULL) return;
     root->numWords--;
         
-    if (index == word.length()) root -> isEnd = false;
+    if (index == word.length()) {
+        for (int i = 0; i < root -> keywords.size(); i++)
+        {
+            if (root -> keywords[i] == keyword) root -> keywords.erase(root -> keywords.begin() + i); break;
+        }
+        if (!root -> keywords.size()) root -> isEnd = false;
+    }
     else
     {
         int i = getIndex(word[index]);
-        remove(root -> child[i], word, index + 1);
+        remove(root -> child[i], word, keyword, index + 1);
     }
     
     if (root -> numWords == 0)
