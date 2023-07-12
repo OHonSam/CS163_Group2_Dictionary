@@ -48,6 +48,8 @@
 bool Dict::importCsv(const std::string &path)
 {
     std::ifstream in("assets/Datasets/EE.csv");
+    if(!in.is_open())
+        return false;
     std::string line;
     std::getline(in,line);
 
@@ -76,8 +78,8 @@ bool Dict::importCsv(const std::string &path)
         wordDef.insert(w);  // Add to hash table
     }
     in.close();
-}
-
+    if(in.bad())
+        return false;
     return true;
 }
 
