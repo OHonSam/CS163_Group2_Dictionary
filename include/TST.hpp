@@ -16,7 +16,7 @@ class TSTNode
     TSTNode *insert(TSTNode *node, const std::string &str, int index);
 
     // Get Node containing the last word in the string
-    TSTNode *get(TSTNode *node, const std::string &str, int index);
+    TSTNode *getNodeLastChar(TSTNode *node, const std::string &str, int index);
 
     friend class TST;
 
@@ -60,7 +60,8 @@ public:
     void insert(const std::string &word);
     void deletion(const std::string &word);
 
-    bool search(const std::string &word);
+    // bool search(const std::string &word);
+    TSTNode *search(const std::string &word);
 
     // Returns if there is any word in the trie that starts with the given prefix.
     bool startsWith(const std::string &prefix);

@@ -21,7 +21,9 @@ TSTNode *TSTNode::insert(TSTNode *node, const std::string &str, int index)
             node->mid = insert(node->mid, str, index + 1);
         }
         else
+        {
             node->isEnd = true;
+        }
     }
 
     return node;
@@ -29,8 +31,8 @@ TSTNode *TSTNode::insert(TSTNode *node, const std::string &str, int index)
 
 void TST::deletion(const std::string &word)
 {
-    TSTNode *p = root->get(root, word, 0);
-    root->isEnd = false;
+    TSTNode *p = root->getNodeLastChar(root, word, 0);
+    p->isEnd = false;
 }
 
 void TST::insert(const std::string &word)
@@ -38,30 +40,44 @@ void TST::insert(const std::string &word)
     root = root->insert(root, word, 0);
 }
 
-TSTNode *TSTNode::get(TSTNode *node, const std::string &str, int index)
+TSTNode *TSTNode::getNodeLastChar(TSTNode *node, const std::string &str, int index)
 {
     if (node == NULL)
         return NULL;
 
     if (node->c > str[index])
-        return get(node->left, str, index);
+        return getNodeLastChar(node->left, str, index);
     if (node->c < str[index])
-        return get(node->right, str, index);
+        return getNodeLastChar(node->right, str, index);
     if (index < str.size() - 1)
-        return get(node->mid, str, index + 1);
+        return getNodeLastChar(node->mid, str, index + 1);
     return node;
 }
 
-bool TST::search(const std::string &word)
-{
-    TSTNode *p = root->get(root, word, 0);
+// bool TST::search(const std::string &word)
+// {
+//     TSTNode *p = root->getNodeLastChar(root, word, 0);
 
-    return p && p->isEnd;
+//     return p && p->isEnd;
+// }
+
+TSTNode *TST::search(const std::string &word)
+{
+    TSTNode *p = root->getNodeLastChar(root, word, 0);
+
+    if (p && p->isEnd)
+    {
+        return p;
+    }
+    else
+    {
+        return nullptr;
+    }
 }
 
 bool TST::startsWith(const std::string &prefix)
 {
-    TSTNode *p = root->get(root, prefix, 0);
+    TSTNode *p = root->getNodeLastChar(root, prefix, 0);
 
     return p != NULL;
 }
