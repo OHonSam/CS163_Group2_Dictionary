@@ -1,4 +1,3 @@
-#include <fstream>
 #include <Trie.hpp>
 int Trie::getIndex(char c){
     if (c>='a'&&c<='z') return c-'a';

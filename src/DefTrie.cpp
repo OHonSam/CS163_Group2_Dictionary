@@ -71,14 +71,11 @@ void DefTrie::insert(const std::string& word, const std::string& def){
         root==new Node();
     }
     for(int i=0;i<def.size();++i){
-        int index=getIndex(word[i]);
+        int index=getIndex(def[i]);
         if(root->child[index]==nullptr){
             root->child[index]=new Node;
-            root->child[index]->numWords=1;
         }
-        else{
-            ++root->child[index]->numWords;
-        }
+        ++root->child[index]->numWords;
         root->keywords.push_back(word);
         root=root->child[index];
     }

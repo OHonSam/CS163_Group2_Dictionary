@@ -22,10 +22,13 @@ void HashTable::displayDef(const std::string& word){
     else{
         std::cout<<res->word<<std::endl;
         for(int type=0;type<POS::Count;++type){
-            if(res->def[type].empty()) 
+            //std::cout<<type<<std::endl;
+            if(res->def[type].empty()) {
+                //std::cout<<"No definition for this type"<<std::endl;
                 continue;
+            }
             std::cout<<POS::TypeString[type]<<": "<<std::endl;
-            for(int idx=0;idx<res->def[idx].size();++idx){
+            for(int idx=0;idx<res->def[type].size();++idx){
                 std::cout<<"\t"<<idx+1<<". "<<res->def[type][idx]<<std::endl;
             }
         }
@@ -136,60 +139,60 @@ void HashTable::updateDef(const std::string& word, unsigned int type, const std:
     return;
 }
 
-bool HashTable::import(const std::string& path) {
-    std::ifstream in(path, std::ios::in | std::ios::binary);
-    if (!in.is_open()) return false;
-    int temp;
-    int tempora;
-    std::string w, d;
-    in.read((char*)& temp, sizeof (int));
-    buckets.resize(temp);
-    for (int i = 0; i < buckets.size(); i++)
-    {
-        int tempo;
-        in.read((char*)& tempo, sizeof (int));
-        buckets[i].resize(tempo);
-        for (int j = 0; j < tempo; j++)
-        {
-            int tempor;
-            in.read((char*)& tempor, sizeof (int));
-                size_t size;
-                in.read((char*)&size, sizeof(size));
-                w.resize(size);
-                in.read(&w[0], size);
-                in.read((char*)&size, sizeof(size));
-                d.resize(size);
-                in.read(&d[0], size);
-                buckets[i][j] = {w, d};
-        }
-    }
-    in.close();
-    return true;
-}				
+// bool HashTable::import(const std::string& path) {
+//     std::ifstream in(path, std::ios::in | std::ios::binary);
+//     if (!in.is_open()) return false;
+//     int temp;
+//     int tempora;
+//     std::string w, d;
+//     in.read((char*)& temp, sizeof (int));
+//     buckets.resize(temp);
+//     for (int i = 0; i < buckets.size(); i++)
+//     {
+//         int tempo;
+//         in.read((char*)& tempo, sizeof (int));
+//         buckets[i].resize(tempo);
+//         for (int j = 0; j < tempo; j++)
+//         {
+//             int tempor;
+//             in.read((char*)& tempor, sizeof (int));
+//                 size_t size;
+//                 in.read((char*)&size, sizeof(size));
+//                 w.resize(size);
+//                 in.read(&w[0], size);
+//                 in.read((char*)&size, sizeof(size));
+//                 d.resize(size);
+//                 in.read(&d[0], size);
+//                 buckets[i][j] = {w, d};
+//         }
+//     }
+//     in.close();
+//     return true;
+// }				
 
-bool HashTable::save(const std::string& path) {
-    std::ofstream out(path, std::ios::binary);
-    int x = buckets.size();
-    int tempo;
-    out.write((char*)& x, sizeof (int));
-    for (int i = 0; i < buckets.size(); i++)
-    {
-        int temp = buckets[i].size();
-        out.write((char*)& temp, sizeof (int));
-        for (int j = 0; j < temp; j++)
-        {
-            out.write((char*)& j, sizeof (int));
-                size_t size = buckets[i][j].first.size();
-                out.write((char*) &size,sizeof(size));
-                out.write(&buckets[i][j].first[0],size);
-                size = buckets[i][j].second.size();
-                out.write((char*) &size,sizeof(size));
-                out.write(&buckets[i][j].second[0],size);
-        }
-    }
-    out.close();
-    return true;
-}
+// bool HashTable::save(const std::string& path) {
+//     std::ofstream out(path, std::ios::binary);
+//     int x = buckets.size();
+//     int tempo;
+//     out.write((char*)& x, sizeof (int));
+//     for (int i = 0; i < buckets.size(); i++)
+//     {
+//         int temp = buckets[i].size();
+//         out.write((char*)& temp, sizeof (int));
+//         for (int j = 0; j < temp; j++)
+//         {
+//             out.write((char*)& j, sizeof (int));
+//                 size_t size = buckets[i][j].first.size();
+//                 out.write((char*) &size,sizeof(size));
+//                 out.write(&buckets[i][j].first[0],size);
+//                 size = buckets[i][j].second.size();
+//                 out.write((char*) &size,sizeof(size));
+//                 out.write(&buckets[i][j].second[0],size);
+//         }
+//     }
+//     out.close();
+//     return true;
+// }
 // please do not delete test code
 // int main()
 // {
