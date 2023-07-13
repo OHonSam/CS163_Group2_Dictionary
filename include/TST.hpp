@@ -16,7 +16,7 @@ class TSTNode
     friend class TST;
 
 public:
-    TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr) {}
+    TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr), numWords(0) {}
     TSTNode() {}
 
     ~TSTNode()
