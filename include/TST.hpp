@@ -7,16 +7,15 @@
 
 class TSTNode
 {
-    TSTNode *left, *mid, *right;
     char c; // character contained in TSTNode
+    TSTNode *left, *mid, *right;
     bool isEnd;
     int numWords; // Number of words that have this prefix
-    bool isLeaf;
 
     friend class TST;
 
 public:
-    TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr), numWords(0) {}
+    TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr), isEnd(0), numWords(0) {}
     TSTNode() {}
 
     ~TSTNode()

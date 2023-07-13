@@ -5,11 +5,11 @@
 
 class TreeNode
 {
-	int *keys;
 	int minDeg;
+	bool leaf;
+	int *keys;
 	TreeNode **Children;
 	int numNode;
-	bool leaf;
 
 	void insertNonFull(int k);
 	void splitChild(int i, TreeNode *y);
