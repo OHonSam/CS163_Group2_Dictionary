@@ -94,7 +94,7 @@ void TST::deletion(TSTNode *&node, const std::string &str, int index)
         node->numWords--;
         if (index < str.size() - 1)
         {
-            recursiveInsert(node->mid, str, index + 1);
+            deletion(node->mid, str, index + 1);
         }
         else
         {

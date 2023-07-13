@@ -131,10 +131,7 @@ void Trie::insert(Node *&root, const std::string &word, int index)
         root = new Node(word[index - 1]);
     }
 
-    if (index < word.length())
-    {
-        root->numWords++;
-    }
+    root->numWords++;
 
     if (index == word.length())
     {
