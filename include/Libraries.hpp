@@ -3,5 +3,6 @@
 #include<vector>
 #include<utility>//to use pair
 #include<string>
+#include <sstream>
 #include <time.h>
 #include<cstring>

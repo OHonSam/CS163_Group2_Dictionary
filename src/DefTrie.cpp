@@ -15,6 +15,57 @@ char DefTrie::rGetIndex(int index)
     return index+'a';
 }
 
+void DefTrie::remove(Node *&root, const std::string &word, const std::string &keyword, int index)
+{
+    // index initialized with 0, word's length = max index including root
+    if (root == NULL) return;
+    root->numWords--;
+        
+    if (index == word.length()) {
+        for (int i = 0; i < root -> keywords.size(); i++)
+        {
+            if (root -> keywords[i] == keyword) root -> keywords.erase(root -> keywords.begin() + i); break;
+        }
+        if (!root -> keywords.size()) root -> isEnd = false;
+    }
+    else
+    {
+        int i = getIndex(word[index]);
+        remove(root -> child[i], word, keyword, index + 1);
+    }
+    
+    if (root -> numWords == 0)
+    {
+        delete root;
+        root = NULL;
+    }
+    return;
+}
+
+std::vector<std::string> DefTrie::defWord(const std::string def) {
+    std::stringstream s(def);
+    std::string word;
+    std::vector <std::string> res;
+    while (s >> word) res.push_back(word);
+    return res;
+}
+
+void DefTrie::insert(Node* &root, const std::string& word, const std::string &keyword, int index) {
+    if (!root) root = new Node();
+    root -> numWords++;
+    if (index == word.length()) {
+        root -> isEnd = true;
+        root -> keywords.push_back(keyword);
+    }
+    else {
+        int i = getIndex(word[index]);
+        insert(root -> child[i], word, keyword, index + 1);
+    }
+    return;
+}
+
+// I need to test it before continue
+
 void DefTrie::insert(const std::string& word, const std::string& def){
     if(root==nullptr){
         root==new Node();

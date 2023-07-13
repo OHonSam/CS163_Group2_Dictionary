@@ -4,6 +4,7 @@
 #include "HashTable.hpp"
 #include "SLL.hpp"
 #include "Trie.hpp"
+#include "DefTrie.hpp"
 #include "Word.hpp"
 #include<Libraries.hpp>
 
@@ -14,9 +15,10 @@ private:
 	HashTable wordDef;
 	Trie words;
 	BTree favList;
-
+	DefTrie definition;
 public:
-	Dict(const std::string& path, bool isJson);				
+	Dict(const std::string& path, bool isJson);	
+	Dict(); // initialize		
 
 	// Save data structures before deleting
 	~Dict();										

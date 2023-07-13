@@ -2,14 +2,20 @@
 #include <json/json.h>
 #include<Libraries.hpp>
 
-// bool Dict::importJson(const std::string &path)
-// {
-//     // Open the JSON file
-//     std::ifstream inputFile(path);
-//     if (!inputFile.is_open()) {
-//         std::cerr << "Failed to open the input file." << std::endl;
-//         return false;
-//     }
+Dict::Dict() {
+    wordDef.import("../CS163_Group2_Dictionary/ASSETS/DataStructure/default/HashTable.bin");
+    // deftrie import
+}
+
+
+bool Dict::importJson(const std::string &path)
+{
+    // Open the JSON file
+    std::ifstream inputFile(path);
+    if (!inputFile.is_open()) {
+        std::cerr << "Failed to open the input file." << std::endl;
+        return false;
+    }
 
 //     // Read the entire file into a std::string
 //     std::string jsonString((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
@@ -101,3 +107,16 @@ bool Dict::importCsv(const std::string &path)
 //             choices.push_back(p.first);
 //     }
 // }
+
+// INGORE AND DO NOT DELETE
+// void removeWord(const std::string& word) {
+    // remove in deftrie
+    // std::string str = Dict::wordDef.searchDef(word);
+    // std::stringstream s(str);
+    // remove in fav, history
+
+    // remove in trie
+
+    // remove in hash table
+
+}

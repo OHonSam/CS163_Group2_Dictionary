@@ -3,6 +3,9 @@
 
 #include <Libraries.hpp>
 
+const int ALPHABET_SIZE=26;
+const char TERMINATOR = '\0';
+
 class DefTrie
 {
 private:
@@ -28,11 +31,16 @@ private:
 
     // Get the index from the given character in the alphabet
 	int getIndex(char c);
-
 	// Get the character in the alphabet from the given index
 	char rGetIndex(int index);
 
-    void remove(Node* &root, const std::string& word, int index);
+    std::string getDef(const std::string word);
+    std::vector<std::string> defWord(const std::string def);
+
+    void remove(Node* &root, const std::string& word, const std::string &keyword, int index);
+    void insert(Node* &root, const std::string& word, const std::string &keyword, int index);
+
+    void recursiveFind(std::vector<std::string>& res,std::string prefix, DefTrie::Node* cur, int& cnt);
 
     void import(Node* &node, std::ifstream& file);
     void save(Node* node, std::ofstream& file);
@@ -54,19 +62,14 @@ public:
 
     // Insert a definition in the trie
     void insert(const std::string& word, const std::string& def);
+    // Insert a word in the trie
+    void insert(const std::string& word);
 
     // Remove a word out of trie
-    void remove(const std::string& word);
-
-    // Check whether a word is in the trie
-    // bool checkExist(const std::string& key);
+    void remove(const std::string& word); 
 
     // Returns a list of std::strings which have identical prefix
     std::vector<std::string> searchPrefix(const std::string& prefix);
-    void recursiveFind(std::vector<std::string>& res,std::string prefix, DefTrie::Node* cur, int& cnt);
-
-    // Get all the words that was embedded in the trie
-    // std::vector<std::string> getList();
 
     // Search for a word that has the definition
     std::vector<std::string> searchKeyWord(std::vector<std::string> def);
