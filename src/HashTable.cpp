@@ -143,11 +143,11 @@ bool HashTable::import(const std::string& path) {
                 in.read((char*) &type, sizeof (unsigned int));
                 Word* word = new Word(w, type);
                 for(int k = 0; k < POS::Count; k++) {
-                    if (buckets[i][j] -> type & (1 << k)) {
+                    if ((int) (word -> type) & (1 << k)) {
                         in.read((char*) &tempora, sizeof (int));
                         int temporar;
                         in.read((char*) &temporar, sizeof (int));
-                        word -> def[tempora].resize(temporar);
+                        word -> def[k].resize(temporar);
                         for (int l = 0; l < temporar; l++) {
                             in.read((char*)&size, sizeof(size));
                             word -> def[k][l].resize(size);
@@ -156,10 +156,6 @@ bool HashTable::import(const std::string& path) {
                     }
                 }
                 buckets[i][j] = word;
-                // in.read((char*)&size, sizeof(size));
-                // d.resize(size);
-                // in.read(&d[0], size);
-                // buckets[i][j] = {w, d};
         }
     }
     in.close();
@@ -178,18 +174,12 @@ bool HashTable::save(const std::string& path) {
         for (int j = 0; j < temp; j++)
         {
             out.write((char*)& j, sizeof (int));
-                // size_t size = buckets[i][j].first.size();
-                // out.write((char*) &size,sizeof(size));
-                // out.write(&buckets[i][j].first[0],size);
-                // size = buckets[i][j].second.size();
-                // out.write((char*) &size,sizeof(size));
-                // out.write(&buckets[i][j].second[0],size);
                 size_t size = buckets[i][j] -> word.size();
                 out.write((char*) &size,sizeof(size));
                 out.write(&buckets[i][j] -> word[0],size);
                 out.write((char*) &buckets[i][j] -> type, sizeof (unsigned int));
                 for(int k = 0; k < POS::Count; k++) {
-                    if (buckets[i][j] -> type & (1 << k)) {
+                    if ((buckets[i][j] -> type) & (1 << k)) {
                         out.write((char*) &k, sizeof (int));
                         int sizedef = buckets[i][j] -> def[k].size();
                         out.write((char*) &sizedef, sizeof (int));
@@ -203,15 +193,22 @@ bool HashTable::save(const std::string& path) {
         }
     }
     out.close();
+    HashTable::clear();
     return true;
 }
 // please do not delete test code
 // int main()
 // {
 //     HashTable hash;
-//     hash.insert("father", "cha");
-//     hash.insert("mother", "me");
-//     hash.import("E:/HCMUS/cs163/CS163_Group2_Dictionary/src/txt.bin");
-//     std::cout << hash.searchDef("father") << std::endl;
+    // Word* w1 = new Word("father", 1, "cha");
+    // hash.insert(w1);
+    // Word* w2 = new Word("mother", 13, "me");
+    // hash.insert(w2);
+    // hash.save("D:/cs163/CS163_Group2_Dictionary/ASSETS/DataStructure/default/HashTable.bin");
+//     hash.import("D:/cs163/CS163_Group2_Dictionary/ASSETS/DataStructure/default/HashTable.bin");
+//     Word* w = hash.searchDef("father");
+//     std::cout << w -> type <<  w -> def[0][0] << '\n';
+//     w = hash.searchDef("mother");
+//     std::cout << w -> def[3][0] << '\n';
 //     return 0;
 // }

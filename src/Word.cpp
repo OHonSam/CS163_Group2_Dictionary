@@ -1,5 +1,4 @@
-// #include "Word.h"
-#include "D:\cs163\CS163_Group2_Dictionary\include\Word.hpp"
+#include "Word.h"
 
 Word::Word()
 {
