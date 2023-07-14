@@ -22,7 +22,10 @@ public:
 	~Dict();										
 
 	// Load from json file
-	bool importJson(const std::string& path); 				
+	// bool importJson(const std::string& path); 
+
+	// Load from csv file
+	bool importCsv(const std::string& path);				
 
 	// Load from binary file
 	bool importBinary(const std::string& path); 				
