@@ -3,7 +3,7 @@
 
 Word* HashTable::searchDef(const std::string& word) {
     int key = HashTable::hash(word);
-    Word* res;
+    Word* res = nullptr;
     for (int i = 0; i < HashTable::buckets[key].size(); i++)
     {
         if (HashTable::buckets[key][i] -> word == word) {
