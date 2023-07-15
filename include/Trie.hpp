@@ -1,5 +1,6 @@
 #ifndef TRIE_HPP
 #define TRIE_HPP
+#include "Word.hpp"
 #include<Libraries.hpp>
 
 const int ALPHABET_SIZE=26;
@@ -25,8 +26,8 @@ private:
 
 	void remove(Node* &root, const std::string& word, int index);
 
-	void import(Node* &node, std::ifstream& file);
-	void save(Node* node, std::ofstream& file);
+	void import(Node* &root, std::ifstream& file);
+	void save(Node* root, std::ofstream& file);
 	
 public:
 	Trie();			

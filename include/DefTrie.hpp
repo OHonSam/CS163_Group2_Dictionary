@@ -13,14 +13,16 @@ private:
     {
         bool isEnd;
         int numWords;
-        // std::string def;
+        //std::string def;
         std::vector<Node*> child;
+        //each sequence of characters in the DefTrie is a substring of keywords' definition
+        //each sequence of characters contains a list of possible keywords
         std::vector<std::string> keywords;
         Node()
         {
             isEnd = false;
             numWords = 0;
-            // def = "";
+            //def = "";
             child.resize(26, nullptr);
             keywords.resize(0);
         }
@@ -58,6 +60,8 @@ public:
     // Save as binary file
     bool save(const std::string& path);
 
+    // Insert a definition in the trie
+    void insert(const std::string& word, const std::string& def);
     // Insert a word in the trie
     void insert(const std::string& word);
 
@@ -68,6 +72,6 @@ public:
     std::vector<std::string> searchPrefix(const std::string& prefix);
 
     // Search for a word that has the definition
-    std::vector<std::string> searchDef(std::vector<std::string> def);
+    std::vector<std::string> searchKeyWord(std::vector<std::string> def);
 };
 #endif

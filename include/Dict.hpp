@@ -5,6 +5,7 @@
 #include "SLL.hpp"
 #include "Trie.hpp"
 #include "DefTrie.hpp"
+#include "Word.hpp"
 #include<Libraries.hpp>
 
 class Dict
@@ -23,7 +24,10 @@ public:
 	~Dict();										
 
 	// Load from json file
-	bool importJson(const std::string& path); 				
+	// bool importJson(const std::string& path); 
+
+	// Load from csv file
+	bool importCsv(const std::string& path);				
 
 	// Load from binary file
 	bool importBinary(const std::string& path); 				
@@ -63,5 +67,8 @@ public:
 	
 	// Return the list of words which has an identical given prefix
 	std::vector<std::string> searchPrefix(const std::string& prefix);		
+
+	// Get the list of multple choices
+	void getMultileChoices(std::string& ques, std::vector<std::string>& choices, int numChoices, bool isWord);
 };
 #endif

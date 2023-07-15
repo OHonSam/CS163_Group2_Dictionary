@@ -5,3 +5,4 @@
 #include<string>
 #include <sstream>
 #include <time.h>
+#include<cstring>
