@@ -2,20 +2,21 @@
 #include <json/json.h>
 #include<Libraries.hpp>
 
-Dict::Dict() {
-    wordDef.import("../CS163_Group2_Dictionary/ASSETS/DataStructure/default/HashTable.bin");
+// Dict::Dict() {
+//     wordDef.import("../CS163_Group2_Dictionary/ASSETS/DataStructure/default/HashTable.bin");
     // deftrie import
-}
+// }
 
 
-bool Dict::importJson(const std::string &path)
-{
-    // Open the JSON file
-    std::ifstream inputFile(path);
-    if (!inputFile.is_open()) {
-        std::cerr << "Failed to open the input file." << std::endl;
-        return false;
-    }
+// bool Dict::importJson(const std::string &path)
+// {
+//     // Open the JSON file
+//     std::ifstream inputFile(path);
+//     if (!inputFile.is_open()) {
+//         std::cerr << "Failed to open the input file." << std::endl;
+//         return false;
+//     }
+// }
 
 //     // Read the entire file into a std::string
 //     std::string jsonString((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
