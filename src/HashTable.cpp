@@ -1,5 +1,6 @@
 #include <Libraries.hpp>
 #include <HashTable.hpp>
+#include<Word.hpp>
 
 Word* HashTable::searchDef(const std::string& word) {
     int key = HashTable::hash(word);
