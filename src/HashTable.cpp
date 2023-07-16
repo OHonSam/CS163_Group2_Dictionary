@@ -115,10 +115,9 @@ void HashTable::updateDef(const std::string& word, unsigned int type, const std:
                 if (type & (1 << j)) {
                     for (int k = 0; k < buckets[key][i] -> def[j].size(); k++) if (buckets[key][i] -> def[j][k] == oldDef) {
                         buckets[key][i] -> def[j][k] = newDef;
-                        break;
+                        return;
                     }
                 }
-                break;
             }
         }
     }
@@ -131,6 +130,9 @@ bool HashTable::import(const std::string& path) {
     int temp;
     int tempora;
     std::string w;
+    int numW;
+    in.read((char*)& numW, sizeof (int));
+    HashTable::numWords = numW;
     in.read((char*)& temp, sizeof (int));
     buckets.resize(temp);
     for (int i = 0; i < buckets.size(); i++)
@@ -171,6 +173,8 @@ bool HashTable::import(const std::string& path) {
 
 bool HashTable::save(const std::string& path) {
     std::ofstream out(path, std::ios::binary);
+    int numW = HashTable::numWords;
+    out.write((char*)& numW, sizeof (int));
     int x = buckets.size();
     int tempo;
     out.write((char*)& x, sizeof (int));
