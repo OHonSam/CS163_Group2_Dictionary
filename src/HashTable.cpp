@@ -111,7 +111,6 @@ void HashTable::updateDef(const std::string& word, unsigned int type, const std:
                         break;
                     }
                 }
-                break;
             }
         }
     }
@@ -124,6 +123,9 @@ bool HashTable::import(const std::string& path) {
     int temp;
     int tempora;
     std::string w;
+    int numW;
+    in.read((char*)& numW, sizeof (int));
+    HashTable::numWords = numW;
     in.read((char*)& temp, sizeof (int));
     buckets.resize(temp);
     for (int i = 0; i < buckets.size(); i++)
@@ -164,6 +166,8 @@ bool HashTable::import(const std::string& path) {
 
 bool HashTable::save(const std::string& path) {
     std::ofstream out(path, std::ios::binary);
+    int numW = HashTable::numWords;
+    out.write((char*)& numW, sizeof (int));
     int x = buckets.size();
     int tempo;
     out.write((char*)& x, sizeof (int));
