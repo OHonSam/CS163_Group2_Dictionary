@@ -28,7 +28,7 @@ public:
 	bool importBinary(const std::string& path); 				
 
 	// Reset to the default dataset
-	void reset();									
+	bool reset();									
 
 	// Edit definition of existed word
 	void updateDef(const std::string& word, const std::string& newDef); 
@@ -40,7 +40,7 @@ public:
 	void addFav(const std::string& word);					
 
 	// Add a word to the history
-	void addHistory(const std::string& word);			
+	void addHistory(const std::string& word);//			
 
 	// Remove a word and corresponding definition
 	void removeWord(const std::string& word);				
@@ -49,7 +49,7 @@ public:
 	void removeFav(const std::string& word);				
 
  	// Remove a word from the history
-	void removeHistory(const std::string& word);				
+	void removeHistory(const std::string& word);//				
 
 	// Get the history in the vector
 	std::vector<std::string> getHistory();						

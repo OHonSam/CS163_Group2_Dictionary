@@ -1,7 +1,11 @@
 #include <Dict.hpp>
 #include <json/json.h>
 #include<Libraries.hpp>
-
+bool Dict::reset(){
+    if(!history.clearHistory("HistorySLL.bin"))
+        return false;
+    //waiting for others
+}
 bool Dict::importJson(const std::string &path)
 {
     // Open the JSON file
@@ -62,4 +66,20 @@ void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choice
         for(auto p:set)
             choices.push_back(p.first);
     }
+}
+
+void Dict::addHistory(const std::string& word){
+    history.push(word);
+}
+void Dict::removeHistory(const std::string& word){
+    history.pop(word);
+}
+std::vector<std::string> Dict::getHistory(){
+    return history.SLLintoVector();
+}
+
+
+void Dict::removeWord(const std::string& word){
+    removeHistory(word);
+    //waiting for others
 }

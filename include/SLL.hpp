@@ -11,7 +11,7 @@ class SLL
 private:
 	struct Node
 	{
-		T data;//SLL history is a list of nodes, each node contains a keyword
+		T data;//SLL history is a list of nodes, each node contains a keyword (data)
 		Node* next;
 		Node(){
 			next=nullptr;
@@ -43,7 +43,10 @@ public:
 	int countNodes(Node* head);						
 
 	// Remove a value
-	void pop(const T& key);//						
+	void pop(const T& key);//		
+
+	// Transform history SLL into history vector
+	std::vector<T> SLLintoVector();
 
 	// Get the list of favorite words
 	//std::vector<T> getList();
