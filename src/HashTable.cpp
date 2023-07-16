@@ -97,8 +97,17 @@ void HashTable::clear()
 }
 
 Word* HashTable::randomWordOfDay() {
-    int key=rand()%buckets.size();//random a bucket
-    int pos=rand()%buckets[key].size();//randoma an index in that bucket
+    int HTSize=buckets.size();//size of the hash table
+    if(HTSize==0)
+        return nullptr;
+
+    int key=rand()%HTSize;//random a bucket
+    int entrySize=buckets[key].size();//size of that bucket
+    while(entrySize==0){
+        key=rand()%HTSize;
+        entrySize=buckets[key].size();
+    }
+    int pos=rand()%entrySize;//random an index in that bucket
     return buckets[key][pos];
 }
 
