@@ -13,6 +13,12 @@ BIT::~BIT()
     delete[] bit;
 }
 
+void BIT::clear()
+{
+    for (int i = 0; i <= n; i++)
+        bit[i] = 0;
+}
+
 int BIT::get(int i)
 {
     int sum = 0;
