@@ -72,7 +72,7 @@ public:
 
     //Return words in the trie that starts with the given prefix
     std::vector<std::string>startWith(const std::string &prefix);
-    std::vector<std::string>startsWithRecursiveSearch(std::vector<std::string> &res, const std::string &prefix, TSTNode *cur, int &cnt);
+    void startsWithRecursiveSearch(std::vector<std::string> &res, const std::string &prefix, TSTNode *cur, int &cnt);
 
     bool import(const std::string &path);
     bool save(const std::string &path);

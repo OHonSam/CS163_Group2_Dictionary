@@ -118,7 +118,7 @@ std::vector<std::string> TST::startWith(const std::string &prefix)
     return res;
 }
 
-std::vector<std::string> TST::startsWithRecursiveSearch(std::vector<std::string> &res, const std::string &prefix, TSTNode *cur, int &cnt)
+void TST::startsWithRecursiveSearch(std::vector<std::string> &res, const std::string &prefix, TSTNode *cur, int &cnt)
 {
 
     if (cnt == LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST)
