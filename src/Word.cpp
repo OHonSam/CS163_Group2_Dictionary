@@ -27,6 +27,14 @@ Word::Word(const std::string &word, unsigned int type, const std::string &def)
             this->def[i].push_back(def);
 }
 
+unsigned int POS::getIndex(unsigned int type)
+{
+    for(int i=0; i<Count; i++)
+        if(type&(1<<i))
+            return i;
+    return Count;
+}
+
 unsigned int POS::getType(const std::string &str)
 {
     int res=0;

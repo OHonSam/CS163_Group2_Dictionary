@@ -46,11 +46,9 @@ public:
 	// Find a definition for a required word	
 	Word* searchDef(const std::string& word);
 
-	// Find a word for a required definition
-	//Word* searchKey(const std::string& def);
-
-	//Random a word and its definition
-	Word* randomWordOfDay();//				
+	//	Random a word and its definition
+	void initSeedForRandom();//to avoid srand() in for loop 
+	Word* randomWordOfDay();//call initSeedForRandom() before randomWordOfDay()
 
 	// Get the list of random k word-definition pairs
 	std::vector<Word*> getRandom(int k);			

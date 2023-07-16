@@ -44,6 +44,7 @@ namespace POS
         "Other"
     };
 
+    unsigned int getIndex(unsigned int type);
     unsigned int getType(const std::string& str);
     std::string getTypeString(unsigned int type);
 }

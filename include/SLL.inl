@@ -148,4 +148,15 @@ bool SLL<T>::importSLLStr(const std::string& path,std::ifstream& fin) {
     }
     return true;
 }
+
+template<class T>
+std::vector<T> SLL<T>::SLLintoVector(){
+    std::vector<T> res;
+    Node* cur=head;
+    while(cur!=nullptr){
+        res.push_back(cur->data);
+        cur=cur->next;
+    }
+    return res;
+}
 #endif

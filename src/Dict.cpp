@@ -10,6 +10,11 @@
 //         std::cerr << "Failed to open the input file." << std::endl;
 //         return false;
 //     }
+bool Dict::reset(){
+    if(!history.clearHistory("HistorySLL.bin"))
+        return false;
+    //waiting for others
+}
 
 //     // Read the entire file into a std::string
 //     std::string jsonString((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
@@ -98,4 +103,20 @@ void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choice
         for(auto p:set)
             choices.push_back(p.first);
     }
+}
+
+void Dict::addHistory(const std::string& word){
+    history.push(word);
+}
+void Dict::removeHistory(const std::string& word){
+    history.pop(word);
+}
+std::vector<std::string> Dict::getHistory(){
+    return history.SLLintoVector();
+}
+
+
+void Dict::removeWord(const std::string& word){
+    removeHistory(word);
+    //waiting for others
 }
