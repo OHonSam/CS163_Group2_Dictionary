@@ -79,6 +79,8 @@ HashTable::HashTable():bit(MOD[NMOD-1])
 }
 
 void initSeedForRandom(){
+    srand(time(NULL));
+}
 HashTable::~HashTable()
 {
     clear();
@@ -96,15 +98,12 @@ void HashTable::clear()
 }
 
 Word* HashTable::randomWordOfDay() {
-    srand(time(NULL));
-}
-
-std::pair<std::string, std::string> HashTable::randomWordOfDay() {
-    //srand(time(NULL));
     int key=rand()%buckets.size();//random a bucket
     int pos=rand()%buckets[key].size();//randoma an index in that bucket
     return buckets[key][pos];
 }
+
+
 
 void HashTable::updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef) {
     int key = HashTable::hash(word);

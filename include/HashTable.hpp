@@ -48,7 +48,7 @@ public:
 
 	//	Random a word and its definition
 	void initSeedForRandom();//to avoid srand() in for loop 
-	std::pair<std::string, std::string> randomWordOfDay();//call initSeedForRandom() before randomWordOfDay()
+	Word* randomWordOfDay();//call initSeedForRandom() before randomWordOfDay()
 
 	// Get the list of random k word-definition pairs
 	std::vector<Word*> getRandom(int k);			
