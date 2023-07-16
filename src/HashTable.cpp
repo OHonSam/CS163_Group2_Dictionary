@@ -108,7 +108,7 @@ void HashTable::updateDef(const std::string& word, unsigned int type, const std:
                 if (type & (1 << j)) {
                     for (int k = 0; k < buckets[key][i] -> def[j].size(); k++) if (buckets[key][i] -> def[j][k] == oldDef) {
                         buckets[key][i] -> def[j][k] = newDef;
-                        break;
+                        return;
                     }
                 }
             }
