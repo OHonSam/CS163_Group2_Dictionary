@@ -17,7 +17,7 @@ Word* HashTable::searchDef(const std::string& word) {
 
 std::vector<Word*> HashTable::getRandom(int k)
 {
-    srand(time(NULL));
+    //srand(time(NULL));
     std::vector<std::pair<std::string, std::string>> res;
     while(res.size()<k)
     {
@@ -76,8 +76,12 @@ HashTable::HashTable():bit(MOD[NMOD-1])
     buckets.resize(MOD[NMOD-1]);
 }
 
-Word* HashTable::randomWordOfDay() {
+void initSeedForRandom(){
     srand(time(NULL));
+}
+
+std::pair<std::string, std::string> HashTable::randomWordOfDay() {
+    //srand(time(NULL));
     int key=rand()%buckets.size();//random a bucket
     int pos=rand()%buckets[key].size();//randoma an index in that bucket
     return buckets[key][pos];
