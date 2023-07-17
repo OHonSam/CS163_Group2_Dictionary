@@ -14,84 +14,84 @@ const string word[N]{
     "a"
 };
 
-void input(Trie& trie)
+void input(TST& tst)
 {
-    for(int i=0; i<N; i++)
-        trie.insert(word[i]);
+    for(int i=0; i<N; ++i)
+        tst.insert(word[i]);
 }
 
-TEST(Trie_test, insert)
+TEST(TST_test, insert)
 {
-    Trie trie;
-    input(trie);
+    TST tst;
+    input(tst);
 
-    for(int i=0; i<N; i++)
-        EXPECT_TRUE(trie.checkExist(word[i]));
+    for(int i=0; i<N; ++i)
+        EXPECT_TRUE(tst.wordExists(word[i]));
 }
 
-TEST(Trie_test, remove)
+TEST(TST_test, remove)
 {
-    Trie trie;
-    input(trie);
+    TST tst;
+    input(tst);
 
-    for(int i=0; i<N; i++)
+    for(int i=0; i<N; ++i)
     {
-        trie.remove(word[i]);
-        EXPECT_FALSE(trie.checkExist(word[i]));
+        tst.remove(word[i]);
+        EXPECT_FALSE(tst.wordExists(word[i]));
     }
 }
 
-TEST(Trie_test, searchPrefix)
+TEST(TST_test, searchPrefix)
 {
-    Trie trie;
-    input(trie);
+    TST tst;
+    input(tst);
 
-    vector<string> prefix=trie.searchPrefix("a");
+    vector<string> prefix=tst.searchPrefix("a");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "a");
 
-    prefix=trie.searchPrefix("dra");
+    prefix=tst.searchPrefix("dra");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "dramatically");
 
-    prefix=trie.searchPrefix("he");
+    prefix=tst.searchPrefix("he");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "hello");
 
-    prefix=trie.searchPrefix("w");
+    prefix=tst.searchPrefix("w");
     EXPECT_EQ(prefix.size(), 2);
     EXPECT_EQ(prefix[0], "wonderful");
     EXPECT_EQ(prefix[1], "world");
 
-    prefix=trie.searchPrefix("fa");
+    prefix=tst.searchPrefix("fa");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "fantastic");
 
-    prefix=trie.searchPrefix("i");
+    prefix=tst.searchPrefix("i");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "in");
 
-    prefix=trie.searchPrefix("t");
+    prefix=tst.searchPrefix("t");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "the");
 
-    prefix=trie.searchPrefix("z");
+    prefix=tst.searchPrefix("z");
     EXPECT_EQ(prefix.size(), 0);
 
-    prefix=trie.searchPrefix("");
+    prefix=tst.searchPrefix("");
     EXPECT_EQ(prefix.size(), N);
 }
 
-// TEST(Trie_test, ImportAndSave)
+// TEST(TST_test, ImportAndSave)
 // {
-//     Trie trie;
-//     input(trie);
+//     TST tst;
+//     input(tst);
 
-//     ASSERT_TRUE(trie.save("trie.bin"));
-//     trie.clear();
-//     EXPECT_FALSE(trie.checkExist(word[0]));
+//     ASSERT_TRUE(tst.save("tst.bin"));
+//     tst.clear();
+//     EXPECT_FALSE(tst.wordExists(word[0]));
 
-//     ASSERT_TRUE(trie.import("trie.bin"));
-//     for(int i=0; i<N; i++)
-//         EXPECT_TRUE(trie.checkExist(word[i]));
+//     ASSERT_TRUE(tst.import("tst.bin"));
+//     for(int i=0; i<N; ++i)
+//         EXPECT_TRUE(tst.wordExists(word[i]));
 // }
