@@ -1,7 +1,2 @@
-*.txt
-*.o
-*.exe
-*.inp
-*.out
-
 .vscode
+build
