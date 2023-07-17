@@ -18,6 +18,15 @@ void Render(App *app, Screen *s)
 	s->Render(app);
 }
 
+void ClearScreen()
+{
+    #ifdef BUILD_UNIX
+        system("clear");
+    #else
+        system("cls");
+    #endif
+}
+
 void Run()
 {
 	App *app = new App();
@@ -196,6 +205,46 @@ void searchPrefixFavList::Render(App *app)
 		std::getline(std::cin, buffer, '\n');
 	}
 	SetNextScreen(app, new FavListChoiceScreen());
+}
+
+void InsertWordFavListScreen::Render(App *app)
+{
+	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+	TST tst;
+	tst.searchPrefix();
+	int choice = -1;
+	std::string buffer;
+
+	std::cout << "\nEnter 0 to return to previous page\n";
+	std::getline(std::cin, buffer, '\n');
+
+	while (!CheckString(buffer, choice) || choice != 0)
+	{
+		std::cout << "The number you have entered does not correspond to any choice!\n";
+		std::cout << "Please re-enter: ";
+		std::getline(std::cin, buffer, '\n');
+	}
+	// SetNextScreen(app, new FavListChoiceScreen());
+}
+
+void RemoveWordFavListScreen::Render(App *app)
+{
+	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+	TST tst;
+	tst.type2RemoveWord();
+	int choice = -1;
+	std::string buffer;
+
+	std::cout << "\nEnter 0 to return to previous page\n";
+	std::getline(std::cin, buffer, '\n');
+
+	while (!CheckString(buffer, choice) || choice != 0)
+	{
+		std::cout << "The number you have entered does not correspond to any choice!\n";
+		std::cout << "Please re-enter: ";
+		std::getline(std::cin, buffer, '\n');
+	}
+	// SetNextScreen(app, new FavListChoiceScreen());
 }
 
 // void CreateClassScreen::Render(App *app)

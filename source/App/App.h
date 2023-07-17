@@ -1,14 +1,9 @@
 #ifndef APP_H
 #define APP_H
 
+#include "source\Libraries.hpp"
+#include "source\DataStructure\Word\Word.hpp"
 #include "source\DataStructure\TST\TST.hpp"
-
-#include "GlobalFunc.h"
-#include "Class.h"
-#include "SchoolYear.h"
-#include "Course.h"
-#include "Semester.h"
-#include "Score.h"
 
 class App;
 
@@ -30,22 +25,24 @@ void Render(App* app, Screen* s);
 void Run();
 void EndApp(State* state);
 
+void ClearScreen();
 bool CheckString(std::string str, int& i);
+
 class State
 {
 public:
 	int userChoice;
 	bool EndApp;
+	std::string word;
 
-	State() : user{nullptr}, userChoice{-1}, EndApp{false} {};
+	State() : word{}, userChoice{-1}, EndApp{false} {};
 };
 
 class Screen
 {
 public:
-	virtual void Render(App* app);
+	virtual void Render(App* app) = 0;
 };
-
 
 class FirstScreen : public Screen
 {
@@ -72,15 +69,15 @@ class searchPrefixFavList : public Screen
 	void Render(App* app);
 };
 
-// class SYChoice : public Screen
-// {
-// 	void Render(App* app);
-// };
+class RemoveWordFavListScreen : public Screen
+{
+	void Render(App* app);
+};
 
-// class ChooseSY : public Screen
-// {
-// 	void Render(App* app);
-// };
+class InsertWordFavListScreen : public Screen
+{
+	void Render(App* app);
+};
 
 // class CreateSYScr : public Screen
 // {
