@@ -41,44 +41,44 @@ TEST(TST_test, remove)
     }
 }
 
-TEST(TST_test, searchPrefix)
+TEST(TST_test, startWith)
 {
     TST tst;
     input(tst);
 
-    vector<string> prefix=tst.searchPrefix("a");
+    vector<string> prefix=tst.startWith("a");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "a");
 
-    prefix=tst.searchPrefix("dra");
+    prefix=tst.startWith("dra");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "dramatically");
 
-    prefix=tst.searchPrefix("he");
+    prefix=tst.startWith("he");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "hello");
 
-    prefix=tst.searchPrefix("w");
+    prefix=tst.startWith("w");
     EXPECT_EQ(prefix.size(), 2);
     EXPECT_EQ(prefix[0], "wonderful");
     EXPECT_EQ(prefix[1], "world");
 
-    prefix=tst.searchPrefix("fa");
+    prefix=tst.startWith("fa");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "fantastic");
 
-    prefix=tst.searchPrefix("i");
+    prefix=tst.startWith("i");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "in");
 
-    prefix=tst.searchPrefix("t");
+    prefix=tst.startWith("t");
     EXPECT_EQ(prefix.size(), 1);
     EXPECT_EQ(prefix[0], "the");
 
-    prefix=tst.searchPrefix("z");
+    prefix=tst.startWith("z");
     EXPECT_EQ(prefix.size(), 0);
 
-    prefix=tst.searchPrefix("");
+    prefix=tst.startWith("");
     EXPECT_EQ(prefix.size(), N);
 }
 
