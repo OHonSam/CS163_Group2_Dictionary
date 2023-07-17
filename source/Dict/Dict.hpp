@@ -66,6 +66,6 @@ public:
 	// std::vector<std::string> searchPrefix(const std::string& prefix);		
 
 	// Get the list of multple choices
-	// void getMultileChoices(std::string& ques, std::vector<std::string>& choices, int numChoices, bool isWord);
+	void getMultileChoices(std::string& ques, std::vector<std::string>& choices, int numChoices, bool isWord);
 };
 #endif

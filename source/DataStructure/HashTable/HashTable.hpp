@@ -1,7 +1,7 @@
 #ifndef HASHTABLE_HPP
 #define HASHTABLE_HPP
 
-#include<Libraries.hpp>
+#include <Libraries.hpp>
 #include "BIT.hpp"
 #include "Word.hpp"
 

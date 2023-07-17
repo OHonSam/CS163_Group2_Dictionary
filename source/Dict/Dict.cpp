@@ -1,6 +1,4 @@
 #include <Dict.hpp>
-#include <json/json.h>
-#include<Libraries.hpp>
 
 // bool Dict::importJson(const std::string &path)
 // {
@@ -85,24 +83,31 @@ bool Dict::importCsv(const std::string &path)
     return true;
 }
 
-// void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord)
-// {
-//     choices.clear();
+void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord)
+{
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 
-//     std::vector<std::pair<std::string,std::string>> set=wordDef.getRandom(numChoices);
-//     if(isWord)
-//     {
-//         ques=set[0].first;
-//         for(auto p:set)
-//             choices.push_back(p.second);
-//     }
-//     else
-//     {
-//         ques=set[0].second;
-//         for(auto p:set)
-//             choices.push_back(p.first);
-//     }
-// }
+    std::vector<Word*> list=wordDef.getRandom(numChoices);
+    if(isWord)
+    {
+        ques=list[0]->word;
+        for(int i=0;i<numChoices;++i)
+            choices.push_back(list[i]->word);
+    }
+    else
+    {
+        for(int i=0; i<POS::Count; i++)
+            if(!list[0]->def[i].empty())
+            {
+                ques=list[0]->def[i][0];
+                break;
+            }
+        for(int i=0;i<numChoices;++i)
+            choices.push_back(list[i]->word);
+    }
+
+    std::shuffle(choices.begin(),choices.end(),std::default_random_engine(seed));
+}
 
 void Dict::addHistory(const std::string& word){
     history.push(word);
