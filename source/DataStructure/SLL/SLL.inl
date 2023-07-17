@@ -86,8 +86,8 @@ void StrToCharArr(char*& arr, const std::string& str, int len) {//count '\0' in 
     strcpy(arr, str.c_str());
 }
 template<class T>
-bool SLL<T>::saveSLLStr(const std::string& path,std::ofstream& fout) {
-
+bool SLL<T>::saveSLLStr(const std::string& path) {
+    std::ofstream fout;
     fout.open(path,std::ios::binary);
     if (!fout.is_open()) {
         //cout << "Can't open the file for writing!";
@@ -121,7 +121,8 @@ bool SLL<T>::saveSLLStr(const std::string& path,std::ofstream& fout) {
     return true;
 }
 template<class T>
-bool SLL<T>::importSLLStr(const std::string& path,std::ifstream& fin) {
+bool SLL<T>::importSLLStr(const std::string& path) {
+    std::ifstream fin;
     fin.open(path, std::ios::binary);
     if (!fin.is_open()) {
         //cout << "Can't open the file for reading!";
