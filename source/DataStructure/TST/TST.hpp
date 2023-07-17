@@ -41,7 +41,7 @@ class TST
     void save(TSTNode *root, std::ofstream &file);
 
     // Insert into the TST
-    void TST::recursiveInsert(TSTNode *&node, const std::string &str, int index);
+    void recursiveInsert(TSTNode *&node, const std::string &str, int index);
     // TSTNode *recursiveInsert(TSTNode *&node, const std::string &str, int index);
 
     void deletion(TSTNode *&node, const std::string &str, int index);

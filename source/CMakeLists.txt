@@ -7,8 +7,8 @@ target_include_directories(Lib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 file(GLOB data ${CMAKE_CURRENT_SOURCE_DIR}/data/*)
 file(COPY ${data} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/data/)
 
-add_subdirectory(App)
-add_subdirectory(json)
+# add_subdirectory(App)
+# add_subdirectory(json)
 
 add_subdirectory(DataStructure)
 add_subdirectory(Dict)

@@ -14,6 +14,7 @@ bool Dict::reset(){
     if(!history.clearHistory("HistorySLL.bin"))
         return false;
     //waiting for others
+    return true;
 }
 
 //     // Read the entire file into a std::string
@@ -81,29 +82,27 @@ bool Dict::importCsv(const std::string &path)
         wordDef.insert(w);  // Add to hash table
     }
     in.close();
-}
-
     return true;
 }
 
-void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord)
-{
-    choices.clear();
+// void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord)
+// {
+//     choices.clear();
 
-    std::vector<std::pair<std::string,std::string>> set=wordDef.getRandom(numChoices);
-    if(isWord)
-    {
-        ques=set[0].first;
-        for(auto p:set)
-            choices.push_back(p.second);
-    }
-    else
-    {
-        ques=set[0].second;
-        for(auto p:set)
-            choices.push_back(p.first);
-    }
-}
+//     std::vector<std::pair<std::string,std::string>> set=wordDef.getRandom(numChoices);
+//     if(isWord)
+//     {
+//         ques=set[0].first;
+//         for(auto p:set)
+//             choices.push_back(p.second);
+//     }
+//     else
+//     {
+//         ques=set[0].second;
+//         for(auto p:set)
+//             choices.push_back(p.first);
+//     }
+// }
 
 void Dict::addHistory(const std::string& word){
     history.push(word);
