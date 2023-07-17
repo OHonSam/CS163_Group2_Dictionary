@@ -31,16 +31,6 @@ void ClearScreen()
 	// std::cout << string( 100, '\n' );
 }
 
-void Run()
-{
-	App *app = new App();
-	do
-	{
-		ClearScreen();
-		Render(app, app->CurrentScreen);
-	} while (!app->state.EndApp);
-	delete app;
-}
 
 bool CheckString(std::string str, int &i)
 {
@@ -60,6 +50,17 @@ bool CheckString(std::string str, int &i)
 	}
 	i = stoi(str);
 	return true;
+}
+
+void Run()
+{
+	App *app = new App();
+	do
+	{
+		ClearScreen();
+		Render(app, app->CurrentScreen);
+	} while (!app->state.EndApp);
+	delete app;
 }
 
 void FirstScreen::Render(App *app)
