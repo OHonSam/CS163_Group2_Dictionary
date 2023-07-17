@@ -52,12 +52,12 @@ class FirstScreen : public Screen
 	void Render(App* app);
 };
 
-class favListChoiceScreen : public Screen
+class FavListChoiceScreen : public Screen
 {
 	void Render(App* app) override;
 };
 
-class removeWordFavListScreen : public Screen
+class RemoveWordFavListScreen : public Screen
 {
 	void Render(App* app);
 };

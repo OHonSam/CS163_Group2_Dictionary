@@ -96,7 +96,7 @@ void FirstScreen::Render(App *app)
 	}
 }
 
-void favListChoiceScreen::Render(App *app)
+void FavListChoiceScreen::Render(App *app)
 {
 	int choice = -1, maxNumChoice = 4, cnt = 1;
 	std::string buffer;
@@ -105,7 +105,7 @@ void favListChoiceScreen::Render(App *app)
 	std::cout << "What would you like to do?\n";
 	std::cout << cnt++ << ". Type in a word to remove it from your favorite list\n";
 	std::cout << cnt++ << ". Type in a word to remove it from your favorite list\n";
-	std::cout << cnt++ << ". Search if a word is in your favorite list\n";
+	std::cout << cnt++ << ". Search prefix of words in your favorite list\n";
 	std::cout << cnt++ << ". Go back to previous page\n";
 
 	std::cout << "Your choice: ";
@@ -137,7 +137,7 @@ void favListChoiceScreen::Render(App *app)
 	}
 }
 
-void removeWordFavListScreen::Render(App *app)
+void RemoveWordFavListScreen::Render(App *app)
 {
 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
 	favList favl;

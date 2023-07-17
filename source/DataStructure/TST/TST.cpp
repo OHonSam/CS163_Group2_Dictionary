@@ -273,3 +273,5 @@ void TST::save(TSTNode *root, std::ofstream &file)
     char marker = TERMINATOR;
     file.write((char *)&marker, sizeof(char));
 }
+
+void FavList::print()

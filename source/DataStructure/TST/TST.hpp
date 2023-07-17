@@ -81,12 +81,11 @@ public:
     bool save(const std::string &path);
 };
 
-class favList
+class FavList
 {
-    void removeWord();
-    void 
-
-
+    void type2RemoveWord();
+    void type2InsertWord();
+    void searchPrefix();
 };
 
 #endif
