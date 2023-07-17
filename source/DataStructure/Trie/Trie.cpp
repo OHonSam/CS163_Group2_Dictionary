@@ -17,6 +17,8 @@ char Trie::rGetIndex(int index)
 
 bool Trie::checkExist(const std::string &key)
 {
+    if(root == nullptr) 
+        return false;
     Trie::Node *cur = root;
     int n = key.size();
     for (int i = 0; i < n; ++i)
