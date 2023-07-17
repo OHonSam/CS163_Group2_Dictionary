@@ -3,15 +3,14 @@
 
 #include "source\Libraries.hpp"
 #include "source\DataStructure\Word\Word.hpp"
-#include "source\DataStructure\TST\TST.hpp"
 
-class App;
+#include "source\DataStructure\TST\TST.hpp"
 
 class App
 {
 public:
 	State state;
-	Screen* CurrentScreen;
+	Screen *CurrentScreen;
 
 	App()
 	{
@@ -19,14 +18,14 @@ public:
 	}
 };
 
-void SetNextScreen(App* app, Screen* NextScreen); 
-void Render(App* app, Screen* s);
+void SetNextScreen(App *app, Screen *NextScreen);
+void Render(App *app, Screen *s);
 
 void Run();
-void EndApp(State* state);
+void EndApp(App *app);
 
 void ClearScreen();
-bool CheckString(std::string str, int& i);
+bool CheckString(std::string str, int &i);
 
 class State
 {
@@ -41,42 +40,42 @@ public:
 class Screen
 {
 public:
-	virtual void Render(App* app) = 0;
+	virtual void Render(App *app) = 0;
 };
 
 class FirstScreen : public Screen
 {
-	void Render(App* app);
+	void Render(App *app) override;
 };
 
 class FavListChoiceScreen : public Screen
 {
-	void Render(App* app) override;
+	void Render(App *app) override;
 };
 
 class Type2RemoveWordFavListScreen : public Screen
 {
-	void Render(App* app);
+	void Render(App *app) override;
 };
 
 class Type2InsertWordFavListScreen : public Screen
 {
-	void Render(App* app);
+	void Render(App *app) override;
 };
 
 class searchPrefixFavList : public Screen
 {
-	void Render(App* app);
+	void Render(App *app) override;
 };
 
 class RemoveWordFavListScreen : public Screen
 {
-	void Render(App* app);
+	void Render(App *app) override;
 };
 
 class InsertWordFavListScreen : public Screen
 {
-	void Render(App* app);
+	void Render(App *app) override;
 };
 
 // class CreateSYScr : public Screen
@@ -254,4 +253,4 @@ class InsertWordFavListScreen : public Screen
 // 	void Render(App* app);
 // };
 
-// #endif
+#endif

@@ -20,11 +20,13 @@ void Render(App *app, Screen *s)
 
 void ClearScreen()
 {
-    #ifdef BUILD_UNIX
-        system("clear");
-    #else
-        system("cls");
-    #endif
+#ifdef BUILD_UNIX
+	system("clear");
+#else
+	system("cls");
+#endif
+
+// std::cout << "\033[2J\033[1;1H";
 }
 
 void Run()
@@ -60,23 +62,23 @@ bool CheckString(std::string str, int &i)
 
 void FirstScreen::Render(App *app)
 {
-	int choice = -1, maxNumChoice = 5, cnt = 1;
+	int choice = -1, minNumChoice = 1, maxNumChoice = 5, cnt = 0;
 	std::string buffer;
 
 	std::cout << "GROUP 2 DICTIONARY\n\n";
 
 	std::cout << "What would you like to do?\n";
 
-	std::cout << cnt++ << ". Search\n";
-	std::cout << cnt++ << ". View your search history\n";
-	std::cout << cnt++ << ". View your favourite list\n";
-	std::cout << cnt++ << ". Reset the dictionary to its original state\n";
-	std::cout << cnt++ << ". Exit\n";
+	std::cout << ++cnt << ". Search\n";
+	std::cout << ++cnt << ". View your search history\n";
+	std::cout << ++cnt << ". View your favourite list\n";
+	std::cout << ++cnt << ". Reset the dictionary to its original state\n";
+	std::cout << ++cnt << ". Exit\n";
 
 	std::cout << "Your choice: ";
 
 	std::getline(std::cin, buffer, '\n');
-	while (!CheckString(buffer, choice) || choice < 0 || choice > maxNumChoice)
+	while (!CheckString(buffer, choice) || choice < minNumChoice || choice > maxNumChoice)
 	{
 		std::cout << "The number you have entered does not correspond to any choice!\n";
 		std::cout << "Please re-enter: ";
@@ -94,7 +96,7 @@ void FirstScreen::Render(App *app)
 		// SetNextScreen(app, new LoginScreen());
 		break;
 	case 3:
-		SetNextScreen(app, new favListChoiceScreen());
+		SetNextScreen(app, new FavListChoiceScreen());
 		break;
 	case 4:
 		// SetNextScreen(app, new FavListChoiceScreen());
@@ -107,21 +109,22 @@ void FirstScreen::Render(App *app)
 
 void FavListChoiceScreen::Render(App *app)
 {
-	int choice = -1, maxNumChoice = 4, cnt = 1;
+	int choice = -1, minNumChoice = 1, maxNumChoice = 4, cnt = 0;
 	std::string buffer;
 
 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
 	std::cout << "What would you like to do?\n";
-	std::cout << cnt++ << ". Type in a word to remove it from your favorite list\n";
-	std::cout << cnt++ << ". Type in a word to remove it from your favorite list\n";
-	std::cout << cnt++ << ". Search prefix of words in your favorite list\n";
-	std::cout << cnt++ << ". Go back to previous page\n";
+	std::cout << ++cnt << ". Type in a word to remove it from your favorite list\n";
+	std::cout << ++cnt << ". Type in a word to remove it from your favorite list\n";
+	std::cout << ++cnt << ". Search prefix of words in your favorite list\n";
+	std::cout << ++cnt << ". Go back to previous page\n";
 
 	std::cout << "Your choice: ";
 
 	std::getline(std::cin, buffer, '\n');
 
-	while (!CheckString(buffer, choice) || choice < 0 || choice > maxNumChoice)
+	while (!CheckString(buffer, choice) || choice < minNumChoice || choice > maxNumChoice)
+
 	{
 		std::cout << "The number you have entered does not correspond to any choice!\n";
 		std::cout << "Please re-enter: ";
@@ -165,7 +168,6 @@ void Type2RemoveWordFavListScreen::Render(App *app)
 	}
 	SetNextScreen(app, new FavListChoiceScreen());
 }
-
 
 void Type2InsertWordFavListScreen::Render(App *app)
 {
@@ -616,8 +618,6 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		break;
 // 	}
 // }
-
-
 
 // void ImportToClass::Render(App *app)
 // {
