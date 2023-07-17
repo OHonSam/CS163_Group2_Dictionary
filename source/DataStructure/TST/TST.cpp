@@ -225,7 +225,10 @@ bool TST::save(const std::string &path)
 {
     std::ofstream file(path, std::ios::binary);
     if (!file.is_open())
+    {
+        std::cout << "File not found\n";
         return false;
+    }
     save(root, file);
     file.close();
     return true;
@@ -318,7 +321,7 @@ void TST::type2InsertWord()
 void TST::searchPrefix()
 {
     std::string word;
-    
+
     std::cout << "Please type in the word you want to remove: ";
 
     std::getline(std::cin, word, '\n');

@@ -3,6 +3,6 @@
 
 #include <Libraries.hpp>
 
-const std::string TSTSaveFile = "";
+const std::string favListSaveFile = "";
 
 #endif
