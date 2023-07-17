@@ -40,6 +40,7 @@ class TST
 
     void import(TSTNode *&root, std::ifstream &file);
     void save(TSTNode *root, std::ofstream &file);
+    void traverse(TSTNode* root);
 
     // Insert into the TST
     void recursiveInsert(TSTNode *&node, const std::string &str, int index);
@@ -66,6 +67,7 @@ public:
 
     void insert(const std::string &word);
     void remove(const std::string &word);
+    void traverse();
 
     // Return true if the word is in the TST
     bool wordExists(const std::string &word);

@@ -129,7 +129,7 @@ void TST::startsWithRecursiveSearch(std::vector<std::string> &res, const std::st
         ++cnt;
         return;
     }
-    char _c; //value of character contained in a TSTNode
+    char _c; // value of character contained in a TSTNode
     if (cur->left != nullptr)
     {
         _c = cur->left->c;
@@ -272,6 +272,22 @@ void TST::save(TSTNode *root, std::ofstream &file)
 
     char marker = TERMINATOR;
     file.write((char *)&marker, sizeof(char));
+}
+
+void TST::traverse()
+{
+    traverse(root);
+}
+
+void TST::traverse(TSTNode *root)
+{
+    if (root == nullptr)
+        return;
+    traverse(root->left);
+    std::cout << root->c << " ";
+    traverse(root->mid);
+    std::cout << root->c << " ";
+    traverse(root->right);
 }
 
 void FavList::print()
