@@ -4,7 +4,8 @@ project(Dictionary)
 add_library(Lib INTERFACE)
 target_include_directories(Lib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
-configure_file(${CMAKE_SOURCE_DIR}/assets ${CMAKE_CURRENT_BINARY_DIR}/assets COPYONLY)
+file(GLOB data ${CMAKE_CURRENT_SOURCE_DIR}/data/*)
+file(COPY ${data} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/data/)
 
 add_subdirectory(App)
 add_subdirectory(json)
