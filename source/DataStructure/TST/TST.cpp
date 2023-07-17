@@ -212,7 +212,10 @@ bool TST::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
     if (!file.is_open())
+    {
+        std::cout << "File not found\n";
         return false;
+    }
     import(root, file);
     file.close();
     return true;
@@ -290,4 +293,35 @@ void TST::traverse(TSTNode *root)
     traverse(root->right);
 }
 
-void FavList::print()
+void TST::type2RemoveWord()
+{
+    std::string word;
+
+    std::cout << "Please type in the word you want to remove: ";
+
+    std::getline(std::cin, word, '\n');
+
+    remove(word);
+}
+
+void TST::type2InsertWord()
+{
+    std::string word;
+
+    std::cout << "Please type in the word you want to remove: ";
+
+    std::getline(std::cin, word, '\n');
+
+    insert(word);
+}
+
+void TST::searchPrefix()
+{
+    std::string word;
+    
+    std::cout << "Please type in the word you want to remove: ";
+
+    std::getline(std::cin, word, '\n');
+
+    startWith(word);
+}

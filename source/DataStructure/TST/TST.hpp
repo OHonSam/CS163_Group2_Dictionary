@@ -69,6 +69,10 @@ public:
     void remove(const std::string &word);
     void traverse();
 
+    void type2RemoveWord();
+    void type2InsertWord();
+    void searchPrefix();
+
     // Return true if the word is in the TST
     bool wordExists(const std::string &word);
 
@@ -80,14 +84,7 @@ public:
     void startsWithRecursiveSearch(std::vector<std::string> &res, const std::string &prefix, TSTNode *cur, int &cnt);
 
     bool import(const std::string &path);
-    bool save(const std::string &path);
-};
-
-class FavList
-{
-    void type2RemoveWord();
-    void type2InsertWord();
-    void searchPrefix();
+    bool save(const std::string &path);    
 };
 
 #endif
