@@ -6,6 +6,7 @@
 
 #include "source\DataStructure\TST\TST.hpp"
 
+class Screen;
 class App
 {
 public:
@@ -37,11 +38,13 @@ public:
 	State() : word{}, userChoice{-1}, EndApp{false} {};
 };
 
+
 class Screen
 {
 public:
 	virtual void Render(App *app) = 0;
 };
+
 
 class FirstScreen : public Screen
 {
