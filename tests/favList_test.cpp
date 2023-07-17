@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "TST.hpp"
+#include "source\DataStructure\TST\TST.hpp"
 using namespace std;
 
 const int N=8;
