@@ -51,10 +51,18 @@ class FirstScreen : public Screen
 	void Render(App *app) override;
 };
 
+
+//--------------------------------Parent: FirstScreen-------------------------------------
+
 class FavListChoiceScreen : public Screen
 {
 	void Render(App *app) override;
 };
+
+//--------------------------------Parent: FirstScreen-------end-------------------------------
+
+
+//--------------------------------Parent: FavListChoiceScreen--------------------------------------
 
 class Type2RemoveWordFavListScreen : public Screen
 {
@@ -71,6 +79,9 @@ class searchPrefixFavList : public Screen
 	void Render(App *app) override;
 };
 
+//--------------------------------Parent: FavListChoiceScreen--------end------------------------------
+
+//--------------------------------untitled--------------------------------------
 class RemoveWordFavListScreen : public Screen
 {
 	void Render(App *app) override;
@@ -80,6 +91,7 @@ class InsertWordFavListScreen : public Screen
 {
 	void Render(App *app) override;
 };
+//--------------------------------untitled-----------end---------------------------
 
 // class CreateSYScr : public Screen
 // {
