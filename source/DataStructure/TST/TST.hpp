@@ -13,6 +13,7 @@ class TSTNode
     int numWords; // Number of words that have this prefix
 
     friend class TST;
+    friend class favList;
 
 public:
     TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr), isEnd(0), numWords(0) {}
@@ -49,6 +50,8 @@ class TST
     // Get Node containing the last word in the string
     TSTNode *getNodeLastChar(TSTNode *node, const std::string &str, int index);
 
+    friend class favList;
+
 public:
     TST()
     {
@@ -76,6 +79,14 @@ public:
 
     bool import(const std::string &path);
     bool save(const std::string &path);
+};
+
+class favList
+{
+    void removeWord();
+    void 
+
+
 };
 
 #endif
