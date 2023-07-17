@@ -57,20 +57,20 @@ class FavListChoiceScreen : public Screen
 	void Render(App* app) override;
 };
 
-class RemoveWordFavListScreen : public Screen
+class Type2RemoveWordFavListScreen : public Screen
 {
 	void Render(App* app);
 };
 
-// class StaffChoiceScreen : public Screen
-// {
-// 	void Render(App* app);
-// };
+class Type2InsertWordFavListScreen : public Screen
+{
+	void Render(App* app);
+};
 
-// class CreateSchoolYearScreen : public Screen
-// {
-// 	void Render(App* app);
-// };
+class searchPrefixFavList : public Screen
+{
+	void Render(App* app);
+};
 
 // class SYChoice : public Screen
 // {

@@ -122,39 +122,30 @@ void FavListChoiceScreen::Render(App *app)
 	app->state.userChoice = choice;
 	switch (choice)
 	{
-	case 0:
-		SetNextScreen(app, new FirstScreen());
-		break;
 	case 1:
-		// SetNextScreen(app, new ClassChoice());
+		SetNextScreen(app, new Type2RemoveWordFavListScreen());
 		break;
 	case 2:
-		// SetNextScreen(app, new SemesterChoice());
+		SetNextScreen(app, new Type2InsertWordFavListScreen());
 		break;
 	case 3:
-		// SetNextScreen(app, new StaffChoiceScreen());
+		SetNextScreen(app, new searchPrefixFavList());
+		break;
+	case 4:
+		SetNextScreen(app, new FirstScreen());
 		break;
 	}
 }
 
-void RemoveWordFavListScreen::Render(App *app)
+void Type2RemoveWordFavListScreen::Render(App *app)
 {
 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-	favList favl;
-	favl.ChooseSchoolyear();
-	if (sy.Yearname == "")
-	{
-		std::cout << "\nEnter 0 to return to previous page\n";
-		SetNextScreen(app, new StaffChoiceScreen());
-	}
-	else
-	{
-		app->state.Schoolyear = sy.Yearname;
-		std::cout << "\nEnter 0 to move to next page\n";
-		SetNextScreen(app, new SYChoice());
-	}
+	TST tst;
+	tst.type2RemoveWord();
 	int choice = -1;
 	std::string buffer;
+
+	std::cout << "\nEnter 0 to return to previous page\n";
 	std::getline(std::cin, buffer, '\n');
 
 	while (!CheckString(buffer, choice) || choice != 0)
@@ -163,7 +154,69 @@ void RemoveWordFavListScreen::Render(App *app)
 		std::cout << "Please re-enter: ";
 		std::getline(std::cin, buffer, '\n');
 	}
+	SetNextScreen(app, new FavListChoiceScreen());
 }
+
+
+void Type2InsertWordFavListScreen::Render(App *app)
+{
+	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+	TST tst;
+	tst.type2InsertWord();
+	int choice = -1;
+	std::string buffer;
+
+	std::cout << "\nEnter 0 to return to previous page\n";
+	std::getline(std::cin, buffer, '\n');
+
+	while (!CheckString(buffer, choice) || choice != 0)
+	{
+		std::cout << "The number you have entered does not correspond to any choice!\n";
+		std::cout << "Please re-enter: ";
+		std::getline(std::cin, buffer, '\n');
+	}
+	SetNextScreen(app, new FavListChoiceScreen());
+}
+
+void searchPrefixFavList::Render(App *app)
+{
+	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+	TST tst;
+	tst.searchPrefix();
+	int choice = -1;
+	std::string buffer;
+
+	std::cout << "\nEnter 0 to return to previous page\n";
+	std::getline(std::cin, buffer, '\n');
+
+	while (!CheckString(buffer, choice) || choice != 0)
+	{
+		std::cout << "The number you have entered does not correspond to any choice!\n";
+		std::cout << "Please re-enter: ";
+		std::getline(std::cin, buffer, '\n');
+	}
+	SetNextScreen(app, new FavListChoiceScreen());
+}
+
+// void CreateClassScreen::Render(App *app)
+// {
+// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	Class cl;
+// 	cl.CreateClass(app->state.Schoolyear);
+// 	int choice = -1;
+// 	std::string buffer;
+
+// 	std::cout << "\nEnter 0 to return to previous page\n";
+// 	std::getline(std::cin, buffer, '\n');
+
+// 	while (!CheckString(buffer, choice) || choice != 0)
+// 	{
+// 		std::cout << "The number you have entered does not correspond to any choice!\n";
+// 		std::cout << "Please re-enter: ";
+// 		std::getline(std::cin, buffer, '\n');
+// 	}
+// 	SetNextScreen(app, new ClassChoice());
+// }
 
 // void LoginScreen::Render(App *app)
 // {
@@ -515,25 +568,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	}
 // }
 
-// void CreateClassScreen::Render(App *app)
-// {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-// 	Class cl;
-// 	cl.CreateClass(app->state.Schoolyear);
-// 	int choice = -1;
-// 	std::string buffer;
 
-// 	std::cout << "\nEnter 0 to return to previous page\n";
-// 	std::getline(std::cin, buffer, '\n');
-
-// 	while (!CheckString(buffer, choice) || choice != 0)
-// 	{
-// 		std::cout << "The number you have entered does not correspond to any choice!\n";
-// 		std::cout << "Please re-enter: ";
-// 		std::getline(std::cin, buffer, '\n');
-// 	}
-// 	SetNextScreen(app, new ClassChoice());
-// }
 
 // void ImportToClass::Render(App *app)
 // {

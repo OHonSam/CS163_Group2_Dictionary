@@ -305,6 +305,8 @@ void TST::type2RemoveWord()
     std::getline(std::cin, word, '\n');
 
     remove(word);
+
+    std::cout << "Removed successfully!\n";
 }
 
 void TST::type2InsertWord()
@@ -316,15 +318,29 @@ void TST::type2InsertWord()
     std::getline(std::cin, word, '\n');
 
     insert(word);
+
+    std::cout << "Inserted successfully!\n";
+
 }
 
 void TST::searchPrefix()
 {
     std::string word;
+    std::vector<std::string> res;
+    int cnt = 0;
 
     std::cout << "Please type in the word you want to remove: ";
 
     std::getline(std::cin, word, '\n');
 
-    startWith(word);
+    res = startWith(word);
+
+    std::cout << "The words that start with " << word << " are: \n";
+
+    for (auto i : res)
+    {
+        std::cout << ++cnt << ". " << i << '\n';
+    }
+
+    std::cout << "\nThere are " << cnt << " words that start with " << word << '\n';
 }
