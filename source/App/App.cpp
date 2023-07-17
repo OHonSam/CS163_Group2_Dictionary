@@ -26,7 +26,9 @@ void ClearScreen()
 	system("cls");
 #endif
 
-// std::cout << "\033[2J\033[1;1H";
+	// std::cout << "\033[2J\033[1;1H";
+
+	// std::cout << string( 100, '\n' );
 }
 
 void Run()
