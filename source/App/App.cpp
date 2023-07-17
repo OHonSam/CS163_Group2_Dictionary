@@ -110,6 +110,7 @@ void FirstScreen::Render(App *app)
 	}
 }
 
+//---------------------------------------FavListChoiceScreen--------------------------------------
 void FavListChoiceScreen::Render(App *app)
 {
 	int choice = -1, minNumChoice = 1, maxNumChoice = 4, cnt = 0;
@@ -117,7 +118,7 @@ void FavListChoiceScreen::Render(App *app)
 
 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
 	std::cout << "What would you like to do?\n";
-	std::cout << ++cnt << ". Type in a word to remove it from your favorite list\n";
+	std::cout << ++cnt << ". Type in a word to insert it to your favorite list\n";
 	std::cout << ++cnt << ". Type in a word to remove it from your favorite list\n";
 	std::cout << ++cnt << ". Search prefix of words in your favorite list\n";
 	std::cout << ++cnt << ". Go back to previous page\n";
@@ -138,10 +139,10 @@ void FavListChoiceScreen::Render(App *app)
 	switch (choice)
 	{
 	case 1:
-		SetNextScreen(app, new Type2RemoveWordFavListScreen());
+		SetNextScreen(app, new Type2InsertWordFavListScreen());
 		break;
 	case 2:
-		SetNextScreen(app, new Type2InsertWordFavListScreen());
+		SetNextScreen(app, new Type2RemoveWordFavListScreen());
 		break;
 	case 3:
 		SetNextScreen(app, new searchPrefixFavList());
@@ -211,6 +212,7 @@ void searchPrefixFavList::Render(App *app)
 	}
 	SetNextScreen(app, new FavListChoiceScreen());
 }
+//---------------------------------------FavListChoiceScreen--------------------------------------
 
 void InsertWordFavListScreen::Render(App *app)
 {
