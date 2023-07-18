@@ -59,24 +59,28 @@ TEST(SLL_test, ImportAndSave)
         EXPECT_TRUE(sll.find(word[i]));
     ASSERT_TRUE(sll.clearHistory("SLL.bin"));
 }
-TEST(SLL_test, countNodes){
+const int M=14;
+const string word2[M]{
+    "privilege",
+    "mitigate",
+    "love",
+    "hate",
+    "anticipate",
+    "majestic",
+    "breathtaking",
+    "wonderful",
+    "picturesque",
+    "champion",
+    "legendary",
+    "meditation",
+    "examination",
+    "exaggeration"
+};
+TEST(SLL_test, SLLintoVector){
     SLL<string> sll;
     for(int i=0; i<N; i++)
         sll.push(word[i]);
-    Node* cur= sll.head;
-    EXPECT_EQ(sll.countNodes(sll.head), N);
+    for(int i=0;i<M;i++)
+        sll.push(word2[i]);
+    EXPECT_EQ(sll.SLLintoVector().size(),20);
 }
-// TEST(SLL_test, ImportAndSave)
-// {
-//     SLL<string> sll;
-//     for(int i=0; i<N; i++)
-//         sll.push(word[i]);
-
-//     ASSERT_TRUE(sll.saveSLLStr("SLL.bin"));
-//     sll.clearSLL();
-//     EXPECT_FALSE(sll.find(word[0]));
-
-//     ASSERT_TRUE(sll.importSLLStr("SLL.bin"));
-//     for(int i=0; i<N; i++)
-//         EXPECT_TRUE(sll.find(word[i]));
-// }
