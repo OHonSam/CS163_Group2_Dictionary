@@ -79,6 +79,8 @@ void DefTrie::insert(Word* word) {
                         std::vector<std::string> defWk = getKeyWords(cur);
                         for (int l = 0; l < defWk.size() + 1; l++) {
                             if (defWk[l] == word -> word)  {
+                                // hash keyword, but may cause space problem
+                                // map word - keyword
                                 flag = false; break;
                                 }
                         }
@@ -170,6 +172,14 @@ DefTrie::Node* DefTrie::search(const std::string defword) {
 std::vector<std::string> DefTrie::getKeyWords(DefTrie::Node* cur) {
     if (!cur) return {};
     return cur -> keywords;
+}
+
+void DefTrie::updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef) {
+    Word* oldWord = new Word(word, 1, oldDef);
+    remove(oldWord);
+    Word* newWord = new Word(word, 1, newDef);
+    insert(newWord);
+    return;
 }
 
 // int main() {

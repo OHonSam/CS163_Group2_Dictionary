@@ -37,6 +37,8 @@ private:
             //def = "";
             child.resize(26, nullptr);
             keywords.resize(0);
+            // hash?
+            // vector of vector of string
         }
     };
     Node* root;
@@ -81,6 +83,7 @@ public:
 
     // Remove a word out of trie
     void remove(Word* word); 
+    void updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef);
 
     // Returns a list of std::strings which have identical prefix
     std::vector<std::string> searchPrefix(const std::string& prefix); 
