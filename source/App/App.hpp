@@ -16,6 +16,7 @@ public:
 	// App();
 
 	void switchScreen(Screen* NextScreen);
+	void run();
 };
 
 // void SetNextScreen(App* app, Screen* NextScreen); 

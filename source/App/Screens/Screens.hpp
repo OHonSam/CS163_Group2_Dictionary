@@ -18,6 +18,7 @@ public:
     }
 
     virtual void render() = 0;
+    bool getIsEnd() const { return isEnd; }
 };
 //
 
