@@ -170,4 +170,13 @@ bool  SLL<T>::find(const T& key){
     }
     return false;
 }
+
+template<class T>
+void SLL<T>::display(){
+    Node* cur=head;
+    while(cur!=nullptr){
+        std::cout<<cur->data<<std::endl;
+        cur=cur->next;
+    }
+}
 #endif

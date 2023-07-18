@@ -51,13 +51,8 @@ public:
 	// Check the existence of a word in the history SLL
 	bool find(const T& key);
 
-	void display() {
-        Node* cur = head;
-        while (cur != nullptr) {
-            std::cout << cur->data << " ";
-            cur = cur->next;
-        }
-    }							
+	// Display the history SLL in UI
+	void display();	
 };
 //convert characters from string str to array of char arr
 void StrToCharArr(char*& arr, const std::string& str, int len); 
