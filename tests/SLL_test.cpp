@@ -59,6 +59,13 @@ TEST(SLL_test, ImportAndSave)
         EXPECT_TRUE(sll.find(word[i]));
     ASSERT_TRUE(sll.clearHistory("SLL.bin"));
 }
+TEST(SLL_test, countNodes){
+    SLL<string> sll;
+    for(int i=0; i<N; i++)
+        sll.push(word[i]);
+    Node* cur= sll.head;
+    EXPECT_EQ(sll.countNodes(sll.head), N);
+}
 // TEST(SLL_test, ImportAndSave)
 // {
 //     SLL<string> sll;
