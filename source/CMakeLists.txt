@@ -16,11 +16,11 @@ file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${AllOutDir})
 add_library(Lib INTERFACE)
 target_include_directories(Lib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
-# add_subdirectory(App)
 # add_subdirectory(json)
 
 add_subdirectory(DataStructure)
 add_subdirectory(Dict)
+add_subdirectory(App)
 
 add_executable(${PROJECT_NAME} main.cpp)
 
