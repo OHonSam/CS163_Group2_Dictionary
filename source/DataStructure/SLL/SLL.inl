@@ -160,4 +160,14 @@ std::vector<T> SLL<T>::SLLintoVector(){
     }
     return res;
 }
+template<class T>
+bool  SLL<T>::find(const T& key){
+    Node* cur=head;
+    while(cur!=nullptr){
+        if(cur->data==key)
+            return true;
+        cur=cur->next;
+    }
+    return false;
+}
 #endif
