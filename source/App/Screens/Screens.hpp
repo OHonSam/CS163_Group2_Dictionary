@@ -21,6 +21,7 @@ public:
 class Home: public Screen
 {
 public:
+    Home(Dict* dict) : Screen(dict) {}
     void render();
 };
 //

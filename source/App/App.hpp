@@ -13,7 +13,7 @@ private:
 	Screen* CurrentScreen;
 
 public:
-	// App();
+	App();
 
 	void switchScreen(Screen* NextScreen);
 	void run();
