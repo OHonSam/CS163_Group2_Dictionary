@@ -67,6 +67,7 @@ void FirstScreen::Render(App *app)
 {
 	int choice = -1, minNumChoice = 1, maxNumChoice = 5, cnt = 0;
 	std::string buffer;
+	SLL<std::string> history;
 
 	std::cout << "GROUP 2 DICTIONARY\n\n";
 
@@ -109,6 +110,25 @@ void FirstScreen::Render(App *app)
 		break;
 	}
 }
+void  ViewHistoryScreen::Render(App *app){
+	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+	std::cout<< "Your search history (20 most recent keywords):\n";
+	app->history.display();//?????
+	int choice = -1;
+	std::string buffer;
+
+	std::cout << "\nEnter 0 to return to previous page\n";
+	std::getline(std::cin, buffer, '\n');
+
+	while (!CheckString(buffer, choice) || choice != 0)
+	{
+		std::cout << "The number you have entered does not correspond to any choice!\n";
+		std::cout << "Please re-enter: ";
+		std::getline(std::cin, buffer, '\n');
+	}
+	SetNextScreen(app, new FirstScreen());
+}
+
 
 
 

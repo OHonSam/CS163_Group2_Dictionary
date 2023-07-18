@@ -2,7 +2,7 @@
 #define APP_H
 
 #include "TST.hpp"
-
+#include "SLL.hpp"
 class App;
 
 class State
@@ -89,6 +89,7 @@ class App
 public:
 	State state;
 	Screen *CurrentScreen;
+	SLL<std::string> history;
 
 	App()
 	{
