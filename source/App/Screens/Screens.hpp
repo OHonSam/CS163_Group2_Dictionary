@@ -11,14 +11,17 @@ protected:
     Dict* dict;
 
 public:
-    Screen(Dict* dict)
-    {
-        this->dict = dict;
-        isEnd = false;
-    }
-
+    Screen(Dict* dict) : dict(dict), isEnd(false) {}
     virtual void render() = 0;
     bool getIsEnd() const { return isEnd; }
+};
+//
+
+// Home
+class Home: public Screen
+{
+public:
+    void render();
 };
 //
 
