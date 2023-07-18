@@ -34,6 +34,16 @@ TEST(SLL_test, pop)
         EXPECT_FALSE(sll.find(word[i]));
 }
 
+TEST(SLL_test, clearSLL)
+{
+    SLL<string> sll;
+    for(int i=0; i<N; i++)
+        sll.push(word[i]);
+    sll.clearSLL();
+    for(int i=0; i<N; i++)
+        EXPECT_FALSE(sll.find(word[i]));
+}
+
 // TEST(SLL_test, ImportAndSave)
 // {
 //     SLL<string> sll;
