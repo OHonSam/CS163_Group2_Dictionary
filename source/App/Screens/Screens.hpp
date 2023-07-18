@@ -3,6 +3,7 @@
 
 #include <Dict.hpp>
 
+// Screen
 class Screen
 {
 protected:
@@ -18,5 +19,6 @@ public:
 
     virtual void render() = 0;
 };
+//
 
 #endif // SCREENS_HPP

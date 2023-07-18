@@ -13,10 +13,9 @@ private:
 	Screen* CurrentScreen;
 
 public:
-	App()
-	{
-		// CurrentScreen = new Home();
-	}
+	// App();
+
+	void switchScreen(Screen* NextScreen);
 };
 
 // void SetNextScreen(App* app, Screen* NextScreen); 
