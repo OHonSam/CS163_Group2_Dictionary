@@ -14,7 +14,7 @@ const string word[N]{
     "a"
 };
 
-TEST(SLL_test, push)
+TEST(SLL_test,push)
 {
     SLL<string> sll;
     for(int i=0; i<N; i++)
@@ -23,16 +23,16 @@ TEST(SLL_test, push)
         EXPECT_TRUE(sll.find(word[i]));
 }
 
-// TEST(SLL_test, pop)
-// {
-//     SLL<string> sll;
-//     for(int i=0; i<N; i++)
-//         sll.push(word[i]);
-//     for(int i=0; i<N; i++)
-//         sll.pop(word[i]);
-//     for(int i=0; i<N; i++)
-//         EXPECT_FALSE(sll.find(word[i]));
-// }
+TEST(SLL_test, pop)
+{
+    SLL<string> sll;
+    for(int i=0; i<N; i++)
+        sll.push(word[i]);
+    for(int i=0; i<N; i++)
+        sll.pop(word[i]);
+    for(int i=0; i<N; i++)
+        EXPECT_FALSE(sll.find(word[i]));
+}
 
 // TEST(SLL_test, ImportAndSave)
 // {
