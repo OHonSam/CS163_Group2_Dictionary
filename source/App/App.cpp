@@ -96,7 +96,7 @@ void FirstScreen::Render(App *app)
 		// SetNextScreen(app, new LoginScreen());
 		break;
 	case 2:
-		// SetNextScreen(app, new LoginScreen());
+		SetNextScreen(app, new ViewHistoryScreen());
 		break;
 	case 3:
 		SetNextScreen(app, new FavListChoiceScreen());
