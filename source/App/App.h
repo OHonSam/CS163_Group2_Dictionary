@@ -1,32 +1,9 @@
 #ifndef APP_H
 #define APP_H
 
-#include "source\Libraries.hpp"
-#include "source\DataStructure\Word\Word.hpp"
+#include "TST.hpp"
 
-#include "source\DataStructure\TST\TST.hpp"
-
-class Screen;
-class App
-{
-public:
-	State state;
-	Screen *CurrentScreen;
-
-	App()
-	{
-		CurrentScreen = new FirstScreen();
-	}
-};
-
-void SetNextScreen(App *app, Screen *NextScreen);
-void Render(App *app, Screen *s);
-
-void Run();
-void EndApp(App *app);
-
-void ClearScreen();
-bool CheckString(std::string str, int &i);
+class App;
 
 class State
 {
@@ -37,14 +14,11 @@ public:
 
 	State() : word{}, userChoice{-1}, EndApp{false} {};
 };
-
-
 class Screen
 {
 public:
 	virtual void Render(App *app) = 0;
 };
-
 
 class FirstScreen : public Screen
 {
@@ -274,5 +248,28 @@ class InsertWordFavListScreen : public Screen
 // {
 // 	void Render(App* app);
 // };
+
+
+
+class App
+{
+public:
+	State state;
+	Screen *CurrentScreen;
+
+	App()
+	{
+		CurrentScreen = new FirstScreen();
+	}
+};
+
+void SetNextScreen(App *app, Screen *NextScreen);
+
+void ClearScreen();
+bool CheckString(std::string str, int &i);
+void Render(App *app, Screen *s);
+
+void Run();
+void EndApp(App *app);
 
 #endif
