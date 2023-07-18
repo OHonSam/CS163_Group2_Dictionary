@@ -1,4 +1,6 @@
-#include "Word.hpp"
+// #include "Word.hpp"
+
+#include "D:\cs163\CS163_Group2_Dictionary\include\Word.hpp"
 
 Word::Word()
 {
@@ -61,3 +63,5 @@ std::string POS::getTypeString(unsigned int type)
     }
     return str;
 }
+
+// insert new definition for an existed word

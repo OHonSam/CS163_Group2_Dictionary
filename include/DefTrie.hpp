@@ -1,13 +1,24 @@
 #ifndef DEFTRIE_HPP
 #define DEFTRIE_HPP
 
-#include "Libraries.hpp"
+// #include "Libraries.hpp"
 #include "Word.hpp"
+#include "DefHash.hpp"
+
+#include<iostream>
+#include<fstream>
+#include<vector>
+#include<utility>//to use pair
+#include<string>
+#include <sstream>
+#include <time.h>
+#include<cstring>
+
 
 const int ALPHABET_SIZE=26;
 const char TERMINATOR = '\0';
 
-class DefTrie
+class DefTrie: private DefHash //x
 {
 private:
     struct Node
@@ -72,9 +83,12 @@ public:
     void remove(Word* word); 
 
     // Returns a list of std::strings which have identical prefix
-    std::vector<std::string> searchPrefix(const std::string& prefix); //x
+    std::vector<std::string> searchPrefix(const std::string& prefix); 
 
     // Search for a word that has the definition
     std::vector<std::string> searchKeyWord(const std::string def); //x
+    Node* search(const std::string defword);
+    std::vector<std::string> getKeyWords(DefTrie::Node* cur);
+
 };
 #endif

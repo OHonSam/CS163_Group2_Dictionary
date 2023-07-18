@@ -59,6 +59,7 @@ std::vector<Word*> HashTable::getRandom(int k)
 
 int HashTable::insert(Word* word) {
     numWords++;
+    // fix
     // check if this word already exist
     int key = HashTable::hash(word->word);
     bit.add(key+1,1);
