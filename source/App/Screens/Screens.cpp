@@ -123,27 +123,29 @@ Screen* View::render(){
     int choice=inputOption(options.size());
     switch(choice){
         case 1:
-            nextScreen=new ViewHistoryScreen();
+            nextScreen=new ViewHistoryScreen(dict);
             break;  
         case 2:
             break;
+        case 3:
+            break;
     }
 }
-// void  ViewHistoryScreen::Render(App *app){
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
-// 	std::cout<< "Your search history (20 most recent keywords):\n";
-// 	app->history.display();//?????
-// 	int choice = -1;
-// 	std::string buffer;
+Screen*  ViewHistoryScreen::render(){
 
-// 	std::cout << "\nEnter 0 to return to previous page\n";
-// 	std::getline(std::cin, buffer, '\n');
+	std::cout<< "Your search history (20 most recent keywords):\n";
+	//app->history.display();//?????
+	int choice = -1;
+	std::string buffer;
 
-// 	while (!CheckString(buffer, choice) || choice != 0)
-// 	{
-// 		std::cout << "The number you have entered does not correspond to any choice!\n";
-// 		std::cout << "Please re-enter: ";
-// 		std::getline(std::cin, buffer, '\n');
-// 	}
-// 	SetNextScreen(app, new FirstScreen());
-// }
+	std::cout << "\nEnter 0 to return to previous page\n";
+	std::getline(std::cin, buffer, '\n');
+
+	while (!CheckString(buffer, choice) || choice != 0)
+	{
+		std::cout << "The number you have entered does not correspond to any choice!\n";
+		std::cout << "Please re-enter: ";
+		std::getline(std::cin, buffer, '\n');
+	}
+	SetNextScreen(app, new FirstScreen());
+}

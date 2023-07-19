@@ -47,18 +47,24 @@ public:
     Home(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-//
+// View
 class View: public Screen
 {   
 private:
     const std::vector<std::string> options = {
         "View your search history",
         "View your favorite words",
+        "View definitions of a given word",
+        "View possible keywords of a given definition",
         "Back"
     };
 public:
     View(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-
+// View search history
+class ViewHistoryScreen: public Screen{
+    Screen* render();
+};
+// View favorite words
 #endif // SCREENS_HPP
