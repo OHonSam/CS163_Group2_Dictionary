@@ -38,3 +38,19 @@ TEST(TST_test, pop)
         EXPECT_FALSE(tst.wordExists(word[i]));
     }
 }
+
+TEST(TST_test, ImportAndSave)
+{
+    TST tst;
+    for(int i=0; i<N; i++)
+        tst.insert(word[i]);
+
+    ASSERT_TRUE(tst.save("TST.bin"));
+
+    // for(int i=0; i<N; i++)
+    //     EXPECT_FALSE(tst.wordExists(word[i]));
+
+    ASSERT_TRUE(tst.import("TST.bin"));
+    for(int i=0; i<N; i++)
+        EXPECT_TRUE(tst.wordExists(word[i]));
+}
