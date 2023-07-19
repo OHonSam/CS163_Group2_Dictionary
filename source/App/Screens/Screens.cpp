@@ -128,8 +128,10 @@ Screen* View::render(){
         case 2:
             break;
         case 3:
+            nextScreen=new Home(dict);
             break;
     }
+    return nextScreen;
 }
 Screen*  ViewHistoryScreen::render(){
 
