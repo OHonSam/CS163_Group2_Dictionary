@@ -1,7 +1,7 @@
 #include "Screens.hpp"
 
 // Screen
-bool Screen::checkStrOption(const std::string &str, int& choice)
+bool Screen::checkStrOption(const std::string &str, int &choice)
 {
 	int length = str.size();
 	if (length > 10 || length == 0)
@@ -20,99 +20,132 @@ bool Screen::checkStrOption(const std::string &str, int& choice)
 
 bool Screen::checkStrEng(std::string str)
 {
-    int length = str.size();
-    if (length > 100 || length == 0)
-        return false;
+	int length = str.size();
+	if (length > 100 || length == 0)
+		return false;
 
-    for(char& c : str)
-        if (c >= 'A' && c <= 'Z')
-            c += 'a' - 'A';
+	for (char &c : str)
+		if (c >= 'A' && c <= 'Z')
+			c += 'a' - 'A';
 
-    for (int j = 0; j < length; ++j)
-        if (str[j] < 'a' || str[j] > 'z')
-            return false;
+	for (int j = 0; j < length; ++j)
+		if (str[j] < 'a' || str[j] > 'z')
+			return false;
 
-    return true;
+	return true;
 }
 
 void Screen::clear()
 {
 #if defined _WIN32
-    system("cls");
-    //clrscr(); // including header file : conio.h
-#elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
-    system("clear");
-    //std::cout<< u8"\033[2J\033[1;1H"; //Using ANSI Escape Sequences 
-#elif defined (__APPLE__)
-    system("clear");
+	system("cls");
+	// clrscr(); // including header file : conio.h
+#elif defined(__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
+	system("clear");
+	// std::cout<< u8"\033[2J\033[1;1H"; //Using ANSI Escape Sequences
+#elif defined(__APPLE__)
+	system("clear");
 #endif
-
 }
 
 int Screen::inputOption(int maxOption, const std::string &mess)
 {
-    int option=maxOption;
+	int option = maxOption;
 
-    std::cout<<"Your choice: ";
-    std::string str; std::getline(std::cin, str, '\n');
-    while (!checkStrOption(str, option) || option < 1 || option > maxOption)
-    {
-        std::cout<<"Invalid input. Please try again: ";
-        std::getline(std::cin, str, '\n');
-    }
+	std::cout << "Your choice: ";
+	std::string str;
+	std::getline(std::cin, str, '\n');
+	while (!checkStrOption(str, option) || option < 1 || option > maxOption)
+	{
+		std::cout << "Invalid input. Please try again: ";
+		std::getline(std::cin, str, '\n');
+	}
 
-    return option;
+	return option;
 }
 
-std::string Screen::inputEngString(const std::string& mess)
+std::string Screen::inputEngString(const std::string &mess)
 {
-    std::string str;
-    std::cout<<mess;
-    std::getline(std::cin, str, '\n');
-    while (!checkStrEng(str))
-    {
-        std::cout<<"Invalid input. Please try again: ";
-        std::getline(std::cin, str, '\n');
-    }
+	std::string str;
+	std::cout << mess;
+	std::getline(std::cin, str, '\n');
+	while (!checkStrEng(str))
+	{
+		std::cout << "Invalid input. Please try again: ";
+		std::getline(std::cin, str, '\n');
+	}
 
-    return str;
+	return str;
 }
 //
 
 // Home
-Screen* Home::render()
+Screen *Home::render()
 {
-    clear();
+	clear();
 
-    std::cout<<"Welcome to Dictionary!"<<std::endl;
+	std::cout << "Welcome to Dictionary!" << std::endl;
 	int siz = options.size();
-    for(int i=0; i<siz; ++i)
-        std::cout<<std::to_string(i)<<". "<<options[i]<<std::endl;
+	for (int i = 0; i < siz; ++i)
+		std::cout << std::to_string(i) << ". " << options[i] << std::endl;
 
-    Screen* nextScreen=this;
-    int choice=inputOption(options.size());
-    switch(choice)
-    {
-        case 1:
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            break;
-        case 5:
-            break;
-        case 6:
-            break;
-        case 7: // Exit
-            nextScreen = nullptr;
-            break;
-    }
+	Screen *nextScreen = this;
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	case 6:
+		break;
+	case 7: // Exit
+		nextScreen = nullptr;
+		break;
+	}
 
-    return nextScreen;
+	return nextScreen;
 }
 
+Screen *FavListChoiceScreen::render()
+{
+	clear();
+
+	std::cout << "What would you like to do?\n"
+			  << std::endl;
+	int siz = options.size();
+	for (int i = 0; i < siz; ++i)
+		std::cout << std::to_string(i) << ". " << options[i] << std::endl;
+
+	Screen *nextScreen = this;
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	case 6:
+		break;
+	case 7: // Exit
+		nextScreen = nullptr;
+		break;
+	}
+
+	return nextScreen;
+}
 
 void FavListChoiceScreen::Render(App *app)
 {
