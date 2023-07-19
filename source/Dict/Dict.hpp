@@ -1,6 +1,6 @@
 #ifndef DICT_HPP
 #define DICT_HPP
-// #include "TST.hpp"
+#include "TST.hpp"
 #include "HashTable.hpp"
 #include "SLL.hpp"
 #include "Trie.hpp"
@@ -12,7 +12,7 @@ private:
 	SLL <std::string> history;
 	HashTable wordDef;
 	Trie words;
-	// BTree favList;
+	TST favList;
 
 public:
 	// Dict(const std::string& path, bool isJson);				
