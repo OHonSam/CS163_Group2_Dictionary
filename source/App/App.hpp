@@ -9,8 +9,8 @@
 class App
 {
 private:
-    Dict dict;
-	Screen* CurrentScreen;
+	Dict dict;
+	Screen *CurrentScreen;
 
 public:
 	App();
@@ -18,10 +18,9 @@ public:
 	void run();
 };
 
-// void SetNextScreen(App* app, Screen* NextScreen); 
+// void SetNextScreen(App* app, Screen* NextScreen);
 // void Render(App* app, Screen* s);
 
 // void Run();
-// void EndApp(State* state);
 
 #endif

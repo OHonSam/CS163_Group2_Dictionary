@@ -21,6 +21,20 @@ void App::run()
     }
 }
 
+void App::run()
+{
+    while (CurrentScreen != nullptr)
+    {
+        Screen* NextScreen=CurrentScreen->render();
+        if(NextScreen!=CurrentScreen)
+        {
+            delete CurrentScreen;
+            CurrentScreen = NextScreen;
+        }
+    }
+}
+
+
 // void CreateClassScreen::Render(App *app)
 // {
 // 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
