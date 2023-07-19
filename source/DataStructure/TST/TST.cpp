@@ -213,7 +213,7 @@ bool TST::import(const std::string &path)
     std::ifstream file(path, std::ios::binary);
     if (!file.is_open())
     {
-        std::cout << "File not found\n";
+        // std::cout << "File not found\n";
         return false;
     }
     import(root, file);
