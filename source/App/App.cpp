@@ -5,6 +5,8 @@ void EndApp(App *app)
 	app->state.EndApp = true;
 	delete app->CurrentScreen;
 	app->CurrentScreen = nullptr;
+	app->history.saveSLLStr("History.bin");
+	//already have destructor for history SLL
 }
 
 void SetNextScreen(App *app, Screen *NextScreen)
