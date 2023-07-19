@@ -93,6 +93,7 @@ public:
 
 	App()
 	{
+		history.importSLLStr("History.bin");
 		CurrentScreen = new FirstScreen();
 	}
 };

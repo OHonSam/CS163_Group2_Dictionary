@@ -69,7 +69,6 @@ void FirstScreen::Render(App *app)
 {
 	int choice = -1, minNumChoice = 1, maxNumChoice = 5, cnt = 0;
 	std::string buffer;
-	SLL<std::string> history;
 
 	std::cout << "GROUP 2 DICTIONARY\n\n";
 
