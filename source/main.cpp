@@ -1,3 +1,13 @@
+#include "App.h"
+
+int main()
+{
+    // std::cout<<"Hello world"<<std::endl;
+
+    Run();
+
+    return 0;
+}
 // #include "TST.hpp"
 
 // int main()
@@ -29,11 +39,4 @@
 // //     return 0;
 // // }
 
-#include "Dict.hpp"
-#include <iostream>
-
-int main()
-{
-    std::cout<<"Hello world"<<std::endl;
-    return 0;
-}
+// #include "Dict.hpp"

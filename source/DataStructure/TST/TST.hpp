@@ -13,6 +13,7 @@ class TSTNode
     int numWords; // Number of words that have this prefix
 
     friend class TST;
+    friend class favList;
 
 public:
     TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr), isEnd(0), numWords(0) {}
@@ -39,15 +40,18 @@ class TST
 
     void import(TSTNode *&root, std::ifstream &file);
     void save(TSTNode *root, std::ofstream &file);
+    void traverse(TSTNode* root);
 
     // Insert into the TST
     void recursiveInsert(TSTNode *&node, const std::string &str, int index);
     // TSTNode *recursiveInsert(TSTNode *&node, const std::string &str, int index);
 
-    void deletion(TSTNode *&node, const std::string &str, int index);
+    void remove(TSTNode *&node, const std::string &str, int index);
 
     // Get Node containing the last word in the string
     TSTNode *getNodeLastChar(TSTNode *node, const std::string &str, int index);
+
+    friend class favList;
 
 public:
     TST()
@@ -62,7 +66,12 @@ public:
     }
 
     void insert(const std::string &word);
-    void deletion(const std::string &word);
+    void remove(const std::string &word);
+    void traverse();
+
+    void type2RemoveWord();
+    void type2InsertWord();
+    void searchPrefix();
 
     // Return true if the word is in the TST
     bool wordExists(const std::string &word);
@@ -75,7 +84,11 @@ public:
     void startsWithRecursiveSearch(std::vector<std::string> &res, const std::string &prefix, TSTNode *cur, int &cnt);
 
     bool import(const std::string &path);
-    bool save(const std::string &path);
+    bool save(const std::string &path);    
+
+    bool treeExists();
+
+    void uppercase2Lowercase(std::string &str);
 };
 
 #endif

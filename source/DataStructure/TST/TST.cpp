@@ -69,12 +69,12 @@ void TST::recursiveInsert(TSTNode *&node, const std::string &str, int index)
     }
 }
 
-void TST::deletion(const std::string &word)
+void TST::remove(const std::string &word)
 {
-    deletion(root, word, 0);
+    remove(root, word, 0);
 }
 
-void TST::deletion(TSTNode *&node, const std::string &str, int index)
+void TST::remove(TSTNode *&node, const std::string &str, int index)
 {
     if (!node)
     {
@@ -83,18 +83,18 @@ void TST::deletion(TSTNode *&node, const std::string &str, int index)
 
     if (node->c > str[index])
     {
-        deletion(node->left, str, index);
+        remove(node->left, str, index);
     }
     else if (node->c < str[index])
     {
-        deletion(node->right, str, index);
+        remove(node->right, str, index);
     }
     else
     {
         node->numWords--;
         if (index < str.size() - 1)
         {
-            deletion(node->mid, str, index + 1);
+            remove(node->mid, str, index + 1);
         }
         else
         {
@@ -129,7 +129,7 @@ void TST::startsWithRecursiveSearch(std::vector<std::string> &res, const std::st
         ++cnt;
         return;
     }
-    char _c; //value of character contained in a TSTNode
+    char _c; // value of character contained in a TSTNode
     if (cur->left != nullptr)
     {
         _c = cur->left->c;
@@ -212,7 +212,10 @@ bool TST::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
     if (!file.is_open())
+    {
+        // std::cout << "File not found\n";
         return false;
+    }
     import(root, file);
     file.close();
     return true;
@@ -222,7 +225,10 @@ bool TST::save(const std::string &path)
 {
     std::ofstream file(path, std::ios::binary);
     if (!file.is_open())
+    {
+        std::cout << "File not found\n";
         return false;
+    }
     save(root, file);
     file.close();
     return true;
@@ -272,4 +278,91 @@ void TST::save(TSTNode *root, std::ofstream &file)
 
     char marker = TERMINATOR;
     file.write((char *)&marker, sizeof(char));
+}
+
+void TST::traverse()
+{
+    traverse(root);
+}
+
+void TST::traverse(TSTNode *root)
+{
+    if (root == nullptr)
+        return;
+    traverse(root->left);
+    std::cout << root->c << " ";
+    traverse(root->mid);
+    std::cout << root->c << " ";
+    traverse(root->right);
+}
+
+void TST::type2RemoveWord()
+{
+    std::string word;
+
+    std::cout << "Please type in the word you want to remove: ";
+
+    std::getline(std::cin, word, '\n');
+
+    uppercase2Lowercase(word);
+
+    remove(word);
+
+    std::cout << "Removed successfully!\n";
+}
+
+void TST::type2InsertWord()
+{
+    std::string word;
+
+    std::cout << "Please type in the word you want to insert: ";
+
+    std::getline(std::cin, word, '\n');
+
+    uppercase2Lowercase(word);
+
+    insert(word);
+
+    std::cout << "Inserted successfully!\n";
+}
+
+void TST::searchPrefix()
+{
+    std::string word;
+    std::vector<std::string> res;
+    int cnt = 0;
+
+    std::cout << "Please type in the word you want to search: ";
+
+    std::getline(std::cin, word, '\n');
+
+    uppercase2Lowercase(word);
+
+    res = startWith(word);
+
+    std::cout << "The words that start with " << word << " are: \n";
+
+    for (auto i : res)
+    {
+        std::cout << ++cnt << ". " << i << '\n';
+    }
+
+    std::cout << "\nThere are " << cnt << " words that start with " << word << '\n';
+}
+
+bool TST::treeExists()
+{
+    return !(root == nullptr);
+}
+
+void TST::uppercase2Lowercase(std::string &str)
+{
+    int len = str.size();
+    for (int i = 0; i < len; ++i)
+    {
+        if (str[i] >= 'A' && str[i] <= 'Z')
+        {
+            str[i] = str[i] - 'A' + 'a';
+        }
+    }
 }
