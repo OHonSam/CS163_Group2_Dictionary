@@ -77,7 +77,7 @@ void FirstScreen::Render(App *app)
 
 	std::cout << ++cnt << ". Search\n";
 	std::cout << ++cnt << ". History\n";
-	std::cout << ++cnt << ". View your favourite list\n";
+	std::cout << ++cnt << ". Favourite list\n";
 	std::cout << ++cnt << ". Reset the dictionary to its original state\n";
 	std::cout << ++cnt << ". Exit\n";
 
@@ -113,12 +113,13 @@ void FirstScreen::Render(App *app)
 	}
 }
 void HistoryChoiceScreen::Render(App* app){
-	int choice = -1, minNumChoice = 1, maxNumChoice = 2, cnt = 0;
+	int choice = -1, minNumChoice = 1, maxNumChoice = 3, cnt = 0;
 	std::string buffer;
 
 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
 	std::cout << "What would you like to do?\n";
 	std::cout << ++cnt << ". View your search history\n";
+	std::cout << ++cnt <<". Delete your search history\n";
 	std::cout << ++cnt << ". Go back to previous page\n";
 
 	std::cout << "Your choice: ";
@@ -140,9 +141,45 @@ void HistoryChoiceScreen::Render(App* app){
 		SetNextScreen(app, new ViewHistoryScreen());
 		break;
 	case 2:
+		SetNextScreen(app, new DeleteHistoryScreen());
+		break;
+	case 3:
 		SetNextScreen(app, new FirstScreen());
 		break;
 	}
+}
+void DeleteHistoryScreen::Render(App* app){
+	std::cout<<"Your choice was: "<<app->state.userChoice<<"\n\n";
+	std::cout<<"Are you sure that you want to delete your search history?\n";
+	int choice = -1, minNumChoice = 1, maxNumChoice = 3, cnt = 0;
+	std::string buffer;
+	std::cout<<++cnt<<". Yes\n";
+	std::cout<<++cnt<<". No\n";
+	std::cout << "Your choice: ";
+
+	std::getline(std::cin, buffer, '\n');
+
+	while (!CheckString(buffer, choice) || choice < minNumChoice || choice > maxNumChoice)
+	{
+		std::cout << "The number you have entered does not correspond to any choice!\n";
+		std::cout << "Please re-enter: ";
+		std::getline(std::cin, buffer, '\n');
+	}
+	app->state.userChoice = choice;
+	switch(choice){
+		case 1:
+			if(app->history.clearHistory("History.bin"))
+				std::cout<<"Your search history has been successfully deleted!\n";
+			else
+				std::cout<<"Errors occurred in clearing time!\n";
+			break;
+		case 2:
+			std::cout<<"The deletion has been cancelled!\n";
+			break;
+	}
+
+	SetNextScreen(app, new HistoryChoiceScreen());
+
 }
 void  ViewHistoryScreen::Render(App *app){
 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";

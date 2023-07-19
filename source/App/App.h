@@ -49,6 +49,10 @@ class ViewHistoryScreen : public Screen
 {
 	void Render(App *app) override;
 };
+class DeleteHistoryScreen : public Screen
+{
+	void Render(App *app) override;
+};
 //--------------------------------Parent: HistoryChoiceScreen------end-----------------------------
 
 
