@@ -61,7 +61,8 @@ void Run()
 	{
 		ClearScreen();
 		Render(app, app->CurrentScreen);
-	} while (!app->state.EndApp);
+	} 
+	while (!app->state.EndApp);
 	delete app;
 }
 
@@ -75,7 +76,7 @@ void FirstScreen::Render(App *app)
 	std::cout << "What would you like to do?\n";
 
 	std::cout << ++cnt << ". Search\n";
-	std::cout << ++cnt << ". View your search history\n";
+	std::cout << ++cnt << ". History\n";
 	std::cout << ++cnt << ". View your favourite list\n";
 	std::cout << ++cnt << ". Reset the dictionary to its original state\n";
 	std::cout << ++cnt << ". Exit\n";
@@ -98,7 +99,7 @@ void FirstScreen::Render(App *app)
 		// SetNextScreen(app, new LoginScreen());
 		break;
 	case 2:
-		SetNextScreen(app, new ViewHistoryScreen());
+		SetNextScreen(app, new HistoryChoiceScreen());
 		break;
 	case 3:
 		SetNextScreen(app, new FavListChoiceScreen());
@@ -108,6 +109,38 @@ void FirstScreen::Render(App *app)
 		break;
 	case 5:
 		EndApp(app);
+		break;
+	}
+}
+void HistoryChoiceScreen::Render(App* app){
+	int choice = -1, minNumChoice = 1, maxNumChoice = 2, cnt = 0;
+	std::string buffer;
+
+	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+	std::cout << "What would you like to do?\n";
+	std::cout << ++cnt << ". View your search history\n";
+	std::cout << ++cnt << ". Go back to previous page\n";
+
+	std::cout << "Your choice: ";
+
+	std::getline(std::cin, buffer, '\n');
+
+	while (!CheckString(buffer, choice) || choice < minNumChoice || choice > maxNumChoice)
+
+	{
+		std::cout << "The number you have entered does not correspond to any choice!\n";
+		std::cout << "Please re-enter: ";
+		std::getline(std::cin, buffer, '\n');
+	}
+
+	app->state.userChoice = choice;
+	switch (choice)
+	{
+	case 1:
+		SetNextScreen(app, new ViewHistoryScreen());
+		break;
+	case 2:
+		SetNextScreen(app, new FirstScreen());
 		break;
 	}
 }

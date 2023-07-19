@@ -36,16 +36,20 @@ class FavListChoiceScreen : public Screen
 // {
 // 	void Render(App *app) override;
 // };
+class HistoryChoiceScreen: public Screen
+{
+	void Render(App *app) override;
+};
+
+//--------------------------------Parent: FirstScreen-------end-------------------------------
+
+//--------------------------------Parent: HistoryChoiceScreen--------------------------------------
+
 class ViewHistoryScreen : public Screen
 {
 	void Render(App *app) override;
 };
-//--------------------------------Parent: FirstScreen-------end-------------------------------
-
-//--------------------------------Parent: ViewHistoryScreen--------------------------------------
-
-
-//--------------------------------Parent: ViewHistoryScreen------end-----------------------------
+//--------------------------------Parent: HistoryChoiceScreen------end-----------------------------
 
 
 
