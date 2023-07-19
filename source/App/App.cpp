@@ -85,6 +85,7 @@ void FirstScreen::Render(App *app)
 	std::cout << "Your choice: ";
 
 	std::getline(std::cin, buffer, '\n');
+
 	while (!CheckString(buffer, choice) || choice < minNumChoice || choice > maxNumChoice)
 	{
 		std::cout << "The number you have entered does not correspond to any choice!\n";
@@ -158,7 +159,7 @@ void FavListChoiceScreen::Render(App *app)
 	}
 	else
 	{
-		cnt = 1, maxNumChoice = 2;
+		cnt = 0, maxNumChoice = 2;
 
 		std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 		std::cout << "What would you like to do?\n";
