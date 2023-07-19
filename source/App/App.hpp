@@ -15,7 +15,6 @@ private:
 public:
 	App();
 
-	void switchScreen(Screen* NextScreen);
 	void run();
 };
 

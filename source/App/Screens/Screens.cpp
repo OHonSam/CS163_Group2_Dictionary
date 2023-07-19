@@ -72,7 +72,7 @@ Screen* Home::render()
     for(int i=0; i<options.size(); i++)
         std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
 
-    Screen* nextScreen=nullptr;
+    Screen* nextScreen=new Home(dict);
     int choice=inputOption(options.size());
     switch(choice)
     {
