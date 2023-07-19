@@ -112,7 +112,7 @@ Screen* Home::render()
     return nextScreen;
 }
 
-//----------------------Parent: Home--------------------------------------
+
 void FavListChoiceScreen::Render(App *app)
 {
 	int choice = -1, minNumChoice = 1, maxNumChoice = 4, cnt = 0;
@@ -188,10 +188,7 @@ void FavListChoiceScreen::Render(App *app)
 		}
 	}
 }
-//----------------------Parent: Home-------------end-------------------------
 
-
-//----------------------Parent: FavListChoiceScreen--------------------------------------
 void Type2RemoveWordFavListScreen::Render(App *app)
 {
 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
@@ -304,7 +301,5 @@ void RemoveWordFavListScreen::Render(App *app)
 	}
 	// SetNextScreen(app, new FavListChoiceScreen());
 }
-
-//----------------------Parent: FavListChoiceScreen-------------end-------------------------
 
 //
