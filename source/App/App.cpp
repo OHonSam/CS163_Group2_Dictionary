@@ -114,8 +114,6 @@ void FavListChoiceScreen::Render(App *app)
 	int choice = -1, minNumChoice = 1, maxNumChoice = 4, cnt = 0;
 	std::string buffer;
 
-	std::cout << "Your choice: ";
-
 	app->state->tst = new TST();
 
 	if (app->state->tst->import(FAV_LIST_SAVE_FILE))
