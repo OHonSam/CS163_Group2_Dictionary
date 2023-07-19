@@ -49,4 +49,67 @@ public:
 };
 //
 
+
+//----------------------Parent: Home--------------------------------------
+class FavListChoiceScreen: public Screen
+{
+private:
+    const std::vector<std::string> options = {
+        "Type in a word to insert it to your favorite list",
+        "Type in a word to remove it from your favorite list",
+        "Search prefix of words in your favorite list",
+        "Go back to previous page",
+    };
+
+    const std::vector<std::string> options2 = {
+        "Type in a word to insert it to your favorite list",
+        "Go back to previous page",
+    };
+
+public:
+    Home(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+//----------------------Parent: Home-------------end-------------------------
+
+
+//----------------------Parent: FavListChoiceScreen--------------------------------------
+class Type2RemoveWordFavListScreen: public Screen
+{
+public:
+    Home(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+class Type2InsertWordFavListScreen: public Screen
+{
+public:
+    Home(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+class SearchPrefixFavList: public Screen
+{
+public:
+    Home(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+class InsertWordFavListScreen: public Screen
+{
+public:
+    Home(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+class RemoveWordFavListScreen: public Screen
+{
+public:
+    Home(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+//----------------------Parent: FavListChoiceScreen-------------end-------------------------
+
+
 #endif // SCREENS_HPP

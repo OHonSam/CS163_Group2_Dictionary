@@ -85,8 +85,9 @@ Screen* Home::render()
     clear();
 
     std::cout<<"Welcome to Dictionary!"<<std::endl;
-    for(int i=0; i<options.size(); i++)
-        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int siz = options.size();
+    for(int i=0; i<siz; ++i)
+        std::cout<<std::to_string(i)<<". "<<options[i]<<std::endl;
 
     Screen* nextScreen=this;
     int choice=inputOption(options.size());
@@ -124,10 +125,10 @@ void FavListChoiceScreen::Render(App *app)
 	{
 		std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
 		std::cout << "What would you like to do?\n";
-		std::cout << ++cnt << ". Type in a word to insert it to your favorite list\n";
-		std::cout << ++cnt << ". Type in a word to remove it from your favorite list\n";
-		std::cout << ++cnt << ". Search prefix of words in your favorite list\n";
-		std::cout << ++cnt << ". Go back to previous page\n";
+		// std::cout << ++cnt << ". Type in a word to insert it to your favorite list\n";
+		// std::cout << ++cnt << ". Type in a word to remove it from your favorite list\n";
+		// std::cout << ++cnt << ". Search prefix of words in your favorite list\n";
+		// std::cout << ++cnt << ". Go back to previous page\n";
 
 		std::getline(std::cin, buffer, '\n');
 
