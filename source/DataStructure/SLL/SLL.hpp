@@ -59,7 +59,9 @@ public:
         }
     }							
 };
-//convert characters from string str to array of char arr
-void StrToCharArr(char*& arr, const std::string& str, int len); 
+
 #include <SLL.inl>
+
+//convert characters from string str to array of char arr
+// void StrToCharArr(char*& arr, const std::string& str, int len); 
 #endif

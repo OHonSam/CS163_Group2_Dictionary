@@ -1,16 +1,24 @@
-#include "App.h"
+#include "App.hpp"
 
-void EndApp(App *app)
+App::App()
 {
+    CurrentScreen = new Home(&dict);
 	app->state.EndApp = true;
 	delete app->CurrentScreen;
 	app->CurrentScreen = nullptr;
 }
 
-void SetNextScreen(App *app, Screen *NextScreen)
+void App::run()
 {
-	delete app->CurrentScreen;
-	app->CurrentScreen = NextScreen;
+    while (CurrentScreen != nullptr)
+    {
+        Screen* NextScreen=CurrentScreen->render();
+        if(NextScreen!=CurrentScreen)
+        {
+            delete CurrentScreen;
+            CurrentScreen = NextScreen;
+        }
+    }
 }
 
 void Render(App *app, Screen *s)
