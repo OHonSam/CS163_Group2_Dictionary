@@ -51,6 +51,8 @@ private:
 	void import(Node* &root, std::ifstream& file);
 	void save(Node* root, std::ofstream& file);
 	
+	void clear(Node* &root);
+
 public:
 	Trie()
 	{
@@ -58,15 +60,11 @@ public:
 	}
 	~Trie()
 	{
-		if (root != nullptr)
-		{
-			delete root;
-			root = nullptr;
-		}
+		clear(root);
 	}
 
 	// Deallocate all nodes
-	// void clear();
+	void clear();
 
 	// Load from binary file
 	bool import(const std::string &path);

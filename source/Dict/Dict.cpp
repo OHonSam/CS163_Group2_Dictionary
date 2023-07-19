@@ -12,6 +12,8 @@ bool Dict::reset(){
     if(!history.clearHistory("HistorySLL.bin"))
         return false;
     //waiting for others
+    if(words.import("assets/default/words.bin"))
+        return false;
     return true;
 }
 
@@ -48,6 +50,19 @@ bool Dict::reset(){
 
 //     return true;
 // }
+
+Dict::Dict(bool firstInit)
+{
+    if(firstInit)
+        importCsv("assets/Datasets/EE.csv");
+    else
+    {
+        words.import("assets/main/words.bin");
+        wordDef.import("assets/main/wordDef.bin");
+        history.importSLLStr("assets/main/HistorySLL.bin");
+        favList.import("assets/main/favList.bin");
+    }
+}
 
 bool Dict::importCsv(const std::string &path)
 {
@@ -123,4 +138,6 @@ std::vector<std::string> Dict::getHistory(){
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
     //waiting for others
+    words.remove(word);
+    wordDef.remove(word);
 }
