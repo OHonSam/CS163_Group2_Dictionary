@@ -12,6 +12,8 @@ bool Dict::reset(){
     if(!history.clearHistory("HistorySLL.bin"))
         return false;
     //waiting for others
+    if(words.import("assets/default/words.bin"))
+        return false;
     return true;
 }
 
