@@ -38,7 +38,6 @@ void ClearScreen()
 
 bool CheckString(std::string str, int &i)
 {
-	bool ok = true;
 	int length = str.size();
 	if (length > 10 || length == 0)
 		return false;
@@ -156,6 +155,8 @@ void FavListChoiceScreen::Render(App *app)
 			SetNextScreen(app, new FirstScreen());
 			break;
 		}
+
+		app->state->tst->save(FAV_LIST_SAVE_FILE);
 	}
 	else
 	{
