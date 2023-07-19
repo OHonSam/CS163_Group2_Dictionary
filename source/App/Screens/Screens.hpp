@@ -13,11 +13,12 @@ private:
 protected:
     Dict* dict;
 
+    void clear();
+
     int inputOption(
         int maxOption,
         const std::string& mess="Your choice: "
     );
-
     std::string inputEngString(
         const std::string& mess="Enter English word:"
     );
@@ -41,6 +42,7 @@ private:
         "Switch between dictionaries (English-Vietnamese, Vietnamese-English, English-English)",
         "Exit"
     };
+
 public:
     Home(Dict* dict) : Screen(dict) {}
     Screen* render();

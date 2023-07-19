@@ -35,7 +35,21 @@ bool Screen::checkStrEng(std::string str)
     return true;
 }
 
-int Screen::inputOption(int maxOption, const std::string& mess)
+void Screen::clear()
+{
+#if defined _WIN32
+    system("cls");
+    //clrscr(); // including header file : conio.h
+#elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
+    system("clear");
+    //std::cout<< u8"\033[2J\033[1;1H"; //Using ANSI Escape Sequences 
+#elif defined (__APPLE__)
+    system("clear");
+#endif
+
+}
+
+int Screen::inputOption(int maxOption, const std::string &mess)
 {
     int option=maxOption;
 
@@ -68,6 +82,8 @@ std::string Screen::inputEngString(const std::string& mess)
 // Home
 Screen* Home::render()
 {
+    clear();
+
     std::cout<<"Welcome to Dictionary!"<<std::endl;
     for(int i=0; i<options.size(); i++)
         std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
