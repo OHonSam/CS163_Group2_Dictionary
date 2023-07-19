@@ -352,14 +352,7 @@ void TST::searchPrefix()
 
 bool TST::treeExists()
 {
-    if (root == nullptr)
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
+    return !(root == nullptr);
 }
 
 void TST::uppercase2Lowercase(std::string &str)
