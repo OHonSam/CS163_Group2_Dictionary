@@ -6,9 +6,14 @@
 // Screen
 class Screen
 {
+private:
+    bool checkString(const std::string& str, int& choice);
+
 protected:
     bool isEnd;
     Dict* dict;
+
+    int inputOption(int maxOption);
 
 public:
     Screen(Dict* dict) : dict(dict), isEnd(false) {}
