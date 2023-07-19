@@ -10,7 +10,10 @@ void App::run()
     while (CurrentScreen != nullptr)
     {
         Screen* NextScreen=CurrentScreen->render();
-        delete CurrentScreen;
-        CurrentScreen = NextScreen;
+        if(NextScreen!=CurrentScreen)
+        {
+            delete CurrentScreen;
+            CurrentScreen = NextScreen;
+        }
     }
 }
