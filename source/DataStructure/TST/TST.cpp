@@ -313,14 +313,13 @@ void TST::type2InsertWord()
 {
     std::string word;
 
-    std::cout << "Please type in the word you want to remove: ";
+    std::cout << "Please type in the word you want to insert: ";
 
     std::getline(std::cin, word, '\n');
 
     insert(word);
 
     std::cout << "Inserted successfully!\n";
-
 }
 
 void TST::searchPrefix()
@@ -329,7 +328,7 @@ void TST::searchPrefix()
     std::vector<std::string> res;
     int cnt = 0;
 
-    std::cout << "Please type in the word you want to remove: ";
+    std::cout << "Please type in the word you want to search: ";
 
     std::getline(std::cin, word, '\n');
 
@@ -343,4 +342,16 @@ void TST::searchPrefix()
     }
 
     std::cout << "\nThere are " << cnt << " words that start with " << word << '\n';
+}
+
+bool TST::treeExists()
+{
+    if (root == nullptr)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }

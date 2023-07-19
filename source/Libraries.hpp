@@ -14,6 +14,6 @@
 #include <chrono>
 #include <algorithm>
 
-const std::string favListSaveFile = "";
+const std::string FAV_LIST_SAVE_FILE = "";
 
 #endif // !LIBRARIES_H

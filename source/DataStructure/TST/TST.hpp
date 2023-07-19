@@ -85,6 +85,8 @@ public:
 
     bool import(const std::string &path);
     bool save(const std::string &path);    
+
+    bool treeExists();
 };
 
 #endif

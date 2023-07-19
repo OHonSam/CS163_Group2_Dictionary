@@ -12,7 +12,9 @@ public:
 	bool EndApp;
 	std::string word;
 
-	State() : word{}, userChoice{-1}, EndApp{false} {};
+	TST* tst;
+
+	State() : word{}, userChoice{-1}, EndApp{false}, tst(nullptr) {};
 };
 class Screen
 {
@@ -25,7 +27,6 @@ class FirstScreen : public Screen
 	void Render(App *app) override;
 };
 
-
 //--------------------------------Parent: FirstScreen-------------------------------------
 
 class FavListChoiceScreen : public Screen
@@ -34,9 +35,6 @@ class FavListChoiceScreen : public Screen
 };
 
 //--------------------------------Parent: FirstScreen-------end-------------------------------
-
-
-
 
 //--------------------------------Parent: FavListChoiceScreen--------------------------------------
 
@@ -50,15 +48,12 @@ class Type2InsertWordFavListScreen : public Screen
 	void Render(App *app) override;
 };
 
-class searchPrefixFavList : public Screen
+class SearchPrefixFavList : public Screen
 {
 	void Render(App *app) override;
 };
 
 //--------------------------------Parent: FavListChoiceScreen--------end------------------------------
-
-
-
 
 //--------------------------------untitled--------------------------------------
 class RemoveWordFavListScreen : public Screen
@@ -71,8 +66,6 @@ class InsertWordFavListScreen : public Screen
 	void Render(App *app) override;
 };
 //--------------------------------untitled-----------end---------------------------
-
-
 
 // class CreateSYScr : public Screen
 // {
@@ -249,12 +242,10 @@ class InsertWordFavListScreen : public Screen
 // 	void Render(App* app);
 // };
 
-
-
 class App
 {
 public:
-	State state;
+	State* state;
 	Screen *CurrentScreen;
 
 	App()

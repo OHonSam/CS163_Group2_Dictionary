@@ -2,7 +2,7 @@
 
 void EndApp(App *app)
 {
-	app->state.EndApp = true;
+	app->state->EndApp = true;
 	delete app->CurrentScreen;
 	app->CurrentScreen = nullptr;
 }
@@ -31,7 +31,6 @@ void ClearScreen()
 	// std::cout << string( 100, '\n' );
 }
 
-
 bool CheckString(std::string str, int &i)
 {
 	bool ok = true;
@@ -59,7 +58,7 @@ void Run()
 	{
 		ClearScreen();
 		Render(app, app->CurrentScreen);
-	} while (!app->state.EndApp);
+	} while (!app->state->EndApp);
 	delete app;
 }
 
@@ -72,9 +71,9 @@ void FirstScreen::Render(App *app)
 
 	std::cout << "What would you like to do?\n";
 
-	std::cout << ++cnt << ". Search\n";
-	std::cout << ++cnt << ". View your search history\n";
-	std::cout << ++cnt << ". View your favourite list\n";
+	std::cout << ++cnt << ". Interact with your dictionary dataset\n";
+	std::cout << ++cnt << ". Interact with your search history\n";
+	std::cout << ++cnt << ". Interact with your favourite list\n";
 	std::cout << ++cnt << ". Reset the dictionary to its original state\n";
 	std::cout << ++cnt << ". Exit\n";
 
@@ -88,7 +87,7 @@ void FirstScreen::Render(App *app)
 		std::getline(std::cin, buffer, '\n');
 	}
 
-	app->state.userChoice = choice;
+	app->state->userChoice = choice;
 
 	switch (choice)
 	{
@@ -110,55 +109,95 @@ void FirstScreen::Render(App *app)
 	}
 }
 
-
-
 void FavListChoiceScreen::Render(App *app)
 {
 	int choice = -1, minNumChoice = 1, maxNumChoice = 4, cnt = 0;
 	std::string buffer;
 
-	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
-	std::cout << "What would you like to do?\n";
-	std::cout << ++cnt << ". Type in a word to insert it to your favorite list\n";
-	std::cout << ++cnt << ". Type in a word to remove it from your favorite list\n";
-	std::cout << ++cnt << ". Search prefix of words in your favorite list\n";
-	std::cout << ++cnt << ". Go back to previous page\n";
-
 	std::cout << "Your choice: ";
 
-	std::getline(std::cin, buffer, '\n');
+	app->state->tst = new TST();
 
-	while (!CheckString(buffer, choice) || choice < minNumChoice || choice > maxNumChoice)
-
+	if (app->state->tst->import(FAV_LIST_SAVE_FILE))
 	{
-		std::cout << "The number you have entered does not correspond to any choice!\n";
-		std::cout << "Please re-enter: ";
+		std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
+		std::cout << "What would you like to do?\n";
+		std::cout << ++cnt << ". Type in a word to insert it to your favorite list\n";
+		std::cout << ++cnt << ". Type in a word to remove it from your favorite list\n";
+		std::cout << ++cnt << ". Search prefix of words in your favorite list\n";
+		std::cout << ++cnt << ". Go back to previous page\n";
+
 		std::getline(std::cin, buffer, '\n');
-	}
 
-	app->state.userChoice = choice;
-	switch (choice)
+		while (!CheckString(buffer, choice) || choice < minNumChoice || choice > maxNumChoice)
+		{
+			std::cout << "The number you have entered does not correspond to any choice!\n";
+			std::cout << "Please re-enter: ";
+			std::getline(std::cin, buffer, '\n');
+		}
+
+		app->state->userChoice = choice;
+		switch (choice)
+		{
+		case 1:
+			SetNextScreen(app, new Type2InsertWordFavListScreen());
+			break;
+		case 2:
+			SetNextScreen(app, new Type2RemoveWordFavListScreen());
+			break;
+		case 3:
+			SetNextScreen(app, new SearchPrefixFavList());
+			break;
+		case 4:
+			SetNextScreen(app, new FirstScreen());
+			break;
+		}
+	}
+	else
 	{
-	case 1:
-		SetNextScreen(app, new Type2InsertWordFavListScreen());
-		break;
-	case 2:
-		SetNextScreen(app, new Type2RemoveWordFavListScreen());
-		break;
-	case 3:
-		SetNextScreen(app, new searchPrefixFavList());
-		break;
-	case 4:
-		SetNextScreen(app, new FirstScreen());
-		break;
+		cnt = 0, maxNumChoice = 2;
+
+		std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
+		std::cout << "What would you like to do?\n";
+		std::cout << ++cnt << ". Type in a word to insert it to your favorite list\n";
+		// std::cout << ++cnt << ". Type in a word to remove it from your favorite list\n";
+		// std::cout << ++cnt << ". Search prefix of words in your favorite list\n";
+		std::cout << ++cnt << ". Go back to previous page\n";
+
+		std::getline(std::cin, buffer, '\n');
+
+		while (!CheckString(buffer, choice) || choice < minNumChoice || choice > maxNumChoice)
+		{
+			std::cout << "The number you have entered does not correspond to any choice!\n";
+			std::cout << "Please re-enter: ";
+			std::getline(std::cin, buffer, '\n');
+		}
+
+		app->state->userChoice = choice;
+		switch (choice)
+		{
+		case 1:
+			SetNextScreen(app, new Type2InsertWordFavListScreen());
+			break;
+		case 2:
+			SetNextScreen(app, new FirstScreen());
+			break;
+		}
 	}
 }
 
 void Type2RemoveWordFavListScreen::Render(App *app)
 {
-	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-	TST tst;
-	tst.type2RemoveWord();
+	std::cout << "Your choice was: " << app->state->userChoice << "\n";
+
+	if (app->state->tst->treeExists())
+	{
+		app->state->tst->type2RemoveWord();
+	}
+	else
+	{
+		std::cout << "No tree has been created so there's nothing to remove\n";
+	}
 	int choice = -1;
 	std::string buffer;
 
@@ -171,14 +210,14 @@ void Type2RemoveWordFavListScreen::Render(App *app)
 		std::cout << "Please re-enter: ";
 		std::getline(std::cin, buffer, '\n');
 	}
+
 	SetNextScreen(app, new FavListChoiceScreen());
 }
 
 void Type2InsertWordFavListScreen::Render(App *app)
 {
-	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-	TST tst;
-	tst.type2InsertWord();
+	std::cout << "Your choice was: " << app->state->userChoice << "\n";
+	app->state->tst->type2InsertWord();
 	int choice = -1;
 	std::string buffer;
 
@@ -194,11 +233,10 @@ void Type2InsertWordFavListScreen::Render(App *app)
 	SetNextScreen(app, new FavListChoiceScreen());
 }
 
-void searchPrefixFavList::Render(App *app)
+void SearchPrefixFavList::Render(App *app)
 {
-	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-	TST tst;
-	tst.searchPrefix();
+	std::cout << "Your choice was: " << app->state->userChoice << "\n";
+	app->state->tst->searchPrefix();
 	int choice = -1;
 	std::string buffer;
 
@@ -216,9 +254,8 @@ void searchPrefixFavList::Render(App *app)
 
 void InsertWordFavListScreen::Render(App *app)
 {
-	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-	TST tst;
-	tst.searchPrefix();
+	std::cout << "Your choice was: " << app->state->userChoice << "\n";
+	app->state->tst->insert(app->state->word);
 	int choice = -1;
 	std::string buffer;
 
@@ -236,9 +273,8 @@ void InsertWordFavListScreen::Render(App *app)
 
 void RemoveWordFavListScreen::Render(App *app)
 {
-	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-	TST tst;
-	tst.type2RemoveWord();
+	std::cout << "Your choice was: " << app->state->userChoice << "\n";
+	app->state->tst->remove(app->state->word);
 	int choice = -1;
 	std::string buffer;
 
@@ -256,9 +292,9 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void CreateClassScreen::Render(App *app)
 // {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
 // 	Class cl;
-// 	cl.CreateClass(app->state.Schoolyear);
+// 	cl.CreateClass(app->state->Schoolyear);
 // 	int choice = -1;
 // 	std::string buffer;
 
@@ -307,22 +343,22 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		SetNextScreen(app, new StudentChoiceScreen());
 // 		break;
 // 	}
-// 	app->state.userChoice = choice;
+// 	app->state->userChoice = choice;
 
 // 	ClearScreen();
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
 // 	u->InputUsername();
 // 	u->InputPassword();
 // 	while (!u->CheckUser())
 // 	{
 // 		ClearScreen();
-// 		std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 		std::cout << "Your choice was: " << app->state->userChoice << "\n";
 // 		std::cout << "Wrong username or password! Please re-enter\n";
 
 // 		u->InputUsername();
 // 		u->InputPassword();
 // 	}
-// 	app->state.user = u;
+// 	app->state->user = u;
 // 	std::cout << "Logged in successfully!\n";
 
 // 	int i = -1;
@@ -341,10 +377,10 @@ void RemoveWordFavListScreen::Render(App *app)
 // {
 // 	int choice = -1;
 // 	std::string buffer;
-// 	app->state.Schoolyear = "";
-// 	app->state.Semester = -1;
+// 	app->state->Schoolyear = "";
+// 	app->state->Semester = -1;
 
-// 	std::cout << "Hello, " << app->state.user->Username << " "
+// 	std::cout << "Hello, " << app->state->user->Username << " "
 // 			  << "\n0. Logout\n\n";
 
 // 	std::cout << "What would you like to do?\n";
@@ -366,7 +402,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		std::getline(std::cin, buffer, '\n');
 // 	}
 
-// 	app->state.userChoice = choice;
+// 	app->state->userChoice = choice;
 // 	switch (choice)
 // 	{
 // 	case 0:
@@ -395,9 +431,9 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	int choice = -1;
 // 	std::string buffer;
 
-// 	std::cout << app->state.user->Username << " "
+// 	std::cout << app->state->user->Username << " "
 // 			  << "0. Logout\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 // 	std::cout << "What would you like to do?\n";
 // 	std::cout << "1. Create a semester\n";
 // 	std::cout << "2. Choose an existing semester to work on\n";
@@ -414,7 +450,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		std::getline(std::cin, buffer, '\n');
 // 	}
 
-// 	app->state.userChoice = choice;
+// 	app->state->userChoice = choice;
 // 	switch (choice)
 // 	{
 // 	case 0:
@@ -434,11 +470,11 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void ChooseSem::Render(App *app)
 // {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-// 	std::cout << "The current schoolyear is: " << app->state.Schoolyear << "\n\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
+// 	std::cout << "The current schoolyear is: " << app->state->Schoolyear << "\n\n";
 
 // 	Semester s;
-// 	s.ChooseSemester(app->state.Schoolyear);
+// 	s.ChooseSemester(app->state->Schoolyear);
 
 // 	if (s.userChoice == -1)
 // 	{
@@ -448,7 +484,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	else
 // 	{
 // 		std::cout << "\nEnter 0 to move to next page\n";
-// 		app->state.Semester = s.userChoice;
+// 		app->state->Semester = s.userChoice;
 // 		SetNextScreen(app, new CourseChoice());
 // 	}
 
@@ -466,9 +502,9 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void CreateSemesterScreen::Render(App *app)
 // {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
 // 	Semester s;
-// 	s.CreateSemester(app->state.Schoolyear);
+// 	s.CreateSemester(app->state->Schoolyear);
 // 	if (s.userChoice == -1)
 // 	{
 // 		std::cout << "\nEnter 0 to return to previous\n";
@@ -476,7 +512,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	}
 // 	else
 // 	{
-// 		app->state.Semester = s.userChoice;
+// 		app->state->Semester = s.userChoice;
 // 		std::cout << "\nEnter 0 to move to next page\n";
 // 		SetNextScreen(app, new CourseChoice());
 // 	}
@@ -495,8 +531,8 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void CreateSYScr::Render(App *app)
 // {
-// 	std::cout << app->state.user->Username << "\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+// 	std::cout << app->state->user->Username << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 // 	SchoolYear sy;
 // 	sy.createSchoolYear();
 
@@ -521,7 +557,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	int choice = -1;
 // 	std::string buffer;
 
-// 	std::cout << "Hello, " << app->state.user->Username << " "
+// 	std::cout << "Hello, " << app->state->user->Username << " "
 // 			  << "0. Logout\n\n";
 
 // 	std::cout << "This is student choice screen\n";
@@ -541,7 +577,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		std::getline(std::cin, buffer, '\n');
 // 	}
 
-// 	app->state.userChoice = choice;
+// 	app->state->userChoice = choice;
 // 	switch (choice)
 // 	{
 // 	case 0:
@@ -564,10 +600,10 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	int choice = -1;
 // 	std::string buffer;
 
-// 	std::cout << app->state.user->Username << " "
+// 	std::cout << app->state->user->Username << " "
 // 			  << "0. Logout\n";
-// 	std::cout << "The current schoolyear is: " << app->state.Schoolyear << "\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+// 	std::cout << "The current schoolyear is: " << app->state->Schoolyear << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 
 // 	std::cout << "What would you like to do?\n";
 // 	std::cout << "1. Create a class\n";
@@ -590,7 +626,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		std::getline(std::cin, buffer, '\n');
 // 	}
 
-// 	app->state.userChoice = choice;
+// 	app->state->userChoice = choice;
 
 // 	switch (choice)
 // 	{
@@ -626,9 +662,9 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void ImportToClass::Render(App *app)
 // {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
 // 	Class cl;
-// 	cl.ImportCSVfile(app->state.Schoolyear);
+// 	cl.ImportCSVfile(app->state->Schoolyear);
 // 	if (!cl.HeadStudent)
 // 	{
 // 		std::cout << "Nothing to import!\n";
@@ -659,10 +695,10 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	int choice = -1;
 // 	std::string buffer;
 
-// 	std::cout << app->state.user->Username << " "
+// 	std::cout << app->state->user->Username << " "
 // 			  << "0. Logout\n";
-// 	std::cout << "Your current semester is: " << app->state.Semester << " of year: " << app->state.Schoolyear << "\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+// 	std::cout << "Your current semester is: " << app->state->Semester << " of year: " << app->state->Schoolyear << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 
 // 	std::cout << "What would you like to do?\n";
 // 	std::cout << "1. Create course\n";
@@ -684,7 +720,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		std::getline(std::cin, buffer, '\n');
 // 	}
 
-// 	app->state.userChoice = choice;
+// 	app->state->userChoice = choice;
 // 	switch (choice)
 // 	{
 // 	case 0:
@@ -719,9 +755,9 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void CreateCourseScreen::Render(App *app)
 // {
-// 	std::cout << "Your current semester is: " << app->state.Semester << " of year: " << app->state.Schoolyear << "\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
-// 	Course c(app->state.Schoolyear, app->state.Semester);
+// 	std::cout << "Your current semester is: " << app->state->Semester << " of year: " << app->state->Schoolyear << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
+// 	Course c(app->state->Schoolyear, app->state->Semester);
 // 	c.CreateCourse();
 
 // 	int choice = -1;
@@ -746,10 +782,10 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	int choice = -1;
 // 	std::string buffer;
 
-// 	std::cout << app->state.user->Username << " "
+// 	std::cout << app->state->user->Username << " "
 // 			  << "0. Logout\n";
-// 	std::cout << "The current schoolyear is: " << app->state.Schoolyear << "\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+// 	std::cout << "The current schoolyear is: " << app->state->Schoolyear << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 
 // 	std::cout << "What would you like to do?\n";
 // 	std::cout << "1. Delete a class\n";
@@ -766,7 +802,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		std::getline(std::cin, buffer, '\n');
 // 	}
 
-// 	app->state.userChoice = choice;
+// 	app->state->userChoice = choice;
 // 	switch (choice)
 // 	{
 // 	case 0:
@@ -789,10 +825,10 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	int choice = -1;
 // 	std::string buffer;
 
-// 	std::cout << app->state.user->Username << " "
+// 	std::cout << app->state->user->Username << " "
 // 			  << "0. Logout\n";
-// 	std::cout << "The current schoolyear is: " << app->state.Schoolyear << "\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+// 	std::cout << "The current schoolyear is: " << app->state->Schoolyear << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 
 // 	std::cout << "What would you like to do?\n";
 // 	std::cout << "1. Add a student manually to a class\n";
@@ -809,7 +845,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		std::getline(std::cin, buffer, '\n');
 // 	}
 
-// 	app->state.userChoice = choice;
+// 	app->state->userChoice = choice;
 // 	switch (choice)
 // 	{
 // 	case 0:
@@ -828,9 +864,9 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void SearchStudentInClass::Render(App *app)
 // {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
 // 	Class cl;
-// 	cl.searchStudentID(app->state.Schoolyear);
+// 	cl.searchStudentID(app->state->Schoolyear);
 // 	cl.DeleteCSVdata();
 // 	int choice = -1;
 // 	std::string buffer;
@@ -850,9 +886,9 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void AddStudentToClass::Render(App *app)
 // {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
 // 	Class cl;
-// 	cl.addFromConsole(app->state.Schoolyear);
+// 	cl.addFromConsole(app->state->Schoolyear);
 
 // 	int choice = -1;
 // 	std::string buffer;
@@ -873,7 +909,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // void ViewAllClass::Render(App *app)
 // {
 // 	ClassLL classLL;
-// 	classLL.viewClass(app->state.Schoolyear);
+// 	classLL.viewClass(app->state->Schoolyear);
 
 // 	int choice = -1;
 // 	std::string buffer;
@@ -894,7 +930,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // void DelAClass::Render(App *app)
 // {
 // 	Class cl;
-// 	cl.DeleteAClass(app->state.Schoolyear);
+// 	cl.DeleteAClass(app->state->Schoolyear);
 
 // 	int choice = -1;
 // 	std::string buffer;
@@ -914,9 +950,9 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void ViewStudentClass::Render(App *app)
 // {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
 // 	Class cl;
-// 	cl.viewStudentAClass(app->state.Schoolyear);
+// 	cl.viewStudentAClass(app->state->Schoolyear);
 
 // 	int choice = -1;
 // 	std::string buffer;
@@ -937,10 +973,10 @@ void RemoveWordFavListScreen::Render(App *app)
 // void ImportToCourse::Render(App *app)
 // {
 // 	bool imported = true;
-// 	std::cout << "Your current semester is: " << app->state.Semester << " of year: " << app->state.Schoolyear << "\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+// 	std::cout << "Your current semester is: " << app->state->Semester << " of year: " << app->state->Schoolyear << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 
-// 	Course c(app->state.Schoolyear, app->state.Semester);
+// 	Course c(app->state->Schoolyear, app->state->Semester);
 // 	c.ImportCSVFile();
 // 	c.ExportTXTFile();
 // 	if (!c.HeadStudent)
@@ -971,9 +1007,9 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void ViewCoursesStaff::Render(App *app)
 // {
-// 	std::cout << "Your current semester is: " << app->state.Semester << " of year: " << app->state.Schoolyear << "\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
-// 	Course c(app->state.Schoolyear, app->state.Semester);
+// 	std::cout << "Your current semester is: " << app->state->Semester << " of year: " << app->state->Schoolyear << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
+// 	Course c(app->state->Schoolyear, app->state->Semester);
 // 	c.ViewCourseStaff();
 
 // 	int choice = -1;
@@ -994,9 +1030,9 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void ViewStudentCourse::Render(App *app)
 // {
-// 	std::cout << "Your current semester is: " << app->state.Semester << " of year: " << app->state.Schoolyear << "\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
-// 	Course c(app->state.Schoolyear, app->state.Semester);
+// 	std::cout << "Your current semester is: " << app->state->Semester << " of year: " << app->state->Schoolyear << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
+// 	Course c(app->state->Schoolyear, app->state->Semester);
 // 	c.ViewStudentACourse();
 
 // 	int choice = -1;
@@ -1020,9 +1056,9 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	int choice = -1;
 // 	std::string buffer;
 
-// 	std::cout << app->state.user->Username << " "
+// 	std::cout << app->state->user->Username << " "
 // 			  << "0. Logout\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 
 // 	std::cout << "What would you like to do?\n";
 // 	std::cout << "1. Delete a course\n";
@@ -1040,7 +1076,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		std::getline(std::cin, buffer, '\n');
 // 	}
 
-// 	app->state.userChoice = choice;
+// 	app->state->userChoice = choice;
 // 	switch (choice)
 // 	{
 // 	case 0:
@@ -1105,7 +1141,7 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void ChangePass::Render(App *app)
 // {
-// 	app->state.user->ChangePassword();
+// 	app->state->user->ChangePassword();
 
 // 	int choice = -1;
 // 	std::string buffer;
@@ -1119,7 +1155,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		std::cout << "Please re-enter: ";
 // 		std::getline(std::cin, buffer, '\n');
 // 	}
-// 	if (app->state.user->Staff)
+// 	if (app->state->user->Staff)
 // 		SetNextScreen(app, new StaffChoiceScreen());
 // 	else
 // 		SetNextScreen(app, new StudentChoiceScreen());
@@ -1130,9 +1166,9 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	int choice = -1;
 // 	std::string buffer;
 
-// 	std::cout << app->state.user->Username << " "
+// 	std::cout << app->state->user->Username << " "
 // 			  << "0. Logout\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 
 // 	std::cout << "What would you like to do?\n";
 // 	std::cout << "1. Add a student manually to a course\n";
@@ -1149,7 +1185,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		std::getline(std::cin, buffer, '\n');
 // 	}
 
-// 	app->state.userChoice = choice;
+// 	app->state->userChoice = choice;
 // 	switch (choice)
 // 	{
 // 	case 0:
@@ -1211,7 +1247,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // void ViewCoursesStudent::Render(App *app)
 // {
 // 	Course c;
-// 	c.ViewCourseStudent(app->state.user->Username);
+// 	c.ViewCourseStudent(app->state->user->Username);
 
 // 	int choice = -1;
 // 	std::string buffer;
@@ -1234,9 +1270,9 @@ void RemoveWordFavListScreen::Render(App *app)
 // 	int choice = -1;
 // 	std::string buffer;
 
-// 	std::cout << app->state.user->Username << " "
+// 	std::cout << app->state->user->Username << " "
 // 			  << "0. Logout\n";
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 
 // 	std::cout << "What would you like to do?\n";
 // 	std::cout << "1. Import a score CSV file for a course\n";
@@ -1255,7 +1291,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // 		std::getline(std::cin, buffer, '\n');
 // 	}
 
-// 	app->state.userChoice = choice;
+// 	app->state->userChoice = choice;
 // 	switch (choice)
 // 	{
 // 	case 0:
@@ -1282,7 +1318,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // void ImportScore::Render(App *app)
 // {
 // 	ScoreLL sll;
-// 	sll.ImportCSVFile(app->state.Schoolyear, app->state.Semester);
+// 	sll.ImportCSVFile(app->state->Schoolyear, app->state->Semester);
 
 // 	int choice = -1;
 // 	std::string buffer;
@@ -1302,7 +1338,7 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void RemoveAStudent::Render(App *app)
 // {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
 // 	Class cl;
 // 	cl.removeAStudent();
 // 	int choice = -1;
@@ -1322,7 +1358,7 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void UpdateStudentInfo::Render(App *app)
 // {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
 // 	Class cl;
 // 	cl.updateStudentInfo();
 // 	int choice = -1;
@@ -1342,7 +1378,7 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void ExportCourse::Render(App *app)
 // {
-// 	Course c(app->state.Schoolyear, app->state.Semester);
+// 	Course c(app->state->Schoolyear, app->state->Semester);
 // 	c.ExportCSVFile();
 
 // 	int choice = -1;
@@ -1364,7 +1400,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // void ViewScoreCourseStaff::Render(App *app)
 // {
 // 	ScoreLL sll;
-// 	sll.ViewCourseScoreStaff(app->state.Schoolyear, app->state.Semester);
+// 	sll.ViewCourseScoreStaff(app->state->Schoolyear, app->state->Semester);
 
 // 	int choice = -1;
 // 	std::string buffer;
@@ -1385,7 +1421,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // void ChangeAScore::Render(App *app)
 // {
 // 	ScoreLL sll;
-// 	sll.UpdateResult(app->state.Schoolyear, app->state.Semester);
+// 	sll.UpdateResult(app->state->Schoolyear, app->state->Semester);
 
 // 	int choice = -1;
 // 	std::string buffer;
@@ -1406,7 +1442,7 @@ void RemoveWordFavListScreen::Render(App *app)
 // void ViewScoreStudent::Render(App *app)
 // {
 // 	ScoreLL sll;
-// 	sll.ViewScoreCourseStudent(app->state.user->Username);
+// 	sll.ViewScoreCourseStudent(app->state->user->Username);
 
 // 	int choice = -1;
 // 	std::string buffer;
@@ -1426,7 +1462,7 @@ void RemoveWordFavListScreen::Render(App *app)
 
 // void CreateSchoolYearScreen::Render(App *app)
 // {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
 // 	SchoolYear sy;
 // 	sy.createSchoolYear();
 // 	int choice = -1;
