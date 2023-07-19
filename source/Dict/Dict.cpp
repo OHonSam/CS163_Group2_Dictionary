@@ -51,6 +51,19 @@ bool Dict::reset(){
 //     return true;
 // }
 
+Dict::Dict(bool firstInit)
+{
+    if(firstInit)
+        importCsv("assets/Datasets/EE.csv");
+    else
+    {
+        words.import("assets/main/words.bin");
+        wordDef.import("assets/main/wordDef.bin");
+        history.importSLLStr("assets/main/HistorySLL.bin");
+        favList.import("assets/main/favList.bin");
+    }
+}
+
 bool Dict::importCsv(const std::string &path)
 {
     std::ifstream in("assets/Datasets/EE.csv");
