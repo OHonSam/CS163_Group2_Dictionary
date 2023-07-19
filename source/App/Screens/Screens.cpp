@@ -163,89 +163,89 @@ Screen *Type2RemoveWordFavListScreen::render()
 	return nextScreen;
 }
 
-void Type2InsertWordFavListScreen::Render(App *app)
-{
-	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-	if (app->state.tst->treeExists())
-	{
-		app->state.tst->type2InsertWord();
-	}
-	else
-	{
-		app->state.tst->type2InsertWord();
-		app->state.tst->save(FAV_LIST_SAVE_FILE);
-	}
+// void Type2InsertWordFavListScreen::Render(App *app)
+// {
+// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	if (app->state.tst->treeExists())
+// 	{
+// 		app->state.tst->type2InsertWord();
+// 	}
+// 	else
+// 	{
+// 		app->state.tst->type2InsertWord();
+// 		app->state.tst->save(FAV_LIST_SAVE_FILE);
+// 	}
 
-	int choice = -1;
-	std::string buffer;
+// 	int choice = -1;
+// 	std::string buffer;
 
-	std::cout << "\nEnter 0 to return to previous page\n";
-	std::getline(std::cin, buffer, '\n');
+// 	std::cout << "\nEnter 0 to return to previous page\n";
+// 	std::getline(std::cin, buffer, '\n');
 
-	while (!CheckString(buffer, choice) || choice != 0)
-	{
-		std::cout << "The number you have entered does not correspond to any choice!\n";
-		std::cout << "Please re-enter: ";
-		std::getline(std::cin, buffer, '\n');
-	}
-	SetNextScreen(app, new FavListChoiceScreen());
-}
+// 	while (!CheckString(buffer, choice) || choice != 0)
+// 	{
+// 		std::cout << "The number you have entered does not correspond to any choice!\n";
+// 		std::cout << "Please re-enter: ";
+// 		std::getline(std::cin, buffer, '\n');
+// 	}
+// 	SetNextScreen(app, new FavListChoiceScreen());
+// }
 
-void SearchPrefixFavList::Render(App *app)
-{
-	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-	app->state.tst->searchPrefix();
-	int choice = -1;
-	std::string buffer;
+// void SearchPrefixFavList::Render(App *app)
+// {
+// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	app->state.tst->searchPrefix();
+// 	int choice = -1;
+// 	std::string buffer;
 
-	std::cout << "\nEnter 0 to return to previous page\n";
-	std::getline(std::cin, buffer, '\n');
+// 	std::cout << "\nEnter 0 to return to previous page\n";
+// 	std::getline(std::cin, buffer, '\n');
 
-	while (!CheckString(buffer, choice) || choice != 0)
-	{
-		std::cout << "The number you have entered does not correspond to any choice!\n";
-		std::cout << "Please re-enter: ";
-		std::getline(std::cin, buffer, '\n');
-	}
-	SetNextScreen(app, new FavListChoiceScreen());
-}
+// 	while (!CheckString(buffer, choice) || choice != 0)
+// 	{
+// 		std::cout << "The number you have entered does not correspond to any choice!\n";
+// 		std::cout << "Please re-enter: ";
+// 		std::getline(std::cin, buffer, '\n');
+// 	}
+// 	SetNextScreen(app, new FavListChoiceScreen());
+// }
 
-void InsertWordFavListScreen::Render(App *app)
-{
-	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-	app->state.tst->insert(app->state.word);
-	int choice = -1;
-	std::string buffer;
+// void InsertWordFavListScreen::Render(App *app)
+// {
+// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	app->state.tst->insert(app->state.word);
+// 	int choice = -1;
+// 	std::string buffer;
 
-	std::cout << "\nEnter 0 to return to previous page\n";
-	std::getline(std::cin, buffer, '\n');
+// 	std::cout << "\nEnter 0 to return to previous page\n";
+// 	std::getline(std::cin, buffer, '\n');
 
-	while (!CheckString(buffer, choice) || choice != 0)
-	{
-		std::cout << "The number you have entered does not correspond to any choice!\n";
-		std::cout << "Please re-enter: ";
-		std::getline(std::cin, buffer, '\n');
-	}
-	// SetNextScreen(app, new FavListChoiceScreen());
-}
+// 	while (!CheckString(buffer, choice) || choice != 0)
+// 	{
+// 		std::cout << "The number you have entered does not correspond to any choice!\n";
+// 		std::cout << "Please re-enter: ";
+// 		std::getline(std::cin, buffer, '\n');
+// 	}
+// 	// SetNextScreen(app, new FavListChoiceScreen());
+// }
 
-void RemoveWordFavListScreen::Render(App *app)
-{
-	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-	app->state.tst->remove(app->state.word);
-	int choice = -1;
-	std::string buffer;
+// void RemoveWordFavListScreen::Render(App *app)
+// {
+// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
+// 	app->state.tst->remove(app->state.word);
+// 	int choice = -1;
+// 	std::string buffer;
 
-	std::cout << "\nEnter 0 to return to previous page\n";
-	std::getline(std::cin, buffer, '\n');
+// 	std::cout << "\nEnter 0 to return to previous page\n";
+// 	std::getline(std::cin, buffer, '\n');
 
-	while (!CheckString(buffer, choice) || choice != 0)
-	{
-		std::cout << "The number you have entered does not correspond to any choice!\n";
-		std::cout << "Please re-enter: ";
-		std::getline(std::cin, buffer, '\n');
-	}
-	// SetNextScreen(app, new FavListChoiceScreen());
-}
+// 	while (!CheckString(buffer, choice) || choice != 0)
+// 	{
+// 		std::cout << "The number you have entered does not correspond to any choice!\n";
+// 		std::cout << "Please re-enter: ";
+// 		std::getline(std::cin, buffer, '\n');
+// 	}
+// 	// SetNextScreen(app, new FavListChoiceScreen());
+// }
 
 //

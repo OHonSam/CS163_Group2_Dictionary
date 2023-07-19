@@ -1,7 +1,7 @@
 #ifndef SCREENS_HPP
 #define SCREENS_HPP
 
-#include <Dict.hpp>
+#include "Dict.hpp"
 
 // Screen
 class Screen
