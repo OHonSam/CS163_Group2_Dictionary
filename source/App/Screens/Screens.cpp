@@ -140,5 +140,5 @@ Screen*  ViewHistoryScreen::render(){
     }
     std::cout<<"1. Back"<<std::endl;
     inputOption(1);
-    return new Home(dict);
+    return new View(dict);
 }
