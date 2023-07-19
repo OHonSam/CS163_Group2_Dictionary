@@ -35,7 +35,7 @@ bool Screen::checkStrEng(std::string str)
     return true;
 }
 
-void Screen::clear()
+void Screen::clearScr()
 {
 #if defined _WIN32
     system("cls");
@@ -82,13 +82,13 @@ std::string Screen::inputEngString(const std::string& mess)
 // Home
 Screen* Home::render()
 {
-    clear();
+    clearScr();
 
     std::cout<<"Welcome to Dictionary!"<<std::endl;
     for(int i=0; i<options.size(); i++)
         std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
 
-    Screen* nextScreen=this;
+    Screen* nextScreen=this;//"this"->own object
     int choice=inputOption(options.size());
     switch(choice)
     {
@@ -97,6 +97,7 @@ Screen* Home::render()
         case 2:
             break;
         case 3:
+            nextScreen=new View(dict);
             break;
         case 4:
             break;
@@ -112,3 +113,37 @@ Screen* Home::render()
     return nextScreen;
 }
 //
+Screen* View::render(){
+    clearScr();
+
+    for(int i=0; i<options.size(); i++)
+        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+
+    Screen* nextScreen=this;//"this"->own object
+    int choice=inputOption(options.size());
+    switch(choice){
+        case 1:
+            nextScreen=new ViewHistoryScreen();
+            break;  
+        case 2:
+            break;
+    }
+}
+// void  ViewHistoryScreen::Render(App *app){
+// 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
+// 	std::cout<< "Your search history (20 most recent keywords):\n";
+// 	app->history.display();//?????
+// 	int choice = -1;
+// 	std::string buffer;
+
+// 	std::cout << "\nEnter 0 to return to previous page\n";
+// 	std::getline(std::cin, buffer, '\n');
+
+// 	while (!CheckString(buffer, choice) || choice != 0)
+// 	{
+// 		std::cout << "The number you have entered does not correspond to any choice!\n";
+// 		std::cout << "Please re-enter: ";
+// 		std::getline(std::cin, buffer, '\n');
+// 	}
+// 	SetNextScreen(app, new FirstScreen());
+// }

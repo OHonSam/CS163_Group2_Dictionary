@@ -13,7 +13,7 @@ private:
 protected:
     Dict* dict;
 
-    void clear();
+    void clearScr();
 
     int inputOption(
         int maxOption,
@@ -48,5 +48,17 @@ public:
     Screen* render();
 };
 //
+class View: public Screen
+{   
+private:
+    const std::vector<std::string> options = {
+        "View your search history",
+        "View your favorite words",
+        "Back"
+    };
+public:
+    View(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 
 #endif // SCREENS_HPP
