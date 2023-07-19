@@ -1,3 +1,6 @@
+#ifndef LIBRARIES_H
+#define LIBRARIES_H
+
 #include<iostream>
 #include<fstream>
 #include<vector>
@@ -10,3 +13,7 @@
 #include <random>
 #include <chrono>
 #include <algorithm>
+
+const std::string favListSaveFile = "";
+
+#endif // !LIBRARIES_H
