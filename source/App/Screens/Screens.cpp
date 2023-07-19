@@ -1,5 +1,6 @@
 #include "Screens.hpp"
 
+// Screen
 bool Screen::checkStrOption(const std::string &str, int& choice)
 {
 	int length = str.size();
@@ -34,7 +35,7 @@ bool Screen::checkStrEng(std::string str)
     return true;
 }
 
-int Screen::inputOption(int maxOption)
+int Screen::inputOption(const std::string& mess, int maxOption)
 {
     int option=maxOption;
 
@@ -49,8 +50,25 @@ int Screen::inputOption(int maxOption)
     return option;
 }
 
+std::string Screen::inputEngString(const std::string& mess)
+{
+    std::string str;
+    std::cout<<mess;
+    std::getline(std::cin, str, '\n');
+    while (!checkStrEng(str))
+    {
+        std::cout<<"Invalid input. Please try again: ";
+        std::getline(std::cin, str, '\n');
+    }
+
+    return str;
+}
+//
+
+// Home
 void Home::render()
 {
     std::cout<<"Home screen"<<std::endl;
     isEnd = true;
 }
+//

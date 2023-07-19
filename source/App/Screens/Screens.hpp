@@ -14,8 +14,14 @@ protected:
     bool isEnd;
     Dict* dict;
 
-    int inputOption(int maxOption);
-    std::string inputEngString();
+    int inputOption(
+        const std::string& mess="Your choice: ", 
+        int maxOption
+    );
+
+    std::string inputEngString(
+        const std::string& mess="Enter English word:"
+    );
 
 public:
     Screen(Dict* dict) : dict(dict), isEnd(false) {}
