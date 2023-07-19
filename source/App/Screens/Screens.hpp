@@ -11,7 +11,6 @@ private:
     bool checkStrEng(std::string str);
 
 protected:
-    bool isEnd;
     Dict* dict;
 
     int inputOption(
@@ -24,9 +23,8 @@ protected:
     );
 
 public:
-    Screen(Dict* dict) : dict(dict), isEnd(false) {}
+    Screen(Dict* dict) : dict(dict) {}
     virtual Screen* render() = 0;
-    bool getIsEnd() const { return isEnd; }
 };
 //
 

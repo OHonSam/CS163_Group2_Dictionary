@@ -89,7 +89,7 @@ Screen* Home::render()
         case 6:
             break;
         case 7: // Exit
-            isEnd=true;
+            nextScreen = nullptr;
             break;
     }
 
