@@ -362,7 +362,7 @@ bool TST::treeExists()
     }
 }
 
-void uppercase2Lowercase(std::string &str)
+void TST::uppercase2Lowercase(std::string &str)
 {
     int len = str.size();
     for (int i = 0; i < len; ++i)
