@@ -116,7 +116,7 @@ void FavListChoiceScreen::Render(App *app)
 
 	app->state->tst = new TST();
 
-	if (app->state->tst->import(FAV_LIST_SAVE_FILE))
+	// if (app->state->tst->import(FAV_LIST_SAVE_FILE))
 	{
 		std::cout << "Your choice was: " << app->state->userChoice << "\n\n";
 		std::cout << "What would you like to do?\n";
@@ -151,7 +151,7 @@ void FavListChoiceScreen::Render(App *app)
 			break;
 		}
 	}
-	else
+	// else
 	{
 		cnt = 0, maxNumChoice = 2;
 
