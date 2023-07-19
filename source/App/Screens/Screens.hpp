@@ -15,8 +15,8 @@ protected:
     Dict* dict;
 
     int inputOption(
-        const std::string& mess="Your choice: ", 
-        int maxOption
+        int maxOption,
+        const std::string& mess="Your choice: "
     );
 
     std::string inputEngString(
@@ -25,7 +25,7 @@ protected:
 
 public:
     Screen(Dict* dict) : dict(dict), isEnd(false) {}
-    virtual void render() = 0;
+    virtual Screen* render() = 0;
     bool getIsEnd() const { return isEnd; }
 };
 //
@@ -33,9 +33,19 @@ public:
 // Home
 class Home: public Screen
 {
+private:
+    const std::vector<std::string> options = {
+        "Searching",
+        "Editing",
+        "Viewing",
+        "Reset to default",
+        "Random",
+        "Switch between dictionaries (English-Vietnamese, Vietnamese-English, English-English)",
+        "Exit"
+    };
 public:
     Home(Dict* dict) : Screen(dict) {}
-    void render();
+    Screen* render();
 };
 //
 

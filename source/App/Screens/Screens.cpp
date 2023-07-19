@@ -35,7 +35,7 @@ bool Screen::checkStrEng(std::string str)
     return true;
 }
 
-int Screen::inputOption(const std::string& mess, int maxOption)
+int Screen::inputOption(int maxOption, const std::string& mess)
 {
     int option=maxOption;
 
@@ -66,9 +66,33 @@ std::string Screen::inputEngString(const std::string& mess)
 //
 
 // Home
-void Home::render()
+Screen* Home::render()
 {
-    std::cout<<"Home screen"<<std::endl;
-    isEnd = true;
+    std::cout<<"Welcome to Dictionary!"<<std::endl;
+    for(int i=0; i<options.size(); i++)
+        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+
+    Screen* nextScreen=nullptr;
+    int choice=inputOption(options.size());
+    switch(choice)
+    {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        case 7: // Exit
+            isEnd=true;
+            break;
+    }
+
+    return nextScreen;
 }
 //
