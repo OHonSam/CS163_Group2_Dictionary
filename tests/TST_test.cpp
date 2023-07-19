@@ -22,3 +22,19 @@ TEST(TST_test, push)
     for(int i=0; i<N; i++)
         EXPECT_TRUE(tst.wordExists(word[i]));
 }
+
+TEST(TST_test, pop)
+{
+    TST tst;
+    for(int i=0; i<N; i++)
+    {
+        tst.insert(word[i]);
+        EXPECT_TRUE(tst.wordExists(word[i]));
+    }
+
+    for(int i=0; i<N; i++)
+    {
+        tst.deletion(word[i]);
+        EXPECT_FALSE(tst.wordExists(word[i]));
+    }
+}
