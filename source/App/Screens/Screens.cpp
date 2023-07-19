@@ -126,21 +126,18 @@ Screen *FavListChoiceScreen::render()
 	int choice = inputOption(options.size());
 	switch (choice)
 	{
-	case 1:
-		break;
-	case 2:
-		break;
-	case 3:
-		break;
-	case 4:
-		break;
-	case 5:
-		break;
-	case 6:
-		break;
-	case 7: // Exit
-		nextScreen = nullptr;
-		break;
+	// case 1:
+	// 		SetNextScreen(app, new Type2InsertWordFavListScreen());
+	// 		break;
+	// 	case 2:
+	// 		SetNextScreen(app, new Type2RemoveWordFavListScreen());
+	// 		break;
+	// 	case 3:
+	// 		SetNextScreen(app, new SearchPrefixFavList());
+	// 		break;
+	// 	case 4:
+	// 		SetNextScreen(app, new FirstScreen());
+	// 		break;
 	}
 
 	return nextScreen;
