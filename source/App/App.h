@@ -53,6 +53,9 @@ class DeleteHistoryScreen : public Screen
 {
 	void Render(App *app) override;
 };
+class Remove1WordHistoryScreen: public Screen{
+	void Render(App *app) override;
+};
 //--------------------------------Parent: HistoryChoiceScreen------end-----------------------------
 
 

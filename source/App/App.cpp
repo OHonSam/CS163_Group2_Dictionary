@@ -113,13 +113,14 @@ void FirstScreen::Render(App *app)
 	}
 }
 void HistoryChoiceScreen::Render(App* app){
-	int choice = -1, minNumChoice = 1, maxNumChoice = 3, cnt = 0;
+	int choice = -1, minNumChoice = 1, maxNumChoice = 4, cnt = 0;
 	std::string buffer;
 
 	std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
 	std::cout << "What would you like to do?\n";
 	std::cout << ++cnt << ". View your search history\n";
-	std::cout << ++cnt <<". Delete your search history\n";
+	std::cout << ++cnt << ". Delete all your search history\n";
+	std::cout << ++cnt << ". Remove a word from your search history\n";
 	std::cout << ++cnt << ". Go back to previous page\n";
 
 	std::cout << "Your choice: ";
@@ -144,9 +145,25 @@ void HistoryChoiceScreen::Render(App* app){
 		SetNextScreen(app, new DeleteHistoryScreen());
 		break;
 	case 3:
+		SetNextScreen(app, new Remove1WordHistoryScreen());
+		break;
+	case 4:
 		SetNextScreen(app, new FirstScreen());
 		break;
 	}
+}
+void Remove1WordHistoryScreen::Render(App* app){
+	std::cout<<"Your choice was: "<<app->state.userChoice<<"\n\n";
+	std::cout<<"Enter the word you want to remove from your search history: ";
+	std::string word;
+	std::getline(std::cin,word,'\n');
+	if(app->history.find(word)){
+		app->history.pop(word);
+		std::cout<<"The word has been successfully removed from your search history!\n";
+	}
+	else
+		std::cout<<"The word does not exist in your search history!\n";
+	SetNextScreen(app, new HistoryChoiceScreen());
 }
 void DeleteHistoryScreen::Render(App* app){
 	std::cout<<"Your choice was: "<<app->state.userChoice<<"\n\n";
