@@ -87,6 +87,8 @@ public:
     bool save(const std::string &path);    
 
     bool treeExists();
+
+    void uppercase2Lowercase(std::string &str);
 };
 
 #endif

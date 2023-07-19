@@ -304,6 +304,8 @@ void TST::type2RemoveWord()
 
     std::getline(std::cin, word, '\n');
 
+    uppercase2Lowercase(word);
+
     remove(word);
 
     std::cout << "Removed successfully!\n";
@@ -316,6 +318,8 @@ void TST::type2InsertWord()
     std::cout << "Please type in the word you want to insert: ";
 
     std::getline(std::cin, word, '\n');
+
+    uppercase2Lowercase(word);
 
     insert(word);
 
@@ -331,6 +335,8 @@ void TST::searchPrefix()
     std::cout << "Please type in the word you want to search: ";
 
     std::getline(std::cin, word, '\n');
+
+    uppercase2Lowercase(word);
 
     res = startWith(word);
 
@@ -353,5 +359,17 @@ bool TST::treeExists()
     else
     {
         return true;
+    }
+}
+
+void uppercase2Lowercase(std::string &str)
+{
+    int len = str.size();
+    for (int i = 0; i < len; ++i)
+    {
+        if (str[i] >= 'A' && str[i] <= 'Z')
+        {
+            str[i] = str[i] - 'A' + 'a';
+        }
     }
 }
