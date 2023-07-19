@@ -34,7 +34,7 @@ TEST(TST_test, pop)
 
     for(int i=0; i<N; i++)
     {
-        tst.deletion(word[i]);
+        tst.remove(word[i]);
         EXPECT_FALSE(tst.wordExists(word[i]));
     }
 }
