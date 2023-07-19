@@ -125,4 +125,6 @@ std::vector<std::string> Dict::getHistory(){
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
     //waiting for others
+    words.remove(word);
+    wordDef.remove(word);
 }
