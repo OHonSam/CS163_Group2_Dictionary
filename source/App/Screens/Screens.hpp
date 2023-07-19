@@ -7,13 +7,15 @@
 class Screen
 {
 private:
-    bool checkString(const std::string& str, int& choice);
+    bool checkStrOption(const std::string& str, int& choice);
+    bool checkStrEng(std::string str);
 
 protected:
     bool isEnd;
     Dict* dict;
 
     int inputOption(int maxOption);
+    std::string inputEngString();
 
 public:
     Screen(Dict* dict) : dict(dict), isEnd(false) {}
