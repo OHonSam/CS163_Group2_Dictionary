@@ -134,18 +134,11 @@ Screen* View::render(){
 Screen*  ViewHistoryScreen::render(){
 
 	std::cout<< "Your search history (20 most recent keywords):\n";
-	//app->history.display();//?????
-	int choice = -1;
-	std::string buffer;
-
-	std::cout << "\nEnter 0 to return to previous page\n";
-	std::getline(std::cin, buffer, '\n');
-
-	while (!CheckString(buffer, choice) || choice != 0)
-	{
-		std::cout << "The number you have entered does not correspond to any choice!\n";
-		std::cout << "Please re-enter: ";
-		std::getline(std::cin, buffer, '\n');
-	}
-	SetNextScreen(app, new FirstScreen());
+	std::vector<std::string> display= dict->getHistory();
+	for(int i=0;i<display.size();++i){
+        std::cout<<display[i]<<std::endl;
+    }
+    std::cout<<"1. Back"<<std::endl;
+    inputOption(1);
+    return new Home(dict);
 }

@@ -64,6 +64,8 @@ public:
 };
 // View search history
 class ViewHistoryScreen: public Screen{
+public:
+    ViewHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 // View favorite words
