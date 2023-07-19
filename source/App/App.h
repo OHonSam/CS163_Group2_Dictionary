@@ -14,7 +14,7 @@ public:
 
 	TST* tst;
 
-	State() : word{}, userChoice{-1}, EndApp{false}, tst(nullptr) {};
+	State() : word{}, userChoice{-1}, EndApp{false}, tst{nullptr} {}
 };
 class Screen
 {
@@ -245,7 +245,7 @@ class InsertWordFavListScreen : public Screen
 class App
 {
 public:
-	State* state;
+	State state;
 	Screen *CurrentScreen;
 
 	App()
