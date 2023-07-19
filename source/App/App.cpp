@@ -9,7 +9,6 @@ void EndApp(App *app)
 	app->state->tst = nullptr;
 	delete app->state;
 	app->state = nullptr;
-
 }
 
 void SetNextScreen(App *app, Screen *NextScreen)
@@ -155,8 +154,6 @@ void FavListChoiceScreen::Render(App *app)
 			SetNextScreen(app, new FirstScreen());
 			break;
 		}
-
-		app->state->tst->save(FAV_LIST_SAVE_FILE);
 	}
 	else
 	{
@@ -222,7 +219,16 @@ void Type2RemoveWordFavListScreen::Render(App *app)
 void Type2InsertWordFavListScreen::Render(App *app)
 {
 	std::cout << "Your choice was: " << app->state->userChoice << "\n";
-	app->state->tst->type2InsertWord();
+	if (app->state->tst->treeExists())
+	{
+		app->state->tst->type2InsertWord();
+	}
+	else
+	{
+		app->state->tst->type2InsertWord();
+		app->state->tst->save(FAV_LIST_SAVE_FILE);
+	}
+
 	int choice = -1;
 	std::string buffer;
 
