@@ -52,13 +52,14 @@ int Screen::inputOption(int maxOption, const std::string &mess)
 {
 	int option = maxOption;
 
-    std::cout<<mess;
-    std::string str; std::getline(std::cin, str, '\n');
-    while (!checkStrOption(str, option) || option < 1 || option > maxOption)
-    {
-        std::cout<<"Invalid input. Please try again: ";
-        std::getline(std::cin, str, '\n');
-    }
+	std::cout << mess;
+	std::string str;
+	std::getline(std::cin, str, '\n');
+	while (!checkStrOption(str, option) || option < 1 || option > maxOption)
+	{
+		std::cout << "Invalid input. Please try again: ";
+		std::getline(std::cin, str, '\n');
+	}
 
 	return option;
 }
@@ -126,125 +127,40 @@ Screen *FavListChoiceScreen::render()
 	int choice = inputOption(options.size());
 	switch (choice)
 	{
-	// case 1:
-	// 		SetNextScreen(app, new Type2InsertWordFavListScreen());
-	// 		break;
-	// 	case 2:
-	// 		SetNextScreen(app, new Type2RemoveWordFavListScreen());
-	// 		break;
-	// 	case 3:
-	// 		SetNextScreen(app, new SearchPrefixFavList());
-	// 		break;
-	// 	case 4:
-	// 		SetNextScreen(app, new FirstScreen());
-	// 		break;
+		// case 1:
+		// 		SetNextScreen(app, new Type2InsertWordFavListScreen());
+		// 		break;
+		// 	case 2:
+		// 		SetNextScreen(app, new Type2RemoveWordFavListScreen());
+		// 		break;
+		// 	case 3:
+		// 		SetNextScreen(app, new SearchPrefixFavList());
+		// 		break;
+		// 	case 4:
+		// 		SetNextScreen(app, new FirstScreen());
+		// 		break;
 	}
 
 	return nextScreen;
 }
-
-void FavListChoiceScreen::Render(App *app)
+Screen *Type2RemoveWordFavListScreen::render()
 {
-	int choice = -1, minNumChoice = 1, maxNumChoice = 4, cnt = 0;
-	std::string buffer;
+	clear();
 
-	app->state.tst = new TST;
+	std::cout << "What would you like to do?\n"
+			  << std::endl;
+	int siz = options.size();
+	for (int i = 0; i < siz; ++i)
+		std::cout << std::to_string(i) << ". " << options[i] << std::endl;
 
-	if (app->state.tst->import(FAV_LIST_SAVE_FILE))
-	{
-		std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
-		std::cout << "What would you like to do?\n";
-		// std::cout << ++cnt << ". Type in a word to insert it to your favorite list\n";
-		// std::cout << ++cnt << ". Type in a word to remove it from your favorite list\n";
-		// std::cout << ++cnt << ". Search prefix of words in your favorite list\n";
-		// std::cout << ++cnt << ". Go back to previous page\n";
+	Screen *nextScreen = this;
+	int choice = inputOption(options.size());
 
-		std::getline(std::cin, buffer, '\n');
-
-		while (!CheckString(buffer, choice) || choice < minNumChoice || choice > maxNumChoice)
-		{
-			std::cout << "The number you have entered does not correspond to any choice!\n";
-			std::cout << "Please re-enter: ";
-			std::getline(std::cin, buffer, '\n');
-		}
-
-		app->state.userChoice = choice;
-
-		switch (choice)
-		{
-		case 1:
-			SetNextScreen(app, new Type2InsertWordFavListScreen());
-			break;
-		case 2:
-			SetNextScreen(app, new Type2RemoveWordFavListScreen());
-			break;
-		case 3:
-			SetNextScreen(app, new SearchPrefixFavList());
-			break;
-		case 4:
-			SetNextScreen(app, new FirstScreen());
-			break;
-		}
-	}
-	else
-	{
-		cnt = 0, maxNumChoice = 2;
-
-		std::cout << "Your choice was: " << app->state.userChoice << "\n\n";
-		std::cout << "What would you like to do?\n";
-		std::cout << ++cnt << ". Type in a word to insert it to your favorite list\n";
-		// std::cout << ++cnt << ". Type in a word to remove it from your favorite list\n";
-		// std::cout << ++cnt << ". Search prefix of words in your favorite list\n";
-		std::cout << ++cnt << ". Go back to previous page\n";
-
-		std::getline(std::cin, buffer, '\n');
-
-		while (!CheckString(buffer, choice) || choice < minNumChoice || choice > maxNumChoice)
-		{
-			std::cout << "The number you have entered does not correspond to any choice!\n";
-			std::cout << "Please re-enter: ";
-			std::getline(std::cin, buffer, '\n');
-		}
-
-		app->state.userChoice = choice;
-		switch (choice)
-		{
-		case 1:
-			SetNextScreen(app, new Type2InsertWordFavListScreen());
-			break;
-		case 2:
-			SetNextScreen(app, new FirstScreen());
-			break;
-		}
-	}
-}
-
-void Type2RemoveWordFavListScreen::Render(App *app)
-{
-	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-
-	if (app->state.tst->treeExists())
-	{
-		app->state.tst->type2RemoveWord();
-	}
-	else
-	{
-		std::cout << "No tree has been created so there's nothing to remove\n";
-	}
-	int choice = -1;
-	std::string buffer;
-
-	std::cout << "\nEnter 0 to return to previous page\n";
-	std::getline(std::cin, buffer, '\n');
-
-	while (!CheckString(buffer, choice) || choice != 0)
-	{
-		std::cout << "The number you have entered does not correspond to any choice!\n";
-		std::cout << "Please re-enter: ";
-		std::getline(std::cin, buffer, '\n');
-	}
-
-	SetNextScreen(app, new FavListChoiceScreen());
+	// dic
+	//fix
+	
+	nextScreen = new FavListChoiceScreen();
+	return nextScreen;
 }
 
 void Type2InsertWordFavListScreen::Render(App *app)
