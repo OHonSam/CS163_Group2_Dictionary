@@ -91,21 +91,21 @@ public:
 class SearchPrefixFavList: public Screen
 {
 public:
-    Home(Dict* dict) : Screen(dict) {}
+    SearchPrefixFavList(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 
 class InsertWordFavListScreen: public Screen
 {
 public:
-    Home(Dict* dict) : Screen(dict) {}
+    InsertWordFavListScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 
 class RemoveWordFavListScreen: public Screen
 {
 public:
-    Home(Dict* dict) : Screen(dict) {}
+    RemoveWordFavListScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 
