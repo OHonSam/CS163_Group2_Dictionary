@@ -105,19 +105,13 @@ void Trie::save(Node *root, std::ofstream &file)
     file.write((char *)&marker, sizeof(char));
 }
 
-void Trie::clear(Node *&root)
-{
-    if (root == nullptr)
-        return;
-    for (int i = 0; i < ALPHABET_SIZE; i++)
-        clear(root->child[i]);
-    delete root;
-    root = nullptr;
-}
-
 void Trie::clear()
 {
-    clear(root);
+    if (root != nullptr)
+    {
+        delete root;
+        root = nullptr;
+    }
 }
 
 bool Trie::import(const std::string &path)

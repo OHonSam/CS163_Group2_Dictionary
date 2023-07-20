@@ -2,7 +2,8 @@
 
 int main()
 {
-    App app;
-    app.run();
+    Dict dict;
+    Word* w=dict.searchDef("aback");
+    std::cout<<w->word<<std::endl;
     return 0;
 }

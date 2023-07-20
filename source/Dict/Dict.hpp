@@ -6,28 +6,49 @@
 #include "Trie.hpp"
 #include <Libraries.hpp>
 
+namespace RAW_DATA
+{
+	const std::string EE = "assets/RawData/EE.csv";
+}
+
+namespace MAIN
+{
+	const std::string WORDS = "assets/DS/main/words.bin";
+	const std::string WORDDEF = "assets/DS/main/wordDef.bin";
+	const std::string FAVLIST = "assets/DS/main/favList.bin";
+	const std::string HISTORY = "assets/DS/main/history.bin";
+}
+
+namespace DEFAULT
+{
+	const std::string WORDS = "assets/DS/default/words.bin";
+	const std::string WORDDEF = "assets/DS/default/wordDef.bin";
+	const std::string FAVLIST = "assets/DS/default/favList.bin";
+	const std::string HISTORY = "assets/DS/default/history.bin";
+}
+
 class Dict
 {
 private:
+	const int LIM_WORDS = 100000;
+
 	SLL <std::string> history;
 	HashTable wordDef;
 	Trie words;
 	TST favList;
 
+	bool lowerStrEng(std::string& str);
+
 public:
-	Dict(bool firstInit = true);				
+	// If first time running, import the raw dataset
+	// else load from the saved data structures in main folder
+	Dict(bool firstInit=true);				
 
 	// Save data structures before deleting
-	// ~Dict();										
-
-	// Load from json file
-	// bool importJson(const std::string& path); 
+	~Dict();										
 
 	// Load from csv file
-	bool importCsv(const std::string& path);				
-
-	// Load from binary file
-	// bool importBinary(const std::string& path); 				
+	bool importEECsv(const std::string& path);							
 
 	// Reset to the default dataset
 	bool reset();									
@@ -35,8 +56,8 @@ public:
 	// Edit definition of existed word
 	// void updateDef(const std::string& word, const std::string& newDef); 
 
-	// Add a pair of word and definition
-	// void addWord(const std::string& word, const std::string& def);		
+	// Add a new word and corresponding definition
+	void addWord(Word* word);
 
 	// Add a word to the favorite list
 	// void addFav(const std::string& word);					
@@ -60,7 +81,7 @@ public:
 	// std::vector<std::string> getFav();						
 
    	// Return a definition for a required word
-    // std::string searchDef(const std::string& word); 			
+    Word* searchDef(const std::string& word); 			
 	
 	// Return the list of words which has an identical given prefix
 	// std::vector<std::string> searchPrefix(const std::string& prefix);		
