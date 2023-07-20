@@ -74,6 +74,7 @@ int HashTable::hash(const std::string& word) {
 
 HashTable::HashTable():bit(MOD[NMOD-1])
 {
+    numWords=0;
     buckets.resize(MOD[NMOD-1]);
 }
 

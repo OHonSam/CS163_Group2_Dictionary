@@ -11,7 +11,7 @@ add_library(GTest::GTest INTERFACE IMPORTED)
 target_link_libraries(GTest::GTest INTERFACE gtest_main)
 
 # add data structures
-set(DS_LIST HashTable Trie SLL)
+set(DS_LIST HashTable Trie SLL Dict)
 
 foreach(DS ${DS_LIST})
   set(TEST_NAME ${DS}_test)
