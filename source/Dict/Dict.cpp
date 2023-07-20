@@ -33,7 +33,12 @@ bool Dict::lowerStrEng(std::string &str)
 Dict::Dict(bool firstInit)
 {
     if(firstInit)
+    {
         importEECsv(RAW_DATA::EE);
+
+        words.save(DEFAULT::WORDS);
+        wordDef.save(DEFAULT::WORDDEF);
+    }
     else
     {
         words.import(MAIN::WORDS);

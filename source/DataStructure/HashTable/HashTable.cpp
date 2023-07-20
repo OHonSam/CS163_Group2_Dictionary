@@ -212,7 +212,7 @@ bool HashTable::save(const std::string& path) {
         }
     }
     out.close();
-    HashTable::clear();
+    // HashTable::clear();
     return true;
 }
 // please do not delete test code
