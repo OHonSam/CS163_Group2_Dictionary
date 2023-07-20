@@ -30,10 +30,14 @@ namespace DEFAULT
 class Dict
 {
 private:
+	const int LIM_WORDS = 100000;
+
 	SLL <std::string> history;
 	HashTable wordDef;
 	Trie words;
 	TST favList;
+
+	bool lowerStrEng(std::string& str);
 
 public:
 	// If first time running, import the raw dataset

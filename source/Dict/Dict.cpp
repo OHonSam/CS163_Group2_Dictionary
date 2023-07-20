@@ -21,6 +21,15 @@ void Dict::addWord(Word *word)
     wordDef.insert(word);
 }
 
+bool Dict::lowerStrEng(std::string &str)
+{
+    for (char &c : str) c=std::tolower(c);
+    for (char c: str)
+        if (c < 'a' || c > 'z')
+            return false;
+    return true;
+}
+
 Dict::Dict(bool firstInit)
 {
     if(firstInit)
@@ -45,9 +54,13 @@ Dict::~Dict()
 bool Dict::importEECsv(const std::string &path)
 {
     std::ifstream in(path);
+    if(!in.is_open()) return false;
+    
     std::string line;
     std::getline(in,line);
 
+    int cnt=0;
+    std::string pre=0;
     while(!in.eof())
     {
         std::string word, len, POS, def;
@@ -56,10 +69,8 @@ bool Dict::importEECsv(const std::string &path)
         std::getline(in,POS,',');
         std::getline(in,def,'\n');
 
-        // put word lowercase all
-        for(char &c:word)
-            if(c>='A' && c<='Z')
-                c=c-'A'+'a';
+        if(!lowerStrEng(word)) continue;
+        if(POS.size()<6 || def.size()<6) continue;
 
         POS=POS.substr(3,POS.size()-6);
         def=def.substr(3,def.size()-6);
@@ -68,9 +79,7 @@ bool Dict::importEECsv(const std::string &path)
         
         Word* w=new Word(word,type,def);
 
-        // Insert new word to necessary data structures
-        words.insert(word); // Add to trie
-        wordDef.insert(w);  // Add to hash table
+        addWord(w);
     }
     in.close();
     return true;
