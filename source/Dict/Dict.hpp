@@ -6,6 +6,27 @@
 #include "Trie.hpp"
 #include <Libraries.hpp>
 
+namespace RAW_DATA
+{
+	const std::string EE = "assets/RawData/EE.csv";
+}
+
+namespace MAIN
+{
+	const std::string WORDS = "assets/DS/main/words.bin";
+	const std::string WORDDEF = "assets/DS/main/wordDef.bin";
+	const std::string FAVLIST = "assets/DS/main/favList.bin";
+	const std::string HISTORY = "assets/DS/main/history.bin";
+}
+
+namespace DEFAULT
+{
+	const std::string WORDS = "assets/DS/default/words.bin";
+	const std::string WORDDEF = "assets/DS/default/wordDef.bin";
+	const std::string FAVLIST = "assets/DS/default/favList.bin";
+	const std::string HISTORY = "assets/DS/default/history.bin";
+}
+
 class Dict
 {
 private:
@@ -15,19 +36,15 @@ private:
 	TST favList;
 
 public:
-	// Dict(const std::string& path, bool isJson);				
+	// If first time running, import the raw dataset
+	// else load from the saved data structures in main folder
+	Dict(bool firstInit=true);				
 
 	// Save data structures before deleting
 	// ~Dict();										
 
-	// Load from json file
-	// bool importJson(const std::string& path); 
-
 	// Load from csv file
-	bool importCsv(const std::string& path);				
-
-	// Load from binary file
-	// bool importBinary(const std::string& path); 				
+	bool importEECsv(const std::string& path);							
 
 	// Reset to the default dataset
 	bool reset();									

@@ -1,13 +1,5 @@
 #include <Dict.hpp>
 
-// bool Dict::importJson(const std::string &path)
-// {
-//     // Open the JSON file
-//     std::ifstream inputFile(path);
-//     if (!inputFile.is_open()) {
-//         std::cerr << "Failed to open the input file." << std::endl;
-//         return false;
-//     }
 bool Dict::reset(){
     if(!history.clearHistory("HistorySLL.bin"))
         return false;
@@ -15,43 +7,22 @@ bool Dict::reset(){
     return true;
 }
 
-//     // Read the entire file into a std::string
-//     std::string jsonString((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
-
-//     // Close the file
-//     inputFile.close();
-
-//     // Parse the JSON std::string
-//     Json::Value root;
-//     Json::Reader reader;
-
-//     bool parsingSuccessful = reader.parse(jsonString, root);
-//     if (!parsingSuccessful) {
-//         std::cerr << "Failed to parse the JSON file: " << reader.getFormattedErrorMessages() << std::endl;
-//         return false;
-//     }
-
-//     // Iterate over the words
-//     for(const auto& key: root.getMemberNames()) {
-//         // Get the word
-//         std::string word = key;
-
-//         // Get the definition
-//         std::string definition = root[word].asString();
-
-//         //Insert the word into the trie
-//         words.insert(word);
-
-//         //Insert the word and its definition into the hash table
-//         wordDef.insert(word, definition);
-//     }
-
-//     return true;
-// }
-
-bool Dict::importCsv(const std::string &path)
+Dict::Dict(bool firstInit)
 {
-    std::ifstream in("assets/Datasets/EE.csv");
+    if(firstInit)
+        importEECsv(RAW_DATA::EE);
+    else
+    {
+        words.import(MAIN::WORDS);
+        wordDef.import(MAIN::WORDDEF);
+        favList.import(MAIN::FAVLIST);
+        history.importSLLStr(MAIN::HISTORY);
+    }
+}
+
+bool Dict::importEECsv(const std::string &path)
+{
+    std::ifstream in(path);
     std::string line;
     std::getline(in,line);
 
