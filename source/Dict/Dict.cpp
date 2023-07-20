@@ -15,6 +15,12 @@ bool Dict::reset(){
     return true;
 }
 
+void Dict::addWord(Word *word)
+{
+    words.insert(word->word);
+    wordDef.insert(word);
+}
+
 Dict::Dict(bool firstInit)
 {
     if(firstInit)

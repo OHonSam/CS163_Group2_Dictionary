@@ -52,8 +52,8 @@ public:
 	// Edit definition of existed word
 	// void updateDef(const std::string& word, const std::string& newDef); 
 
-	// Add a pair of word and definition
-	// void addWord(const std::string& word, const std::string& def);		
+	// Add a new word and corresponding definition
+	void addWord(Word* word);
 
 	// Add a word to the favorite list
 	// void addFav(const std::string& word);					
