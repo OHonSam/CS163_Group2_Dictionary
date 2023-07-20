@@ -77,7 +77,7 @@ public:
 	// std::vector<std::string> getFav();						
 
    	// Return a definition for a required word
-    // std::string searchDef(const std::string& word); 			
+    Word* searchDef(const std::string& word); 			
 	
 	// Return the list of words which has an identical given prefix
 	// std::vector<std::string> searchPrefix(const std::string& prefix);		

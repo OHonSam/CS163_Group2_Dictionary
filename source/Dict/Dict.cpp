@@ -112,6 +112,10 @@ std::vector<std::string> Dict::getHistory(){
     return history.SLLintoVector();
 }
 
+Word *Dict::searchDef(const std::string &word)
+{
+    return wordDef.searchDef(word);
+}
 
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
