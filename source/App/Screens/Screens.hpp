@@ -67,7 +67,7 @@ private:
     };
 
 public:
-    Home(Dict* dict) : Screen(dict) {}
+    FavListChoiceScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 //----------------------Parent: Home-------------end-------------------------
@@ -77,14 +77,14 @@ public:
 class Type2RemoveWordFavListScreen: public Screen
 {
 public:
-    Home(Dict* dict) : Screen(dict) {}
+    Type2RemoveWordFavListScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 
 class Type2InsertWordFavListScreen: public Screen
 {
 public:
-    Home(Dict* dict) : Screen(dict) {}
+    Type2InsertWordFavListScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 
