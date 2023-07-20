@@ -57,9 +57,10 @@ public:
 
     ~TST()
     {
-        delete root;
-        root = nullptr;
+        clear();
     }
+
+    void clear();
 
     void insert(const std::string &word);
     void deletion(const std::string &word);

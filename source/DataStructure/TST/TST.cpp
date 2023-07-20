@@ -1,5 +1,11 @@
 #include "TST.hpp"
 
+void TST::clear()
+{
+    delete root;
+    root = nullptr;
+}
+
 void TST::insert(const std::string &word)
 {
     recursiveInsert(root, word, 0);

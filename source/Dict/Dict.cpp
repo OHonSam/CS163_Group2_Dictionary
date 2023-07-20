@@ -1,9 +1,17 @@
 #include <Dict.hpp>
 
 bool Dict::reset(){
-    if(!history.clearHistory("HistorySLL.bin"))
+    words.clear();
+    wordDef.clear();
+    favList.clear();
+    history.clearSLL();
+    if(
+        !words.import(DEFAULT::WORDS) ||
+        !wordDef.import(DEFAULT::WORDDEF) ||
+        !favList.import(DEFAULT::FAVLIST) ||
+        !history.importSLLStr(DEFAULT::HISTORY)
+    )
         return false;
-    //waiting for others
     return true;
 }
 

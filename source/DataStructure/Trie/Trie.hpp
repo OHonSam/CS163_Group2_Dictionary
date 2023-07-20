@@ -58,15 +58,11 @@ public:
 	}
 	~Trie()
 	{
-		if (root != nullptr)
-		{
-			delete root;
-			root = nullptr;
-		}
+		clear();
 	}
 
 	// Deallocate all nodes
-	// void clear();
+	void clear();
 
 	// Load from binary file
 	bool import(const std::string &path);

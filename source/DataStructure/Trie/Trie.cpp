@@ -105,6 +105,15 @@ void Trie::save(Node *root, std::ofstream &file)
     file.write((char *)&marker, sizeof(char));
 }
 
+void Trie::clear()
+{
+    if (root != nullptr)
+    {
+        delete root;
+        root = nullptr;
+    }
+}
+
 bool Trie::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
