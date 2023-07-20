@@ -55,13 +55,13 @@ bool Dict::importEECsv(const std::string &path)
 {
     std::ifstream in(path);
     if(!in.is_open()) return false;
-    
+
     std::string line;
     std::getline(in,line);
 
     int cnt=0;
-    std::string pre=0;
-    while(!in.eof())
+    std::string pre="";
+    while(!in.eof() && cnt<LIM_WORDS)
     {
         std::string word, len, POS, def;
         std::getline(in,word,',');
@@ -80,6 +80,8 @@ bool Dict::importEECsv(const std::string &path)
         Word* w=new Word(word,type,def);
 
         addWord(w);
+
+        cnt++;
     }
     in.close();
     return true;
