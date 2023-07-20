@@ -81,7 +81,11 @@ bool Dict::importEECsv(const std::string &path)
 
         addWord(w);
 
-        cnt++;
+        if(word!=pre)
+        {
+            cnt++;
+            pre=word;
+        }
     }
     in.close();
     return true;
