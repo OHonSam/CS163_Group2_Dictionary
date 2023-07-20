@@ -41,7 +41,7 @@ public:
 	Dict(bool firstInit=true);				
 
 	// Save data structures before deleting
-	// ~Dict();										
+	~Dict();										
 
 	// Load from csv file
 	bool importEECsv(const std::string& path);							

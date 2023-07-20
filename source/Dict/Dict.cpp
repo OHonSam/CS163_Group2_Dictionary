@@ -20,6 +20,14 @@ Dict::Dict(bool firstInit)
     }
 }
 
+Dict::~Dict()
+{
+    words.save(MAIN::WORDS);
+    wordDef.save(MAIN::WORDDEF);
+    favList.save(MAIN::FAVLIST);
+    history.saveSLLStr(MAIN::HISTORY);
+}
+
 bool Dict::importEECsv(const std::string &path)
 {
     std::ifstream in(path);
