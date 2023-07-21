@@ -5,14 +5,12 @@ bool Dict::reset(){
     wordDef.clear();
     favList.clear();
     history.clearSLL();
-    if(
-        !words.import(DEFAULT::WORDS) ||
-        !wordDef.import(DEFAULT::WORDDEF) ||
-        !favList.import(DEFAULT::FAVLIST) ||
-        !history.importSLLStr(DEFAULT::HISTORY)
-    )
-        return false;
-    return true;
+    return 
+        words.import(DEFAULT::WORDS) &&
+        wordDef.import(DEFAULT::WORDDEF) &&
+        favList.import(DEFAULT::FAVLIST) &&
+        history.importSLLStr(DEFAULT::HISTORY)
+    ;
 }
 
 void Dict::addWord(Word *word)
