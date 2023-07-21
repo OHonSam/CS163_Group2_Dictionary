@@ -63,7 +63,7 @@ public:
 	void addWord(Word* word);
 
 	// Add a word to the favorite list
-	// void addFav(const std::string& word);					
+	void addFav(const std::string& word);					
 
 	// Add a word to the history
 	void addHistory(const std::string& word);//			
@@ -72,7 +72,7 @@ public:
 	void removeWord(const std::string& word);				
 
  	// Remove a word from the favorite list
-	// void removeFav(const std::string& word);				
+	void removeFav(const std::string& word);				
 
  	// Remove a word from the history
 	void removeHistory(const std::string& word);//				

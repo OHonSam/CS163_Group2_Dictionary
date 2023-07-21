@@ -19,6 +19,11 @@ void Dict::addWord(Word *word)
     wordDef.insert(word);
 }
 
+void Dict::addFav(const std::string &word)
+{
+    favList.insert(word);
+}
+
 bool Dict::lowerStrEng(std::string &str)
 {
     for (char &c : str) c=std::tolower(c);
@@ -145,4 +150,9 @@ Word *Dict::searchDef(const std::string &word)
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
     //waiting for others
+}
+
+void Dict::removeFav(const std::string &word)
+{
+    favList.deletion(word);
 }
