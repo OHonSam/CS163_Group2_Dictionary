@@ -28,21 +28,16 @@ bool Dict::lowerStrEng(std::string &str)
     return true;
 }
 
-Dict::Dict(bool firstInit)
+Dict::Dict()
 {
-    if(firstInit)
+    if(!loadFromPrev())
     {
         importEECsv(RAW_DATA::EE);
 
         words.save(DEFAULT::WORDS);
         wordDef.save(DEFAULT::WORDDEF);
-    }
-    else
-    {
-        words.import(MAIN::WORDS);
-        wordDef.import(MAIN::WORDDEF);
-        favList.import(MAIN::FAVLIST);
-        history.importSLLStr(MAIN::HISTORY);
+        favList.save(DEFAULT::FAVLIST);
+        history.saveSLLStr(DEFAULT::HISTORY);
     }
 }
 
@@ -52,6 +47,16 @@ Dict::~Dict()
     wordDef.save(MAIN::WORDDEF);
     favList.save(MAIN::FAVLIST);
     history.saveSLLStr(MAIN::HISTORY);
+}
+
+bool Dict::loadFromPrev()
+{
+    return 
+        words.import(MAIN::WORDS) &&
+        wordDef.import(MAIN::WORDDEF) &&
+        favList.import(MAIN::FAVLIST) &&
+        history.importSLLStr(MAIN::HISTORY)
+    ;
 }
 
 bool Dict::importEECsv(const std::string &path)

@@ -42,10 +42,13 @@ private:
 public:
 	// If first time running, import the raw dataset
 	// else load from the saved data structures in main folder
-	Dict(bool firstInit=true);				
+	Dict();				
 
 	// Save data structures before deleting
-	~Dict();										
+	~Dict();	
+
+	// Load from previous save data
+	bool loadFromPrev();									
 
 	// Load from csv file
 	bool importEECsv(const std::string& path);							
