@@ -52,3 +52,27 @@ TEST(Dict_test_rawData, addWord)
     ASSERT_FALSE(res->def[POS::getIndex(POS::Noun)].empty());
     EXPECT_TRUE(res->def[POS::getIndex(POS::Noun)][0]=="abc_def");
 }
+
+TEST(Dict_test_rawData, reset)
+{
+    Dict dict;
+    Word* w=new Word("abc",POS::Noun,"abc_def");
+
+    dict.addWord(w);
+    Word* res=dict.searchDef("abc");
+    ASSERT_TRUE(res!=nullptr);
+    EXPECT_TRUE(res->word=="abc");
+    ASSERT_FALSE(res->def[POS::getIndex(POS::Noun)].empty());
+    EXPECT_TRUE(res->def[POS::getIndex(POS::Noun)][0]=="abc_def");
+
+    dict.reset();
+    EXPECT_TRUE(dict.searchDef("abc")==nullptr);
+    for(int i=0;i<words.size();++i)
+    {
+        Word* w=dict.searchDef(words[i]);
+        ASSERT_TRUE(w!=nullptr);
+        EXPECT_TRUE(w->word==words[i]);
+        ASSERT_FALSE(w->def[POS::getIndex(type[i])].empty());
+        EXPECT_TRUE(w->def[POS::getIndex(type[i])][0]==def[i]);
+    }
+}
