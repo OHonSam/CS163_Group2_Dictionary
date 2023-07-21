@@ -26,7 +26,7 @@ const vector<string> def={
     "One of the compartments in a church which are separated by low partitions  and have long seats upon which several persons may sit; -- sometimes called slip. Pews were originally made square but are now usually long and narrow."
 };
 
-TEST(Dict_test_rawData, ReadCsvAndSearch)
+TEST(Dict_test, ReadCsvAndSearch)
 {
     Dict dict;
 
@@ -40,7 +40,7 @@ TEST(Dict_test_rawData, ReadCsvAndSearch)
     }
 }
 
-TEST(Dict_test_rawData, addWord)
+TEST(Dict_test, addWord)
 {
     Dict dict;
     Word* w=new Word("abc",POS::Noun,"abc_def");
@@ -53,7 +53,7 @@ TEST(Dict_test_rawData, addWord)
     EXPECT_TRUE(res->def[POS::getIndex(POS::Noun)][0]=="abc_def");
 }
 
-TEST(Dict_test_rawData, reset)
+TEST(Dict_test, reset)
 {
     Dict dict;
     Word* w=new Word("abc",POS::Noun,"abc_def");

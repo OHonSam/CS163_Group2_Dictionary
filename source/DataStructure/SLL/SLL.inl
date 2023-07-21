@@ -142,6 +142,8 @@ bool SLL<T>::importSLLStr(const std::string& path) {
         //cout << "Can't open the file for reading!";
         return false;
     }
+    if(fin.peek() == std::ifstream::traits_type::eof())
+        return true;
     int len;
     while (fin.read((char*)&len,sizeof(int))) {
         char* arr = new char[len];
