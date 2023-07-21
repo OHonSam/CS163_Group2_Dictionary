@@ -68,7 +68,7 @@ bool Dict::importEECsv(const std::string &path)
     std::getline(in,line);
 
     int cnt=0;
-    std::string pre="";
+    Word* w=nullptr;
     while(!in.eof() && cnt<LIM_WORDS)
     {
         std::string word, len, POS, def;
@@ -85,16 +85,18 @@ bool Dict::importEECsv(const std::string &path)
 
         unsigned int type=POS::getType(POS);
         
-        Word* w=new Word(word,type,def);
-
-        addWord(w);
-
-        if(word!=pre)
+        if(w==nullptr || w->word!=word)
         {
             cnt++;
-            pre=word;
+            if(w!=nullptr) addWord(w);
+            w=new Word(word,type,def);
         }
+        else
+            for(int i=0;i<POS::Count;++i)
+                if(type&(1<<i))
+                    w->def[i].push_back(def);
     }
+    if(w!=nullptr) addWord(w);
     in.close();
     return true;
 }
