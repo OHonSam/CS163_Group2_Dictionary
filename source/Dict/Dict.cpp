@@ -149,7 +149,9 @@ Word *Dict::searchDef(const std::string &word)
 
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
-    //waiting for others
+    removeFav(word);
+    wordDef.remove(word);
+    words.remove(word);
 }
 
 void Dict::removeFav(const std::string &word)
