@@ -182,14 +182,15 @@ void Dict::removeFav(const std::string &word)
     favList.remove(word);
 }
 
-void Dict::uppercase2Lowercase(std::string &str)
+bool Dict::uppercase2Lowercase(std::string &str)
 {
-    int len = str.size();
-    for (int i = 0; i < len; ++i)
-    {
-        if (str[i] >= 'A' && str[i] <= 'Z')
-        {
-            str[i] = str[i] - 'A' + 'a';
-        }
-    }
+    // int len = str.size();
+    // for (int i = 0; i < len; ++i)
+    // {
+    //     if (str[i] >= 'A' && str[i] <= 'Z')
+    //     {
+    //         str[i] = str[i] - 'A' + 'a';
+    //     }
+    // }
+    return lowerStrEng(str);
 }

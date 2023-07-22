@@ -98,6 +98,6 @@ public:
 	void getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord);
 
 	//Turn uppercase to lowercase
-	void uppercase2Lowercase(std::string &str)
+	bool uppercase2Lowercase(std::string &str)
 };
 #endif

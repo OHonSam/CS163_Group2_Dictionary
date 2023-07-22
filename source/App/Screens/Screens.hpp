@@ -157,21 +157,6 @@ public:
     SearchPrefixFavList(Dict *dict) : Screen(dict) {}
     Screen *render();
 };
-
-class InsertWordFavListScreen : public Screen
-{
-public:
-    InsertWordFavListScreen(Dict *dict) : Screen(dict) {}
-    Screen *render();
-};
-
-class RemoveWordFavListScreen : public Screen
-{
-public:
-    RemoveWordFavListScreen(Dict *dict) : Screen(dict) {}
-    Screen *render();
-};
-
 //----------------------End Parent: FavListChoiceScreen--------------------------------------
 
 #endif // SCREENS_HPP
