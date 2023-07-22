@@ -52,8 +52,8 @@ class SearchScreen: public Screen
 {
 private:
     const std::vector<std::string> options = {
-        "Search for a keyword",
-        "Search for a definition",
+        "Search for (a) definiton(s)",
+        "Search for (a) keyword(s)",
         "Back"
     };
 public:
@@ -99,6 +99,7 @@ class SearchForDefScreen: public Screen{
 public:
     SearchForDefScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
+    void displayPrefixMode(const std::string& word);
 };
 
 //-------------------------End Parent: SearchScreen---------------------------

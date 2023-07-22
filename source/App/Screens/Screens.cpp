@@ -123,10 +123,10 @@ Screen* SearchScreen::render(){
     switch(choice)
     {
         case 1:
-            //nextScreen=new SearchWordScreen(dict);
+            nextScreen=new SearchForDefScreen(dict);
             break;
         case 2:
-            //nextScreen=new SearchDefScreen(dict);
+            //nextScreen=new SearchForWordScreen(dict);
             break;
         case 3:
             nextScreen=new Home(dict);
@@ -202,7 +202,15 @@ Screen* SearchForDefScreen::render(){
     std::cout<<"Enter the word you want to search for: ";
     std::string word;
     std::getline(std::cin,word);
-
+    SearchForDefScreen::displayPrefixMode(word);
+    
+    int cnt=0;
+    std::cout<<++cnt<<". Back"<<std::endl;
+    inputOption(cnt);
+    return new SearchScreen(dict);
+}
+void SearchForDefScreen::displayPrefixMode(const std::string& word)
+{
     std::vector<std::string> prefixes=dict->searchPrefix(word);
     if(prefixes.empty())
         std::cout<<"No result found!\n";
@@ -227,11 +235,6 @@ Screen* SearchForDefScreen::render(){
             }
         }
     }
-
-    int cnt=0;
-    std::cout<<++cnt<<". Back"<<std::endl;
-    inputOption(cnt);
-    return new SearchScreen(dict);
 }
 //-------------------------End Parent: SearchScreen-------------------------------
 
