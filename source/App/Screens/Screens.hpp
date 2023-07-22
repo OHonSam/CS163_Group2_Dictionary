@@ -7,30 +7,28 @@
 class Screen
 {
 private:
-    bool checkStrOption(const std::string& str, int& choice);
+    bool checkStrOption(const std::string &str, int &choice);
     bool checkStrEng(std::string str);
 
 protected:
-    Dict* dict;
+    Dict *dict;
 
     void clear();
 
     int inputOption(
         int maxOption,
-        const std::string& mess="Your choice: "
-    );
+        const std::string &mess = "Your choice: ");
     std::string inputEngString(
-        const std::string& mess="Enter English word:"
-    );
+        const std::string &mess = "Enter English word:");
 
 public:
-    Screen(Dict* dict) : dict(dict) {}
-    virtual Screen* render() = 0;
+    Screen(Dict *dict) : dict(dict) {}
+    virtual Screen *render() = 0;
 };
 //
 
 // Home
-class Home: public Screen
+class Home : public Screen
 {
 private:
     const std::vector<std::string> options = {
@@ -40,18 +38,16 @@ private:
         "Reset to default",
         "Random",
         "Switch between dictionaries (English-Vietnamese, Vietnamese-English, English-English)",
-        "Exit"
-    };
+        "Exit"};
 
 public:
-    Home(Dict* dict) : Screen(dict) {}
-    Screen* render();
+    Home(Dict *dict) : Screen(dict) {}
+    Screen *render();
 };
 //
 
-
 //----------------------Parent: Home--------------------------------------
-class FavListChoiceScreen: public Screen
+class FavListChoiceScreen : public Screen
 {
 private:
     const std::vector<std::string> options = {
@@ -67,49 +63,52 @@ private:
     };
 
 public:
-    FavListChoiceScreen(Dict* dict) : Screen(dict) {}
-    Screen* render();
+    FavListChoiceScreen(Dict *dict) : Screen(dict) {}
+    Screen *render();
 };
 //----------------------Parent: Home-------------end-------------------------
 
-
 //----------------------Parent: FavListChoiceScreen--------------------------------------
-class Type2RemoveWordFavListScreen: public Screen
+class Type2RemoveWordFavListScreen : public Screen
 {
+private:
+    const std::vector<std::string> options = {
+        "Enter 0 to return to previous page",
+    };
+
 public:
-    Type2RemoveWordFavListScreen(Dict* dict) : Screen(dict) {}
-    Screen* render();
+    Type2RemoveWordFavListScreen(Dict *dict) : Screen(dict) {}
+    Screen *render();
 };
 
-class Type2InsertWordFavListScreen: public Screen
+class Type2InsertWordFavListScreen : public Screen
 {
 public:
-    Type2InsertWordFavListScreen(Dict* dict) : Screen(dict) {}
-    Screen* render();
+    Type2InsertWordFavListScreen(Dict *dict) : Screen(dict) {}
+    Screen *render();
 };
 
-class SearchPrefixFavList: public Screen
+class SearchPrefixFavList : public Screen
 {
 public:
-    SearchPrefixFavList(Dict* dict) : Screen(dict) {}
-    Screen* render();
+    SearchPrefixFavList(Dict *dict) : Screen(dict) {}
+    Screen *render();
 };
 
-class InsertWordFavListScreen: public Screen
+class InsertWordFavListScreen : public Screen
 {
 public:
-    InsertWordFavListScreen(Dict* dict) : Screen(dict) {}
-    Screen* render();
+    InsertWordFavListScreen(Dict *dict) : Screen(dict) {}
+    Screen *render();
 };
 
-class RemoveWordFavListScreen: public Screen
+class RemoveWordFavListScreen : public Screen
 {
 public:
-    RemoveWordFavListScreen(Dict* dict) : Screen(dict) {}
-    Screen* render();
+    RemoveWordFavListScreen(Dict *dict) : Screen(dict) {}
+    Screen *render();
 };
 
 //----------------------Parent: FavListChoiceScreen-------------end-------------------------
-
 
 #endif // SCREENS_HPP
