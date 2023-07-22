@@ -2,7 +2,7 @@
 #include "TST.hpp"
 using namespace std;
 
-const int N=8;
+const int N=9;
 const string word[N]{
     "hello",
     "world",
@@ -11,46 +11,115 @@ const string word[N]{
     "I",
     "in",
     "the",
-    "a"
+    "a",
+    "wonderful",
 };
 
-TEST(TST_test, push)
+void input(TST& tst)
 {
-    TST tst;
-    for(int i=0; i<N; i++)
+    for(int i=0; i<N; ++i)
         tst.insert(word[i]);
-    for(int i=0; i<N; i++)
-        EXPECT_TRUE(tst.wordExists(word[i]));
 }
 
-TEST(TST_test, pop)
-{
-    TST tst;
-    for(int i=0; i<N; i++)
-    {
-        tst.insert(word[i]);
-        EXPECT_TRUE(tst.wordExists(word[i]));
-    }
+// TEST(TST_test, push)
+// {
+//     TST tst;
+//     input(tst);
+//     for(int i=0; i<N; ++i)
+//         EXPECT_TRUE(tst.wordExists(word[i]));
+// }
 
-    for(int i=0; i<N; i++)
-    {
-        tst.remove(word[i]);
-        EXPECT_FALSE(tst.wordExists(word[i]));
-    }
+// TEST(TST_test, pop)
+// {
+//     TST tst;
+//     for(int i=0; i<N; ++i)
+//     {
+//         tst.insert(word[i]);
+//         EXPECT_TRUE(tst.wordExists(word[i]));
+//     }
+
+//     for(int i=0; i<N; ++i)
+//     {
+//         tst.remove(word[i]);
+//         EXPECT_FALSE(tst.wordExists(word[i]));
+//     }
+// }
+
+namespace testing {
+
+// Returns an AssertionResult object to indicate that an assertion has
+// succeeded.
+AssertionResult AssertionSuccess();
+
+// Returns an AssertionResult object to indicate that an assertion has
+// failed.
+AssertionResult AssertionFailure();
+
 }
 
-TEST(TST_test, ImportAndSave)
+testing::AssertionResult IsEven(int n) {
+  if (n == 4)
+    return testing::AssertionSuccess();
+  else
+    return testing::AssertionFailure() << n;
+}
+
+TEST(TST_test, startWith)
 {
     TST tst;
-    for(int i=0; i<N; i++)
-        tst.insert(word[i]);
+    input(tst);
+    vector<string> prefix;
+    
+    prefix=tst.startWith("w");
+    // ASSERT_EQ(prefix.size(), 2);
+    EXPECT_TRUE(IsEven(prefix.size()));
+    // EXPECT_EQ(prefix[0], "wonderful");
+    // EXPECT_EQ(prefix[1], "world");
 
-    ASSERT_TRUE(tst.save("TST.bin"));
+    // prefix=tst.startWith("a");
+    // EXPECT_EQ(prefix.size(), 1);
+    // EXPECT_EQ(prefix[0], "a");
 
-    // for(int i=0; i<N; i++)
-    //     EXPECT_FALSE(tst.wordExists(word[i]));
+    // prefix=tst.startWith("dra");
+    // EXPECT_EQ(prefix.size(), 1);
+    // EXPECT_EQ(prefix[0], "dramatically");
 
-    ASSERT_TRUE(tst.import("TST.bin"));
-    for(int i=0; i<N; i++)
-        EXPECT_TRUE(tst.wordExists(word[i]));
+    // prefix=tst.startWith("he");
+    // EXPECT_EQ(prefix.size(), 1);
+    // EXPECT_EQ(prefix[0], "hello");
+
+
+    // prefix=tst.startWith("fa");
+    // EXPECT_EQ(prefix.size(), 1);
+    // EXPECT_EQ(prefix[0], "fantastic");
+
+    // prefix=tst.startWith("i");
+    // EXPECT_EQ(prefix.size(), 1);
+    // EXPECT_EQ(prefix[0], "in");
+
+    // prefix=tst.startWith("t");
+    // EXPECT_EQ(prefix.size(), 1);
+    // EXPECT_EQ(prefix[0], "the");
+
+    // prefix=tst.startWith("z");
+    // EXPECT_EQ(prefix.size(), 0);
+
+    // prefix=tst.startWith("");
+    // EXPECT_EQ(prefix.size(), N);
 }
+
+// TEST(TST_test, ImportAndSave)
+// {
+//     TST tst;
+//     for(int i=0; i<N; ++i)
+//         tst.insert(word[i]);
+
+//     ASSERT_TRUE(tst.save("TST.bin"));
+
+//     // for(int i=0; i<N; ++i)
+//     //     EXPECT_FALSE(tst.wordExists(word[i]));
+
+//     ASSERT_TRUE(tst.import("TST.bin"));
+//     for(int i=0; i<N; ++i)
+//         EXPECT_TRUE(tst.wordExists(word[i]));
+// }

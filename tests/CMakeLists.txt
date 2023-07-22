@@ -14,7 +14,7 @@ target_link_libraries(GTest::GTest INTERFACE gtest_main)
 file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 # add data structures
-set(DS_LIST HashTable Trie SLL Dict)
+set(DS_LIST HashTable Trie SLL TST Dict)
 
 foreach(DS ${DS_LIST})
   set(TEST_NAME ${DS}_test)
