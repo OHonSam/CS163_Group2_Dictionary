@@ -139,11 +139,6 @@ public:
 //----------------------Parent: FavListChoiceScreen--------------------------------------
 class Type2RemoveWordFavListScreen : public Screen
 {
-private:
-    const std::vector<std::string> options = {
-        "Enter 0 to return to previous page",
-    };
-
 public:
     Type2RemoveWordFavListScreen(Dict *dict) : Screen(dict) {}
     Screen *render();

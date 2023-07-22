@@ -188,10 +188,11 @@ Screen *FavListChoiceScreen::render()
 			  << std::endl;
 	int siz = options.size();
 	for (int i = 0; i < siz; ++i)
-		std::cout << std::to_string(i) << ". " << options[i] << std::endl;
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 
 	Screen *nextScreen = this;
 	int choice = inputOption(options.size());
+	// fix Linh
 	switch (choice)
 	{
 	case 1:
@@ -247,6 +248,7 @@ Screen *Remove1WordHistoryScreen::render()
 	inputOption(cnt);
 	return new EditScreen(dict);
 }
+
 Screen *DeleteAllHistoryScreen::render()
 {
 	clearScr();
@@ -281,47 +283,54 @@ Screen *Type2RemoveWordFavListScreen::render()
 {
 	clearScr();
 
-	std::cout << "What would you like to do?\n"
-			  << std::endl;
-	int siz = options.size();
-	for (int i = 0; i < siz; ++i)
-		std::cout << std::to_string(i) << ". " << options[i] << std::endl;
+	std::cout << "Enter the word you want to remove from your favourite list: ";
+	std::string word;
+	std::getline(std::cin, word);
 
-	Screen *nextScreen = this;
-	int choice = inputOption(options.size());
+	dict->removeFav(word);
 
-	// dic
-	// fix
+	std::cout << "The word has been successfully removed from your favourite list!\n";
+	int cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
 	return new FavListChoiceScreen(dict);
 }
 
-// void Type2InsertWordFavListScreen::Render(App *app)
-// {
-// 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
-// 	if (app->state.tst->treeExists())
-// 	{
-// 		app->state.tst->type2InsertWord();
-// 	}
-// 	else
-// 	{
-// 		app->state.tst->type2InsertWord();
-// 		app->state.tst->save(FAV_LIST_SAVE_FILE);
-// 	}
+Screen *Type2InsertWordFavListScreen::render()
+{
+	clearScr();
 
-// 	int choice = -1;
-// 	std::string buffer;
+	std::cout << "Enter the word you want to remove from your favourite list: ";
+	std::string word;
+	std::getline(std::cin, word);
 
-// 	std::cout << "\nEnter 0 to return to previous page\n";
-// 	std::getline(std::cin, buffer, '\n');
+	dict->addFav(word);
 
-// 	while (!CheckString(buffer, choice) || choice != 0)
-// 	{
-// 		std::cout << "The number you have entered does not correspond to any choice!\n";
-// 		std::cout << "Please re-enter: ";
-// 		std::getline(std::cin, buffer, '\n');
-// 	}
-// 	SetNextScreen(app, new FavListChoiceScreen());
-// }
+	std::cout << "The word has been successfully removed from your favourite list!\n";
+	int cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new FavListChoiceScreen(dict);
+}
+
+
+Screen *Type2InsertWordFavListScreen::render()
+{
+	clearScr();
+
+	std::cout << "Enter the word you want to remove from your favourite list: ";
+	std::string word;
+	std::getline(std::cin, word);
+
+	dict->searchPrefix(word);
+
+	std::cout << "The word has been successfully removed from your favourite list!\n";
+	int cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new FavListChoiceScreen(dict);
+}
+
 
 // void SearchPrefixFavList::Render(App *app)
 // {

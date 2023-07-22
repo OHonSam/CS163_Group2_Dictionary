@@ -165,6 +165,11 @@ std::vector<std::string> Dict::searchPrefix(const std::string &prefix)
     return words.searchPrefix(prefix);
 }
 
+std::vector<std::string> Dict::searchPrefixFavlist(const std::string &prefix)
+{
+    return favList.searchPrefix
+}
+
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
     removeFav(word);

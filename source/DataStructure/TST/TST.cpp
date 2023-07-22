@@ -317,7 +317,7 @@ void TST::type2InsertWord()
 {
     std::string word;
 
-    std::cout << "Please type in the word you want to insert: ";
+    std::cout << "\nPlease type in the word you want to insert: ";
 
     std::getline(std::cin, word, '\n');
 
@@ -325,7 +325,7 @@ void TST::type2InsertWord()
 
     insert(word);
 
-    std::cout << "Inserted successfully!\n";
+    std::cout << "\nInserted successfully!\n";
 }
 
 void TST::searchPrefix()

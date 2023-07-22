@@ -70,8 +70,13 @@ public:
     void remove(const std::string &word);
     void traverse();
 
+    //for screen type2RemoveWord
     void type2RemoveWord();
+    
+    //for screen type2InsertWord
     void type2InsertWord();
+
+    //for screen searchPrefix
     void searchPrefix();
 
     // Return true if the word is in the TST
