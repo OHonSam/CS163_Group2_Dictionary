@@ -128,19 +128,26 @@ Screen* View::render(){
         case 2:
             break;
         case 3:
+            //nextScreen=new Home(dict);
+            break;
+        case 4:
+            break;
+        case 5: 
             nextScreen=new Home(dict);
             break;
     }
     return nextScreen;
-}
-Screen*  ViewHistoryScreen::render(){
-
+    }
+    Screen*  ViewHistoryScreen::render(){
+    clearScr();
 	std::cout<< "Your search history (20 most recent keywords):\n";
 	std::vector<std::string> display= dict->getHistory();
 	for(int i=0;i<display.size();++i){
         std::cout<<display[i]<<std::endl;
     }
-    std::cout<<"1. Back"<<std::endl;
-    inputOption(1);
+
+    int cnt=0;
+    std::cout<<++cnt<<". Back"<<std::endl;
+    inputOption(cnt);
     return new View(dict);
 }
