@@ -5,20 +5,23 @@ bool Dict::reset(){
     wordDef.clear();
     favList.clear();
     history.clearSLL();
-    if(
-        !words.import(DEFAULT::WORDS) ||
-        !wordDef.import(DEFAULT::WORDDEF) ||
-        !favList.import(DEFAULT::FAVLIST) ||
-        !history.importSLLStr(DEFAULT::HISTORY)
-    )
-        return false;
-    return true;
+    return 
+        words.import(DEFAULT::WORDS) &&
+        wordDef.import(DEFAULT::WORDDEF) &&
+        favList.import(DEFAULT::FAVLIST) &&
+        history.importSLLStr(DEFAULT::HISTORY)
+    ;
 }
 
 void Dict::addWord(Word *word)
 {
     words.insert(word->word);
     wordDef.insert(word);
+}
+
+void Dict::addFav(const std::string &word)
+{
+    favList.insert(word);
 }
 
 bool Dict::lowerStrEng(std::string &str)
@@ -30,21 +33,16 @@ bool Dict::lowerStrEng(std::string &str)
     return true;
 }
 
-Dict::Dict(bool firstInit)
+Dict::Dict()
 {
-    if(firstInit)
+    if(!loadFromPrev())
     {
         importEECsv(RAW_DATA::EE);
 
         words.save(DEFAULT::WORDS);
         wordDef.save(DEFAULT::WORDDEF);
-    }
-    else
-    {
-        words.import(MAIN::WORDS);
-        wordDef.import(MAIN::WORDDEF);
-        favList.import(MAIN::FAVLIST);
-        history.importSLLStr(MAIN::HISTORY);
+        favList.save(DEFAULT::FAVLIST);
+        history.saveSLLStr(DEFAULT::HISTORY);
     }
 }
 
@@ -56,6 +54,16 @@ Dict::~Dict()
     history.saveSLLStr(MAIN::HISTORY);
 }
 
+bool Dict::loadFromPrev()
+{
+    return 
+        words.import(MAIN::WORDS) &&
+        wordDef.import(MAIN::WORDDEF) &&
+        favList.import(MAIN::FAVLIST) &&
+        history.importSLLStr(MAIN::HISTORY)
+    ;
+}
+
 bool Dict::importEECsv(const std::string &path)
 {
     std::ifstream in(path);
@@ -65,7 +73,7 @@ bool Dict::importEECsv(const std::string &path)
     std::getline(in,line);
 
     int cnt=0;
-    std::string pre="";
+    Word* w=nullptr;
     while(!in.eof() && cnt<LIM_WORDS)
     {
         std::string word, len, POS, def;
@@ -82,16 +90,18 @@ bool Dict::importEECsv(const std::string &path)
 
         unsigned int type=POS::getType(POS);
         
-        Word* w=new Word(word,type,def);
-
-        addWord(w);
-
-        if(word!=pre)
+        if(w==nullptr || w->word!=word)
         {
             cnt++;
-            pre=word;
+            if(w!=nullptr) addWord(w);
+            w=new Word(word,type,def);
         }
+        else
+            for(int i=0;i<POS::Count;++i)
+                if(type&(1<<i))
+                    w->def[i].push_back(def);
     }
+    if(w!=nullptr) addWord(w);
     in.close();
     return true;
 }
@@ -139,7 +149,12 @@ Word *Dict::searchDef(const std::string &word)
 
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
-    //waiting for others
-    words.remove(word);
+    removeFav(word);
     wordDef.remove(word);
+    words.remove(word);
+}
+
+void Dict::removeFav(const std::string &word)
+{
+    favList.deletion(word);
 }

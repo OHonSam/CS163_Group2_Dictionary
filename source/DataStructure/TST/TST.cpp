@@ -221,7 +221,8 @@ bool TST::import(const std::string &path)
     {
         // std::cout << "File not found\n";
         return false;
-    }
+    if(file.peek() == std::ifstream::traits_type::eof())
+        return true;
     import(root, file);
     file.close();
     return true;

@@ -42,10 +42,13 @@ private:
 public:
 	// If first time running, import the raw dataset
 	// else load from the saved data structures in main folder
-	Dict(bool firstInit=true);				
+	Dict();				
 
 	// Save data structures before deleting
-	~Dict();										
+	~Dict();	
+
+	// Load from previous save data
+	bool loadFromPrev();									
 
 	// Load from csv file
 	bool importEECsv(const std::string& path);							
@@ -60,7 +63,7 @@ public:
 	void addWord(Word* word);
 
 	// Add a word to the favorite list
-	// void addFav(const std::string& word);					
+	void addFav(const std::string& word);					
 
 	// Add a word to the history
 	void addHistory(const std::string& word);//			
@@ -69,7 +72,7 @@ public:
 	void removeWord(const std::string& word);				
 
  	// Remove a word from the favorite list
-	// void removeFav(const std::string& word);				
+	void removeFav(const std::string& word);				
 
  	// Remove a word from the history
 	void removeHistory(const std::string& word);//				

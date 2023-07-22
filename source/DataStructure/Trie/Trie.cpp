@@ -119,7 +119,8 @@ bool Trie::import(const std::string &path)
     std::ifstream file(path, std::ios::binary);
     if (!file.is_open())
         return false;
-    clear(root);
+    if(file.peek() == std::ifstream::traits_type::eof())
+        return true;
     import(root, file);
     file.close();
     return true;
