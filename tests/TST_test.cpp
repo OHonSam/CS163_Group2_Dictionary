@@ -72,25 +72,25 @@ TEST(TST_test, startWith)
     input(tst);
     vector<string> prefix;
 
-    // prefix=tst.startWith("a");
-    // // EXPECT_EQ(prefix.size(), 1);
-    // EXPECT_TRUE(sameSiz(prefix.size(), 1));
-    // EXPECT_EQ(prefix[0], "a");
+    prefix=tst.startWith("a");
+    // EXPECT_EQ(prefix.size(), 1);
+    EXPECT_TRUE(sameSiz(prefix.size(), 1));
+    EXPECT_EQ(prefix[0], "a");
 
-    // prefix=tst.startWith("dra");
-    // // EXPECT_EQ(prefix.size(), 1);
-    // EXPECT_TRUE(sameSiz(prefix.size(), 1));
-    // EXPECT_EQ(prefix[0], "dramatically");
+    prefix=tst.startWith("dra");
+    // EXPECT_EQ(prefix.size(), 1);
+    EXPECT_TRUE(sameSiz(prefix.size(), 1));
+    EXPECT_EQ(prefix[0], "dramatically");
 
-    // prefix=tst.startWith("he");
-    // // EXPECT_EQ(prefix.size(), 1);
-    // EXPECT_TRUE(sameSiz(prefix.size(), 1));
-    // EXPECT_EQ(prefix[0], "hello");
+    prefix=tst.startWith("he");
+    // EXPECT_EQ(prefix.size(), 1);
+    EXPECT_TRUE(sameSiz(prefix.size(), 1));
+    EXPECT_EQ(prefix[0], "hello");
 
-    // prefix=tst.startWith("fa");
-    // // EXPECT_EQ(prefix.size(), 1);
-    // EXPECT_TRUE(sameSiz(prefix.size(), 1));
-    // EXPECT_EQ(prefix[0], "fantastic");
+    prefix=tst.startWith("fa");
+    // EXPECT_EQ(prefix.size(), 1);
+    EXPECT_TRUE(sameSiz(prefix.size(), 1));
+    EXPECT_EQ(prefix[0], "fantastic");
 
     prefix = tst.startWith("i");
     // EXPECT_EQ(prefix.size(), 2);
@@ -109,16 +109,16 @@ prefix = tst.startWith("I");
     EXPECT_EQ(prefix[1], "world");
     EXPECT_EQ(prefix[2], "wow");
 
-    // prefix=tst.startWith("t");
-    // // EXPECT_EQ(prefix.size(), 1);
-    // EXPECT_TRUE(sameSiz(prefix.size(), 1));
-    // EXPECT_EQ(prefix[0], "the");
+    prefix=tst.startWith("t");
+    // EXPECT_EQ(prefix.size(), 1);
+    EXPECT_TRUE(sameSiz(prefix.size(), 1));
+    EXPECT_EQ(prefix[0], "the");
 
-    // prefix=tst.startWith("z");
-    // // EXPECT_EQ(prefix.size(), 0);
-    // EXPECT_TRUE(sameSiz(prefix.size(), 0));
+    prefix=tst.startWith("z");
+    // EXPECT_EQ(prefix.size(), 0);
+    EXPECT_TRUE(sameSiz(prefix.size(), 0));
 
-    prefix = tst.startWith("");
+    prefix = tst.traverse();
     EXPECT_EQ(prefix.size(), N);
 }
 
