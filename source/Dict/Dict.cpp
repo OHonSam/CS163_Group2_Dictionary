@@ -171,5 +171,5 @@ void Dict::removeWord(const std::string& word){
 
 void Dict::removeFav(const std::string &word)
 {
-    favList.deletion(word);
+    favList.remove(word);
 }

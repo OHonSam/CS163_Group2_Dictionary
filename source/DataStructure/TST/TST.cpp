@@ -75,12 +75,12 @@ void TST::recursiveInsert(TSTNode *&node, const std::string &str, int index)
     }
 }
 
-void TST::deletion(const std::string &word)
+void TST::remove(const std::string &word)
 {
-    deletion(root, word, 0);
+    remove(root, word, 0);
 }
 
-void TST::deletion(TSTNode *&node, const std::string &str, int index)
+void TST::remove(TSTNode *&node, const std::string &str, int index)
 {
     if (!node)
     {
@@ -89,18 +89,18 @@ void TST::deletion(TSTNode *&node, const std::string &str, int index)
 
     if (node->c > str[index])
     {
-        deletion(node->left, str, index);
+        remove(node->left, str, index);
     }
     else if (node->c < str[index])
     {
-        deletion(node->right, str, index);
+        remove(node->right, str, index);
     }
     else
     {
         node->numWords--;
         if (index < str.size() - 1)
         {
-            deletion(node->mid, str, index + 1);
+            remove(node->mid, str, index + 1);
         }
         else
         {

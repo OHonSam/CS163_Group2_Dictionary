@@ -44,7 +44,7 @@ class TST
     void recursiveInsert(TSTNode *&node, const std::string &str, int index);
     // TSTNode *recursiveInsert(TSTNode *&node, const std::string &str, int index);
 
-    void deletion(TSTNode *&node, const std::string &str, int index);
+    void remove(TSTNode *&node, const std::string &str, int index);
 
     // Get Node containing the last word in the string
     TSTNode *getNodeLastChar(TSTNode *node, const std::string &str, int index);
@@ -63,7 +63,7 @@ public:
     void clear();
 
     void insert(const std::string &word);
-    void deletion(const std::string &word);
+    void remove(const std::string &word);
 
     // Return true if the word is in the TST
     bool wordExists(const std::string &word);
