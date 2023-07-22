@@ -166,7 +166,7 @@ Screen* EditScreen::render(){
             nextScreen=new Remove1WordHistoryScreen(dict); 
             break;
         case 7:
-            //"Delete all words in your search history",
+            nextScreen=new DeleteAllHistoryScreen(dict);
             break;
         case 8:
             nextScreen=new Home(dict);

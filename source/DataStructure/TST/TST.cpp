@@ -226,6 +226,7 @@ bool TST::import(const std::string &path)
     import(root, file);
     file.close();
     return true;
+    }
 }
 
 bool TST::save(const std::string &path)
