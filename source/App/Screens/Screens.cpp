@@ -112,7 +112,7 @@ Screen* Home::render()
 
     return nextScreen;
 }
-//
+//-------------------------Parent: Home-------------------------------
 Screen* View::render(){
     clearScr();
 
@@ -137,8 +137,47 @@ Screen* View::render(){
             break;
     }
     return nextScreen;
+}
+Screen* Edit::render(){
+    clearScr();
+
+    for(int i=0; i<options.size(); i++)
+        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+
+    Screen* nextScreen=this;//"this"->own object
+    int choice=inputOption(options.size());
+    switch(choice){
+        case 1:
+            //"Add a new word",
+            break;  
+        case 2:
+            //"Edit a word",
+            break;
+        case 3:
+            //"Delete a word",
+            break;
+        case 4:
+            //"Add a word to your favorite list",
+            break;
+        case 5: 
+            //"Remove a word from your favorite list",
+            break;
+        case 6:
+            nextScreen=new Remove1WordHistoryScreen(dict); 
+            break;
+        case 7:
+            //"Delete all words in your search history",
+            break;
+        case 8:
+            nextScreen=new Home(dict);
+            break;
     }
-    Screen*  ViewHistoryScreen::render(){
+    return nextScreen;
+}
+//-------------------------End Parent: Home---------------------------
+
+//-------------------------Parent: View-------------------------------
+Screen*  ViewHistoryScreen::render(){
     clearScr();
 	std::cout<< "Your search history (20 most recent keywords):\n";
 	std::vector<std::string> display= dict->getHistory();
@@ -151,3 +190,23 @@ Screen* View::render(){
     inputOption(cnt);
     return new View(dict);
 }
+
+//-------------------------End Parent: View-------------------------------
+
+//-------------------------Parent: Edit-----------------------------------
+Screen* Remove1WordHistoryScreen::render(){
+    clearScr();
+    std::cout<<"Enter the word you want to remove from your search history: ";
+    std::string word;
+    std::getline(std::cin,word);
+
+    dict->removeHistory(word);
+
+    std::cout<<"Done!\n"<<std::endl;
+    int cnt=0;
+    std::cout<<++cnt<<". Back"<<std::endl;
+    inputOption(cnt);
+    return new Edit(dict);
+}
+//-------------------------End Parent: View-------------------------------
+

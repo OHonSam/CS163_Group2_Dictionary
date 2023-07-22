@@ -47,7 +47,7 @@ public:
     Home(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-// Editing
+//-------------------------Parent: Home-------------------------------
 class Edit: public Screen
 {   
 private: 
@@ -65,7 +65,7 @@ public:
     Edit(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-// Viewing
+
 class View: public Screen
 {   
 private:
@@ -80,11 +80,27 @@ public:
     View(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-// Parent: View
+//-------------------------End Parent: Home---------------------------
+
+
+//-------------------------Parent: View--------------------------------
 class ViewHistoryScreen: public Screen{
 public:
     ViewHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-// View favorite words
+
+
+//-------------------------End Parent: View---------------------------
+
+//-------------------------Parent: Edit--------------------------------
+class Remove1WordHistoryScreen: public Screen{
+public:
+    Remove1WordHistoryScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+
+//-------------------------End Parent: Edit---------------------------
+
 #endif // SCREENS_HPP
