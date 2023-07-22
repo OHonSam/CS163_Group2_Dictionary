@@ -3,37 +3,23 @@
 App::App()
 {
     CurrentScreen = new Home(&dict);
-	app->state.EndApp = true;
-	delete app->CurrentScreen;
-	app->CurrentScreen = nullptr;
+    app->state.EndApp = true;
+    delete app->CurrentScreen;
+    app->CurrentScreen = nullptr;
 }
 
 void App::run()
 {
     while (CurrentScreen != nullptr)
     {
-        Screen* NextScreen=CurrentScreen->render();
-        if(NextScreen!=CurrentScreen)
+        Screen *NextScreen = CurrentScreen->render();
+        if (NextScreen != CurrentScreen)
         {
             delete CurrentScreen;
             CurrentScreen = NextScreen;
         }
     }
 }
-
-void App::run()
-{
-    while (CurrentScreen != nullptr)
-    {
-        Screen* NextScreen=CurrentScreen->render();
-        if(NextScreen!=CurrentScreen)
-        {
-            delete CurrentScreen;
-            CurrentScreen = NextScreen;
-        }
-    }
-}
-
 
 // void CreateClassScreen::Render(App *app)
 // {
