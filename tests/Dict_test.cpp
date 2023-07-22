@@ -78,3 +78,21 @@ TEST(Dict_test, reset)
         EXPECT_TRUE(w->def[POS::getIndex(type[i])][0]==def[i]);
     }
 }
+
+TEST(Dict_test, updateDef)
+{
+    Dict dict; 
+
+    Word* w=new Word("abc",POS::Noun,"abc_def");
+    dict.addWord(w);
+    dict.updateDef("abc",POS::Noun,"abc_def","abc_def_new");
+
+    Word* res=dict.searchDef("abc");
+    ASSERT_TRUE(res!=nullptr);
+    EXPECT_TRUE(res->word=="abc");
+    ASSERT_FALSE(res->def[POS::getIndex(POS::Noun)].empty());
+    EXPECT_TRUE(res->def[POS::getIndex(POS::Noun)][0]=="abc_def_new");
+
+    dict.removeWord("abc");
+    EXPECT_TRUE(dict.searchDef("abc")==nullptr);
+}
