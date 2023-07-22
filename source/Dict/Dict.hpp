@@ -92,12 +92,12 @@ public:
 	std::vector<std::string> searchPrefix(const std::string &prefix);
 
 	// Return the list of words which has an identical given prefix in favourite list
-	std::vector<std::string> Dict::searchPrefixFavlist(const std::string &prefix);
+	std::vector<std::string> searchPrefixFavlist(const std::string &prefix);
 
 	// Get the list of multple choices
 	void getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord);
 
 	//Turn uppercase to lowercase
-	bool uppercase2Lowercase(std::string &str)
+	bool uppercase2Lowercase(std::string &str);
 };
 #endif
