@@ -69,7 +69,9 @@ public:
 	void addHistory(const std::string& word);//			
 
 	// Remove a word and corresponding definition
-	void removeWord(const std::string& word);				
+	void removeWord(const std::string& word);	
+	// Remove all words in the history
+	bool clearAllHistory(const std::string& path);	
 
  	// Remove a word from the favorite list
 	void removeFav(const std::string& word);				

@@ -13,7 +13,7 @@ private:
 protected:
     Dict *dict;
 
-    void clear();
+    void clearScr();
 
     int inputOption(
         int maxOption,
@@ -44,7 +44,78 @@ public:
     Home(Dict *dict) : Screen(dict) {}
     Screen *render();
 };
-//
+//-------------------------Parent: Home-------------------------------'
+class SearchScreen: public Screen
+{
+private:
+    const std::vector<std::string> options = {
+        "Search for a word",
+        "Search for a definition",
+        "Back"
+    };
+public:
+    SearchScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+class EditScreen: public Screen
+{   
+private: 
+    const std::vector<std::string> options = {
+        "Add a new word",
+        "Edit a word",
+        "Delete a word",
+        "Add a word to your favorite list",
+        "Remove a word from your favorite list",
+        "Remove a word in your search history",
+        "Delete all words in your search history",
+        "Back"
+    };
+public:
+    EditScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+class ViewScreen: public Screen
+{   
+private:
+    const std::vector<std::string> options = {
+        "View your search history",
+        "View your favorite words",
+        "View definitions of a word user types in",
+        "View possible keywords of a definition user types in",
+        "Back"
+    };
+public:
+    ViewScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+//-------------------------End Parent: Home---------------------------
+
+
+//-------------------------Parent: View--------------------------------
+class ViewHistoryScreen: public Screen{
+public:
+    ViewHistoryScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+
+//-------------------------End Parent: View---------------------------
+
+//-------------------------Parent: Edit--------------------------------
+class Remove1WordHistoryScreen: public Screen{
+public:
+    Remove1WordHistoryScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+class DeleteAllHistoryScreen: public Screen{
+public:
+    DeleteAllHistoryScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+
+//-------------------------End Parent: Edit---------------------------
 
 //----------------------Parent: Home--------------------------------------
 class FavListChoiceScreen : public Screen

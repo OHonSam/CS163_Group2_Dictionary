@@ -51,16 +51,11 @@ public:
 	// Transform history SLL into history vector
 	std::vector<T> SLLintoVector();
 
-	// Get the list of favorite words
-	//std::vector<T> getList();
+	// Check the existence of a word in the history SLL
+	bool find(const T& key);
 
-	void display() {
-        Node* cur = head;
-        while (cur != nullptr) {
-            std::cout << cur->data << " ";
-            cur = cur->next;
-        }
-    }							
+	// Display the history SLL in UI
+	void display();	
 };
 
 #include <SLL.inl>
