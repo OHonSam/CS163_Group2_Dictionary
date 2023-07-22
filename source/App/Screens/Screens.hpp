@@ -47,7 +47,19 @@ public:
     Home(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-//-------------------------Parent: Home-------------------------------
+//-------------------------Parent: Home-------------------------------'
+class Search: public Screen
+{
+private:
+    const std::vector<std::string> options = {
+        "Search for a word",
+        "Search for a definition",
+        "Back"
+    };
+public:
+    Search(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 class Edit: public Screen
 {   
 private: 
