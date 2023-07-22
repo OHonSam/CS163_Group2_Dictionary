@@ -141,16 +141,19 @@ void TST::startsWithRecursiveSearch(std::vector<std::string> &res, const std::st
         _c = cur->left->c;
         startsWithRecursiveSearch(res, prefix + _c, cur->left, cnt);
     }
+
     if (cur->mid != nullptr)
     {
         _c = cur->mid->c;
         startsWithRecursiveSearch(res, prefix + _c, cur->mid, cnt);
     }
+
     if (cur->right != nullptr)
     {
         _c = cur->right->c;
         startsWithRecursiveSearch(res, prefix + _c, cur->right, cnt);
     }
+
 }
 
 TSTNode *TST::getNodeLastChar(TSTNode *node, const std::string &str, int index)
@@ -282,21 +285,38 @@ void TST::save(TSTNode *root, std::ofstream &file)
     file.write((char *)&marker, sizeof(char));
 }
 
+
 void TST::traverse()
 {
-    traverse(root);
+  std::vector<std::string> res;
+  traverse(res, root, "");
+
+  for (auto i : res)
+  {
+    std::cout << i << '\n';
+  }
 }
 
-void TST::traverse(TSTNode *root)
+void TST::traverse(std::vector<std::string> &res, TSTNode *root, std::string str)
 {
-    if (root == nullptr)
-        return;
-    traverse(root->left);
-    std::cout << root->c << " ";
-    traverse(root->mid);
-    std::cout << root->c << " ";
-    traverse(root->right);
+  if (root == nullptr)
+    return;
+  traverse(res, root->left, str);
+  
+  str = str + root->c;
+
+  if (root->isEnd == true)
+  {
+    res.push_back(str);
+  }
+
+  traverse(res, root->mid, str);
+  
+  str = str.substr(0, str.length() - 1);
+
+  traverse(res, root->right, str);
 }
+
 
 void TST::type2RemoveWord()
 {
@@ -362,9 +382,11 @@ void TST::uppercase2Lowercase(std::string &str)
     int len = str.size();
     for (int i = 0; i < len; ++i)
     {
-        if (str[i] >= 'A' && str[i] <= 'Z')
-        {
-            str[i] = str[i] - 'A' + 'a';
-        }
+        // if (str[i] >= 'A' && str[i] <= 'Z')
+        // {
+        //     str[i] -= 'A';
+        //     str[i] += 'a';
+        // }
+        str[i] = std::tolower(str[i]);
     }
 }

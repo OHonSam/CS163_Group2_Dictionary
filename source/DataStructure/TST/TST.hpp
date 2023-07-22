@@ -40,7 +40,8 @@ class TST
 
     void import(TSTNode *&root, std::ifstream &file);
     void save(TSTNode *root, std::ofstream &file);
-    void traverse(TSTNode* root);
+    void traverse(std::vector<std::string> &res, TSTNode *root, std::string str);
+
 
     // Insert into the TST
     void recursiveInsert(TSTNode *&node, const std::string &str, int index);
