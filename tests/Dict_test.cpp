@@ -78,3 +78,79 @@ TEST(Dict_test, reset)
         EXPECT_TRUE(w->def[POS::getIndex(type[i])][0]==def[i]);
     }
 }
+
+TEST(Dict_test, updateDef)
+{
+    Dict dict; 
+
+    Word* w=new Word("abc",POS::Noun,"abc_def");
+    dict.addWord(w);
+    dict.updateDef("abc",POS::Noun,"abc_def","abc_def_new");
+
+    Word* res=dict.searchDef("abc");
+    ASSERT_TRUE(res!=nullptr);
+    EXPECT_TRUE(res->word=="abc");
+    ASSERT_FALSE(res->def[POS::getIndex(POS::Noun)].empty());
+    EXPECT_TRUE(res->def[POS::getIndex(POS::Noun)][0]=="abc_def_new");
+
+    dict.removeWord("abc");
+    EXPECT_TRUE(dict.searchDef("abc")==nullptr);
+}
+
+TEST(Dict_test, history)
+{
+    Dict dict;
+    
+    for(int i=0;i<words.size();++i)
+        dict.addHistory(words[i]);
+
+    vector<string> v=dict.getHistory();
+
+    ASSERT_TRUE(v.size()==words.size());
+    for(const string& s:v)
+    {
+        bool flag=false;
+        for(const string& t:words)
+            if(s==t)
+            {
+                flag=true;
+                break;
+            }
+        EXPECT_TRUE(flag);
+    }
+
+    for(int i=0;i<words.size();++i)
+        dict.removeHistory(words[i]);
+
+    v=dict.getHistory();
+    EXPECT_TRUE(v.empty());
+}
+
+TEST(Dict_test, favList)
+{
+    Dict dict;
+    
+    for(int i=0;i<words.size();++i)
+        dict.addFav(words[i]);
+
+    vector<string> v=dict.getFav();
+
+    ASSERT_TRUE(v.size()==words.size());
+    for(const string& s:v)
+    {
+        bool flag=false;
+        for(const string& t:words)
+            if(s==t)
+            {
+                flag=true;
+                break;
+            }
+        EXPECT_TRUE(flag);
+    }
+
+    for(int i=0;i<words.size();++i)
+        dict.removeFav(words[i]);
+
+    v=dict.getFav();
+    EXPECT_TRUE(v.empty());
+}

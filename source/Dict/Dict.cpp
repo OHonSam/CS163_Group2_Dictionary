@@ -13,6 +13,11 @@ bool Dict::reset(){
     ;
 }
 
+void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
+{
+    wordDef.updateDef(word,type,oldDef,newDef);
+}
+
 void Dict::addWord(Word *word)
 {
     words.insert(word->word);
@@ -142,9 +147,19 @@ std::vector<std::string> Dict::getHistory(){
     return history.SLLintoVector();
 }
 
+std::vector<std::string> Dict::getFav()
+{
+    return favList.startWith("");
+}
+
 Word *Dict::searchDef(const std::string &word)
 {
     return wordDef.searchDef(word);
+}
+
+std::vector<std::string> Dict::searchPrefix(const std::string &prefix)
+{
+    return words.searchPrefix(prefix);
 }
 
 void Dict::removeWord(const std::string& word){
