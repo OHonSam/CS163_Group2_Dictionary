@@ -3,9 +3,6 @@
 App::App()
 {
     CurrentScreen = new Home(&dict);
-    app->state.EndApp = true;
-    delete app->CurrentScreen;
-    app->CurrentScreen = nullptr;
 }
 
 void App::run()
