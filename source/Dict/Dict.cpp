@@ -157,6 +157,11 @@ Word *Dict::searchDef(const std::string &word)
     return wordDef.searchDef(word);
 }
 
+std::vector<std::string> Dict::searchPrefix(const std::string &prefix)
+{
+    return words.searchPrefix(prefix);
+}
+
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
     removeFav(word);
