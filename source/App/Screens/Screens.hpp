@@ -48,7 +48,7 @@ public:
     Screen* render();
 };
 //-------------------------Parent: Home-------------------------------'
-class Search: public Screen
+class SearchScreen: public Screen
 {
 private:
     const std::vector<std::string> options = {
@@ -57,10 +57,10 @@ private:
         "Back"
     };
 public:
-    Search(Dict* dict) : Screen(dict) {}
+    SearchScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-class Edit: public Screen
+class EditScreen: public Screen
 {   
 private: 
     const std::vector<std::string> options = {
@@ -74,11 +74,11 @@ private:
         "Back"
     };
 public:
-    Edit(Dict* dict) : Screen(dict) {}
+    EditScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 
-class View: public Screen
+class ViewScreen: public Screen
 {   
 private:
     const std::vector<std::string> options = {
@@ -89,7 +89,7 @@ private:
         "Back"
     };
 public:
-    View(Dict* dict) : Screen(dict) {}
+    ViewScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 //-------------------------End Parent: Home---------------------------

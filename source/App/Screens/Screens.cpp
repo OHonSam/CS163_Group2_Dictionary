@@ -95,9 +95,9 @@ Screen* Home::render()
         case 1:
             break;
         case 2:
-            nextScreen=new Edit(dict);
+            nextScreen=new EditScreen(dict);
         case 3:
-            nextScreen=new View(dict);
+            nextScreen=new ViewScreen(dict);
             break;
         case 4:
             break;
@@ -113,7 +113,7 @@ Screen* Home::render()
     return nextScreen;
 }
 //-------------------------Parent: Home-------------------------------
-Screen* View::render(){
+Screen* ViewScreen::render(){
     clearScr();
 
     for(int i=0; i<options.size(); i++)
@@ -138,7 +138,7 @@ Screen* View::render(){
     }
     return nextScreen;
 }
-Screen* Edit::render(){
+Screen* EditScreen::render(){
     clearScr();
 
     for(int i=0; i<options.size(); i++)
@@ -176,7 +176,7 @@ Screen* Edit::render(){
 }
 //-------------------------End Parent: Home---------------------------
 
-//-------------------------Parent: View-------------------------------
+//-------------------------Parent: ViewScreen-------------------------------
 Screen*  ViewHistoryScreen::render(){
     clearScr();
 	std::cout<< "Your search history (20 most recent keywords):\n";
@@ -188,12 +188,12 @@ Screen*  ViewHistoryScreen::render(){
     int cnt=0;
     std::cout<<++cnt<<". Back"<<std::endl;
     inputOption(cnt);
-    return new View(dict);
+    return new ViewScreen(dict);
 }
 
-//-------------------------End Parent: View-------------------------------
+//-------------------------End Parent: ViewScreen-------------------------------
 
-//-------------------------Parent: Edit-----------------------------------
+//-------------------------Parent: EditScreen-----------------------------------
 Screen* Remove1WordHistoryScreen::render(){
     clearScr();
     std::cout<<"Enter the word you want to remove from your search history: ";
@@ -206,7 +206,7 @@ Screen* Remove1WordHistoryScreen::render(){
     int cnt=0;
     std::cout<<++cnt<<". Back"<<std::endl;
     inputOption(cnt);
-    return new Edit(dict);
+    return new EditScreen(dict);
 }
 Screen* DeleteAllHistoryScreen::render(){
     clearScr();
@@ -231,7 +231,7 @@ Screen* DeleteAllHistoryScreen::render(){
     cnt=0;
     std::cout<<++cnt<<". Back"<<std::endl;
     inputOption(cnt);
-    return new Edit(dict);
+    return new EditScreen(dict);
 }
-//-------------------------End Parent: View-------------------------------
+//-------------------------End Parent: EditScreen-------------------------------
 
