@@ -82,98 +82,102 @@ std::string Screen::inputEngString(const std::string &mess)
 // Home
 Screen *Home::render()
 {
-    clearScr();
+	clearScr();
 
 	std::cout << "Welcome to Dictionary!" << std::endl;
 	int siz = options.size();
 	for (int i = 0; i < siz; ++i)
 		std::cout << std::to_string(i) << ". " << options[i] << std::endl;
 
-    Screen* nextScreen=this;//"this"->own object
-    int choice=inputOption(options.size());
-    switch(choice)
-    {
-        case 1:
-            break;
-        case 2:
-            nextScreen=new EditScreen(dict);
-        case 3:
-            nextScreen=new ViewScreen(dict);
-            break;
-        case 4:
-            break;
-        case 5:
-            break;
-        case 6:
-            break;
-        case 7: // Exit
-            nextScreen = nullptr;
-            break;
-    }
+	Screen *nextScreen = this; //"this"->own object
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
+		break;
+	case 2:
+		nextScreen = new EditScreen(dict);
+	case 3:
+		nextScreen = new ViewScreen(dict);
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	case 6:
+		break;
+	case 7: // Exit
+		nextScreen = nullptr;
+		break;
+	}
 
 	return nextScreen;
 }
 //-------------------------Parent: Home-------------------------------
 
-Screen* ViewScreen::render(){
-    clearScr();
-    for(int i=0; i<options.size(); i++)
-        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+Screen *ViewScreen::render()
+{
+	clearScr();
+	for (int i = 0; i < options.size(); i++)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 
-    Screen* nextScreen=this;//"this"->own object
-    int choice=inputOption(options.size());
-    switch(choice){
-        case 1:
-            nextScreen=new ViewHistoryScreen(dict);
-            break;  
-        case 2:
-            break;
-        case 3:
-            //nextScreen=new Home(dict);
-            break;
-        case 4:
-            break;
-        case 5: 
-            nextScreen=new Home(dict);
-            break;
-    }
-    return nextScreen;
+	Screen *nextScreen = this; //"this"->own object
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
+		nextScreen = new ViewHistoryScreen(dict);
+		break;
+	case 2:
+		break;
+	case 3:
+		// nextScreen=new Home(dict);
+		break;
+	case 4:
+		break;
+	case 5:
+		nextScreen = new Home(dict);
+		break;
+	}
+	return nextScreen;
 }
-Screen* EditScreen::render(){
-    clearScr();
+Screen *EditScreen::render()
+{
+	clearScr();
 
-    for(int i=0; i<options.size(); i++)
-        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	for (int i = 0; i < options.size(); i++)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 
-    Screen* nextScreen=this;//"this"->own object
-    int choice=inputOption(options.size());
-    switch(choice){
-        case 1:
-            //"Add a new word",
-            break;  
-        case 2:
-            //"Edit a word",
-            break;
-        case 3:
-            //"Delete a word",
-            break;
-        case 4:
-            //"Add a word to your favorite list",
-            break;
-        case 5: 
-            //"Remove a word from your favorite list",
-            break;
-        case 6:
-            nextScreen=new Remove1WordHistoryScreen(dict); 
-            break;
-        case 7:
-            //"Delete all words in your search history",
-            break;
-        case 8:
-            nextScreen=new Home(dict);
-            break;
-    }
-    return nextScreen;
+	Screen *nextScreen = this; //"this"->own object
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
+		//"Add a new word",
+		break;
+	case 2:
+		//"Edit a word",
+		break;
+	case 3:
+		//"Delete a word",
+		break;
+	case 4:
+		//"Add a word to your favorite list",
+		break;
+	case 5:
+		//"Remove a word from your favorite list",
+		break;
+	case 6:
+		nextScreen = new Remove1WordHistoryScreen(dict);
+		break;
+	case 7:
+		//"Delete all words in your search history",
+		break;
+	case 8:
+		nextScreen = new Home(dict);
+		break;
+	}
+	return nextScreen;
 }
 
 Screen *FavListChoiceScreen::render()
@@ -190,22 +194,89 @@ Screen *FavListChoiceScreen::render()
 	int choice = inputOption(options.size());
 	switch (choice)
 	{
-		// case 1:
-		// 		SetNextScreen(app, new Type2InsertWordFavListScreen());
-		// 		break;
-		// 	case 2:
-		// 		SetNextScreen(app, new Type2RemoveWordFavListScreen());
-		// 		break;
-		// 	case 3:
-		// 		SetNextScreen(app, new SearchPrefixFavList());
-		// 		break;
-		// 	case 4:
-		// 		SetNextScreen(app, new FirstScreen());
-		// 		break;
+	case 1:
+		// SetNextScreen(app, new Type2InsertWordFavListScreen());
+		break;
+	case 2:
+		// SetNextScreen(app, new Type2RemoveWordFavListScreen());
+		break;
+	case 3:
+		// SetNextScreen(app, new SearchPrefixFavList());
+		break;
+	case 4:
+		nextScreen = new Home(dict);
+		break;
 	}
 
 	return nextScreen;
 }
+//-------------------------End Parent: Home---------------------------
+
+//-------------------------Parent: ViewScreen-------------------------------
+Screen *ViewHistoryScreen::render()
+{
+	clearScr();
+	std::cout << "Your search history (20 most recent keywords):\n";
+	std::vector<std::string> display = dict->getHistory();
+	for (int i = 0; i < display.size(); ++i)
+	{
+		std::cout << display[i] << std::endl;
+	}
+
+	int cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new ViewScreen(dict);
+}
+
+//-------------------------End Parent: ViewScreen-------------------------------
+
+//-------------------------Parent: EditScreen-----------------------------------
+Screen *Remove1WordHistoryScreen::render()
+{
+	clearScr();
+	std::cout << "Enter the word you want to remove from your search history: ";
+	std::string word;
+	std::getline(std::cin, word);
+
+	dict->removeHistory(word);
+
+	std::cout << "The word has been successfully removed from your search history!\n";
+	int cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new EditScreen(dict);
+}
+Screen *DeleteAllHistoryScreen::render()
+{
+	clearScr();
+	std::cout << "Are you sure that you want to delete your search history?\n";
+	int cnt = 0;
+	std::string buffer;
+	std::cout << ++cnt << ". Yes\n";
+	std::cout << ++cnt << ". No\n";
+	int choice = inputOption(cnt);
+	switch (choice)
+	{
+	case 1:
+		if (dict->clearAllHistory("History.bin"))
+			std::cout << "Your search history has been successfully deleted!\n";
+		else
+			std::cout << "Errors occurred in clearing time!\n";
+		break;
+	case 2:
+		std::cout << "The deletion has been cancelled!\n";
+		break;
+	}
+
+	cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new EditScreen(dict);
+}
+//-------------------------End Parent: EditScreen-------------------------------
+
+//----------------------Parent: FavListChoiceScreen-----------------------------
 Screen *Type2RemoveWordFavListScreen::render()
 {
 	clearScr();
@@ -220,10 +291,8 @@ Screen *Type2RemoveWordFavListScreen::render()
 	int choice = inputOption(options.size());
 
 	// dic
-	//fix
-	
-	nextScreen = new FavListChoiceScreen();
-	return nextScreen;
+	// fix
+	return new FavListChoiceScreen(dict);
 }
 
 // void Type2InsertWordFavListScreen::Render(App *app)
@@ -311,66 +380,4 @@ Screen *Type2RemoveWordFavListScreen::render()
 // 	// SetNextScreen(app, new FavListChoiceScreen());
 // }
 
-//
-
-//-------------------------End Parent: Home---------------------------
-
-//-------------------------Parent: ViewScreen-------------------------------
-Screen*  ViewHistoryScreen::render(){
-    clearScr();
-	std::cout<< "Your search history (20 most recent keywords):\n";
-	std::vector<std::string> display= dict->getHistory();
-	for(int i=0;i<display.size();++i){
-        std::cout<<display[i]<<std::endl;
-    }
-
-    int cnt=0;
-    std::cout<<++cnt<<". Back"<<std::endl;
-    inputOption(cnt);
-    return new ViewScreen(dict);
-}
-
-//-------------------------End Parent: ViewScreen-------------------------------
-
-//-------------------------Parent: EditScreen-----------------------------------
-Screen* Remove1WordHistoryScreen::render(){
-    clearScr();
-    std::cout<<"Enter the word you want to remove from your search history: ";
-    std::string word;
-    std::getline(std::cin,word);
-
-    dict->removeHistory(word);
-
-    std::cout<<"The word has been successfully removed from your search history!\n";
-    int cnt=0;
-    std::cout<<++cnt<<". Back"<<std::endl;
-    inputOption(cnt);
-    return new EditScreen(dict);
-}
-Screen* DeleteAllHistoryScreen::render(){
-    clearScr();
-    std::cout<<"Are you sure that you want to delete your search history?\n";
-	int cnt = 0;
-	std::string buffer;
-	std::cout<<++cnt<<". Yes\n";
-	std::cout<<++cnt<<". No\n";
-    int choice=inputOption(cnt);
-    	switch(choice){
-		case 1:
-			if(dict->clearAllHistory("History.bin"))
-				std::cout<<"Your search history has been successfully deleted!\n";
-			else
-				std::cout<<"Errors occurred in clearing time!\n";
-			break;
-		case 2:
-			std::cout<<"The deletion has been cancelled!\n";
-			break;
-	}
-
-    cnt=0;
-    std::cout<<++cnt<<". Back"<<std::endl;
-    inputOption(cnt);
-    return new EditScreen(dict);
-}
-//-------------------------End Parent: EditScreen-------------------------------
-
+//----------------------End Parent: FavListChoiceScreen--------------------------------------
