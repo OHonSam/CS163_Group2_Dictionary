@@ -120,6 +120,11 @@ std::vector<std::string> TST::startWith(const std::string &prefix)
     TSTNode *start = getNodeLastChar(root, prefix, 0);
 
     int cnt = 0;
+
+    if (start->mid == nullptr)
+    {
+        return {prefix};
+    }
     traverse(res, start->mid, prefix, cnt);
     return res;
 }
