@@ -114,12 +114,71 @@ Screen *Home::render()
 	return nextScreen;
 }
 //-------------------------Parent: Home-------------------------------
+
 Screen* ViewScreen::render(){
     clearScr();
+    for(int i=0; i<options.size(); i++)
+        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+
+    Screen* nextScreen=this;//"this"->own object
+    int choice=inputOption(options.size());
+    switch(choice){
+        case 1:
+            nextScreen=new ViewHistoryScreen(dict);
+            break;  
+        case 2:
+            break;
+        case 3:
+            //nextScreen=new Home(dict);
+            break;
+        case 4:
+            break;
+        case 5: 
+            nextScreen=new Home(dict);
+            break;
+    }
+    return nextScreen;
+}
+Screen* EditScreen::render(){
+    clearScr();
+
+    for(int i=0; i<options.size(); i++)
+        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+
+    Screen* nextScreen=this;//"this"->own object
+    int choice=inputOption(options.size());
+    switch(choice){
+        case 1:
+            //"Add a new word",
+            break;  
+        case 2:
+            //"Edit a word",
+            break;
+        case 3:
+            //"Delete a word",
+            break;
+        case 4:
+            //"Add a word to your favorite list",
+            break;
+        case 5: 
+            //"Remove a word from your favorite list",
+            break;
+        case 6:
+            nextScreen=new Remove1WordHistoryScreen(dict); 
+            break;
+        case 7:
+            //"Delete all words in your search history",
+            break;
+        case 8:
+            nextScreen=new Home(dict);
+            break;
+    }
+    return nextScreen;
+}
 
 Screen *FavListChoiceScreen::render()
 {
-	clear();
+	clearScr();
 
 	std::cout << "What would you like to do?\n"
 			  << std::endl;
@@ -149,7 +208,7 @@ Screen *FavListChoiceScreen::render()
 }
 Screen *Type2RemoveWordFavListScreen::render()
 {
-	clear();
+	clearScr();
 
 	std::cout << "What would you like to do?\n"
 			  << std::endl;
@@ -254,64 +313,6 @@ Screen *Type2RemoveWordFavListScreen::render()
 
 //
 
-    for(int i=0; i<options.size(); i++)
-        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
-
-    Screen* nextScreen=this;//"this"->own object
-    int choice=inputOption(options.size());
-    switch(choice){
-        case 1:
-            nextScreen=new ViewHistoryScreen(dict);
-            break;  
-        case 2:
-            break;
-        case 3:
-            //nextScreen=new Home(dict);
-            break;
-        case 4:
-            break;
-        case 5: 
-            nextScreen=new Home(dict);
-            break;
-    }
-    return nextScreen;
-}
-Screen* EditScreen::render(){
-    clearScr();
-
-    for(int i=0; i<options.size(); i++)
-        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
-
-    Screen* nextScreen=this;//"this"->own object
-    int choice=inputOption(options.size());
-    switch(choice){
-        case 1:
-            //"Add a new word",
-            break;  
-        case 2:
-            //"Edit a word",
-            break;
-        case 3:
-            //"Delete a word",
-            break;
-        case 4:
-            //"Add a word to your favorite list",
-            break;
-        case 5: 
-            //"Remove a word from your favorite list",
-            break;
-        case 6:
-            nextScreen=new Remove1WordHistoryScreen(dict); 
-            break;
-        case 7:
-            //"Delete all words in your search history",
-            break;
-        case 8:
-            nextScreen=new Home(dict);
-            break;
-    }
-    return nextScreen;
-}
 //-------------------------End Parent: Home---------------------------
 
 //-------------------------Parent: ViewScreen-------------------------------

@@ -89,6 +89,26 @@ public:
     ViewScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
+
+class FavListChoiceScreen : public Screen
+{
+private:
+    const std::vector<std::string> options = {
+        "Type in a word to insert it to your favorite list",
+        "Type in a word to remove it from your favorite list",
+        "Search prefix of words in your favorite list",
+        "Go back to previous page",
+    };
+
+    const std::vector<std::string> options2 = {
+        "Type in a word to insert it to your favorite list",
+        "Go back to previous page",
+    };
+
+public:
+    FavListChoiceScreen(Dict *dict) : Screen(dict) {}
+    Screen *render();
+};
 //-------------------------End Parent: Home---------------------------
 
 
@@ -113,31 +133,8 @@ public:
     DeleteAllHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-
-
 //-------------------------End Parent: Edit---------------------------
 
-//----------------------Parent: Home--------------------------------------
-class FavListChoiceScreen : public Screen
-{
-private:
-    const std::vector<std::string> options = {
-        "Type in a word to insert it to your favorite list",
-        "Type in a word to remove it from your favorite list",
-        "Search prefix of words in your favorite list",
-        "Go back to previous page",
-    };
-
-    const std::vector<std::string> options2 = {
-        "Type in a word to insert it to your favorite list",
-        "Go back to previous page",
-    };
-
-public:
-    FavListChoiceScreen(Dict *dict) : Screen(dict) {}
-    Screen *render();
-};
-//----------------------Parent: Home-------------end-------------------------
 
 //----------------------Parent: FavListChoiceScreen--------------------------------------
 class Type2RemoveWordFavListScreen : public Screen
@@ -180,6 +177,6 @@ public:
     Screen *render();
 };
 
-//----------------------Parent: FavListChoiceScreen-------------end-------------------------
+//----------------------End Parent: FavListChoiceScreen--------------------------------------
 
 #endif // SCREENS_HPP
