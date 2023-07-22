@@ -95,7 +95,7 @@ Screen* Home::render()
         case 1:
             break;
         case 2:
-            break;
+            nextScreen=new Edit(dict);
         case 3:
             nextScreen=new View(dict);
             break;
@@ -202,8 +202,33 @@ Screen* Remove1WordHistoryScreen::render(){
 
     dict->removeHistory(word);
 
-    std::cout<<"Done!\n"<<std::endl;
+    std::cout<<"The word has been successfully removed from your search history!\n";
     int cnt=0;
+    std::cout<<++cnt<<". Back"<<std::endl;
+    inputOption(cnt);
+    return new Edit(dict);
+}
+Screen* DeleteAllHistoryScreen::render(){
+    clearScr();
+    std::cout<<"Are you sure that you want to delete your search history?\n";
+	int cnt = 0;
+	std::string buffer;
+	std::cout<<++cnt<<". Yes\n";
+	std::cout<<++cnt<<". No\n";
+    int choice=inputOption(cnt);
+    	switch(choice){
+		case 1:
+			if(dict->clearAllHistory("History.bin"))
+				std::cout<<"Your search history has been successfully deleted!\n";
+			else
+				std::cout<<"Errors occurred in clearing time!\n";
+			break;
+		case 2:
+			std::cout<<"The deletion has been cancelled!\n";
+			break;
+	}
+
+    cnt=0;
     std::cout<<++cnt<<". Back"<<std::endl;
     inputOption(cnt);
     return new Edit(dict);

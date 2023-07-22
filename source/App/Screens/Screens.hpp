@@ -99,6 +99,11 @@ public:
     Remove1WordHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
+class DeleteAllHistoryScreen: public Screen{
+public:
+    DeleteAllHistoryScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 
 
 //-------------------------End Parent: Edit---------------------------

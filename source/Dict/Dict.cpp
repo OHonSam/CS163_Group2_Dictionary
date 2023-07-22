@@ -115,8 +115,8 @@ void Dict::addHistory(const std::string& word){
 void Dict::removeHistory(const std::string& word){
     history.pop(word);
 }
-void Dict::clearHistory(){
-    history.clearHistory("HistorySLL.bin");
+bool Dict::clearAllHistory(const std::string& path){
+    return history.clearHistory(path);
 }
 std::vector<std::string> Dict::getHistory(){
     return history.SLLintoVector();
