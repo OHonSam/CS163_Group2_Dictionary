@@ -125,3 +125,32 @@ TEST(Dict_test, history)
     v=dict.getHistory();
     EXPECT_TRUE(v.empty());
 }
+
+TEST(Dict_test, favList)
+{
+    Dict dict;
+    
+    for(int i=0;i<words.size();++i)
+        dict.addFav(words[i]);
+
+    vector<string> v=dict.getFav();
+
+    ASSERT_TRUE(v.size()==words.size());
+    for(const string& s:v)
+    {
+        bool flag=false;
+        for(const string& t:words)
+            if(s==t)
+            {
+                flag=true;
+                break;
+            }
+        EXPECT_TRUE(flag);
+    }
+
+    for(int i=0;i<words.size();++i)
+        dict.removeFav(words[i]);
+
+    v=dict.getFav();
+    EXPECT_TRUE(v.empty());
+}
