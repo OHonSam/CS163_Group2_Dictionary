@@ -337,19 +337,7 @@ Screen *SearchPrefixFavList::render()
 
 	std::cout << "\nThere are " << cnt << " words that start with <" << prefix << ">\n";
 
-	int cnt = 0;
-	std::cout << ++cnt << ". Back" << std::endl;
-	inputOption(cnt);
-	return new ViewScreen(dict);
-
-	std::cout << "Enter the word you want to remove from your favourite list: ";
-	std::string word;
-	std::getline(std::cin, word);
-
-	dict->searchPrefix(word);
-
-	std::cout << "The word has been successfully removed from your favourite list!\n";
-	int cnt = 0;
+	cnt = 0;
 	std::cout << ++cnt << ". Back" << std::endl;
 	inputOption(cnt);
 	return new FavListChoiceScreen(dict);
