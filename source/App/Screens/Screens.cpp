@@ -343,6 +343,37 @@ Screen *SearchPrefixFavList::render()
 	return new FavListChoiceScreen(dict);
 }
 
+
+Screen *InsertWordFavListScreen::render()
+{
+	// std::string prefix;
+	// int cnt = 0;
+
+	// clearScr();
+
+	// std::cout << "Please type in the word you want to search: ";
+
+	// std::getline(std::cin, prefix, '\n');
+
+	// dict->uppercase2Lowercase(prefix);
+
+	// std::vector<std::string> display = dict->searchPrefixFavlist(prefix);
+
+	// std::cout << "The words that start with <" << prefix << "> are: \n";
+
+	// for (auto i : display)
+	// {
+	// 	std::cout << ++cnt << ". " << i << '\n';
+	// }
+
+	// std::cout << "\nThere are " << cnt << " words that start with <" << prefix << ">\n";
+
+	// cnt = 0;
+	// std::cout << ++cnt << ". Back" << std::endl;
+	// inputOption(cnt);
+	return new FavListChoiceScreen(dict);
+}
+
 // void SearchPrefixFavList::Render(App *app)
 // {
 // 	std::cout << "Your choice was: " << app->state.userChoice << "\n";
