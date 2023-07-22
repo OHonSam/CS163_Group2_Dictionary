@@ -349,7 +349,7 @@ Screen *InsertWordFavListScreen::render()
 	// std::string prefix;
 	// int cnt = 0;
 
-	// clearScr();
+	clearScr();
 
 	// std::cout << "Please type in the word you want to search: ";
 
