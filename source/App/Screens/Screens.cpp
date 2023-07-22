@@ -53,7 +53,7 @@ int Screen::inputOption(int maxOption, const std::string &mess)
 {
     int option=maxOption;
 
-    std::cout<<"Your choice: ";
+    std::cout<<mess;
     std::string str; std::getline(std::cin, str, '\n');
     while (!checkStrOption(str, option) || option < 1 || option > maxOption)
     {

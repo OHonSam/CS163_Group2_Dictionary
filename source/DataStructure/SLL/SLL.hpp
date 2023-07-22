@@ -40,7 +40,10 @@ public:
 
 	// Insert a value->limit to 20 history nodes 
 	void push(const T& key);//	
-	int countNodes(Node* head);						
+	int countNodes(Node* head);			
+
+	// Find a value
+	bool find(const T& key);			
 
 	// Remove a value
 	void pop(const T& key);//		

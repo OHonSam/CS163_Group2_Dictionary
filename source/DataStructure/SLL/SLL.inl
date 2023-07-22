@@ -66,8 +66,22 @@ int SLL<T>::countNodes(Node* head){
     }
     return ans;
 }
-template<class T>
-void SLL<T>::push(const T& key){
+
+template <class T>
+inline bool SLL<T>::find(const T &key)
+{
+    Node* cur=head;
+    while(cur!=nullptr){
+        if(cur->data==key)
+            return true;
+        cur=cur->next;
+    }
+    return false;
+}
+
+template <class T>
+void SLL<T>::push(const T &key)
+{
     Node* pNew=new Node(key);
     if(head==nullptr){
         head=pNew;
@@ -128,6 +142,8 @@ bool SLL<T>::importSLLStr(const std::string& path) {
         //cout << "Can't open the file for reading!";
         return false;
     }
+    if(fin.peek() == std::ifstream::traits_type::eof())
+        return true;
     int len;
     while (fin.read((char*)&len,sizeof(int))) {
         char* arr = new char[len];
