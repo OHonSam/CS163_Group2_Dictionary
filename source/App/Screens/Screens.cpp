@@ -113,6 +113,26 @@ Screen* Home::render()
     return nextScreen;
 }
 //-------------------------Parent: Home-------------------------------
+Screen* SearchScreen::render(){
+    clearScr();
+    for(int i=0;i<options.size();++i)
+        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+    
+    Screen* nextScreen=this;//"this"->own object
+    int choice=inputOption(options.size());
+    switch(choice)
+    {
+        case 1:
+            //nextScreen=new SearchWordScreen(dict);
+            break;
+        case 2:
+            //nextScreen=new SearchDefScreen(dict);
+            break;
+        case 3:
+            nextScreen=new Home(dict);
+            break;
+    }
+}
 Screen* ViewScreen::render(){
     clearScr();
 
@@ -176,6 +196,45 @@ Screen* EditScreen::render(){
 }
 //-------------------------End Parent: Home---------------------------
 
+//-------------------------Parent: SearchScreen-----------------------------------
+Screen* SearchForDefScreen::render(){
+    clearScr();
+    std::cout<<"Enter the word you want to search for: ";
+    std::string word;
+    std::getline(std::cin,word);
+
+    std::vector<std::string> prefixes=dict->searchPrefix(word);
+    if(prefixes.empty())
+        std::cout<<"No result found!\n";
+    else{
+        std::vector<Word*> defsForPrefixes;
+        int n=prefixes.size();
+        for(int i=0;i<n;++i)
+            defsForPrefixes.push_back(dict->searchDef(prefixes[i]));
+        std::cout<<"The keyword(s) that you are looking for is/are: \n";
+        for(int i=0;i<n;++i){
+            std::cout<<i+1<<". "<<prefixes[i]<<std::endl;
+            for(int type=0;type<POS::Count;++type){
+                //std::cout<<type<<std::endl;
+                if(defsForPrefixes[i]->def[type].empty()) {
+                    //std::cout<<"No definition for this type"<<std::endl;
+                    continue;
+                }
+                std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
+                for(int idx=0;idx<defsForPrefixes[i]->def[type].size();++idx){
+                    std::cout<<"\t\t"<<"-"<<defsForPrefixes[i]->def[type][idx]<<std::endl;
+                }
+            }
+        }
+    }
+
+    int cnt=0;
+    std::cout<<++cnt<<". Back"<<std::endl;
+    inputOption(cnt);
+    return new SearchScreen(dict);
+}
+//-------------------------End Parent: SearchScreen-------------------------------
+
 //-------------------------Parent: ViewScreen-------------------------------
 Screen*  ViewHistoryScreen::render(){
     clearScr();
@@ -234,4 +293,3 @@ Screen* DeleteAllHistoryScreen::render(){
     return new EditScreen(dict);
 }
 //-------------------------End Parent: EditScreen-------------------------------
-

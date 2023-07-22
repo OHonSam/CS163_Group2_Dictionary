@@ -47,12 +47,12 @@ public:
     Home(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-//-------------------------Parent: Home-------------------------------'
+//-------------------------Parent: Home-------------------------------
 class SearchScreen: public Screen
 {
 private:
     const std::vector<std::string> options = {
-        "Search for a word",
+        "Search for a keyword",
         "Search for a definition",
         "Back"
     };
@@ -94,8 +94,17 @@ public:
 };
 //-------------------------End Parent: Home---------------------------
 
+//-------------------------Parent: SearchScreen--------------------------------
+class SearchForDefScreen: public Screen{
+public:
+    SearchForDefScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 
-//-------------------------Parent: View--------------------------------
+//-------------------------End Parent: SearchScreen---------------------------
+
+
+//-------------------------Parent: ViewScreen--------------------------------
 class ViewHistoryScreen: public Screen{
 public:
     ViewHistoryScreen(Dict* dict) : Screen(dict) {}
@@ -103,9 +112,9 @@ public:
 };
 
 
-//-------------------------End Parent: View---------------------------
+//-------------------------End Parent: ViewScreen---------------------------
 
-//-------------------------Parent: Edit--------------------------------
+//-------------------------Parent: EditScreen--------------------------------
 class Remove1WordHistoryScreen: public Screen{
 public:
     Remove1WordHistoryScreen(Dict* dict) : Screen(dict) {}
@@ -118,6 +127,6 @@ public:
 };
 
 
-//-------------------------End Parent: Edit---------------------------
+//-------------------------End Parent: EditScreen---------------------------
 
 #endif // SCREENS_HPP
