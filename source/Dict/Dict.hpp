@@ -81,7 +81,7 @@ public:
 	std::vector<std::string> getHistory();						
 
 	// Get the favorite list
-	// std::vector<std::string> getFav();						
+	std::vector<std::string> getFav();						
 
    	// Return a definition for a required word
     Word* searchDef(const std::string& word); 			
