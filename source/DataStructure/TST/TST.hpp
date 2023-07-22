@@ -40,7 +40,7 @@ class TST
 
     void import(TSTNode *&root, std::ifstream &file);
     void save(TSTNode *root, std::ofstream &file);
-    void traverse(std::vector<std::string> &res, TSTNode *root, std::string str);
+    void traverse(std::vector<std::string> &res, TSTNode *root, std::string str, int &cnt);
 
 
     // Insert into the TST
@@ -69,7 +69,7 @@ public:
 
     void insert(const std::string &word);
     void remove(const std::string &word);
-    void traverse();
+    std::vector<std::string> traverse();
 
 
     // Return true if the word is in the TST
@@ -80,7 +80,6 @@ public:
 
     //Return words in the trie that starts with the given prefix
     std::vector<std::string>startWith(const std::string &prefix);
-    void startsWithRecursiveSearch(std::vector<std::string> &res, const std::string prefix, TSTNode *cur, int &cnt);
 
     bool import(const std::string &path);
     bool save(const std::string &path);    

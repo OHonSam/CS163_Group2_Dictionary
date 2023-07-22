@@ -152,7 +152,7 @@ std::vector<std::string> Dict::getHistory(){
 
 std::vector<std::string> Dict::getFav()
 {
-    return favList.startWith("");
+    return favList.traverse();
 }
 
 Word *Dict::searchDef(const std::string &word)

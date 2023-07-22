@@ -120,40 +120,8 @@ std::vector<std::string> TST::startWith(const std::string &prefix)
     TSTNode *start = getNodeLastChar(root, prefix, 0);
 
     int cnt = 0;
-    startsWithRecursiveSearch(res, prefix, start, cnt);
+    traverse(res, start, prefix, cnt);
     return res;
-}
-
-void TST::startsWithRecursiveSearch(std::vector<std::string> &res, const std::string prefix, TSTNode *cur, int &cnt)
-{
-
-    if (cnt == LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST)
-        return;
-    if (cur->isEnd == true)
-    {
-        res.push_back(prefix);
-        ++cnt;
-        return;
-    }
-    char _c; // value of character contained in a TSTNode
-    if (cur->left != nullptr)
-    {
-        _c = cur->left->c;
-        startsWithRecursiveSearch(res, prefix + _c, cur->left, cnt);
-    }
-
-    if (cur->mid != nullptr)
-    {
-        _c = cur->mid->c;
-        startsWithRecursiveSearch(res, prefix + _c, cur->mid, cnt);
-    }
-
-    if (cur->right != nullptr)
-    {
-        _c = cur->right->c;
-        startsWithRecursiveSearch(res, prefix + _c, cur->right, cnt);
-    }
-
 }
 
 TSTNode *TST::getNodeLastChar(TSTNode *node, const std::string &str, int index)
@@ -222,7 +190,7 @@ bool TST::import(const std::string &path)
     std::ifstream file(path, std::ios::binary);
     if (!file.is_open())
         return false;
-    if(file.peek() == std::ifstream::traits_type::eof())
+    if (file.peek() == std::ifstream::traits_type::eof())
         return true;
     import(root, file);
     file.close();
@@ -285,38 +253,37 @@ void TST::save(TSTNode *root, std::ofstream &file)
     file.write((char *)&marker, sizeof(char));
 }
 
-
-void TST::traverse()
+std::vector<std::string> TST::traverse()
 {
-  std::vector<std::string> res;
-  traverse(res, root, "");
+    std::vector<std::string> res;
+    int cnt = 0;
+    traverse(res, root, "", cnt);
 
-  for (auto i : res)
-  {
-    std::cout << i << '\n';
-  }
+    return res;
 }
 
-void TST::traverse(std::vector<std::string> &res, TSTNode *root, std::string str)
+void TST::traverse(std::vector<std::string> &res, TSTNode *root, std::string str, int &cnt)
 {
-  if (root == nullptr)
-    return;
-  traverse(res, root->left, str);
-  
-  str = str + root->c;
+    if (cnt == LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST)
+        return;
 
-  if (root->isEnd == true)
-  {
-    res.push_back(str);
-  }
+    if (root == nullptr)
+        return;
+    traverse(res, root->left, str, cnt);
 
-  traverse(res, root->mid, str);
-  
-  str = str.substr(0, str.length() - 1);
+    str = str + root->c;
 
-  traverse(res, root->right, str);
+    if (root->isEnd == true)
+    {
+        res.push_back(str);
+    }
+
+    traverse(res, root->mid, str, cnt);
+
+    str = str.substr(0, str.length() - 1);
+
+    traverse(res, root->right, str, cnt);
 }
-
 
 void TST::type2RemoveWord()
 {
