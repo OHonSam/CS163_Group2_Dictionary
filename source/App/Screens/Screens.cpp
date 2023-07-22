@@ -313,10 +313,34 @@ Screen *Type2InsertWordFavListScreen::render()
 	return new FavListChoiceScreen(dict);
 }
 
-
-Screen *Type2InsertWordFavListScreen::render()
+Screen *SearchPrefixFavList::render()
 {
+	std::string prefix;
+	int cnt = 0;
+
 	clearScr();
+
+	std::cout << "Please type in the word you want to search: ";
+
+	std::getline(std::cin, prefix, '\n');
+
+	dict->uppercase2Lowercase(prefix);
+
+	std::vector<std::string> display = dict->searchPrefixFavlist(prefix);
+
+	std::cout << "The words that start with <" << prefix << "> are: \n";
+
+	for (auto i : display)
+	{
+		std::cout << ++cnt << ". " << i << '\n';
+	}
+
+	std::cout << "\nThere are " << cnt << " words that start with <" << prefix << ">\n";
+
+	int cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new ViewScreen(dict);
 
 	std::cout << "Enter the word you want to remove from your favourite list: ";
 	std::string word;
@@ -330,7 +354,6 @@ Screen *Type2InsertWordFavListScreen::render()
 	inputOption(cnt);
 	return new FavListChoiceScreen(dict);
 }
-
 
 // void SearchPrefixFavList::Render(App *app)
 // {

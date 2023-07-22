@@ -70,14 +70,6 @@ public:
     void remove(const std::string &word);
     void traverse();
 
-    //for screen type2RemoveWord
-    void type2RemoveWord();
-    
-    //for screen type2InsertWord
-    void type2InsertWord();
-
-    //for screen searchPrefix
-    void searchPrefix();
 
     // Return true if the word is in the TST
     bool wordExists(const std::string &word);
@@ -95,6 +87,17 @@ public:
     bool treeExists();
 
     void uppercase2Lowercase(std::string &str);
+    
+    
+    
+    //for screen type2RemoveWord
+    void type2RemoveWord();
+    
+    //for screen type2InsertWord
+    void type2InsertWord();
+
+    //for screen searchPrefix
+    void searchPrefix();
 };
 
 #endif
