@@ -13,6 +13,11 @@ bool Dict::reset(){
     ;
 }
 
+void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
+{
+    wordDef.updateDef(word,type,oldDef,newDef);
+}
+
 void Dict::addWord(Word *word)
 {
     words.insert(word->word);

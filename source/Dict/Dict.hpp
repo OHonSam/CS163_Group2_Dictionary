@@ -57,7 +57,7 @@ public:
 	bool reset();									
 
 	// Edit definition of existed word
-	// void updateDef(const std::string& word, const std::string& newDef); 
+	void updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef); 
 
 	// Add a new word and corresponding definition
 	void addWord(Word* word);
