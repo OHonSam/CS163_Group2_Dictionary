@@ -96,3 +96,32 @@ TEST(Dict_test, updateDef)
     dict.removeWord("abc");
     EXPECT_TRUE(dict.searchDef("abc")==nullptr);
 }
+
+TEST(Dict_test, history)
+{
+    Dict dict;
+    
+    for(int i=0;i<words.size();++i)
+        dict.addHistory(words[i]);
+
+    vector<string> v=dict.getHistory();
+
+    ASSERT_TRUE(v.size()==words.size());
+    for(const string& s:v)
+    {
+        bool flag=false;
+        for(const string& t:words)
+            if(s==t)
+            {
+                flag=true;
+                break;
+            }
+        EXPECT_TRUE(flag);
+    }
+
+    for(int i=0;i<words.size();++i)
+        dict.removeHistory(words[i]);
+
+    v=dict.getHistory();
+    EXPECT_TRUE(v.empty());
+}
