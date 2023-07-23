@@ -94,8 +94,10 @@ Screen* Home::render()
     {
         case 1:
             nextScreen=new SearchScreen(dict);
+            break;
         case 2:
             nextScreen=new EditScreen(dict);
+            break;
         case 3:
             nextScreen=new ViewScreen(dict);
             break;
