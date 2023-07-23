@@ -74,6 +74,7 @@ int HashTable::hash(const std::string& word) {
 
 HashTable::HashTable():bit(MOD[NMOD-1])
 {
+    numWords=0;
     buckets.resize(MOD[NMOD-1]);
 }
 
@@ -133,7 +134,10 @@ void HashTable::updateDef(const std::string& word, unsigned int type, const std:
 
 bool HashTable::import(const std::string& path) {
     std::ifstream in(path, std::ios::in | std::ios::binary);
-    if (!in.is_open()) return false;
+    if (!in.is_open()) 
+        return false;
+    if(in.peek() == std::ifstream::traits_type::eof())
+        return true;
     int temp;
     int tempora;
     std::string w;
@@ -211,7 +215,7 @@ bool HashTable::save(const std::string& path) {
         }
     }
     out.close();
-    HashTable::clear();
+    // HashTable::clear();
     return true;
 }
 // please do not delete test code
