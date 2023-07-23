@@ -3,6 +3,8 @@ using namespace std;
 
 int main()
 {
-    Dict dict;
+    //Dict dict;
+    App app;
+    app.run();
     return 0;
 }

@@ -135,7 +135,7 @@ void TST::startsWithRecursiveSearch(std::vector<std::string> &res, const std::st
         ++cnt;
         return;
     }
-    char _c; //value of character contained in a TSTNode
+    char _c; // value of character contained in a TSTNode
     if (cur->left != nullptr)
     {
         _c = cur->left->c;
@@ -218,7 +218,10 @@ bool TST::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
     if (!file.is_open())
+    {
+        std::cout << "File not found\n";
         return false;
+    }
     if(file.peek() == std::ifstream::traits_type::eof())
         return true;
     import(root, file);
@@ -230,7 +233,10 @@ bool TST::save(const std::string &path)
 {
     std::ofstream file(path, std::ios::binary);
     if (!file.is_open())
+    {
+        std::cout << "File not found\n";
         return false;
+    }
     save(root, file);
     file.close();
     return true;
@@ -280,4 +286,69 @@ void TST::save(TSTNode *root, std::ofstream &file)
 
     char marker = TERMINATOR;
     file.write((char *)&marker, sizeof(char));
+}
+
+void TST::traverse()
+{
+    traverse(root);
+}
+
+void TST::traverse(TSTNode *root)
+{
+    if (root == nullptr)
+        return;
+    traverse(root->left);
+    std::cout << root->c << " ";
+    traverse(root->mid);
+    std::cout << root->c << " ";
+    traverse(root->right);
+}
+
+void TST::type2RemoveWord()
+{
+    std::string word;
+
+    std::cout << "Please type in the word you want to remove: ";
+
+    std::getline(std::cin, word, '\n');
+
+    remove(word);
+
+    std::cout << "Removed successfully!\n";
+}
+
+void TST::type2InsertWord()
+{
+    std::string word;
+
+    std::cout << "Please type in the word you want to remove: ";
+
+    std::getline(std::cin, word, '\n');
+
+    insert(word);
+
+    std::cout << "Inserted successfully!\n";
+
+}
+
+void TST::searchPrefix()
+{
+    std::string word;
+    std::vector<std::string> res;
+    int cnt = 0;
+
+    std::cout << "Please type in the word you want to remove: ";
+
+    std::getline(std::cin, word, '\n');
+
+    res = startWith(word);
+
+    std::cout << "The words that start with " << word << " are: \n";
+
+    for (auto i : res)
+    {
+        std::cout << ++cnt << ". " << i << '\n';
+    }
+
+    std::cout << "\nThere are " << cnt << " words that start with " << word << '\n';
 }
