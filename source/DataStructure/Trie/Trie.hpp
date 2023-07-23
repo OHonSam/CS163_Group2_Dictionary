@@ -60,7 +60,7 @@ public:
 	}
 	~Trie()
 	{
-		clear(root);
+		clear();
 	}
 
 	// Deallocate all nodes

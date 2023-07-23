@@ -66,8 +66,11 @@ int SLL<T>::countNodes(Node* head){
     }
     return ans;
 }
-template<class T>
-void SLL<T>::push(const T& key){
+
+
+template <class T>
+void SLL<T>::push(const T &key)
+{
     Node* pNew=new Node(key);
     if(head==nullptr){
         head=pNew;
@@ -81,10 +84,10 @@ void SLL<T>::push(const T& key){
     }
 }
 
-void StrToCharArr(char*& arr, const std::string& str, int len) {//count '\0' in len
-    #pragma warning(suppress : 4996)
-    strcpy(arr, str.c_str());
-}
+// void StrToCharArr(char*& arr, const std::string& str, int len) {//count '\0' in len
+//     #pragma warning(suppress : 4996)
+//     strcpy(arr, str.c_str());
+// }
 template<class T>
 bool SLL<T>::saveSLLStr(const std::string& path) {
     std::ofstream fout;
@@ -99,12 +102,12 @@ bool SLL<T>::saveSLLStr(const std::string& path) {
         std::string keyword = cur->data;
         int len = keyword.size()+1;
 
-        char* arr = new char[len];
+        // char* arr = new char[len];
 
-        StrToCharArr(arr, keyword, len);
+        // StrToCharArr(arr, keyword, len);
 
         fout.write((char*)&len, sizeof(int));
-        fout.write(arr, len);
+        fout.write(keyword.c_str(), len);
 
         cur = cur->next;
     }
@@ -128,6 +131,8 @@ bool SLL<T>::importSLLStr(const std::string& path) {
         //cout << "Can't open the file for reading!";
         return false;
     }
+    if(fin.peek() == std::ifstream::traits_type::eof())
+        return true;
     int len;
     while (fin.read((char*)&len,sizeof(int))) {
         char* arr = new char[len];
@@ -159,5 +164,25 @@ std::vector<T> SLL<T>::SLLintoVector(){
         cur=cur->next;
     }
     return res;
+}
+
+template<class T>
+ bool  SLL<T>::find(const T& key){
+     Node* cur=head;
+     while(cur!=nullptr){
+         if(cur->data==key)
+             return true;
+         cur=cur->next;
+     }
+     return false;
+ }
+
+template<class T>
+void SLL<T>::display(){
+    Node* cur=head;
+    while(cur!=nullptr){
+        std::cout<<cur->data<<std::endl;
+        cur=cur->next;
+    }
 }
 #endif

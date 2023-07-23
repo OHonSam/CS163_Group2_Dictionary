@@ -1,76 +1,85 @@
 #include <Dict.hpp>
 
-// bool Dict::importJson(const std::string &path)
-// {
-//     // Open the JSON file
-//     std::ifstream inputFile(path);
-//     if (!inputFile.is_open()) {
-//         std::cerr << "Failed to open the input file." << std::endl;
-//         return false;
-//     }
 bool Dict::reset(){
-    if(!history.clearHistory("HistorySLL.bin"))
-        return false;
-    //waiting for others
-    if(words.import("assets/default/words.bin"))
-        return false;
+    words.clear();
+    wordDef.clear();
+    favList.clear();
+    history.clearSLL();
+    return 
+        words.import(DEFAULT::WORDS) &&
+        wordDef.import(DEFAULT::WORDDEF) &&
+        favList.import(DEFAULT::FAVLIST) &&
+        history.importSLLStr(DEFAULT::HISTORY)
+    ;
+}
+
+void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
+{
+    wordDef.updateDef(word,type,oldDef,newDef);
+}
+
+void Dict::addWord(Word *word)
+{
+    words.insert(word->word);
+    wordDef.insert(word);
+}
+
+void Dict::addFav(const std::string &word)
+{
+    favList.insert(word);
+}
+
+bool Dict::lowerStrEng(std::string &str)
+{
+    for (char &c : str) c=std::tolower(c);
+    for (char c: str)
+        if (c < 'a' || c > 'z')
+            return false;
     return true;
 }
 
-//     // Read the entire file into a std::string
-//     std::string jsonString((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
-
-//     // Close the file
-//     inputFile.close();
-
-//     // Parse the JSON std::string
-//     Json::Value root;
-//     Json::Reader reader;
-
-//     bool parsingSuccessful = reader.parse(jsonString, root);
-//     if (!parsingSuccessful) {
-//         std::cerr << "Failed to parse the JSON file: " << reader.getFormattedErrorMessages() << std::endl;
-//         return false;
-//     }
-
-//     // Iterate over the words
-//     for(const auto& key: root.getMemberNames()) {
-//         // Get the word
-//         std::string word = key;
-
-//         // Get the definition
-//         std::string definition = root[word].asString();
-
-//         //Insert the word into the trie
-//         words.insert(word);
-
-//         //Insert the word and its definition into the hash table
-//         wordDef.insert(word, definition);
-//     }
-
-//     return true;
-// }
-
-Dict::Dict(bool firstInit)
+Dict::Dict()
 {
-    if(firstInit)
-        importCsv("assets/Datasets/EE.csv");
-    else
+    if(!loadFromPrev())
     {
-        words.import("assets/main/words.bin");
-        wordDef.import("assets/main/wordDef.bin");
-        history.importSLLStr("assets/main/HistorySLL.bin");
-        favList.import("assets/main/favList.bin");
+        importEECsv(RAW_DATA::EE);
+
+        words.save(DEFAULT::WORDS);
+        wordDef.save(DEFAULT::WORDDEF);
+        favList.save(DEFAULT::FAVLIST);
+        history.saveSLLStr(DEFAULT::HISTORY);
     }
 }
 
-bool Dict::importCsv(const std::string &path)
+Dict::~Dict()
 {
-    std::ifstream in("assets/Datasets/EE.csv");
+    words.save(MAIN::WORDS);
+    wordDef.save(MAIN::WORDDEF);
+    favList.save(MAIN::FAVLIST);
+    history.saveSLLStr(MAIN::HISTORY);
+}
+
+bool Dict::loadFromPrev()
+{
+    return 
+        words.import(MAIN::WORDS) &&
+        wordDef.import(MAIN::WORDDEF) &&
+        favList.import(MAIN::FAVLIST) &&
+        history.importSLLStr(MAIN::HISTORY)
+    ;
+}
+
+bool Dict::importEECsv(const std::string &path)
+{
+    std::ifstream in(path);
+    if(!in.is_open()) return false;
+
     std::string line;
     std::getline(in,line);
 
-    while(!in.eof())
+    int cnt=0;
+    Word* w=nullptr;
+    while(!in.eof() && cnt<LIM_WORDS)
     {
         std::string word, len, POS, def;
         std::getline(in,word,',');
@@ -78,22 +87,26 @@ bool Dict::importCsv(const std::string &path)
         std::getline(in,POS,',');
         std::getline(in,def,'\n');
 
-        // put word lowercase all
-        for(char &c:word)
-            if(c>='A' && c<='Z')
-                c=c-'A'+'a';
+        if(!lowerStrEng(word)) continue;
+        if(POS.size()<6 || def.size()<6) continue;
 
         POS=POS.substr(3,POS.size()-6);
         def=def.substr(3,def.size()-6);
 
         unsigned int type=POS::getType(POS);
         
-        Word* w=new Word(word,type,def);
-
-        // Insert new word to necessary data structures
-        words.insert(word); // Add to trie
-        wordDef.insert(w);  // Add to hash table
+        if(w==nullptr || w->word!=word)
+        {
+            cnt++;
+            if(w!=nullptr) addWord(w);
+            w=new Word(word,type,def);
+        }
+        else
+            for(int i=0;i<POS::Count;++i)
+                if(type&(1<<i))
+                    w->def[i].push_back(def);
     }
+    if(w!=nullptr) addWord(w);
     in.close();
     return true;
 }
@@ -130,14 +143,54 @@ void Dict::addHistory(const std::string& word){
 void Dict::removeHistory(const std::string& word){
     history.pop(word);
 }
+bool Dict::clearAllHistory(const std::string& path){
+    return history.clearHistory(path);
+}
 std::vector<std::string> Dict::getHistory(){
     return history.SLLintoVector();
 }
 
+std::vector<std::string> Dict::getFav()
+{
+    return favList.traverse();
+}
+
+Word *Dict::searchDef(const std::string &word)
+{
+    return wordDef.searchDef(word);
+}
+
+std::vector<std::string> Dict::searchPrefix(const std::string &prefix)
+{
+    return words.searchPrefix(prefix);
+}
+
+std::vector<std::string> Dict::searchPrefixFavlist(const std::string &prefix)
+{
+    return favList.startWith(prefix);
+}
 
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
-    //waiting for others
-    words.remove(word);
+    removeFav(word);
     wordDef.remove(word);
+    words.remove(word);
+}
+
+void Dict::removeFav(const std::string &word)
+{
+    favList.remove(word);
+}
+
+bool Dict::uppercase2Lowercase(std::string &str)
+{
+    // int len = str.size();
+    // for (int i = 0; i < len; ++i)
+    // {
+    //     if (str[i] >= 'A' && str[i] <= 'Z')
+    //     {
+    //         str[i] = str[i] - 'A' + 'a';
+    //     }
+    // }
+    return lowerStrEng(str);
 }
