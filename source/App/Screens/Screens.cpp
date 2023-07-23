@@ -234,8 +234,10 @@ void SearchForDefScreen::displayPrefixMode(const std::string& word)
     else{
         std::vector<Word*> defsForPrefixes;
         int n=prefixes.size();
-        for(int i=0;i<n;++i)
+        for(int i=0;i<n;++i){
             defsForPrefixes.push_back(dict->searchDef(prefixes[i]));
+            dict->addHistory(prefixes[i]);
+        }
         std::cout<<"The keyword(s) that you are looking for is/are: \n";
         for(int i=0;i<n;++i){
             std::cout<<i+1<<". "<<prefixes[i]<<std::endl;
