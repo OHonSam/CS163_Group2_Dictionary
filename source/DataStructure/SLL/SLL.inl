@@ -167,7 +167,7 @@ std::vector<T> SLL<T>::SLLintoVector(){
 }
 
 template<class T>
- bool  SLL<T>::find(const T& key){
+bool SLL<T>::find(const T& key){
      Node* cur=head;
      while(cur!=nullptr){
          if(cur->data==key)
