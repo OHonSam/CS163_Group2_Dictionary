@@ -93,7 +93,7 @@ Screen* Home::render()
     switch(choice)
     {
         case 1:
-            break;
+            nextScreen=new SearchScreen(dict);
         case 2:
             nextScreen=new EditScreen(dict);
         case 3:
@@ -210,7 +210,7 @@ Screen* SearchForDefScreen::render(){
     int choice=inputOption(3);
     switch(choice){
         case 1:
-            //displayExactMode(word);
+            SearchForDefScreen::displayExactMode(word);
             break;
         case 2:
             SearchForDefScreen::displayPrefixMode(word);
