@@ -87,7 +87,7 @@ Screen *Home::render()
 	std::cout << "Welcome to Dictionary!" << std::endl;
 	int siz = options.size();
 	for (int i = 0; i < siz; ++i)
-		std::cout << std::to_string(i) << ". " << options[i] << std::endl;
+		std::cout << std::to_string(i+1) << ". " << options[i] << std::endl;
 
     Screen* nextScreen=this;//"this"->own object
     int choice=inputOption(options.size());
