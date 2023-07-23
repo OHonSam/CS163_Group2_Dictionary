@@ -132,6 +132,7 @@ Screen* SearchScreen::render(){
             nextScreen=new Home(dict);
             break;
     }
+    return nextScreen;
 }
 Screen* ViewScreen::render(){
     clearScr();
@@ -148,7 +149,7 @@ Screen* ViewScreen::render(){
         case 2:
             break;
         case 3:
-            //nextScreen=new Home(dict);
+            //View favorite list
             break;
         case 4:
             break;
@@ -202,12 +203,26 @@ Screen* SearchForDefScreen::render(){
     std::cout<<"Enter the word you want to search for: ";
     std::string word;
     std::getline(std::cin,word);
-    SearchForDefScreen::displayPrefixMode(word);
-    
+    std::cout<<"Options: \n"
+        <<"1. Search for the exact word\n"
+        <<"2. Search for the words that has the same prefix\n"
+        <<"3. Back\n";
+    int choice=inputOption(3);
+    switch(choice){
+        case 1:
+            //displayExactMode(word);
+            break;
+        case 2:
+            SearchForDefScreen::displayPrefixMode(word);
+            break;
+        case 3:
+            return new SearchScreen(dict);
+    }
     int cnt=0;
     std::cout<<++cnt<<". Back"<<std::endl;
     inputOption(cnt);
     return new SearchScreen(dict);
+    
 }
 void SearchForDefScreen::displayPrefixMode(const std::string& word)
 {
@@ -235,6 +250,7 @@ void SearchForDefScreen::displayPrefixMode(const std::string& word)
             }
         }
     }
+    
 }
 //-------------------------End Parent: SearchScreen-------------------------------
 
