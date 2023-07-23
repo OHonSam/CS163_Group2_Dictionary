@@ -5,17 +5,6 @@
 #include "Word.hpp"
 #include "SmallTrie.hpp"
 
-// #include<iostream>
-// #include<fstream>
-// #include<vector>
-// #include<utility>//to use pair
-// #include<string>
-// #include <sstream>
-// #include <time.h>
-// // #include <algorithm>
-// #include<cstring>
-
-
 // const int ALPHABET_SIZE = 26;
 // const char TERMINATOR = '\0';
 
