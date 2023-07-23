@@ -1,36 +1,34 @@
 #ifndef SCREENS_HPP
 #define SCREENS_HPP
 
-#include <Dict.hpp>
+#include "Dict.hpp"
 
 // Screen
 class Screen
 {
 private:
-    bool checkStrOption(const std::string& str, int& choice);
+    bool checkStrOption(const std::string &str, int &choice);
     bool checkStrEng(std::string str);
 
 protected:
-    Dict* dict;
+    Dict *dict;
 
     void clearScr();
 
     int inputOption(
         int maxOption,
-        const std::string& mess="Your choice: "
-    );
+        const std::string &mess = "Your choice: ");
     std::string inputEngString(
-        const std::string& mess="Enter English word:"
-    );
+        const std::string &mess = "Enter English word:");
 
 public:
-    Screen(Dict* dict) : dict(dict) {}
-    virtual Screen* render() = 0;
+    Screen(Dict *dict) : dict(dict) {}
+    virtual Screen *render() = 0;
 };
 //
 
 // Home
-class Home: public Screen
+class Home : public Screen
 {
 private:
     const std::vector<std::string> options = {
@@ -40,12 +38,11 @@ private:
         "Reset to default",
         "Random",
         "Switch between dictionaries (English-Vietnamese, Vietnamese-English, English-English)",
-        "Exit"
-    };
+        "Exit"};
 
 public:
-    Home(Dict* dict) : Screen(dict) {}
-    Screen* render();
+    Home(Dict *dict) : Screen(dict) {}
+    Screen *render();
 };
 //-------------------------Parent: Home-------------------------------
 class SearchScreen: public Screen
@@ -92,6 +89,26 @@ public:
     ViewScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
+
+class FavListChoiceScreen : public Screen
+{
+private:
+    const std::vector<std::string> options = {
+        "Type in a word to insert it to your favorite list",
+        "Type in a word to remove it from your favorite list",
+        "Search prefix of words in your favorite list",
+        "Go back to previous page",
+    };
+
+    const std::vector<std::string> options2 = {
+        "Type in a word to insert it to your favorite list",
+        "Go back to previous page",
+    };
+
+public:
+    FavListChoiceScreen(Dict *dict) : Screen(dict) {}
+    Screen *render();
+};
 //-------------------------End Parent: Home---------------------------
 
 //-------------------------Parent: SearchScreen--------------------------------
@@ -127,8 +144,31 @@ public:
     DeleteAllHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
+//-------------------------End Parent: Edit---------------------------
 
 
-//-------------------------End Parent: EditScreen---------------------------
+//----------------------Parent: FavListChoiceScreen--------------------------------------
+class Type2RemoveWordFavListScreen : public Screen
+{
+public:
+    Type2RemoveWordFavListScreen(Dict *dict) : Screen(dict) {}
+    Screen *render();
+};
+
+
+class Type2InsertWordFavListScreen : public Screen
+{
+public:
+    Type2InsertWordFavListScreen(Dict *dict) : Screen(dict) {}
+    Screen *render();
+};
+
+class SearchPrefixFavList : public Screen
+{
+public:
+    SearchPrefixFavList(Dict *dict) : Screen(dict) {}
+    Screen *render();
+};
+//----------------------End Parent: FavListChoiceScreen--------------------------------------
 
 #endif // SCREENS_HPP

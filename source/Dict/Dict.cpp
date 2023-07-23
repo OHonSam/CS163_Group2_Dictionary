@@ -152,7 +152,7 @@ std::vector<std::string> Dict::getHistory(){
 
 std::vector<std::string> Dict::getFav()
 {
-    return favList.startWith("");
+    return favList.traverse();
 }
 
 Word *Dict::searchDef(const std::string &word)
@@ -165,6 +165,11 @@ std::vector<std::string> Dict::searchPrefix(const std::string &prefix)
     return words.searchPrefix(prefix);
 }
 
+std::vector<std::string> Dict::searchPrefixFavlist(const std::string &prefix)
+{
+    return favList.startWith(prefix);
+}
+
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
     removeFav(word);
@@ -175,4 +180,17 @@ void Dict::removeWord(const std::string& word){
 void Dict::removeFav(const std::string &word)
 {
     favList.remove(word);
+}
+
+bool Dict::uppercase2Lowercase(std::string &str)
+{
+    // int len = str.size();
+    // for (int i = 0; i < len; ++i)
+    // {
+    //     if (str[i] >= 'A' && str[i] <= 'Z')
+    //     {
+    //         str[i] = str[i] - 'A' + 'a';
+    //     }
+    // }
+    return lowerStrEng(str);
 }

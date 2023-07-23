@@ -9,8 +9,8 @@ void App::run()
 {
     while (CurrentScreen != nullptr)
     {
-        Screen* NextScreen=CurrentScreen->render();
-        if(NextScreen!=CurrentScreen)//if the screen is changed
+        Screen *NextScreen = CurrentScreen->render();
+        if (NextScreen != CurrentScreen)
         {
             delete CurrentScreen;
             CurrentScreen = NextScreen;

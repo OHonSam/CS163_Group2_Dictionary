@@ -1,7 +1,7 @@
 #include "Screens.hpp"
 
 // Screen
-bool Screen::checkStrOption(const std::string &str, int& choice)
+bool Screen::checkStrOption(const std::string &str, int &choice)
 {
 	int length = str.size();
 	if (length > 10 || length == 0)
@@ -20,73 +20,74 @@ bool Screen::checkStrOption(const std::string &str, int& choice)
 
 bool Screen::checkStrEng(std::string str)
 {
-    int length = str.size();
-    if (length > 100 || length == 0)
-        return false;
+	int length = str.size();
+	if (length > 100 || length == 0)
+		return false;
 
-    for(char& c : str)
-        if (c >= 'A' && c <= 'Z')
-            c += 'a' - 'A';
+	for (char &c : str)
+		if (c >= 'A' && c <= 'Z')
+			c += 'a' - 'A';
 
-    for (int j = 0; j < length; ++j)
-        if (str[j] < 'a' || str[j] > 'z')
-            return false;
+	for (int j = 0; j < length; ++j)
+		if (str[j] < 'a' || str[j] > 'z')
+			return false;
 
-    return true;
+	return true;
 }
 
 void Screen::clearScr()
 {
 #if defined _WIN32
-    system("cls");
-    //clrscr(); // including header file : conio.h
-#elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
-    system("clear");
-    //std::cout<< u8"\033[2J\033[1;1H"; //Using ANSI Escape Sequences 
-#elif defined (__APPLE__)
-    system("clear");
+	system("cls");
+	// clrscr(); // including header file : conio.h
+#elif defined(__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
+	system("clear");
+	// std::cout<< u8"\033[2J\033[1;1H"; //Using ANSI Escape Sequences
+#elif defined(__APPLE__)
+	system("clear");
 #endif
-
 }
 
 int Screen::inputOption(int maxOption, const std::string &mess)
 {
-    int option=maxOption;
+	int option = maxOption;
 
-    std::cout<<mess;
-    std::string str; std::getline(std::cin, str, '\n');
-    while (!checkStrOption(str, option) || option < 1 || option > maxOption)
-    {
-        std::cout<<"Invalid input. Please try again: ";
-        std::getline(std::cin, str, '\n');
-    }
+	std::cout << mess;
+	std::string str;
+	std::getline(std::cin, str, '\n');
+	while (!checkStrOption(str, option) || option < 1 || option > maxOption)
+	{
+		std::cout << "Invalid input. Please try again: ";
+		std::getline(std::cin, str, '\n');
+	}
 
-    return option;
+	return option;
 }
 
-std::string Screen::inputEngString(const std::string& mess)
+std::string Screen::inputEngString(const std::string &mess)
 {
-    std::string str;
-    std::cout<<mess;
-    std::getline(std::cin, str, '\n');
-    while (!checkStrEng(str))
-    {
-        std::cout<<"Invalid input. Please try again: ";
-        std::getline(std::cin, str, '\n');
-    }
+	std::string str;
+	std::cout << mess;
+	std::getline(std::cin, str, '\n');
+	while (!checkStrEng(str))
+	{
+		std::cout << "Invalid input. Please try again: ";
+		std::getline(std::cin, str, '\n');
+	}
 
-    return str;
+	return str;
 }
 //
 
 // Home
-Screen* Home::render()
+Screen *Home::render()
 {
-    clearScr();
+	clearScr();
 
-    std::cout<<"Welcome to Dictionary!"<<std::endl;
-    for(int i=0; i<options.size(); i++)
-        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	std::cout << "Welcome to Dictionary!" << std::endl;
+	int siz = options.size();
+	for (int i = 0; i < siz; ++i)
+		std::cout << std::to_string(i) << ". " << options[i] << std::endl;
 
     Screen* nextScreen=this;//"this"->own object
     int choice=inputOption(options.size());
@@ -112,7 +113,7 @@ Screen* Home::render()
             break;
     }
 
-    return nextScreen;
+	return nextScreen;
 }
 //-------------------------Parent: Home-------------------------------
 Screen* SearchScreen::render(){
@@ -139,8 +140,11 @@ Screen* SearchScreen::render(){
 Screen* ViewScreen::render(){
     clearScr();
 
-    for(int i=0; i<options.size(); i++)
-        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+Screen *ViewScreen::render()
+{
+	clearScr();
+	for (int i = 0; i < options.size(); i++)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 
     Screen* nextScreen=this;//"this"->own object
     int choice=inputOption(options.size());
@@ -161,11 +165,12 @@ Screen* ViewScreen::render(){
     }
     return nextScreen;
 }
-Screen* EditScreen::render(){
-    clearScr();
+Screen *EditScreen::render()
+{
+	clearScr();
 
-    for(int i=0; i<options.size(); i++)
-        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	for (int i = 0; i < options.size(); i++)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 
     Screen* nextScreen=this;//"this"->own object
     int choice=inputOption(options.size());
@@ -196,6 +201,38 @@ Screen* EditScreen::render(){
             break;
     }
     return nextScreen;
+}
+
+Screen *FavListChoiceScreen::render()
+{
+	clearScr();
+
+	std::cout << "What would you like to do?\n"
+			  << std::endl;
+	int siz = options.size();
+	for (int i = 0; i < siz; ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+
+	Screen *nextScreen = this;
+	int choice = inputOption(options.size());
+	// fix Linh
+	switch (choice)
+	{
+	case 1:
+		// SetNextScreen(app, new Type2InsertWordFavListScreen());
+		break;
+	case 2:
+		// SetNextScreen(app, new Type2RemoveWordFavListScreen());
+		break;
+	case 3:
+		// SetNextScreen(app, new SearchPrefixFavList());
+		break;
+	case 4:
+		nextScreen = new Home(dict);
+		break;
+	}
+
+	return nextScreen;
 }
 //-------------------------End Parent: Home---------------------------
 
@@ -284,60 +321,134 @@ void SearchForDefScreen::displayExactMode(const std::string& word)
 //-------------------------End Parent: SearchScreen-------------------------------
 
 //-------------------------Parent: ViewScreen-------------------------------
-Screen*  ViewHistoryScreen::render(){
-    clearScr();
-	std::cout<< "Your search history (20 most recent keywords):\n";
-	std::vector<std::string> display= dict->getHistory();
-	for(int i=0;i<display.size();++i){
-        std::cout<<display[i]<<std::endl;
-    }
+Screen *ViewHistoryScreen::render()
+{
+	clearScr();
+	std::cout << "Your search history (20 most recent keywords):\n";
+	std::vector<std::string> display = dict->getHistory();
+	for (int i = 0; i < display.size(); ++i)
+	{
+		std::cout << display[i] << std::endl;
+	}
 
-    int cnt=0;
-    std::cout<<++cnt<<". Back"<<std::endl;
-    inputOption(cnt);
-    return new ViewScreen(dict);
+	int cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new ViewScreen(dict);
 }
 
 //-------------------------End Parent: ViewScreen-------------------------------
 
 //-------------------------Parent: EditScreen-----------------------------------
-Screen* Remove1WordHistoryScreen::render(){
-    clearScr();
-    std::cout<<"Enter the word you want to remove from your search history: ";
-    std::string word;
-    std::getline(std::cin,word);
+Screen *Remove1WordHistoryScreen::render()
+{
+	clearScr();
+	std::cout << "Enter the word you want to remove from your search history: ";
+	std::string word;
+	std::getline(std::cin, word);
 
-    dict->removeHistory(word);
+	dict->removeHistory(word);
 
-    std::cout<<"The word has been successfully removed from your search history!\n";
-    int cnt=0;
-    std::cout<<++cnt<<". Back"<<std::endl;
-    inputOption(cnt);
-    return new EditScreen(dict);
+	std::cout << "The word has been successfully removed from your search history!\n";
+	int cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new EditScreen(dict);
 }
-Screen* DeleteAllHistoryScreen::render(){
-    clearScr();
-    std::cout<<"Are you sure that you want to delete your search history?\n";
+
+Screen *DeleteAllHistoryScreen::render()
+{
+	clearScr();
+	std::cout << "Are you sure that you want to delete your search history?\n";
 	int cnt = 0;
 	std::string buffer;
-	std::cout<<++cnt<<". Yes\n";
-	std::cout<<++cnt<<". No\n";
-    int choice=inputOption(cnt);
-    	switch(choice){
-		case 1:
-			if(dict->clearAllHistory("History.bin"))
-				std::cout<<"Your search history has been successfully deleted!\n";
-			else
-				std::cout<<"Errors occurred in clearing time!\n";
-			break;
-		case 2:
-			std::cout<<"The deletion has been cancelled!\n";
-			break;
+	std::cout << ++cnt << ". Yes\n";
+	std::cout << ++cnt << ". No\n";
+	int choice = inputOption(cnt);
+	switch (choice)
+	{
+	case 1:
+		if (dict->clearAllHistory("History.bin"))
+			std::cout << "Your search history has been successfully deleted!\n";
+		else
+			std::cout << "Errors occurred in clearing time!\n";
+		break;
+	case 2:
+		std::cout << "The deletion has been cancelled!\n";
+		break;
 	}
 
-    cnt=0;
-    std::cout<<++cnt<<". Back"<<std::endl;
-    inputOption(cnt);
-    return new EditScreen(dict);
+	cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new EditScreen(dict);
 }
 //-------------------------End Parent: EditScreen-------------------------------
+
+//----------------------Parent: FavListChoiceScreen-----------------------------
+Screen *Type2RemoveWordFavListScreen::render()
+{
+	clearScr();
+
+	std::cout << "Enter the word you want to remove from your favourite list: ";
+	std::string word;
+	std::getline(std::cin, word);
+
+	dict->uppercase2Lowercase(word);
+	dict->removeFav(word);
+
+	std::cout << "The word has been successfully removed from your favourite list!\n";
+	int cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new FavListChoiceScreen(dict);
+}
+
+Screen *Type2InsertWordFavListScreen::render()
+{
+	clearScr();
+
+	std::cout << "Enter the word you want to remove from your favourite list: ";
+	std::string word;
+	std::getline(std::cin, word);
+
+	dict->uppercase2Lowercase(word);
+	dict->addFav(word);
+
+	std::cout << "The word has been successfully removed from your favourite list!\n";
+	int cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new FavListChoiceScreen(dict);
+}
+
+Screen *SearchPrefixFavList::render()
+{
+	std::string prefix;
+	int cnt = 0;
+
+	clearScr();
+
+	std::cout << "Please type in the word you want to search: ";
+
+	std::getline(std::cin, prefix, '\n');
+
+	dict->uppercase2Lowercase(prefix);
+
+	std::vector<std::string> display = dict->searchPrefixFavlist(prefix);
+
+	std::cout << "The words that start with <" << prefix << "> are: \n";
+
+	for (auto i : display)
+	{
+		std::cout << ++cnt << ". " << i << '\n';
+	}
+
+	std::cout << "\nThere are " << cnt << " words that start with <" << prefix << ">\n";
+
+	cnt = 0;
+	std::cout << ++cnt << ". Back" << std::endl;
+	inputOption(cnt);
+	return new FavListChoiceScreen(dict);
+}
+//----------------------End Parent: FavListChoiceScreen--------------------------------------

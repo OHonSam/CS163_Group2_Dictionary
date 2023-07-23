@@ -51,6 +51,8 @@ private:
 	void import(Node* &root, std::ifstream& file);
 	void save(Node* root, std::ofstream& file);
 	
+	void clear(Node* &root);
+
 public:
 	Trie()
 	{

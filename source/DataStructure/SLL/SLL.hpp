@@ -49,7 +49,7 @@ public:
 	std::vector<T> SLLintoVector();
 
 	// Check the existence of a word in the history SLL
-	bool find(const T& key);
+	// bool find(const T& key);
 
 	// Display the history SLL in UI
 	void display();	
