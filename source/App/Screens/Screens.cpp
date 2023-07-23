@@ -137,8 +137,7 @@ Screen* SearchScreen::render(){
     }
     return nextScreen;
 }
-Screen* ViewScreen::render(){
-    clearScr();
+//-------------------------End Parent: Home-------------------------------
 
 Screen *ViewScreen::render()
 {

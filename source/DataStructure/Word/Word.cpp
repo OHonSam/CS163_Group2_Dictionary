@@ -1,6 +1,6 @@
-// #include "Word.hpp"
+#include "Word.hpp"
 
-#include "D:\cs163\CS163_Group2_Dictionary\include\Word.hpp"
+//#include "D:\cs163\CS163_Group2_Dictionary\include\Word.hpp"
 
 Word::Word()
 {
