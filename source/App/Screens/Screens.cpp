@@ -252,6 +252,23 @@ void SearchForDefScreen::displayPrefixMode(const std::string& word)
     }
     
 }
+void SearchForDefScreen::displayExactMode(const std::string& word)
+{
+    Word* w=dict->searchDef(word);
+    if(w==nullptr)
+        std::cout<<"No result found!\n";
+    else{
+        //std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
+        for(int type=0;type<POS::Count;++type){
+            if(w->def[type].empty()) 
+                continue;
+            std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
+            for(int idx=0;idx<w->def[type].size();++idx){
+                std::cout<<"\t\t"<<++idx<<". "<<w->def[type][idx]<<std::endl;
+            }
+        }
+    }
+}
 //-------------------------End Parent: SearchScreen-------------------------------
 
 //-------------------------Parent: ViewScreen-------------------------------

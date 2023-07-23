@@ -100,6 +100,7 @@ public:
     SearchForDefScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
     void displayPrefixMode(const std::string& word);
+    void displayExactMode(const std::string& word);
 };
 
 //-------------------------End Parent: SearchScreen---------------------------
