@@ -1,19 +1,19 @@
 #ifndef DEFTRIE_HPP
 #define DEFTRIE_HPP
 
-// #include "Libraries.hpp"
+#include <Libraries.hpp>
 #include "Word.hpp"
 #include "SmallTrie.hpp"
 
-#include<iostream>
-#include<fstream>
-#include<vector>
-#include<utility>//to use pair
-#include<string>
-#include <sstream>
-#include <time.h>
-// #include <algorithm>
-#include<cstring>
+// #include<iostream>
+// #include<fstream>
+// #include<vector>
+// #include<utility>//to use pair
+// #include<string>
+// #include <sstream>
+// #include <time.h>
+// // #include <algorithm>
+// #include<cstring>
 
 
 // const int ALPHABET_SIZE = 26;
@@ -77,7 +77,7 @@ public:
     void clear();
 
     // Load from binary file
-    bool import(const std::string& path); 
+    Node* import(const std::string& path); 
 
     // Save as binary file
     bool save(const std::string& path); 

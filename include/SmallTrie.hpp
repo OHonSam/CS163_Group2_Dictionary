@@ -1,15 +1,16 @@
 #ifndef SMALLTRIE_HPP
 #define SMALLTRIE_HPP
 
-#include<iostream>
-#include<fstream>
-#include<vector>
-#include<utility>//to use pair
-#include<string>
-#include <sstream>
-#include <time.h>
+// #include<iostream>
+// #include<fstream>
+// #include<vector>
+// #include<utility>//to use pair
+// #include<string>
+// #include <sstream>
+// #include <time.h>
 // #include <algorithm>
-#include<cstring>
+// #include<cstring>
+#include <Libraries.hpp>
 
 
 const int ALPHABET_SIZE = 26;
@@ -42,9 +43,6 @@ public:
 	// Get the character in the alphabet from the given index
 	char rGetIndex(int index);
 
-    void import(Node* &root, std::ifstream& in); 
-    void save(Node* root, std::ofstream& out); 
-
     SmallTrie()
     { 
         root = new Node();
@@ -58,10 +56,10 @@ public:
     void deallocate(Node* &root);
 
     // Load from binary file
-    bool import(const std::string& path);
+    bool import(Node* &root, std::ifstream &in, int read_space);
 
     // Save as binary file
-    bool save(const std::string& path);
+    int save(Node* root, std::ofstream &out);
 
     // Insert a keyword in trie
     void insert(const std::string& word);

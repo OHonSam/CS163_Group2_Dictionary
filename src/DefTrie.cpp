@@ -1,8 +1,8 @@
-// #include <Libraries.hpp>
-// #include <DefTrie.hpp>
-// #include<Trie.hpp>
+#include <Libraries.hpp>
+#include <DefTrie.hpp>
+#include<Trie.hpp>
 
-#include "D:\cs163\CS163_Group2_Dictionary\include\DefTrie.hpp"
+// #include "D:\cs163\CS163_Group2_Dictionary\include\DefTrie.hpp"
 
 int DefTrie::getIndex(char c)
 {
@@ -210,6 +210,88 @@ void DefTrie::merge(SmallTrie* &res, SmallTrie::Node* p1, SmallTrie::Node* p2, s
     return;
 }
 
+bool DefTrie::save(const std::string& path) {
+    std::ofstream out(path, std::ios::out | std::ios::binary);
+    if (!out.is_open()) return false;
+    DefTrie::save(root, out);
+    out.close();
+    return true;
+}
+
+void DefTrie::save(Node* root, std::ofstream& out) {
+    if (!root) return;
+    out.write((char*) &root -> isEnd, sizeof (bool));
+    out.write((char*) &root -> numWords, sizeof (int));
+    out.seekp(4, std::ios::cur);
+    int trans = SmallTrie::save(root -> st -> root, out);
+    out.seekp(0 - 4 - trans, std::ios::cur);
+    out.write((char*) &trans, sizeof (int));
+    out.seekp(trans, std::ios::cur);
+    for (int i = 0; i < ALPHABET_SIZE; i++) {
+        bool flag = true;
+        if (root -> child[i]) {
+            out.write((char*) &flag, sizeof (bool));
+            save(root -> child[i], out);
+        }
+        else {
+            flag = false;
+            out.write((char*) &flag, sizeof (bool));
+        }
+    }
+    return;
+}
+
+DefTrie::Node* DefTrie::import(const std::string& path) {
+    // delete root;
+    // root = nullptr;
+    std::ifstream in(path, std::ios::in | std::ios::binary);
+    import(root, in);
+    return root;
+}
+
+void DefTrie::import(Node* &root, std::ifstream& in) {
+    if (!root) root = new Node();
+    in.read((char*) &root -> isEnd, sizeof (bool));
+    in.read((char*) &root -> numWords, sizeof (int));
+    int read_space;
+    in.read((char*) &read_space, sizeof (int));
+    SmallTrie::import(root -> st -> root, in, read_space);
+    for (int i = 0; i < ALPHABET_SIZE; i++) {
+        bool flag;
+        in.read((char*) &flag, sizeof (bool));
+        if (flag) import(root -> child[i], in);
+    }
+    return;
+}
+
+// int main() {
+//     DefTrie* d = new DefTrie();
+//     Word* word = new Word();
+//     word->word = "hello";
+//     word->def[0].push_back("xin chao ban rat dep");
+//     word->def[1].push_back("chao");
+//     word->def[7].push_back("thu hut");
+//     word->type = 131;
+//     Word* word1 = new Word();
+//     word1->word = "hellu";
+//     word1->def[0].push_back("chao chao");
+//     word1->def[1].push_back("xin dep");
+//     word1->def[7].push_back("i love you");
+//     word1->type = 131;
+    // d -> insert(word);
+    // d -> insert(word1);
+    // d -> save("D:/cs163/CS163_Group2_Dictionary/ASSETS/DataStructure/default/DefTrie.bin");
+//     d -> import("D:/cs163/CS163_Group2_Dictionary/ASSETS/DataStructure/default/DefTrie.bin");
+//     d -> remove(word);
+//     std::vector <std::string> test;
+//     test = d -> searchKeyWord("thu hut");
+//     for (int i = 0; i < test.size(); i++) std::cout << test[i] << ' ';
+//     test = d -> searchPrefix("c");
+//     for (int i = 0; i < test.size(); i++) std::cout << test[i] << ' ';
+//     test = d -> searchKeyWord("chao");
+//     for (int i = 0; i < test.size(); i++) std::cout << test[i] << ' ';
+//     return 0;
+// }
 // int main() {
 //     DefTrie* d = new DefTrie();
 //     Word* word = new Word();

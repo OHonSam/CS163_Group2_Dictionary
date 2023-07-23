@@ -1,4 +1,5 @@
-#include "D:\cs163\CS163_Group2_Dictionary\include\SmallTrie.hpp"
+// #include "D:\cs163\CS163_Group2_Dictionary\include\SmallTrie.hpp"
+#include <SmallTrie.hpp>
 
 int SmallTrie::getIndex(char c)
 {
@@ -82,4 +83,38 @@ void SmallTrie::deallocate(Node* &root) {
     delete root;
     root = nullptr;
     return;
+}
+
+int SmallTrie::save(Node* root, std::ofstream &out) {
+    out.write((char*) &root -> isEnd, sizeof (bool));
+    out.write((char*) &root -> numWords, sizeof (int));
+    std::vector <int> temp;
+    for (int i = 0; i < root -> childNum.size(); i++) {
+        if (root -> child[root -> childNum[i]]) temp.push_back(root -> childNum[i]);
+    }
+    int size = temp.size();
+    out.write((char*) &size, sizeof (int));
+    for (int i = 0; i < temp.size(); i++) out.write((char*) &temp[i], sizeof (int));
+    int res = sizeof (bool) + 4*(size + 2);
+    for (int i = 0; i < temp.size(); i++) res += save(root -> child[temp[i]], out);
+    return res;
+}
+
+bool SmallTrie::import(Node* &root, std::ifstream &in, int read_space) {
+    if (!read_space) return false;
+    if (!root) root = new Node();
+    in.read((char*) &root -> isEnd, sizeof (bool));
+    in.read((char*) &root -> numWords, sizeof (int));
+    int size;
+    in.read((char*) &size, sizeof (int));
+    for (int i = 0; i < size; i++) {
+        int temp;
+        in.read((char*) &temp, sizeof (int));
+        root -> childNum.push_back(temp);
+    }
+    for (int i = 0; i < root -> childNum.size(); i++) {
+        read_space = read_space - sizeof(bool) - sizeof(int) * (size + 2);
+        import(root -> child[root -> childNum[i]], in, read_space);
+    }
+    return true;
 }
