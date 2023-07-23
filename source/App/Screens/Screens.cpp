@@ -205,6 +205,7 @@ Screen* SearchForDefScreen::render(){
     std::cout<<"Enter the word you want to search for: ";
     std::string word;
     std::getline(std::cin,word);
+    
     std::cout<<"Options: \n"
         <<"1. Search for the exact word\n"
         <<"2. Search for the words that has the same prefix\n"
@@ -262,14 +263,14 @@ void SearchForDefScreen::displayExactMode(const std::string& word)
     if(w==nullptr)
         std::cout<<"No result found!\n";
     else{
-        //std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
+        std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
         dict->addHistory(word);
         for(int type=0;type<POS::Count;++type){
             if(w->def[type].empty()) 
                 continue;
             std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
             for(int idx=0;idx<w->def[type].size();++idx){
-                std::cout<<"\t\t"<<++idx<<". "<<w->def[type][idx]<<std::endl;
+                std::cout<<"\t\t"<<idx+1<<". "<<w->def[type][idx]<<std::endl;
             }
         }
     }
