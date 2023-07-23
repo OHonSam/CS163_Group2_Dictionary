@@ -63,7 +63,7 @@ public:
 	// Add a new word and corresponding definition
 	void addWord(Word *word);
 
-	// Add a word to the favorite list
+	// Add a word to the favorite list 
 	void addFav(const std::string &word);
 
 	// Add a word to the history
