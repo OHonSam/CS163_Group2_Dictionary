@@ -263,6 +263,7 @@ void SearchForDefScreen::displayExactMode(const std::string& word)
         std::cout<<"No result found!\n";
     else{
         //std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
+        dict->addHistory(word);
         for(int type=0;type<POS::Count;++type){
             if(w->def[type].empty()) 
                 continue;
