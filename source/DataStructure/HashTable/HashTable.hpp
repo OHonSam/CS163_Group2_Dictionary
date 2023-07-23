@@ -29,10 +29,10 @@ public:
 	void clear();									
 
 	// Load from binary file
-	bool import(const std::string& path);					
+	//bool import(const std::string& path);					
 
 	// Save as binary file
-	bool save(const std::string& path);						
+	//bool save(const std::string& path);						
 
 	// Insert a whole struct word: When inserting, a new struct word would be created and then add to the hash table
 	int insert(Word* word);		
@@ -45,6 +45,7 @@ public:
 
 	// Find a definition for a required word	
 	Word* searchDef(const std::string& word);
+	void displayDef(const std::string& word);
 
 	//	Random a word and its definition
 	void initSeedForRandom();//to avoid srand() in for loop 
