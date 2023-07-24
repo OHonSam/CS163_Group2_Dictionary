@@ -80,7 +80,10 @@ public:
 	void removeFav(const std::string &word);
 
 	// Remove a word from the history
-	void removeHistory(const std::string &word); //
+	void removeHistory(const std::string &word); 
+
+	// Remove a word from DefTrie
+	void removeDefTrie(const std::string &word);
 
 	// Get the history in the vector
 	std::vector<std::string> getHistory();
@@ -99,6 +102,7 @@ public:
 
 	// Return the list of words which has an identical given prefix in favourite list
 	std::vector<std::string> searchPrefixFavlist(const std::string &prefix);
+	std::vector<std::string> searchPrefixDefTrie(const std::string &prefix);
 
 	// Get the list of multple choices
 	void getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord);

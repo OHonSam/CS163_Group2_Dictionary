@@ -118,3 +118,7 @@ bool SmallTrie::import(Node* &root, std::ifstream &in, int read_space) {
     }
     return true;
 }
+
+void SmallTrie::clear() {
+    deallocate(root);
+}

@@ -3,6 +3,7 @@
 bool Dict::reset(){
     words.clear();
     wordDef.clear();
+    defTrie.clear();
     favList.clear();
     history.clearSLL();
     return 
@@ -17,6 +18,7 @@ bool Dict::reset(){
 void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
 {
     wordDef.updateDef(word,type,oldDef,newDef);
+    defTrie.updateDef(word, type, oldDef, newDef);
 }
 
 void Dict::addWord(Word *word)
@@ -180,11 +182,22 @@ std::vector<std::string> Dict::searchPrefixFavlist(const std::string &prefix)
     return favList.startWith(prefix);
 }
 
+std::vector<std::string> Dict::searchPrefixDefTrie(const std::string &prefix) {
+    return defTrie.searchPrefix(prefix);
+}
+
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
     removeFav(word);
+    removeDefTrie(word);
     wordDef.remove(word);
     words.remove(word);
+}
+
+void Dict::removeDefTrie(const std::string &word) {
+    Word* w = wordDef.searchDef(word);
+    defTrie.remove(w);
+    return;
 }
 
 void Dict::removeFav(const std::string &word)

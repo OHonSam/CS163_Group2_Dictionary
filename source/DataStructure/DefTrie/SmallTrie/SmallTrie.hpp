@@ -51,6 +51,7 @@ public:
     }
 
     // Deallocate all nodes
+    void clear();
     void deallocate(Node* &root);
 
     // Load from binary file
