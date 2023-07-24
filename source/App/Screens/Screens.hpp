@@ -157,6 +157,12 @@ public:
 
 //-------------------------Parent: ViewScreen--------------------------------
 class ViewHistoryScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Remove a word in your search history",
+        "Delete all words in your search history",
+        "Back"
+    };
 public:
     ViewHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();

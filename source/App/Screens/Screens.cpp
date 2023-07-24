@@ -63,7 +63,6 @@ int Screen::inputOption(int maxOption, const std::string &mess)
 
 	return option;
 }
-
 std::string Screen::inputEngString(const std::string &mess)
 {
 	std::string str;
