@@ -32,6 +32,18 @@ namespace POS
         "Other"
     };
 
+    const std::string TypeStringViet[] = {
+        "danh tu",
+        "dong tu",
+        "tinh tu",
+        "trang tu",
+        "dai tu",
+        "giap tu",
+        "lien tu",
+        "thanh tu",
+        "khac"
+    };
+
     const std::string TypeShort[] = {
         "n.",
         "v.",
@@ -46,6 +58,7 @@ namespace POS
 
     unsigned int getIndex(unsigned int type);
     unsigned int getType(const std::string& str);
+    unsigned int getTypeViet(const std::string& str);
     std::string getTypeString(unsigned int type);
 }
 

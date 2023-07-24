@@ -9,6 +9,7 @@
 namespace RAW_DATA
 {
 	const std::string EE = "assets/RawData/EE.csv";
+	const std::string EV = "assets/RawData/EV.txt";
 }
 
 namespace MAIN
@@ -51,8 +52,11 @@ public:
 	// Load from previous save data
 	bool loadFromPrev();
 
-	// Load from csv file
+	// Load from EE data
 	bool importEECsv(const std::string &path);
+
+	// Load from EV data
+	bool importEVTxt(const std::string &path);
 
 	// Reset to the default dataset
 	bool reset();
