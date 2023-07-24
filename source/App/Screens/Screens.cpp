@@ -433,6 +433,7 @@ Screen* DisplayPrefixModeScreen::render(){
 Screen *ViewHistoryScreen::render()
 {
 	clearScr();
+	Screen* nextScreen=this;
 	std::cout << "Your search history (20 most recent keywords):\n";
 	std::vector<std::string> display = dict->getHistory();
 	for (int i = 0; i < display.size(); ++i)
@@ -440,10 +441,20 @@ Screen *ViewHistoryScreen::render()
 		std::cout << display[i] << std::endl;
 	}
 
-	int cnt = 0;
-	std::cout << ++cnt << ". Back" << std::endl;
-	inputOption(cnt);
-	return new ViewScreen(dict);
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			nextScreen=new ViewScreen(dict);
+			break;
+	}
+	return nextScreen;
 }
 
 //-------------------------End Parent: ViewScreen-------------------------------
