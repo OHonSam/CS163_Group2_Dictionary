@@ -42,7 +42,8 @@ Dict::Dict()
 {
     if(!loadFromPrev())
     {
-        importEECsv(RAW_DATA::EE);
+        // importEECsv(RAW_DATA::EE);
+        importEVTxt(RAW_DATA::EV);
 
         words.save(DEFAULT::WORDS);
         wordDef.save(DEFAULT::WORDDEF);
