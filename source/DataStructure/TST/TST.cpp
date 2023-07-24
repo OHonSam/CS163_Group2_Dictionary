@@ -120,37 +120,13 @@ std::vector<std::string> TST::startWith(const std::string &prefix)
     TSTNode *start = getNodeLastChar(root, prefix, 0);
 
     int cnt = 0;
-    startsWithRecursiveSearch(res, prefix, start, cnt);
+
+    if (start->mid == nullptr)
+    {
+        return {prefix};
+    }
+    traverse(res, start->mid, prefix, cnt);
     return res;
-}
-
-void TST::startsWithRecursiveSearch(std::vector<std::string> &res, const std::string &prefix, TSTNode *cur, int &cnt)
-{
-
-    if (cnt == LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST)
-        return;
-    if (cur->isEnd == true)
-    {
-        res.push_back(prefix);
-        ++cnt;
-        return;
-    }
-    char _c; // value of character contained in a TSTNode
-    if (cur->left != nullptr)
-    {
-        _c = cur->left->c;
-        startsWithRecursiveSearch(res, prefix + _c, cur->left, cnt);
-    }
-    if (cur->mid != nullptr)
-    {
-        _c = cur->mid->c;
-        startsWithRecursiveSearch(res, prefix + _c, cur->mid, cnt);
-    }
-    if (cur->right != nullptr)
-    {
-        _c = cur->right->c;
-        startsWithRecursiveSearch(res, prefix + _c, cur->right, cnt);
-    }
 }
 
 TSTNode *TST::getNodeLastChar(TSTNode *node, const std::string &str, int index)
@@ -218,10 +194,8 @@ bool TST::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
     if (!file.is_open())
-    {
-        std::cout << "File not found\n";
         return false;
-    if(file.peek() == std::ifstream::traits_type::eof())
+    if (file.peek() == std::ifstream::traits_type::eof())
         return true;
     import(root, file);
     file.close();
@@ -232,10 +206,7 @@ bool TST::save(const std::string &path)
 {
     std::ofstream file(path, std::ios::binary);
     if (!file.is_open())
-    {
-        std::cout << "File not found\n";
         return false;
-    }
     save(root, file);
     file.close();
     return true;
@@ -287,20 +258,36 @@ void TST::save(TSTNode *root, std::ofstream &file)
     file.write((char *)&marker, sizeof(char));
 }
 
-void TST::traverse()
+std::vector<std::string> TST::traverse()
 {
-    traverse(root);
+    std::vector<std::string> res;
+    int cnt = 0;
+    traverse(res, root, "", cnt);
+
+    return res;
 }
 
-void TST::traverse(TSTNode *root)
+void TST::traverse(std::vector<std::string> &res, TSTNode *root, std::string str, int &cnt)
 {
+    if (cnt == LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST)
+        return;
+
     if (root == nullptr)
         return;
-    traverse(root->left);
-    std::cout << root->c << " ";
-    traverse(root->mid);
-    std::cout << root->c << " ";
-    traverse(root->right);
+    traverse(res, root->left, str, cnt);
+
+    str = str + root->c;
+
+    if (root->isEnd == true)
+    {
+        res.push_back(str);
+    }
+
+    traverse(res, root->mid, str, cnt);
+
+    str = str.substr(0, str.length() - 1);
+
+    traverse(res, root->right, str, cnt);
 }
 
 void TST::type2RemoveWord()
@@ -311,6 +298,8 @@ void TST::type2RemoveWord()
 
     std::getline(std::cin, word, '\n');
 
+    uppercase2Lowercase(word);
+
     remove(word);
 
     std::cout << "Removed successfully!\n";
@@ -320,14 +309,15 @@ void TST::type2InsertWord()
 {
     std::string word;
 
-    std::cout << "Please type in the word you want to remove: ";
+    std::cout << "\nPlease type in the word you want to insert: ";
 
     std::getline(std::cin, word, '\n');
 
+    uppercase2Lowercase(word);
+
     insert(word);
 
-    std::cout << "Inserted successfully!\n";
-
+    std::cout << "\nInserted successfully!\n";
 }
 
 void TST::searchPrefix()
@@ -336,9 +326,11 @@ void TST::searchPrefix()
     std::vector<std::string> res;
     int cnt = 0;
 
-    std::cout << "Please type in the word you want to remove: ";
+    std::cout << "Please type in the word you want to search: ";
 
     std::getline(std::cin, word, '\n');
+
+    uppercase2Lowercase(word);
 
     res = startWith(word);
 
@@ -350,4 +342,23 @@ void TST::searchPrefix()
     }
 
     std::cout << "\nThere are " << cnt << " words that start with " << word << '\n';
+}
+
+bool TST::treeExists()
+{
+    return !(root == nullptr);
+}
+
+void TST::uppercase2Lowercase(std::string &str)
+{
+    int len = str.size();
+    for (int i = 0; i < len; ++i)
+    {
+        // if (str[i] >= 'A' && str[i] <= 'Z')
+        // {
+        //     str[i] -= 'A';
+        //     str[i] += 'a';
+        // }
+        str[i] = std::tolower(str[i]);
+    }
 }

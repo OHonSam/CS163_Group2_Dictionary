@@ -9,8 +9,8 @@
 class App
 {
 private:
-    Dict dict;
-	Screen* CurrentScreen;
+	Dict dict;
+	Screen *CurrentScreen;
 
 public:
 	App();

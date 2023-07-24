@@ -32,7 +32,7 @@ TEST(Dict_test, searchDef)
 
     for(int i=0;i<words.size();++i)
     {
-        Word* w=dict.searchDef(words[i]);
+        Word* w=dict.searchForDef(words[i]);
         ASSERT_TRUE(w!=nullptr);
         EXPECT_TRUE(w->word==words[i]);
         ASSERT_FALSE(w->def[POS::getIndex(type[i])].empty());
@@ -45,14 +45,14 @@ TEST(Dict_test, addAndRemoveWord)
     Dict dict; 
     Word* w=new Word("abc",POS::Noun,"abc_def");
     dict.addWord(w);
-    Word* res=dict.searchDef("abc");
+    Word* res=dict.searchForDef("abc");
     ASSERT_TRUE(res!=nullptr);
     EXPECT_TRUE(res->word=="abc");
     ASSERT_FALSE(res->def[POS::getIndex(POS::Noun)].empty());
     EXPECT_TRUE(res->def[POS::getIndex(POS::Noun)][0]=="abc_def");
 
     dict.removeWord("abc");
-    EXPECT_TRUE(dict.searchDef("abc")==nullptr);
+    EXPECT_TRUE(dict.searchForDef("abc")==nullptr);
 }
 
 TEST(Dict_test, reset)
@@ -61,17 +61,17 @@ TEST(Dict_test, reset)
     Word* w=new Word("abc",POS::Noun,"abc_def");
 
     dict.addWord(w);
-    Word* res=dict.searchDef("abc");
+    Word* res=dict.searchForDef("abc");
     ASSERT_TRUE(res!=nullptr);
     EXPECT_TRUE(res->word=="abc");
     ASSERT_FALSE(res->def[POS::getIndex(POS::Noun)].empty());
     EXPECT_TRUE(res->def[POS::getIndex(POS::Noun)][0]=="abc_def");
 
     dict.reset();
-    EXPECT_TRUE(dict.searchDef("abc")==nullptr);
+    EXPECT_TRUE(dict.searchForDef("abc")==nullptr);
     for(int i=0;i<words.size();++i)
     {
-        Word* w=dict.searchDef(words[i]);
+        Word* w=dict.searchForDef(words[i]);
         ASSERT_TRUE(w!=nullptr);
         EXPECT_TRUE(w->word==words[i]);
         ASSERT_FALSE(w->def[POS::getIndex(type[i])].empty());
@@ -87,14 +87,14 @@ TEST(Dict_test, updateDef)
     dict.addWord(w);
     dict.updateDef("abc",POS::Noun,"abc_def","abc_def_new");
 
-    Word* res=dict.searchDef("abc");
+    Word* res=dict.searchForDef("abc");
     ASSERT_TRUE(res!=nullptr);
     EXPECT_TRUE(res->word=="abc");
     ASSERT_FALSE(res->def[POS::getIndex(POS::Noun)].empty());
     EXPECT_TRUE(res->def[POS::getIndex(POS::Noun)][0]=="abc_def_new");
 
     dict.removeWord("abc");
-    EXPECT_TRUE(dict.searchDef("abc")==nullptr);
+    EXPECT_TRUE(dict.searchForDef("abc")==nullptr);
 }
 
 TEST(Dict_test, history)
