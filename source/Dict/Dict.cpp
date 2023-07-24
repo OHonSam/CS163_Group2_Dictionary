@@ -133,8 +133,12 @@ bool Dict::importEVTxt(const std::string &path)
 
         Word* w=new Word(word);
 
-        while(getline(in,line)){
-            if(line.empty() || line[0]!='*') break;
+        bool flag=false;
+        while(1){
+            if(!flag){
+                getline(in,line);
+                if(line.empty() || line[0]!='*') break;
+            }
 
             std::string POS;
             {
@@ -148,11 +152,16 @@ bool Dict::importEVTxt(const std::string &path)
             unsigned int ind=POS::getTypeViet(POS);
             w->type|=ind;
 
+            flag=false;
             while(getline(in,line)){
                 if(line.empty()) break;
+                if(line[0]=='*'){
+                    flag=true;
+                    break;
+                }
                 if(line[0]!='-') continue;
 
-                w->def[ind].push_back(line.substr(2));
+                w->def[POS::getIndex(ind)].push_back(line.substr(2));
             }
         }
 
