@@ -121,7 +121,7 @@ private:
     };
 
 public:
-    SearchForDefScreen(Dict* dict) : Screen(dict) {}
+    SearchForDefScreen(Dict* dict) : Screen(dict){}
     Screen* render();
     bool displayPrefix(const std::string& word);
     void displayPrefixMode(const std::string& word);
@@ -131,13 +131,17 @@ public:
 //-------------------------End Parent: SearchScreen---------------------------
 //-------------------------Parent: SearchForDefScreen--------------------------------
 class DisplayExactModeScreen: public Screen{
+private:
+    std::string word;//word user typed in
 public:
-    DisplayExactModeScreen(Dict* dict) : Screen(dict) {}
+    DisplayExactModeScreen(Dict* dict,const std::string& word) : Screen(dict) , word(word) {}
     Screen* render();
 };
 class DisplayPrefixModeScreen: public Screen{
+private:
+    std::string word;//word user typed in
 public:
-    DisplayPrefixModeScreen(Dict* dict) : Screen(dict) {}
+    DisplayPrefixModeScreen(Dict* dict,const std::string& word) : Screen(dict) , word(word){}
     Screen* render();
 };
 //-------------------------End Parent: SearchForDefScreen---------------------------
