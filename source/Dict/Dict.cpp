@@ -8,6 +8,7 @@ bool Dict::reset(){
     return 
         words.import(DEFAULT::WORDS) &&
         wordDef.import(DEFAULT::WORDDEF) &&
+        defTrie.import(DEFAULT::DEFTRIE) &&
         favList.import(DEFAULT::FAVLIST) &&
         history.importSLLStr(DEFAULT::HISTORY)
     ;
@@ -22,6 +23,7 @@ void Dict::addWord(Word *word)
 {
     words.insert(word->word);
     wordDef.insert(word);
+    defTrie.insert(word);
 }
 
 void Dict::addFav(const std::string &word)
@@ -46,6 +48,7 @@ Dict::Dict()
 
         words.save(DEFAULT::WORDS);
         wordDef.save(DEFAULT::WORDDEF);
+        defTrie.save(DEFAULT::DEFTRIE);
         favList.save(DEFAULT::FAVLIST);
         history.saveSLLStr(DEFAULT::HISTORY);
     }
@@ -55,6 +58,7 @@ Dict::~Dict()
 {
     words.save(MAIN::WORDS);
     wordDef.save(MAIN::WORDDEF);
+    defTrie.save(MAIN::DEFTRIE);
     favList.save(MAIN::FAVLIST);
     history.saveSLLStr(MAIN::HISTORY);
 }
@@ -64,6 +68,7 @@ bool Dict::loadFromPrev()
     return 
         words.import(MAIN::WORDS) &&
         wordDef.import(MAIN::WORDDEF) &&
+        defTrie.import(MAIN::DEFTRIE) &&
         favList.import(MAIN::FAVLIST) &&
         history.importSLLStr(MAIN::HISTORY)
     ;
@@ -155,9 +160,14 @@ std::vector<std::string> Dict::getFav()
     return favList.traverse();
 }
 
-Word *Dict::searchDef(const std::string &word)
+Word *Dict::searchForDef(const std::string &word)
 {
     return wordDef.searchDef(word);
+}
+
+std::vector<std::string> Dict::searchForWord(const std::string &def)
+{
+    return defTrie.searchKeyWord(def);
 }
 
 std::vector<std::string> Dict::searchPrefix(const std::string &prefix)

@@ -278,7 +278,7 @@ void SearchForDefScreen::displayPrefixMode(const std::string& word)
         std::vector<Word*> defsForPrefixes;
         int n=prefixes.size();
         for(int i=0;i<n;++i){
-            defsForPrefixes.push_back(dict->searchDef(prefixes[i]));
+            defsForPrefixes.push_back(dict->searchForDef(prefixes[i]));
             dict->addHistory(prefixes[i]);
         }
         std::cout<<"The keyword(s) that you are looking for is/are: \n";
@@ -301,7 +301,7 @@ void SearchForDefScreen::displayPrefixMode(const std::string& word)
 }
 void SearchForDefScreen::displayExactMode(const std::string& word)
 {
-    Word* w=dict->searchDef(word);
+    Word* w=dict->searchForDef(word);
     if(w==nullptr)
         std::cout<<"No result found!\n";
     else{

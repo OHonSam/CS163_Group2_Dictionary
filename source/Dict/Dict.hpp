@@ -16,6 +16,7 @@ namespace MAIN
 {
 	const std::string WORDS = "assets/DS/main/words.bin";
 	const std::string WORDDEF = "assets/DS/main/wordDef.bin";
+	const std::string DEFTRIE = "assets/DS/main/defTrie.bin";
 	const std::string FAVLIST = "assets/DS/main/favList.bin";
 	const std::string HISTORY = "assets/DS/main/history.bin";
 }
@@ -24,6 +25,7 @@ namespace DEFAULT
 {
 	const std::string WORDS = "assets/DS/default/words.bin";
 	const std::string WORDDEF = "assets/DS/default/wordDef.bin";
+	const std::string DEFTRIE = "assets/DS/default/defTrie.bin";
 	const std::string FAVLIST = "assets/DS/default/favList.bin";
 	const std::string HISTORY = "assets/DS/default/history.bin";
 }
@@ -87,7 +89,10 @@ public:
 	std::vector<std::string> getFav();
 
 	// Return a definition for a required word
-	Word *searchDef(const std::string &word);
+	Word *searchForDef(const std::string &word);
+
+	// Return the word has given definition
+	std::vector<std::string> searchForWord(const std::string &def);
 
 	// Return the list of words which has an identical given prefix
 	std::vector<std::string> searchPrefix(const std::string &prefix);
