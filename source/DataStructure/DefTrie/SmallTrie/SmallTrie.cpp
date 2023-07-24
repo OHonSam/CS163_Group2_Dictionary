@@ -16,14 +16,14 @@ char SmallTrie::rGetIndex(int index)
 
 void SmallTrie::insert(const std::string& word) {
     Node* cur = SmallTrie::root;
-    ++cur -> numWords;
+    ++(cur -> numWords);
     for (int i = 0; i < word.size(); ++i) {
         int index = getIndex(word[i]);
         if (!cur -> child[index]) {
             cur -> child[index] = new Node();
             cur -> childNum.push_back(index);
         }
-        ++cur -> child[index] -> numWords;
+        ++(cur -> child[index] -> numWords);
         cur = cur -> child[index];
     }
     cur -> isEnd = true;

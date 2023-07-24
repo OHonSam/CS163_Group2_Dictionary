@@ -53,11 +53,11 @@ std::vector<std::string> DefTrie::defWord(const std::string def) {
 
 void DefTrie::insert(const std::string& word, const std::string& def){
     Node* cur = DefTrie::root;
-    ++cur -> numWords;
+    ++(cur -> numWords);
     for (int i = 0; i < def.size(); ++i) {
         int index = getIndex(def[i]);
         if (!cur -> child[index]) cur -> child[index] = new Node();
-        ++cur -> child[index] -> numWords;
+        ++(cur -> child[index] -> numWords);
         cur = cur -> child[index];
     }
     cur -> isEnd = true;
