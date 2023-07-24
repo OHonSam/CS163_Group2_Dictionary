@@ -87,30 +87,33 @@ Screen *Home::render()
 	std::cout << "Welcome to Dictionary!" << std::endl;
 	int siz = options.size();
 	for (int i = 0; i < siz; ++i)
-		std::cout << std::to_string(i) << ". " << options[i] << std::endl;
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 
     Screen* nextScreen=this;//"this"->own object
     int choice=inputOption(options.size());
     switch(choice)
     {
-        case 1:
+        case 1: // Search
             nextScreen=new SearchScreen(dict);
             break;
-        case 2:
-            nextScreen=new EditScreen(dict);
-            break;
-        case 3:
+        case 2: // View
             nextScreen=new ViewScreen(dict);
             break;
-        case 4:
+        case 3: // Edit
+            nextScreen=new EditScreen(dict);
             break;
-        case 5:
+        case 4: // Daily word
             break;
-        case 6:
+        case 5: // Multi choices quiz
+			nextScreen=new MultiChoices(dict);
             break;
-        case 7: // Exit
-            nextScreen = nullptr;
+        case 6: // Reset to default
             break;
+        case 7: // Switch datasets
+            break;
+		default:
+			nextScreen=nullptr;
+			break;
     }
 
 	return nextScreen;

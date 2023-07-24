@@ -32,13 +32,15 @@ class Home : public Screen
 {
 private:
     const std::vector<std::string> options = {
-        "Searching",
-        "Editing",
-        "Viewing",
+        "Search",
+        "View",
+        "Edit",
+        "Daily word",
+        "Multile choices quiz",
         "Reset to default",
-        "Random",
-        "Switch between dictionaries (English-Vietnamese, Vietnamese-English, English-English)",
-        "Exit"};
+        "Switch datasets",
+        "Exit"
+    };
 
 public:
     Home(Dict *dict) : Screen(dict) {}
