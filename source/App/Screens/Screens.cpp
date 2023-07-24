@@ -249,18 +249,14 @@ Screen *MultiChoicesScreen::render()
 	int choice = inputOption(options.size());
 	switch (choice)
 	{
-	case 1:
-		// SetNextScreen(app, new Type1InsertWordFavListScreen());
-		break;
-	case 2:
-		// SetNextScreen(app, new Type1RemoveWordFavListScreen());
-		break;
-	case 3:
-		// SetNextScreen(app, new SearchPrefixFavList());
-		break;
-	case 4:
-		nextScreen = new HomeScreen(dict);
-		break;
+		case 1: // 1 word and 4 definitions
+			nextScreen = new OneWord4DefScreen(dict);
+			break;
+		case 2: // 1 definition and 4 words
+			break;
+		case 3:
+			nextScreen = new HomeScreen(dict);
+			break;
 	}
 
 	return nextScreen;
@@ -485,3 +481,35 @@ Screen *SearchPrefixFavList::render()
 }
 //----------------------End Parent: FavListChoiceScreen--------------------------------------
 
+Screen *OneWord4DefScreen::render()
+{
+	clearScr();
+
+	const int N=4;
+
+	std::string ques;
+	std::vector<std::string> options;
+	dict->getMultileChoices(ques, options, N, true);
+
+	std::cout << "Choose the correct definition for the word: " << ques << std::endl;
+	for (int i = 0; i < N; ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+	std::cout << std::to_string(N + 1) << ". " << "Back" << std::endl;
+
+	Word* w=dict->searchDef(ques);
+
+	while(1)
+	{
+		int choice = inputOption(N + 1);
+		if(choice==N+1) return new MultiChoicesScreen(dict);
+
+		if(w->checkDef(options[choice-1])){
+			std::cout<<"Correct!"<<std::endl;
+			std::cout<<"Press 1 to go back to the previous page: "<<std::endl;
+			inputOption(1);
+			return new MultiChoicesScreen(dict);
+		}
+		else
+			std::cout<<"Incorrect! Please try again."<<std::endl;
+	}
+}

@@ -59,6 +59,8 @@ struct Word
     Word(const std::string& word);
     Word(const std::string& word, unsigned int type);
     Word(const std::string& word, unsigned int type, const std::string& def);
+
+    bool checkDef(const std::string& def);
 };
 
 #endif // WORD_H

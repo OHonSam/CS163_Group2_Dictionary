@@ -190,6 +190,13 @@ public:
 
 //-------------------------Parent: MultipleChoices--------------------------------
 
+class OneWord4DefScreen: public Screen
+{
+public:
+    OneWord4DefScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
 //-------------------------End Parent: MultipleChoices---------------------------
 
 

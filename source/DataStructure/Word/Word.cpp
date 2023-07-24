@@ -29,6 +29,16 @@ Word::Word(const std::string &word, unsigned int type, const std::string &def)
             this->def[i].push_back(def);
 }
 
+bool Word::checkDef(const std::string &def)
+{
+    for(int i=0; i<POS::Count; i++)
+        if(type&(1<<i))
+            for(int j=0; j<this->def[i].size(); j++)
+                if(this->def[i][j]==def)
+                    return true;
+    return false;
+}
+
 unsigned int POS::getIndex(unsigned int type)
 {
     for(int i=0; i<Count; i++)
