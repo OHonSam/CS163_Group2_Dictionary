@@ -249,34 +249,36 @@ Screen* SearchForDefScreen::render(){
         std::getline(std::cin,word);
     }
 
-	displayPrefix(word);
-
-    std::cout<<"\nOptions: \n"
-        <<"1. Search for definition(s) of the exact word\n"
-        <<"2. Search for definition(s) of all words with the same prefix\n"
-        <<"3. Back\n";
-    int choice=inputOption(3);
-    switch(choice){
-        case 1:
-            SearchForDefScreen::displayExactMode(word);
-            break;
-        case 2:
-            //SearchForDefScreen::displayPrefixMode(word);
-            break;
-        case 3:
-            return new SearchScreen(dict);
-    }
+	if(displayPrefix(word)){
+		std::cout<<"\nOptions: \n"
+			<<"1. Search for definition(s) of the exact word\n"
+			<<"2. Search for definition(s) of all words with the same prefix\n"
+			<<"3. Back\n";
+		int choice=inputOption(3);
+		switch(choice){
+			case 1:
+				SearchForDefScreen::displayExactMode(word);
+				break;
+			case 2:
+				SearchForDefScreen::displayPrefixMode(word);
+				break;
+			case 3:
+				return new SearchScreen(dict);
+		}
+	}
     int cnt=0;
-    std::cout<<++cnt<<". Back"<<std::endl;
+    std::cout<<std::endl<<++cnt<<". Back"<<std::endl;
     inputOption(cnt);
     return new SearchScreen(dict);
     
 }
-void SearchForDefScreen::displayPrefix(const std::string& word)
+bool SearchForDefScreen::displayPrefix(const std::string& word)
 {
     std::vector<std::string> prefixes=dict->searchPrefix(word);
-    if(prefixes.empty())
+    if(prefixes.empty()){
         std::cout<<"No result found!\n";
+		return false;
+	}
     else{
         std::vector<Word*> defsForPrefixes;
         int n=prefixes.size();
@@ -289,7 +291,7 @@ void SearchForDefScreen::displayPrefix(const std::string& word)
             std::cout<<i+1<<". "<<prefixes[i]<<std::endl;
         }
     }
-    
+    return true;
 }
 void SearchForDefScreen::displayPrefixMode(const std::string& word)
 {
