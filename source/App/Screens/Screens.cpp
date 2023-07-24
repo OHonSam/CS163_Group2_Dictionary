@@ -105,7 +105,7 @@ Screen *HomeScreen::render()
         case 4: // Daily word
             break;
         case 5: // Multi choices quiz
-			nextScreen=new MultiChoices(dict);
+			nextScreen=new MultiChoicesScreen(dict);
             break;
         case 6: // Reset to default
             break;
@@ -237,7 +237,7 @@ Screen *FavListChoiceScreen::render()
 	return nextScreen;
 }
 
-Screen *MultiChoices::render()
+Screen *MultiChoicesScreen::render()
 {
 	clearScr();
 

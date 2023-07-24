@@ -112,7 +112,7 @@ public:
     Screen *render();
 };
 
-class MultiChoices: public Screen
+class MultiChoicesScreen: public Screen
 {
 private:
     const std::string ques="Options:";
@@ -123,7 +123,7 @@ private:
     };
 
 public:
-    MultiChoices(Dict* dict) : Screen(dict) {}
+    MultiChoicesScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 //-------------------------End Parent: HomeScreen---------------------------
