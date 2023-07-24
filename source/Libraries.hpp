@@ -16,4 +16,6 @@
 
 const std::string FAV_LIST_SAVE_FILE = "";
 
+const int ALPHABET_SIZE = 26;
+
 #endif // !LIBRARIES_H

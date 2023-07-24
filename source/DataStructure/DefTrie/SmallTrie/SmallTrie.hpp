@@ -12,8 +12,6 @@
 // #include<cstring>
 #include <Libraries.hpp>
 
-
-const int ALPHABET_SIZE = 26;
 const char TERMINATOR = '\0';
 
 class SmallTrie

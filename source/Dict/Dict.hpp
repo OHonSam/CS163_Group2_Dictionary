@@ -4,6 +4,7 @@
 #include "HashTable.hpp"
 #include "SLL.hpp"
 #include "Trie.hpp"
+#include "DefTrie.hpp"
 #include <Libraries.hpp>
 
 namespace RAW_DATA
@@ -36,8 +37,7 @@ private:
 	HashTable wordDef;
 	Trie words;
 	TST favList;
-
-	
+	DefTrie defTrie;	
 
 public:
 	// If first time running, import the raw dataset
