@@ -45,6 +45,25 @@ TEST(TST_test, pop)
     }
 }
 
+TEST(TST_test, getList)
+{
+    TST tst;
+    input(tst);
+    vector<string> v=tst.traverse();
+    EXPECT_EQ(v.size(), N);
+    for(const string& s: v)
+    {
+        bool flag=false;
+        for(int i=0; i<N; ++i)
+            if(s==word[i])
+            {
+                flag=true;
+                break;
+            }
+        EXPECT_TRUE(flag);
+    }
+}
+
 namespace testing
 {
 
