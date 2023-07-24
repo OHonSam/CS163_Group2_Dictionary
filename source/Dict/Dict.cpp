@@ -120,16 +120,11 @@ void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choice
     {
         ques=list[0]->word;
         for(int i=0;i<numChoices;++i)
-            choices.push_back(list[i]->word);
+            choices.push_back(list[i]->getRandDef());
     }
     else
     {
-        for(int i=0; i<POS::Count; i++)
-            if(!list[0]->def[i].empty())
-            {
-                ques=list[0]->def[i][0];
-                break;
-            }
+        ques=list[0]->getRandDef();
         for(int i=0;i<numChoices;++i)
             choices.push_back(list[i]->word);
     }

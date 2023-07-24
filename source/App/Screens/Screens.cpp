@@ -493,7 +493,7 @@ Screen *OneWord4DefScreen::render()
 
 	std::cout << "Choose the correct definition for the word: " << ques << std::endl;
 	for (int i = 0; i < N; ++i)
-		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl << std::endl;
 	std::cout << std::to_string(N + 1) << ". " << "Back" << std::endl;
 
 	Word* w=dict->searchDef(ques);

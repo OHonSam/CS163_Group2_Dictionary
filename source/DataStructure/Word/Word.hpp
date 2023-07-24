@@ -61,6 +61,7 @@ struct Word
     Word(const std::string& word, unsigned int type, const std::string& def);
 
     bool checkDef(const std::string& def);
+    std::string getRandDef();
 };
 
 #endif // WORD_H

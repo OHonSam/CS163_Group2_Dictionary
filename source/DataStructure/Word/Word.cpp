@@ -39,6 +39,22 @@ bool Word::checkDef(const std::string &def)
     return false;
 }
 
+std::string Word::getRandDef()
+{
+    int cnt=0;
+    for(int i=0; i<POS::Count; i++)
+        if(type&(1<<i))
+            cnt+=this->def[i].size();
+    if(!cnt) return "";
+    int pos=rand()%cnt;
+    for(int i=0; i<POS::Count; i++)
+        if(type&(1<<i))
+            if(pos<this->def[i].size())
+                return this->def[i][pos];
+            else pos-=this->def[i].size();
+    return "";
+}
+
 unsigned int POS::getIndex(unsigned int type)
 {
     for(int i=0; i<Count; i++)
