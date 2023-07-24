@@ -27,8 +27,8 @@ public:
 };
 //
 
-// Home
-class Home : public Screen
+// HomeScreen
+class HomeScreen : public Screen
 {
 private:
     const std::vector<std::string> options = {
@@ -43,10 +43,10 @@ private:
     };
 
 public:
-    Home(Dict *dict) : Screen(dict) {}
+    HomeScreen(Dict *dict) : Screen(dict) {}
     Screen *render();
 };
-//-------------------------Parent: Home-------------------------------
+//-------------------------Parent: HomeScreen-------------------------------
 class SearchScreen: public Screen
 {
 private:
@@ -126,7 +126,7 @@ public:
     MultiChoices(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-//-------------------------End Parent: Home---------------------------
+//-------------------------End Parent: HomeScreen---------------------------
 
 //-------------------------Parent: SearchScreen--------------------------------
 class SearchForDefScreen: public Screen{

@@ -79,8 +79,8 @@ std::string Screen::inputEngString(const std::string &mess)
 }
 //
 
-// Home
-Screen *Home::render()
+// HomeScreen
+Screen *HomeScreen::render()
 {
 	clearScr();
 
@@ -118,7 +118,7 @@ Screen *Home::render()
 
 	return nextScreen;
 }
-//-------------------------Parent: Home-------------------------------
+//-------------------------Parent: HomeScreen-------------------------------
 Screen* SearchScreen::render(){
     clearScr();
     for(int i=0;i<options.size();++i)
@@ -135,12 +135,12 @@ Screen* SearchScreen::render(){
             //nextScreen=new SearchForWordScreen(dict);
             break;
         case 3:
-            nextScreen=new Home(dict);
+            nextScreen=new HomeScreen(dict);
             break;
     }
     return nextScreen;
 }
-//-------------------------End Parent: Home-------------------------------
+//-------------------------End Parent: HomeScreen-------------------------------
 
 Screen *ViewScreen::render()
 {
@@ -162,7 +162,7 @@ Screen *ViewScreen::render()
         case 4:
             break;
         case 5: 
-            nextScreen=new Home(dict);
+            nextScreen=new HomeScreen(dict);
             break;
     }
     return nextScreen;
@@ -199,7 +199,7 @@ Screen *EditScreen::render()
             nextScreen=new DeleteAllHistoryScreen(dict);
             break;
         case 8:
-            nextScreen=new Home(dict);
+            nextScreen=new HomeScreen(dict);
             break;
     }
     return nextScreen;
@@ -230,7 +230,7 @@ Screen *FavListChoiceScreen::render()
 		// SetNextScreen(app, new SearchPrefixFavList());
 		break;
 	case 4:
-		nextScreen = new Home(dict);
+		nextScreen = new HomeScreen(dict);
 		break;
 	}
 
@@ -259,14 +259,14 @@ Screen *MultiChoices::render()
 		// SetNextScreen(app, new SearchPrefixFavList());
 		break;
 	case 4:
-		nextScreen = new Home(dict);
+		nextScreen = new HomeScreen(dict);
 		break;
 	}
 
 	return nextScreen;
 }
 
-//-------------------------End Parent: Home---------------------------
+//-------------------------End Parent: HomeScreen---------------------------
 
 //-------------------------Parent: SearchScreen-----------------------------------
 Screen* SearchForDefScreen::render(){
