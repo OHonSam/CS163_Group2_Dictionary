@@ -233,6 +233,36 @@ Screen *FavListChoiceScreen::render()
 
 	return nextScreen;
 }
+
+Screen *MultiChoices::render()
+{
+	clearScr();
+
+	std::cout << ques << std::endl;
+	for (int i = 0; i < options.size(); ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+
+	Screen *nextScreen = this;
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
+		// SetNextScreen(app, new Type1InsertWordFavListScreen());
+		break;
+	case 2:
+		// SetNextScreen(app, new Type1RemoveWordFavListScreen());
+		break;
+	case 3:
+		// SetNextScreen(app, new SearchPrefixFavList());
+		break;
+	case 4:
+		nextScreen = new Home(dict);
+		break;
+	}
+
+	return nextScreen;
+}
+
 //-------------------------End Parent: Home---------------------------
 
 //-------------------------Parent: SearchScreen-----------------------------------
@@ -451,3 +481,4 @@ Screen *SearchPrefixFavList::render()
 	return new FavListChoiceScreen(dict);
 }
 //----------------------End Parent: FavListChoiceScreen--------------------------------------
+

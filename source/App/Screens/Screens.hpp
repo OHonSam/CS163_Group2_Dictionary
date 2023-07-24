@@ -109,6 +109,21 @@ public:
     FavListChoiceScreen(Dict *dict) : Screen(dict) {}
     Screen *render();
 };
+
+class MultiChoices: public Screen
+{
+private:
+    const std::string ques="Options:";
+    const std::vector<std::string> options={
+        "1 word and 4 definitions",
+        "1 definition and 4 words",
+        "Back"
+    };
+
+public:
+    MultiChoices(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 //-------------------------End Parent: Home---------------------------
 
 //-------------------------Parent: SearchScreen--------------------------------
@@ -170,5 +185,10 @@ public:
     Screen *render();
 };
 //----------------------End Parent: FavListChoiceScreen--------------------------------------
+
+//-------------------------Parent: MultipleChoices--------------------------------
+
+//-------------------------End Parent: MultipleChoices---------------------------
+
 
 #endif // SCREENS_HPP
