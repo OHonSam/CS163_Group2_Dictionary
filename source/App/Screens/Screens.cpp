@@ -248,9 +248,12 @@ Screen* SearchForDefScreen::render(){
         std::string word;
         std::getline(std::cin,word);
     }
+
+	displayPrefixMode(word);
+
     std::cout<<"Options: \n"
-        <<"1. Search for the exact word\n"
-        <<"2. Search for the words that has the same prefix\n"
+        <<"1. Search for definition(s) of the exact word\n"
+        <<"2. Search for definition(s) of all words with the same prefix\n"
         <<"3. Back\n";
     int choice=inputOption(3);
     switch(choice){
@@ -281,20 +284,20 @@ void SearchForDefScreen::displayPrefixMode(const std::string& word)
             defsForPrefixes.push_back(dict->searchForDef(prefixes[i]));
             dict->addHistory(prefixes[i]);
         }
-        std::cout<<"The keyword(s) that you are looking for is/are: \n";
+        std::cout<<"Here is/are keyword(s) with the same prefix that you may be looking for: \n";
         for(int i=0;i<n;++i){
             std::cout<<i+1<<". "<<prefixes[i]<<std::endl;
-            for(int type=0;type<POS::Count;++type){
-                //std::cout<<type<<std::endl;
-                if(defsForPrefixes[i]->def[type].empty()) {
-                    //std::cout<<"No definition for this type"<<std::endl;
-                    continue;
-                }
-                std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
-                for(int idx=0;idx<defsForPrefixes[i]->def[type].size();++idx){
-                    std::cout<<"\t\t"<<"-"<<defsForPrefixes[i]->def[type][idx]<<std::endl;
-                }
-            }
+            // for(int type=0;type<POS::Count;++type){
+            //     //std::cout<<type<<std::endl;
+            //     if(defsForPrefixes[i]->def[type].empty()) {
+            //         //std::cout<<"No definition for this type"<<std::endl;
+            //         continue;
+            //     }
+            //     std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
+            //     for(int idx=0;idx<defsForPrefixes[i]->def[type].size();++idx){
+            //         std::cout<<"\t\t"<<"-"<<defsForPrefixes[i]->def[type][idx]<<std::endl;
+            //     }
+            // }
         }
     }
     
