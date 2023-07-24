@@ -257,7 +257,7 @@ Screen* SearchForDefScreen::render(){
 			// <<"3. Back\n";
 		for(int i=0;i<options.size();++i)
 			std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
-		int choice=inputOption(3);
+		int choice=inputOption(options.size());
 		switch(choice){
 			case 1:
 				//SearchForDefScreen::displayExactMode(word);
@@ -353,6 +353,7 @@ bool SearchForDefScreen::displayPrefix(const std::string& word)
 //-------------------------Parent: SearchForDefScreen-------------------------------
 Screen* DisplayExactModeScreen::render(){
 	clearScr();
+	Screen* nextScreen=this;
     Word* w=dict->searchForDef(word);
     if(w==nullptr)
         std::cout<<"No result found!\n";
@@ -369,13 +370,28 @@ Screen* DisplayExactModeScreen::render(){
         }
     }
 
-	int cnt=0;
-	std::cout<<std::endl<<++cnt<<". Back"<<std::endl;
-	inputOption(cnt);
-	return new SearchScreen(dict);
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			//Edit this word
+			break;
+		case 2:
+			//Remove this word
+			break;
+		case 3:
+			//Add this word to your favorite list
+			break;
+		case 4:
+			nextScreen=new SearchScreen(dict);
+	}
+	return nextScreen;
 }
 Screen* DisplayPrefixModeScreen::render(){
 	clearScr();
+	Screen* nextScreen=this;
 	std::vector<std::string> prefixes=dict->searchPrefix(word);
 	if(prefixes.empty())
 		std::cout<<"No result found!\n";
@@ -401,10 +417,15 @@ Screen* DisplayPrefixModeScreen::render(){
 		}
 	}
 
-	int cnt=0;
-	std::cout<<std::endl<<++cnt<<". Back"<<std::endl;
-	inputOption(cnt);
-	return new SearchScreen(dict);
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			nextScreen=new SearchForDefScreen(dict);
+	}
+	return nextScreen;
 }
 
 //-------------------------End Parent: SearchForDefScreen---------------------------

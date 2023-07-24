@@ -124,8 +124,8 @@ public:
     SearchForDefScreen(Dict* dict) : Screen(dict){}
     Screen* render();
     bool displayPrefix(const std::string& word);
-    void displayPrefixMode(const std::string& word);
-    void displayExactMode(const std::string& word);
+    //void displayPrefixMode(const std::string& word);
+    //void displayExactMode(const std::string& word);
 };
 
 //-------------------------End Parent: SearchScreen---------------------------
@@ -133,6 +133,12 @@ public:
 class DisplayExactModeScreen: public Screen{
 private:
     std::string word;//word user typed in
+    const std::vector<std::string> options = {
+        "Edit this word",
+        "Remove this word",
+        "Add this word to your favorite list",
+        "Back"
+    };
 public:
     DisplayExactModeScreen(Dict* dict,const std::string& word) : Screen(dict) , word(word) {}
     Screen* render();
@@ -140,6 +146,9 @@ public:
 class DisplayPrefixModeScreen: public Screen{
 private:
     std::string word;//word user typed in
+    const std::vector<std::string> options = {
+        "Back"
+    };
 public:
     DisplayPrefixModeScreen(Dict* dict,const std::string& word) : Screen(dict) , word(word){}
     Screen* render();
