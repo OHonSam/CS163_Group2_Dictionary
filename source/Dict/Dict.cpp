@@ -5,23 +5,7 @@ bool Dict::reset(){
     wordDef.clear();
     favList.clear();
     history.clearSLL();
-    switch(curDataSet){
-        case DataSet::EE:
-            return 
-                words.import(DEFAULT::EE::WORDS) &&
-                wordDef.import(DEFAULT::EE::WORDDEF) &&
-                favList.import(DEFAULT::EE::FAVLIST) &&
-                history.importSLLStr(DEFAULT::EE::HISTORY)
-            ;
-        case DataSet::EV:
-            return 
-                words.import(DEFAULT::EV::WORDS) &&
-                wordDef.import(DEFAULT::EV::WORDDEF) &&
-                favList.import(DEFAULT::EV::FAVLIST) &&
-                history.importSLLStr(DEFAULT::EV::HISTORY)
-            ;
-    }
-    return false;
+    return setup();
 }
 
 void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
@@ -51,15 +35,7 @@ bool Dict::lowerStrEng(std::string &str)
 
 Dict::Dict(): curDataSet(DataSet::EE)
 {
-    if(!loadFromPrev())
-    {
-        importEECsv(RAW_DATA::EE);
-
-        words.save(DEFAULT::EE::WORDS);
-        wordDef.save(DEFAULT::EE::WORDDEF);
-        favList.save(DEFAULT::EE::FAVLIST);
-        history.saveSLLStr(DEFAULT::EE::HISTORY);
-    }
+    setup();
 }
 
 Dict::~Dict()
@@ -201,6 +177,28 @@ bool Dict::importEVTxt(const std::string &path)
     }
 
     return true;
+}
+
+bool Dict::setup()
+{
+    if(!loadFromPrev())
+        switch(curDataSet){
+            case DataSet::EE:
+                return 
+                    importEECsv(RAW_DATA::EE) &&
+                    words.save(DEFAULT::EE::WORDS) &&
+                    wordDef.save(DEFAULT::EE::WORDDEF) &&
+                    favList.save(DEFAULT::EE::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::EE::HISTORY);
+            case DataSet::EV:
+                return 
+                    importEVTxt(RAW_DATA::EV) &&
+                    words.save(DEFAULT::EV::WORDS) &&
+                    wordDef.save(DEFAULT::EV::WORDDEF) &&
+                    favList.save(DEFAULT::EV::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::EV::HISTORY);
+        }
+    return false;
 }
 
 void Dict::addHistory(const std::string& word){

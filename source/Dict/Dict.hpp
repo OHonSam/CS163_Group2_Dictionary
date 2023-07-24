@@ -68,7 +68,7 @@ private:
 	Trie words;
 	TST favList;
 
-	unsigned int curDataSet;
+	DataSet::Type curDataSet;
 
 public:
 	// If first time running, import the raw dataset
@@ -88,6 +88,8 @@ public:
 	// Load from EV data
 	bool importEVTxt(const std::string &path);
 
+	bool setup();
+	
 	// Reset to the default dataset
 	bool reset();
 
