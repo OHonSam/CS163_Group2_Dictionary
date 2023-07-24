@@ -251,7 +251,7 @@ Screen* SearchForDefScreen::render(){
 
 	displayPrefix(word);
 
-    std::cout<<"Options: \n"
+    std::cout<<"\nOptions: \n"
         <<"1. Search for definition(s) of the exact word\n"
         <<"2. Search for definition(s) of all words with the same prefix\n"
         <<"3. Back\n";
@@ -291,7 +291,7 @@ void SearchForDefScreen::displayPrefix(const std::string& word)
     }
     
 }
-void SearchForDefScreen::displayPrefix(const std::string& word)
+void SearchForDefScreen::displayPrefixMode(const std::string& word)
 {
 	clearScr();
     std::vector<std::string> prefixes=dict->searchPrefix(word);
@@ -304,13 +304,11 @@ void SearchForDefScreen::displayPrefix(const std::string& word)
             defsForPrefixes.push_back(dict->searchForDef(prefixes[i]));
             dict->addHistory(prefixes[i]);
         }
-        std::cout<<"Here is/are keyword(s) with the same prefix that you may be looking for: \n";
+		std::cout<<"The keyword(s) with the same prefix that you are looking for is/are: \n";
         for(int i=0;i<n;++i){
             std::cout<<i+1<<". "<<prefixes[i]<<std::endl;
             for(int type=0;type<POS::Count;++type){
-                //std::cout<<type<<std::endl;
                 if(defsForPrefixes[i]->def[type].empty()) {
-                    //std::cout<<"No definition for this type"<<std::endl;
                     continue;
                 }
                 std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
@@ -323,7 +321,8 @@ void SearchForDefScreen::displayPrefix(const std::string& word)
     
 }
 void SearchForDefScreen::displayExactMode(const std::string& word)
-{
+{	
+	clearScr();
     Word* w=dict->searchForDef(word);
     if(w==nullptr)
         std::cout<<"No result found!\n";
