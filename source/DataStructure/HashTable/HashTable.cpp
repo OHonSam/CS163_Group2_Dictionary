@@ -150,6 +150,7 @@ bool HashTable::import(const std::string& path) {
         int tempo;
         in.read((char*)& tempo, sizeof (int));
         buckets[i].resize(tempo);
+        bit.add(i+1, tempo);
         for (int j = 0; j < tempo; j++)
         {
             int tempor;
