@@ -6,6 +6,16 @@
 #include "Trie.hpp"
 #include <Libraries.hpp>
 
+namespace DataSet
+{
+	enum Type
+	{
+		EE,
+		EV,
+		Count
+	};
+}
+
 namespace RAW_DATA
 {
 	const std::string EE = "assets/RawData/EE.csv";
@@ -14,18 +24,38 @@ namespace RAW_DATA
 
 namespace MAIN
 {
-	const std::string WORDS = "assets/DS/main/words.bin";
-	const std::string WORDDEF = "assets/DS/main/wordDef.bin";
-	const std::string FAVLIST = "assets/DS/main/favList.bin";
-	const std::string HISTORY = "assets/DS/main/history.bin";
+	namespace EE
+	{
+		const std::string WORDS = "assets/DS/EE/main/words.bin";
+		const std::string WORDDEF = "assets/DS/EE/main/wordDef.bin";
+		const std::string FAVLIST = "assets/DS/EE/main/favList.bin";
+		const std::string HISTORY = "assets/DS/EE/main/history.bin";
+	}
+	namespace EV
+	{
+		const std::string WORDS = "assets/DS/EV/main/words.bin";
+		const std::string WORDDEF = "assets/DS/EV/main/wordDef.bin";
+		const std::string FAVLIST = "assets/DS/EV/main/favList.bin";
+		const std::string HISTORY = "assets/DS/EV/main/history.bin";
+	}
 }
 
 namespace DEFAULT
 {
-	const std::string WORDS = "assets/DS/default/words.bin";
-	const std::string WORDDEF = "assets/DS/default/wordDef.bin";
-	const std::string FAVLIST = "assets/DS/default/favList.bin";
-	const std::string HISTORY = "assets/DS/default/history.bin";
+	namespace EE
+	{
+		const std::string WORDS = "assets/DS/EE/default/words.bin";
+		const std::string WORDDEF = "assets/DS/EE/default/wordDef.bin";
+		const std::string FAVLIST = "assets/DS/EE/default/favList.bin";
+		const std::string HISTORY = "assets/DS/EE/default/history.bin";
+	}
+	namespace EV
+	{
+		const std::string WORDS = "assets/DS/EV/default/words.bin";
+		const std::string WORDDEF = "assets/DS/EV/default/wordDef.bin";
+		const std::string FAVLIST = "assets/DS/EV/default/favList.bin";
+		const std::string HISTORY = "assets/DS/EV/default/history.bin";
+	}
 }
 
 class Dict
@@ -38,7 +68,7 @@ private:
 	Trie words;
 	TST favList;
 
-	
+	unsigned int curDataSet;
 
 public:
 	// If first time running, import the raw dataset

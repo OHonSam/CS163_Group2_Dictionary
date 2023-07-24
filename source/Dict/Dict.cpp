@@ -5,12 +5,23 @@ bool Dict::reset(){
     wordDef.clear();
     favList.clear();
     history.clearSLL();
-    return 
-        words.import(DEFAULT::WORDS) &&
-        wordDef.import(DEFAULT::WORDDEF) &&
-        favList.import(DEFAULT::FAVLIST) &&
-        history.importSLLStr(DEFAULT::HISTORY)
-    ;
+    switch(curDataSet){
+        case DataSet::EE:
+            return 
+                words.import(DEFAULT::EE::WORDS) &&
+                wordDef.import(DEFAULT::EE::WORDDEF) &&
+                favList.import(DEFAULT::EE::FAVLIST) &&
+                history.importSLLStr(DEFAULT::EE::HISTORY)
+            ;
+        case DataSet::EV:
+            return 
+                words.import(DEFAULT::EV::WORDS) &&
+                wordDef.import(DEFAULT::EV::WORDDEF) &&
+                favList.import(DEFAULT::EV::FAVLIST) &&
+                history.importSLLStr(DEFAULT::EV::HISTORY)
+            ;
+    }
+    return false;
 }
 
 void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
@@ -38,36 +49,56 @@ bool Dict::lowerStrEng(std::string &str)
     return true;
 }
 
-Dict::Dict()
+Dict::Dict(): curDataSet(DataSet::EE)
 {
     if(!loadFromPrev())
     {
-        // importEECsv(RAW_DATA::EE);
-        importEVTxt(RAW_DATA::EV);
+        importEECsv(RAW_DATA::EE);
 
-        words.save(DEFAULT::WORDS);
-        wordDef.save(DEFAULT::WORDDEF);
-        favList.save(DEFAULT::FAVLIST);
-        history.saveSLLStr(DEFAULT::HISTORY);
+        words.save(DEFAULT::EE::WORDS);
+        wordDef.save(DEFAULT::EE::WORDDEF);
+        favList.save(DEFAULT::EE::FAVLIST);
+        history.saveSLLStr(DEFAULT::EE::HISTORY);
     }
 }
 
 Dict::~Dict()
 {
-    words.save(MAIN::WORDS);
-    wordDef.save(MAIN::WORDDEF);
-    favList.save(MAIN::FAVLIST);
-    history.saveSLLStr(MAIN::HISTORY);
+    switch(curDataSet){
+        case DataSet::EE:
+            words.save(MAIN::EE::WORDS);
+            wordDef.save(MAIN::EE::WORDDEF);
+            favList.save(MAIN::EE::FAVLIST);
+            history.saveSLLStr(MAIN::EE::HISTORY);
+            break;
+        case DataSet::EV:
+            words.save(MAIN::EV::WORDS);
+            wordDef.save(MAIN::EV::WORDDEF);
+            favList.save(MAIN::EV::FAVLIST);
+            history.saveSLLStr(MAIN::EV::HISTORY);
+            break;
+    }
 }
 
 bool Dict::loadFromPrev()
 {
-    return 
-        words.import(MAIN::WORDS) &&
-        wordDef.import(MAIN::WORDDEF) &&
-        favList.import(MAIN::FAVLIST) &&
-        history.importSLLStr(MAIN::HISTORY)
-    ;
+    switch(curDataSet){
+        case DataSet::EE:
+            return 
+                words.import(MAIN::EE::WORDS) &&
+                wordDef.import(MAIN::EE::WORDDEF) &&
+                favList.import(MAIN::EE::FAVLIST) &&
+                history.importSLLStr(MAIN::EE::HISTORY)
+            ;
+        case DataSet::EV:
+            return 
+                words.import(MAIN::EV::WORDS) &&
+                wordDef.import(MAIN::EV::WORDDEF) &&
+                favList.import(MAIN::EV::FAVLIST) &&
+                history.importSLLStr(MAIN::EV::HISTORY)
+            ;
+    }
+    return false;
 }
 
 bool Dict::importEECsv(const std::string &path)
