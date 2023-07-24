@@ -494,7 +494,9 @@ Screen *OneWord4DefScreen::render()
 
 	std::vector<std::pair<std::string,int>> options;
 	for(int i=0; i<N; i++) options.push_back({v[i]->getRandDef(),i});
-	std::shuffle(options.begin(),options.end(),std::mt19937(std::random_device()()));
+
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	std::shuffle(options.begin(),options.end(),std::default_random_engine(seed));
 
 	std::cout << "Choose the correct definition for the word: " << v[0]->word << std::endl;
 	for (int i = 0; i < N; ++i)
@@ -527,7 +529,9 @@ Screen *OneDef4WordScreen::render()
 
 	std::vector<std::pair<std::string,int>> options;
 	for(int i=0; i<N; i++) options.push_back({v[i]->word,i});
-	std::shuffle(options.begin(),options.end(),std::mt19937(std::random_device()()));
+	
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	std::shuffle(options.begin(),options.end(),std::default_random_engine(seed));
 
 	std::cout << "Choose the correct definition for the word: " << v[0]->getRandDef() << std::endl;
 	for (int i = 0; i < N; ++i)
