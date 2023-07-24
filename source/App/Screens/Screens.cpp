@@ -253,6 +253,7 @@ Screen *MultiChoicesScreen::render()
 			nextScreen = new OneWord4DefScreen(dict);
 			break;
 		case 2: // 1 definition and 4 words
+			nextScreen = new OneDef4WordScreen(dict);
 			break;
 		case 3:
 			nextScreen = new HomeScreen(dict);
@@ -516,4 +517,38 @@ Screen *OneWord4DefScreen::render()
 	}
 }
 
+Screen *OneDef4WordScreen::render()
+{
+    clearScr();
+
+	const int N=4;
+
+	std::vector<Word*> v=dict->getMultiChoices(N);
+
+	std::vector<std::pair<std::string,int>> options;
+	for(int i=0; i<N; i++) options.push_back({v[i]->word,i});
+	std::shuffle(options.begin(),options.end(),std::mt19937(std::random_device()()));
+
+	std::cout << "Choose the correct definition for the word: " << v[0]->getRandDef() << std::endl;
+	for (int i = 0; i < N; ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i].first << std::endl << std::endl;
+	std::cout << std::to_string(N + 1) << ". " << "Back" << std::endl;
+
+	while(1)
+	{
+		int choice = inputOption(N + 1);
+		if(choice==N+1) return new MultiChoicesScreen(dict);
+
+		if(options[choice-1].second==0){
+			std::cout<<"Correct!"<<std::endl;
+			std::cout<<"Press 1 to go back to the previous page."<<std::endl;
+			inputOption(1);
+			return new MultiChoicesScreen(dict);
+		}
+		else
+			std::cout<<"Incorrect! Please try again."<<std::endl;
+	}
+}
+
 //-------------------------End Parent: MultipleChoices---------------------------
+

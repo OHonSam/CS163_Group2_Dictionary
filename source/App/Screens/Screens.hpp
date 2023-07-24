@@ -197,6 +197,13 @@ public:
     Screen* render();
 };
 
+class OneDef4WordScreen: public Screen
+{
+public:
+    OneDef4WordScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
 //-------------------------End Parent: MultipleChoices---------------------------
 
 
