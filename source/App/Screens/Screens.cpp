@@ -249,7 +249,7 @@ Screen* SearchForDefScreen::render(){
         std::getline(std::cin,word);
     }
 
-	displayPrefixMode(word);
+	displayPrefix(word);
 
     std::cout<<"Options: \n"
         <<"1. Search for definition(s) of the exact word\n"
@@ -261,7 +261,7 @@ Screen* SearchForDefScreen::render(){
             SearchForDefScreen::displayExactMode(word);
             break;
         case 2:
-            SearchForDefScreen::displayPrefixMode(word);
+            //SearchForDefScreen::displayPrefixMode(word);
             break;
         case 3:
             return new SearchScreen(dict);
@@ -272,7 +272,7 @@ Screen* SearchForDefScreen::render(){
     return new SearchScreen(dict);
     
 }
-void SearchForDefScreen::displayPrefixMode(const std::string& word)
+void SearchForDefScreen::displayPrefix(const std::string& word)
 {
     std::vector<std::string> prefixes=dict->searchPrefix(word);
     if(prefixes.empty())
@@ -287,17 +287,37 @@ void SearchForDefScreen::displayPrefixMode(const std::string& word)
         std::cout<<"Here is/are keyword(s) with the same prefix that you may be looking for: \n";
         for(int i=0;i<n;++i){
             std::cout<<i+1<<". "<<prefixes[i]<<std::endl;
-            // for(int type=0;type<POS::Count;++type){
-            //     //std::cout<<type<<std::endl;
-            //     if(defsForPrefixes[i]->def[type].empty()) {
-            //         //std::cout<<"No definition for this type"<<std::endl;
-            //         continue;
-            //     }
-            //     std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
-            //     for(int idx=0;idx<defsForPrefixes[i]->def[type].size();++idx){
-            //         std::cout<<"\t\t"<<"-"<<defsForPrefixes[i]->def[type][idx]<<std::endl;
-            //     }
-            // }
+        }
+    }
+    
+}
+void SearchForDefScreen::displayPrefix(const std::string& word)
+{
+	clearScr();
+    std::vector<std::string> prefixes=dict->searchPrefix(word);
+    if(prefixes.empty())
+        std::cout<<"No result found!\n";
+    else{
+        std::vector<Word*> defsForPrefixes;
+        int n=prefixes.size();
+        for(int i=0;i<n;++i){
+            defsForPrefixes.push_back(dict->searchForDef(prefixes[i]));
+            dict->addHistory(prefixes[i]);
+        }
+        std::cout<<"Here is/are keyword(s) with the same prefix that you may be looking for: \n";
+        for(int i=0;i<n;++i){
+            std::cout<<i+1<<". "<<prefixes[i]<<std::endl;
+            for(int type=0;type<POS::Count;++type){
+                //std::cout<<type<<std::endl;
+                if(defsForPrefixes[i]->def[type].empty()) {
+                    //std::cout<<"No definition for this type"<<std::endl;
+                    continue;
+                }
+                std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
+                for(int idx=0;idx<defsForPrefixes[i]->def[type].size();++idx){
+                    std::cout<<"\t\t"<<"-"<<defsForPrefixes[i]->def[type][idx]<<std::endl;
+                }
+            }
         }
     }
     
