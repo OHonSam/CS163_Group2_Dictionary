@@ -8,9 +8,9 @@
 class HashTable
 {
 private:
-	const int NMOD=3;
+	const int NMOD=2;
 	const int BASE=311;
-	const int MOD[3]={1000003, 1000033, 1000037};
+	const int MOD[2]={1000003, 1000033};
 
 	BIT bit;
 
@@ -45,10 +45,8 @@ public:
 
 	// Find a definition for a required word	
 	Word* searchDef(const std::string& word);
-	void displayDef(const std::string& word);
 
 	//	Random a word and its definition
-	void initSeedForRandom();//to avoid srand() in for loop 
 	Word* randomWordOfDay();//call initSeedForRandom() before randomWordOfDay()
 
 	// Get the list of random k word-definition pairs

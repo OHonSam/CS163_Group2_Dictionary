@@ -75,13 +75,11 @@ int HashTable::hash(const std::string& word) {
 
 HashTable::HashTable():bit(MOD[NMOD-1])
 {
+    srand(time(NULL));
     numWords=0;
     buckets.resize(MOD[NMOD-1]);
 }
 
-void initSeedForRandom(){
-    srand(time(NULL));
-}
 HashTable::~HashTable()
 {
     clear();
