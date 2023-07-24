@@ -250,10 +250,12 @@ Screen* SearchForDefScreen::render(){
     }
 
 	if(displayPrefix(word)){
-		std::cout<<"\nOptions: \n"
-			<<"1. Search for definition(s) of the exact word\n"
-			<<"2. Search for definition(s) of all words with the same prefix\n"
-			<<"3. Back\n";
+		std::cout<<"\nOptions: \n";
+			// <<"1. Search for definition(s) of the exact word\n"
+			// <<"2. Search for definition(s) of all words with the same prefix\n"
+			// <<"3. Back\n";
+		for(int i=0;i<options.size();++i)
+			std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
 		int choice=inputOption(3);
 		switch(choice){
 			case 1:
@@ -266,6 +268,7 @@ Screen* SearchForDefScreen::render(){
 				return new SearchScreen(dict);
 		}
 	}
+
     int cnt=0;
     std::cout<<std::endl<<++cnt<<". Back"<<std::endl;
     inputOption(cnt);

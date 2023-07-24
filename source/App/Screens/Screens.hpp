@@ -97,12 +97,12 @@ private:
         "Type in a word to insert it to your favorite list",
         "Type in a word to remove it from your favorite list",
         "Search prefix of words in your favorite list",
-        "Go back to previous page",
+        "Go back to previous page"
     };
 
     const std::vector<std::string> options2 = {
         "Type in a word to insert it to your favorite list",
-        "Go back to previous page",
+        "Go back to previous page"
     };
 
 public:
@@ -113,6 +113,13 @@ public:
 
 //-------------------------Parent: SearchScreen--------------------------------
 class SearchForDefScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Search for definition(s) of the exact word",
+        "Search for definition(s) of all words with the same prefix",
+        "Back"
+    };
+
 public:
     SearchForDefScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
@@ -122,7 +129,18 @@ public:
 };
 
 //-------------------------End Parent: SearchScreen---------------------------
-
+//-------------------------Parent: SearchForDefScreen--------------------------------
+class DisplayExactModeScreen: public Screen{
+public:
+    DisplayExactModeScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+class DisplayPrefixModeScreen: public Screen{
+public:
+    DisplayPrefixModeScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+//-------------------------End Parent: SearchForDefScreen---------------------------
 
 //-------------------------Parent: ViewScreen--------------------------------
 class ViewHistoryScreen: public Screen{
