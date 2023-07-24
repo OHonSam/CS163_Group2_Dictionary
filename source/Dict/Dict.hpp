@@ -93,6 +93,8 @@ public:
 	// Reset to the default dataset
 	bool reset();
 
+	bool switchDataSet(DataSet::Type type);
+
 	// Edit definition of existed word
 	void updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef);
 

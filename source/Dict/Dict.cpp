@@ -8,6 +8,13 @@ bool Dict::reset(){
     return setup();
 }
 
+bool Dict::switchDataSet(DataSet::Type type)
+{
+    if(curDataSet==type) return true;
+    curDataSet=type;
+    return reset();
+}
+
 void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
 {
     wordDef.updateDef(word,type,oldDef,newDef);
