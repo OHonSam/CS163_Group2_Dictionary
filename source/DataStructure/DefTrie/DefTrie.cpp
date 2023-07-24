@@ -246,6 +246,7 @@ DefTrie::Node* DefTrie::import(const std::string& path) {
     // delete root;
     // root = nullptr;
     std::ifstream in(path, std::ios::in | std::ios::binary);
+    if (!in.good() || !in.is_open()) return nullptr;
     import(root, in);
     return root;
 }

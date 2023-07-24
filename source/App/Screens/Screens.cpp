@@ -505,7 +505,7 @@ Screen *OneWord4DefScreen::render()
 
 		if(w->checkDef(options[choice-1])){
 			std::cout<<"Correct!"<<std::endl;
-			std::cout<<"Press 1 to go back to the previous page: "<<std::endl;
+			std::cout<<"Press 1 to go back to the previous page."<<std::endl;
 			inputOption(1);
 			return new MultiChoicesScreen(dict);
 		}

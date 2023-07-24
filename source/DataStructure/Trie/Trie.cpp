@@ -117,10 +117,7 @@ void Trie::clear()
 bool Trie::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
-    if (!file.is_open())
-        return false;
-    if(file.peek() == std::ifstream::traits_type::eof())
-        return true;
+    if (!file.good() || !file.is_open()) return false;
     import(root, file);
     file.close();
     return true;

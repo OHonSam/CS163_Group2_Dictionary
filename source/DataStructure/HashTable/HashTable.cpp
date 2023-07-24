@@ -133,10 +133,7 @@ void HashTable::updateDef(const std::string& word, unsigned int type, const std:
 
 bool HashTable::import(const std::string& path) {
     std::ifstream in(path, std::ios::in | std::ios::binary);
-    if (!in.is_open()) 
-        return false;
-    if(in.peek() == std::ifstream::traits_type::eof())
-        return true;
+    if (!in.good() || !in.is_open()) return false;
     int temp;
     int tempora;
     std::string w;
