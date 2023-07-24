@@ -481,29 +481,31 @@ Screen *SearchPrefixFavList::render()
 }
 //----------------------End Parent: FavListChoiceScreen--------------------------------------
 
+//-------------------------Parent: MultipleChoices--------------------------------
+
 Screen *OneWord4DefScreen::render()
 {
 	clearScr();
 
 	const int N=4;
 
-	std::string ques;
-	std::vector<std::string> options;
-	dict->getMultileChoices(ques, options, N, true);
+	std::vector<Word*> v=dict->getMultiChoices(N);
 
-	std::cout << "Choose the correct definition for the word: " << ques << std::endl;
+	std::vector<std::pair<std::string,int>> options;
+	for(int i=0; i<N; i++) options.push_back({v[i]->getRandDef(),i});
+	std::shuffle(options.begin(),options.end(),std::mt19937(std::random_device()()));
+
+	std::cout << "Choose the correct definition for the word: " << v[0]->word << std::endl;
 	for (int i = 0; i < N; ++i)
-		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl << std::endl;
+		std::cout << std::to_string(i + 1) << ". " << options[i].first << std::endl << std::endl;
 	std::cout << std::to_string(N + 1) << ". " << "Back" << std::endl;
-
-	Word* w=dict->searchDef(ques);
 
 	while(1)
 	{
 		int choice = inputOption(N + 1);
 		if(choice==N+1) return new MultiChoicesScreen(dict);
 
-		if(w->checkDef(options[choice-1])){
+		if(options[choice-1].second==0){
 			std::cout<<"Correct!"<<std::endl;
 			std::cout<<"Press 1 to go back to the previous page."<<std::endl;
 			inputOption(1);
@@ -513,3 +515,5 @@ Screen *OneWord4DefScreen::render()
 			std::cout<<"Incorrect! Please try again."<<std::endl;
 	}
 }
+
+//-------------------------End Parent: MultipleChoices---------------------------

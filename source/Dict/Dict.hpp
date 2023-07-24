@@ -96,7 +96,7 @@ public:
 	std::vector<std::string> searchPrefixFavlist(const std::string &prefix);
 
 	// Get the list of multple choices
-	void getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord);
+	std::vector<Word*> getMultiChoices(int k);
 
 	//Turn uppercase to lowercase
 	bool uppercase2Lowercase(std::string &str);

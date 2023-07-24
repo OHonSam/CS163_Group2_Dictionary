@@ -111,27 +111,6 @@ bool Dict::importEECsv(const std::string &path)
     return true;
 }
 
-void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord)
-{
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-
-    std::vector<Word*> list=wordDef.getRandom(numChoices);
-    if(isWord)
-    {
-        ques=list[0]->word;
-        for(int i=0;i<numChoices;++i)
-            choices.push_back(list[i]->getRandDef());
-    }
-    else
-    {
-        ques=list[0]->getRandDef();
-        for(int i=0;i<numChoices;++i)
-            choices.push_back(list[i]->word);
-    }
-
-    std::shuffle(choices.begin(),choices.end(),std::default_random_engine(seed));
-}
-
 void Dict::addHistory(const std::string& word){
     history.push(word);
 }
@@ -163,6 +142,11 @@ std::vector<std::string> Dict::searchPrefix(const std::string &prefix)
 std::vector<std::string> Dict::searchPrefixFavlist(const std::string &prefix)
 {
     return favList.startWith(prefix);
+}
+
+std::vector<Word *> Dict::getMultiChoices(int k)
+{
+    return wordDef.getRandom(k);
 }
 
 void Dict::removeWord(const std::string& word){
