@@ -112,6 +112,7 @@ class DailyWordScreen: public Screen
 {
 private:
     const std::vector<std::string> options = {
+        "Look for another word",
         "Back"
     };
 public:
