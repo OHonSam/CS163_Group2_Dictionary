@@ -110,6 +110,7 @@ Screen *HomeScreen::render()
         case 6: // Reset to default
             break;
         case 7: // Switch datasets
+			nextScreen=new SwitchDataSetScreen(dict);
             break;
 		default:
 			nextScreen=nullptr;
@@ -140,7 +141,6 @@ Screen* SearchScreen::render(){
     }
     return nextScreen;
 }
-//-------------------------End Parent: HomeScreen-------------------------------
 
 Screen *ViewScreen::render()
 {
@@ -258,6 +258,41 @@ Screen *MultiChoicesScreen::render()
 		case 3:
 			nextScreen = new HomeScreen(dict);
 			break;
+	}
+
+	return nextScreen;
+}
+
+Screen *SwitchDataSetScreen::render()
+{
+	clearScr();
+
+	std::cout << "Which dataset would you like to use?\n" << std::endl;
+	for (int i = 0; i < options.size(); ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+
+	Screen *nextScreen = this;
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
+		dict->switchDataSet(DataSet::EE);
+		std::cout << "Switched to English - English dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		return new HomeScreen(dict);
+	case 2:
+		dict->switchDataSet(DataSet::EV);
+		std::cout << "Switched to English - Vietnamese dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		return new HomeScreen(dict);
+	case 3:
+		// SetNextScreen(app, new VieEngScreen());
+		break;
+	case 4:
+		nextScreen = new HomeScreen(dict);
+		break;
 	}
 
 	return nextScreen;
@@ -555,4 +590,3 @@ Screen *OneDef4WordScreen::render()
 }
 
 //-------------------------End Parent: MultipleChoices---------------------------
-

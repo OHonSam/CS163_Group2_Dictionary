@@ -126,6 +126,22 @@ public:
     MultiChoicesScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
+
+class SwitchDataSetScreen: public Screen
+{
+private:
+    const std::vector<std::string> options = {
+        "English - English",
+        "English - Vietnamese",
+        "Vietnamese - English",
+        "Back"
+    };
+
+public:
+    SwitchDataSetScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
 //-------------------------End Parent: HomeScreen---------------------------
 
 //-------------------------Parent: SearchScreen--------------------------------
