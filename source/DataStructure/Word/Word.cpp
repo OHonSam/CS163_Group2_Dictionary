@@ -99,6 +99,24 @@ unsigned int POS::getTypeViet(const std::string &str)
     return res;
 }
 
+unsigned int POS::getTypeVE(const std::string &str)
+{
+    int res=0;
+    for(int i=0; i<Count; i++)
+    {
+        bool flag=false;
+        for(int j=0; j+TypeStringVE[i].size()-1<str.size(); j++)
+            if(str.substr(j,TypeStringVE[i].size())==TypeStringVE[i])
+            {
+                flag=true;
+                break;
+            }
+        if(flag) res|=1<<i;
+    }
+    if(!res) res=Other;
+    return res;
+}
+
 std::string POS::getTypeString(unsigned int type)
 {
     std::string str = "";

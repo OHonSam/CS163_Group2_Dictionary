@@ -44,6 +44,18 @@ namespace POS
         "khac"
     };
 
+    const std::string TypeStringVE[] = {
+        "noun",
+        "verb",
+        "adj",
+        "adverb",
+        "pronoun",
+        "prep",
+        "conj",
+        "interj",
+        "other"
+    };
+
     const std::string TypeShort[] = {
         "n.",
         "v.",
@@ -59,6 +71,7 @@ namespace POS
     unsigned int getIndex(unsigned int type);
     unsigned int getType(const std::string& str);
     unsigned int getTypeViet(const std::string& str);
+    unsigned int getTypeVE(const std::string& str);
     std::string getTypeString(unsigned int type);
 }
 
