@@ -18,7 +18,7 @@ bool Screen::checkStrOption(const std::string &str, int &choice)
 	return true;
 }
 
-bool Screen::checkStrEng(std::string str)
+bool Screen::checkStrEng(std::string& str)
 {
 	int length = str.size();
 	if (length > 100 || length == 0)
@@ -30,6 +30,23 @@ bool Screen::checkStrEng(std::string str)
 
 	for (int j = 0; j < length; ++j)
 		if (str[j] < 'a' || str[j] > 'z')
+			return false;
+
+	return true;
+}
+
+bool Screen::checkStrViet(std::string& str)
+{
+	int length = str.size();
+	if (length > 100 || length == 0)
+		return false;
+
+	for (char &c : str)
+		if (c >= 'A' && c <= 'Z')
+			c += 'a' - 'A';
+
+	for (int j = 0; j < length; ++j)
+		if (!((str[j] >= 'a' && str[j] <= 'z') || str[j] == ' '))
 			return false;
 
 	return true;
@@ -70,6 +87,19 @@ std::string Screen::inputEngString(const std::string &mess)
 	std::cout << mess;
 	std::getline(std::cin, str, '\n');
 	while (!checkStrEng(str))
+	{
+		std::cout << "Invalid input. Please try again: ";
+		std::getline(std::cin, str, '\n');
+	}
+
+	return str;
+}
+std::string Screen::inputVietString(const std::string &mess)
+{
+	std::string str;
+	std::cout << mess;
+	std::getline(std::cin, str, '\n');
+	while (!checkStrViet(str))
 	{
 		std::cout << "Invalid input. Please try again: ";
 		std::getline(std::cin, str, '\n');

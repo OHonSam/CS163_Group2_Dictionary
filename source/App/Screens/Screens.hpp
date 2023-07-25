@@ -8,7 +8,8 @@ class Screen
 {
 private:
     bool checkStrOption(const std::string &str, int &choice);
-    bool checkStrEng(std::string str);
+    bool checkStrEng(std::string& str);
+    bool checkStrViet(std::string& str);
 
 protected:
     Dict *dict;
@@ -18,8 +19,12 @@ protected:
     int inputOption(
         int maxOption,
         const std::string &mess = "Your choice: ");
+
     std::string inputEngString(
         const std::string &mess = "Enter English word:");
+
+    std::string inputVietString(
+        const std::string &mess = "Enter Vietnamese word:");
 
 public:
     Screen(Dict *dict) : dict(dict) {}
