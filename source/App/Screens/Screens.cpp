@@ -335,14 +335,16 @@ Screen* SearchForDefScreen::render(){
     clearScr();
     std::cout<<"Enter the word you want to search for: ";
     std::string word;
-    std::getline(std::cin,word);
-    while(!dict->lowerStrEng(word))
-    {
-        std::cout<<"Invalid input. Please try again!\n";
-        std::cout<<"Enter the word you want to search for: ";
-        std::string word;
-        std::getline(std::cin,word);
-    }
+	
+	switch (dict->getCurDataSet()){
+		case DataSet::EE:
+			word=inputEngString();
+			break;
+		case DataSet::EV:
+			word=inputVietString();
+			break;
+	}
+
     std::cout<<"Options: \n"
         <<"1. Search for the exact word\n"
         <<"2. Search for the words that has the same prefix\n"
