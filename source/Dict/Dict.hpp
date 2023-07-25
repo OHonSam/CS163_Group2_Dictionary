@@ -116,6 +116,9 @@ public:
 
 	bool switchDataSet(DataSet::Type type);
 
+	// Get the current dataset
+	DataSet::Type getCurDataSet() const;
+
 	// Edit definition of existed word
 	void updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef);
 
