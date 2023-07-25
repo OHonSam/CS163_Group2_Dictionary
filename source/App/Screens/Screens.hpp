@@ -108,6 +108,16 @@ public:
     FavListChoiceScreen(Dict *dict) : Screen(dict) {}
     Screen *render();
 };
+class DailyWordScreen: public Screen
+{
+private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    DailyWordScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 //-------------------------End Parent: Home---------------------------
 
 //-------------------------Parent: SearchScreen--------------------------------

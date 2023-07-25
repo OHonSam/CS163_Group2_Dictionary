@@ -139,7 +139,6 @@ Screen* SearchScreen::render(){
     }
     return nextScreen;
 }
-//-------------------------End Parent: Home-------------------------------
 
 Screen *ViewScreen::render()
 {
@@ -229,6 +228,24 @@ Screen *FavListChoiceScreen::render()
 		break;
 	}
 
+	return nextScreen;
+}
+Screen* DailyWordScreen::render(){
+	clearScr();
+	//Word* w=dict->getRandomWord();
+	std::cout<<"Today's word is: "<<std::endl;
+
+
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	Screen* nextScreen=this;//"this"->own object
+	int choice=inputOption(options.size());
+	switch(choice)
+	{
+		case 1:
+			nextScreen=new Home(dict);
+			break;
+	}
 	return nextScreen;
 }
 //-------------------------End Parent: Home---------------------------

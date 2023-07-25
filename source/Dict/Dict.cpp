@@ -115,7 +115,11 @@ bool Dict::importEECsv(const std::string &path)
     in.close();
     return true;
 }
-
+Word* Dict::getDailyWord()
+{
+    wordDef.initSeedForRandom();
+    return wordDef.randomWordOfDay();
+}   
 void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord)
 {
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
