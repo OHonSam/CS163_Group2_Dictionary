@@ -449,7 +449,7 @@ Screen *ViewHistoryScreen::render()
 	int choice=inputOption(options.size());
 	switch(choice){
 		case 1:
-			//Search for definition(s) of a word in your search history
+			nextScreen= new Search1WordHistoryScreen(dict);
 			break;
 		case 2:
 			nextScreen=new Remove1WordHistoryScreen(dict);
@@ -475,13 +475,32 @@ Screen * Search1WordHistoryScreen::render(){
         std::string word;
         std::getline(std::cin,word);
     }
-	if(dict)
-	
+	if(!dict->isInHistory(word)){
+		std::cout<<"No result found!\n";
+	}
+	else{
+		Word* w=dict->searchForDef(word);
+		std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
+		dict->addHistory(word);
+		for(int type=0;type<POS::Count;++type){
+			if(w->def[type].empty()) 
+				continue;
+			std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
+			for(int idx=0;idx<w->def[type].size();++idx){
+				std::cout<<"\t\t"<<idx+1<<". "<<w->def[type][idx]<<std::endl;
+			}
+		}
+	}
+
 	std::cout<<"\nOptions: \n";
 	for(int i=0;i<options.size();++i)
 		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
 	int choice=inputOption(options.size());
-
+	switch(choice){
+		case 1:
+			nextScreen=new ViewHistoryScreen(dict);
+			break;
+	}
 	return nextScreen;
 } 
 
@@ -491,17 +510,34 @@ Screen * Search1WordHistoryScreen::render(){
 Screen *Remove1WordHistoryScreen::render()
 {
 	clearScr();
+	Screen* nextScreen=this;
 	std::cout << "Enter the word you want to remove from your search history: ";
 	std::string word;
 	std::getline(std::cin, word);
-
+	
+	while(!dict->lowerStrEng(word))
+    {
+        std::cout<<"Invalid input. Please try again!\n";
+        std::cout<<"Enter the word you want to search for: ";
+        std::string word;
+        std::getline(std::cin,word);
+    }
 	dict->removeHistory(word);
 
 	std::cout << "The word has been successfully removed from your search history!\n";
-	int cnt = 0;
-	std::cout << ++cnt << ". Back" << std::endl;
-	inputOption(cnt);
-	return new EditScreen(dict);
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			nextScreen=new ViewHistoryScreen(dict);
+			break;
+		case 2:
+			nextScreen=new EditScreen(dict);
+			break;
+	}
+	return nextScreen;
 }
 
 Screen *DeleteAllHistoryScreen::render()
