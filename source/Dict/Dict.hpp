@@ -95,8 +95,12 @@ public:
 
 	// Save data structures before deleting
 	~Dict();	
+
 	// Check if a string is a valid English word (only contains letters from a to z) and convert uppercase letter to lowercase letter
 	bool lowerStrEng(std::string& str);
+
+	bool lowerStrViet(std::string& str);
+
 	// Load from previous save data
 	bool loadFromPrev();
 

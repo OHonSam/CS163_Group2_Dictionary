@@ -45,6 +45,15 @@ bool Dict::lowerStrEng(std::string &str)
     return true;
 }
 
+bool Dict::lowerStrViet(std::string &str)
+{
+    for (char &c : str) c=std::tolower(c);
+    for (char c: str)
+        if (!(('a'<=c && c<='z') || c==' ' || c=='-'))
+            return false;
+    return true;
+}
+
 Dict::Dict(): curDataSet(DataSet::EE)
 {
     setup();
@@ -215,18 +224,15 @@ bool Dict::importVETxt(const std::string &path)
     {
         if(line.empty() || line[0]!='@' || line[1]=='0') continue;
 
-        std::string word;
-        {
-            int p=line.find('/');
-            word=line.substr(1,p-2);
-        }
+        std::string word=line.substr(1);
 
-        if(!lowerStrEng(word)) continue;
+        if(!lowerStrViet(word)) continue;
 
         Word* w=new Word(word);
 
         bool flag=false;
         while(1){
+            if(line.empty()) break;
             if(!flag){
                 getline(in,line);
                 if(line.empty() || line[0]!='*') break;
@@ -236,9 +242,9 @@ bool Dict::importVETxt(const std::string &path)
             {
                 int p=line.find(',');
                 if(p==std::string::npos)
-                    POS=line.substr(3);
+                    POS=line.substr(2);
                 else
-                    POS=line.substr(3,p-3);
+                    POS=line.substr(2,p-3);
             }
 
             unsigned int ind=POS::getTypeVE(POS);

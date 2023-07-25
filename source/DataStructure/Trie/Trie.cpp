@@ -6,13 +6,17 @@ int Trie::getIndex(char c)
         return c - 'a';
     if (c >= 'A' && c <= 'Z')
         return c - 'A';
+    if (c==' ') return ALPHABET_SIZE-1;
+    if (c=='-') return ALPHABET_SIZE-2;
     return -1;
 }
 char Trie::rGetIndex(int index)
 {
     if (index < 0 || index >= ALPHABET_SIZE)
         return '\0';
-    return index + 'a';
+    if (index < 26) return index + 'a';
+    if (index == ALPHABET_SIZE-1) return ' ';
+    if (index == ALPHABET_SIZE-2) return '-';
 }
 
 bool Trie::checkExist(const std::string &key)
