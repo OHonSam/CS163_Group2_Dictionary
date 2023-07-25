@@ -102,12 +102,15 @@ Screen *Home::render()
             nextScreen=new ViewScreen(dict);
             break;
         case 4:
+			//nextScreen=new DailyWordScreen(dict);
             break;
         case 5:
             break;
         case 6:
             break;
-        case 7: // Exit
+		case7:
+			break;
+        case 8: // Exit
             nextScreen = nullptr;
             break;
     }

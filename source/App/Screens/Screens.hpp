@@ -35,6 +35,7 @@ private:
         "Searching",
         "Editing",
         "Viewing",
+        "Daily word",
         "Reset to default",
         "Random",
         "Switch between dictionaries (English-Vietnamese, Vietnamese-English, English-English)",
