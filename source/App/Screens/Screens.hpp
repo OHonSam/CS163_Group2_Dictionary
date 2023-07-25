@@ -81,8 +81,6 @@ private:
     const std::vector<std::string> options = {
         "View your search history",
         "View your favorite words",
-        "View definitions of a word user types in",
-        "View possible keywords of a definition user types in",
         "Back"
     };
 public:

@@ -151,13 +151,9 @@ Screen *ViewScreen::render()
             nextScreen=new ViewHistoryScreen(dict);
             break;  
         case 2:
+			//view favorite list
             break;
-        case 3:
-            //View favorite list
-            break;
-        case 4:
-            break;
-        case 5: 
+        case 3: 
             nextScreen=new Home(dict);
             break;
     }
@@ -555,7 +551,7 @@ Screen *DeleteAllHistoryScreen::render()
 	switch (choice)
 	{
 	case 1:
-		if (dict->clearAllHistory("History.bin"))
+		if (dict->clearAllHistory(MAIN::HISTORY))
 			std::cout << "Your search history has been successfully deleted!\n";
 		else
 			std::cout << "Errors occurred in clearing time!\n";
