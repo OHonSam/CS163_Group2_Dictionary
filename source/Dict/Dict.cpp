@@ -186,6 +186,66 @@ bool Dict::importEVTxt(const std::string &path)
     return true;
 }
 
+bool Dict::importVETxt(const std::string &path)
+{
+    std::ifstream in(path);
+    if(!in.good() || !in.is_open()) return false;
+
+    int cnt=0;
+    std::string line;
+    while(getline(in,line) && cnt<LIM_WORDS)
+    {
+        if(line.empty() || line[0]!='@' || line[1]=='0') continue;
+
+        std::string word;
+        {
+            int p=line.find('/');
+            word=line.substr(1,p-2);
+        }
+
+        if(!lowerStrEng(word)) continue;
+
+        Word* w=new Word(word);
+
+        bool flag=false;
+        while(1){
+            if(!flag){
+                getline(in,line);
+                if(line.empty() || line[0]!='*') break;
+            }
+
+            std::string POS;
+            {
+                int p=line.find(',');
+                if(p==std::string::npos)
+                    POS=line.substr(3);
+                else
+                    POS=line.substr(3,p-3);
+            }
+
+            unsigned int ind=POS::getTypeVE(POS);
+            w->type|=ind;
+
+            flag=false;
+            while(getline(in,line)){
+                if(line.empty()) break;
+                if(line[0]=='*'){
+                    flag=true;
+                    break;
+                }
+                if(line[0]!='-') continue;
+
+                w->def[POS::getIndex(ind)].push_back(line.substr(2));
+            }
+        }
+
+        addWord(w);
+        cnt++;
+    }
+
+    return true;
+}
+
 bool Dict::setup()
 {
     if(!loadFromPrev())

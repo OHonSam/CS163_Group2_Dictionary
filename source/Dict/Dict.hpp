@@ -12,6 +12,7 @@ namespace DataSet
 	{
 		EE,
 		EV,
+		VE,
 		Count
 	};
 }
@@ -20,6 +21,7 @@ namespace RAW_DATA
 {
 	const std::string EE = "assets/RawData/EE.csv";
 	const std::string EV = "assets/RawData/EV.txt";
+	const std::string VE = "assets/RawData/VE.txt";
 }
 
 namespace MAIN
@@ -38,6 +40,14 @@ namespace MAIN
 		const std::string FAVLIST = "assets/DS/EV/main/favList.bin";
 		const std::string HISTORY = "assets/DS/EV/main/history.bin";
 	}
+
+	namespace VE
+	{
+		const std::string WORDS = "assets/DS/VE/main/words.bin";
+		const std::string WORDDEF = "assets/DS/VE/main/wordDef.bin";
+		const std::string FAVLIST = "assets/DS/VE/main/favList.bin";
+		const std::string HISTORY = "assets/DS/VE/main/history.bin";
+	}
 }
 
 namespace DEFAULT
@@ -55,6 +65,14 @@ namespace DEFAULT
 		const std::string WORDDEF = "assets/DS/EV/default/wordDef.bin";
 		const std::string FAVLIST = "assets/DS/EV/default/favList.bin";
 		const std::string HISTORY = "assets/DS/EV/default/history.bin";
+	}
+
+	namespace VE
+	{
+		const std::string WORDS = "assets/DS/VE/default/words.bin";
+		const std::string WORDDEF = "assets/DS/VE/default/wordDef.bin";
+		const std::string FAVLIST = "assets/DS/VE/default/favList.bin";
+		const std::string HISTORY = "assets/DS/VE/default/history.bin";
 	}
 }
 
@@ -87,6 +105,9 @@ public:
 
 	// Load from EV data
 	bool importEVTxt(const std::string &path);
+
+	// Load from VE data
+	bool importVETxt(const std::string &path);
 
 	bool setup();
 	
