@@ -310,22 +310,24 @@ Screen *SwitchDataSetScreen::render()
 		std::cout << "Switched to English - English dataset!" << std::endl;
 		std::cout << "Press 1 to go back to the previous page." << std::endl;
 		inputOption(1);
-		return new HomeScreen(dict);
+		break;
 	case 2:
 		dict->switchDataSet(DataSet::EV);
 		std::cout << "Switched to English - Vietnamese dataset!" << std::endl;
 		std::cout << "Press 1 to go back to the previous page." << std::endl;
 		inputOption(1);
-		return new HomeScreen(dict);
-	case 3:
-		// SetNextScreen(app, new VieEngScreen());
 		break;
-	case 4:
-		nextScreen = new HomeScreen(dict);
+	case 3:
+		dict->switchDataSet(DataSet::VE);
+		std::cout << "Switched to Vietnamese - English dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		break;
+	default:
 		break;
 	}
 
-	return nextScreen;
+	return new HomeScreen(dict);
 }
 
 //-------------------------End Parent: HomeScreen---------------------------
@@ -333,15 +335,18 @@ Screen *SwitchDataSetScreen::render()
 //-------------------------Parent: SearchScreen-----------------------------------
 Screen* SearchForDefScreen::render(){
     clearScr();
-    std::cout<<"Enter the word you want to search for: ";
+    std::string mess="Enter the word you want to search for: ";
     std::string word;
 	
 	switch (dict->getCurDataSet()){
 		case DataSet::EE:
-			word=inputEngString();
+			word=inputEngString(mess);
 			break;
 		case DataSet::EV:
-			word=inputVietString();
+			word=inputEngString(mess);
+			break;
+		case DataSet::VE:
+			word=inputVietString(mess);
 			break;
 	}
 
