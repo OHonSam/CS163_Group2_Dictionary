@@ -37,8 +37,6 @@ private:
 	// Get the character in the alphabet from the given index
 	char rGetIndex(int index);
 
-    std::vector<std::string> defWord(const std::string def);
-
     void insert(const std::string& word, const std::string& def);
     void remove(Node* &root, const std::string& word, const std::string &keyword, int index);
 
@@ -60,7 +58,10 @@ public:
     }
     ~DefTrie() {
         clear();
-    }
+    }  
+
+    // Cut down a string
+    std::vector<std::string> defWord(const std::string def);
 
     // Deallocate all nodes
     void clear();

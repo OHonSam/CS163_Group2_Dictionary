@@ -90,6 +90,18 @@ public:
     Screen* render();
 };
 
+class ResettoDefaultScreen : public Screen {
+private:
+    const std::vector<std::string> options = {
+        "Reset the dictionary to default status",
+        "Back"
+    };
+public:
+    ResettoDefaultScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+    void ResettoDefault();
+};
+
 class FavListChoiceScreen : public Screen
 {
 private:
@@ -118,6 +130,14 @@ public:
     Screen* render();
     void displayPrefixMode(const std::string& word);
     void displayExactMode(const std::string& word);
+};
+
+class SearchForKeywordsScreen: public Screen{
+public:
+    SearchForKeywordsScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+    void displayExactMode(const std::string& def);
+    void displayCorrectMode(const std::string& def);
 };
 
 //-------------------------End Parent: SearchScreen---------------------------

@@ -147,6 +147,7 @@ std::vector<std::string> DefTrie::searchKeyWord(const std::string def) {
     std::vector<std::string> defW = defWord(def);
     // std::vector<SmallTrie*> p;
     // SmallTrie* res;
+    if (!defW.size()) return {};
     std::vector<std::string> res;
     Node* cur;
     cur = search(defW[0]);
