@@ -60,6 +60,12 @@ Dict::~Dict()
             favList.save(MAIN::EV::FAVLIST);
             history.saveSLLStr(MAIN::EV::HISTORY);
             break;
+        case DataSet::VE:
+            words.save(MAIN::VE::WORDS);
+            wordDef.save(MAIN::VE::WORDDEF);
+            favList.save(MAIN::VE::FAVLIST);
+            history.saveSLLStr(MAIN::VE::HISTORY);
+            break;
     }
 }
 
@@ -79,6 +85,13 @@ bool Dict::loadFromPrev()
                 wordDef.import(MAIN::EV::WORDDEF) &&
                 favList.import(MAIN::EV::FAVLIST) &&
                 history.importSLLStr(MAIN::EV::HISTORY)
+            ;
+        case DataSet::VE:
+            return 
+                words.import(MAIN::VE::WORDS) &&
+                wordDef.import(MAIN::VE::WORDDEF) &&
+                favList.import(MAIN::VE::FAVLIST) &&
+                history.importSLLStr(MAIN::VE::HISTORY)
             ;
     }
     return false;
@@ -264,6 +277,13 @@ bool Dict::setup()
                     wordDef.save(DEFAULT::EV::WORDDEF) &&
                     favList.save(DEFAULT::EV::FAVLIST) &&
                     history.saveSLLStr(DEFAULT::EV::HISTORY);
+            case DataSet::VE:
+                return 
+                    importVETxt(RAW_DATA::VE) &&
+                    words.save(DEFAULT::VE::WORDS) &&
+                    wordDef.save(DEFAULT::VE::WORDDEF) &&
+                    favList.save(DEFAULT::VE::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::VE::HISTORY);
         }
     return false;
 }
