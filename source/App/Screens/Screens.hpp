@@ -197,6 +197,11 @@ public:
     Screen* render();
 };
 class DeleteAllHistoryScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back to View History Screen",
+        "Back to Edit Screen"
+    };
 public:
     DeleteAllHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();

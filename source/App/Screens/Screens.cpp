@@ -468,6 +468,7 @@ Screen * Search1WordHistoryScreen::render(){
 	std::cout<<"Enter the word from history you want to search for: ";
 	std::string word;
 	std::getline(std::cin,word);
+
     while(!dict->lowerStrEng(word))
     {
         std::cout<<"Invalid input. Please try again!\n";
@@ -475,6 +476,7 @@ Screen * Search1WordHistoryScreen::render(){
         std::string word;
         std::getline(std::cin,word);
     }
+	
 	if(!dict->isInHistory(word)){
 		std::cout<<"No result found!\n";
 	}
@@ -514,7 +516,7 @@ Screen *Remove1WordHistoryScreen::render()
 	std::cout << "Enter the word you want to remove from your search history: ";
 	std::string word;
 	std::getline(std::cin, word);
-	
+
 	while(!dict->lowerStrEng(word))
     {
         std::cout<<"Invalid input. Please try again!\n";
@@ -543,6 +545,7 @@ Screen *Remove1WordHistoryScreen::render()
 Screen *DeleteAllHistoryScreen::render()
 {
 	clearScr();
+	Screen* nextScreen=this;
 	std::cout << "Are you sure that you want to delete your search history?\n";
 	int cnt = 0;
 	std::string buffer;
@@ -562,10 +565,19 @@ Screen *DeleteAllHistoryScreen::render()
 		break;
 	}
 
-	cnt = 0;
-	std::cout << ++cnt << ". Back" << std::endl;
-	inputOption(cnt);
-	return new EditScreen(dict);
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			nextScreen=new ViewHistoryScreen(dict);
+			break;
+		case 2:
+			nextScreen=new EditScreen(dict);
+			break;
+	}
+	return nextScreen;
 }
 //-------------------------End Parent: EditScreen-------------------------------
 
