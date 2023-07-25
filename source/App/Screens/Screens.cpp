@@ -237,7 +237,9 @@ Screen *FavListChoiceScreen::render()
 //-------------------------Parent: SearchScreen-----------------------------------
 Screen* SearchForDefScreen::render(){
     clearScr();
+
 	Screen* nextScreen = this;
+
     std::cout<<"Enter the word you want to search for: ";
     std::string word;
     std::getline(std::cin,word);
@@ -447,15 +449,41 @@ Screen *ViewHistoryScreen::render()
 	int choice=inputOption(options.size());
 	switch(choice){
 		case 1:
+			//Search for definition(s) of a word in your search history
 			break;
 		case 2:
+			nextScreen=new Remove1WordHistoryScreen(dict);
 			break;
 		case 3:
+			nextScreen=new DeleteAllHistoryScreen(dict);
+			break;
+		case 4:
 			nextScreen=new ViewScreen(dict);
 			break;
 	}
 	return nextScreen;
 }
+Screen * Search1WordHistoryScreen::render(){
+	Screen* nextScreen=this;
+	std::cout<<"Enter the word from history you want to search for: ";
+	std::string word;
+	std::getline(std::cin,word);
+    while(!dict->lowerStrEng(word))
+    {
+        std::cout<<"Invalid input. Please try again!\n";
+        std::cout<<"Enter the word you want to search for: ";
+        std::string word;
+        std::getline(std::cin,word);
+    }
+	if(dict)
+	
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int choice=inputOption(options.size());
+
+	return nextScreen;
+} 
 
 //-------------------------End Parent: ViewScreen-------------------------------
 

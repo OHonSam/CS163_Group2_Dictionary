@@ -159,6 +159,7 @@ public:
 class ViewHistoryScreen: public Screen{
 private:
     const std::vector<std::string> options = {
+        "Search for definition(s) of a word in your search history",
         "Remove a word in your search history",
         "Delete all words in your search history",
         "Back"
@@ -170,6 +171,19 @@ public:
 
 
 //-------------------------End Parent: ViewScreen---------------------------
+//-------------------------Parent: ViewHistoryScreen--------------------------------
+class Search1WordHistoryScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    Search1WordHistoryScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+//-------------------------End Parent: ViewHistoryScreen---------------------------
+
 
 //-------------------------Parent: EditScreen--------------------------------
 class Remove1WordHistoryScreen: public Screen{
