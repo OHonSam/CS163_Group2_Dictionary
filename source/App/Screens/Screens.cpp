@@ -301,7 +301,7 @@ Screen *Type2InsertWordFavListScreen::render()
 {
 	clearScr();
 
-	std::cout << "Enter the word you want to remove from your favourite list: ";
+	std::cout << "Enter the word you want to insert from your favourite list: ";
 	std::string word;
 	std::getline(std::cin, word);
 
