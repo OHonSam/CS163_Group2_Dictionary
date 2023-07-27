@@ -123,8 +123,6 @@ public:
     SearchForDefScreen(Dict* dict) : Screen(dict){}
     Screen* render();
     bool displayPrefix(const std::string& word);
-    //void displayPrefixMode(const std::string& word);
-    //void displayExactMode(const std::string& word);
 };
 
 //-------------------------End Parent: SearchScreen---------------------------

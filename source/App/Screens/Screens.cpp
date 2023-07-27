@@ -291,7 +291,6 @@ bool SearchForDefScreen::displayPrefix(const std::string& word)
         int n=prefixes.size();
         for(int i=0;i<n;++i){
             defsForPrefixes.push_back(dict->searchForDef(prefixes[i]));
-            //dict->addHistory(prefixes[i]);
         }
         std::cout<<"Here is/are keyword(s) with the same prefix that you may be looking for: \n";
         for(int i=0;i<n;++i){
@@ -300,54 +299,6 @@ bool SearchForDefScreen::displayPrefix(const std::string& word)
     }
     return true;
 }
-// void SearchForDefScreen::displayPrefixMode(const std::string& word)
-// {
-// 	clearScr();
-//     std::vector<std::string> prefixes=dict->searchPrefix(word);
-//     if(prefixes.empty())
-//         std::cout<<"No result found!\n";
-//     else{
-//         std::vector<Word*> defsForPrefixes;
-//         int n=prefixes.size();
-//         for(int i=0;i<n;++i){
-//             defsForPrefixes.push_back(dict->searchForDef(prefixes[i]));
-//             dict->addHistory(prefixes[i]);
-//         }
-// 		std::cout<<"The keyword(s) with the same prefix that you are looking for is/are: \n";
-//         for(int i=0;i<n;++i){
-//             std::cout<<i+1<<". "<<prefixes[i]<<std::endl;
-//             for(int type=0;type<POS::Count;++type){
-//                 if(defsForPrefixes[i]->def[type].empty()) {
-//                     continue;
-//                 }
-//                 std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
-//                 for(int idx=0;idx<defsForPrefixes[i]->def[type].size();++idx){
-//                     std::cout<<"\t\t"<<"-"<<defsForPrefixes[i]->def[type][idx]<<std::endl;
-//                 }
-//             }
-//         }
-//     }
-    
-// }
-// void SearchForDefScreen::displayExactMode(const std::string& word)
-// {	
-// 	clearScr();
-//     Word* w=dict->searchForDef(word);
-//     if(w==nullptr)
-//         std::cout<<"No result found!\n";
-//     else{
-//         std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
-//         dict->addHistory(word);
-//         for(int type=0;type<POS::Count;++type){
-//             if(w->def[type].empty()) 
-//                 continue;
-//             std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
-//             for(int idx=0;idx<w->def[type].size();++idx){
-//                 std::cout<<"\t\t"<<idx+1<<". "<<w->def[type][idx]<<std::endl;
-//             }
-//         }
-//     }
-// }
 //-------------------------End Parent: SearchScreen-------------------------------
 
 //-------------------------Parent: SearchForDefScreen-------------------------------
@@ -359,6 +310,7 @@ Screen* DisplayExactModeScreen::render(){
         std::cout<<"No result found!\n";
     else{
         std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
+		dict->removeHistory(word);
         dict->addHistory(word);
         for(int type=0;type<POS::Count;++type){
             if(w->def[type].empty()) 
@@ -400,6 +352,7 @@ Screen* DisplayPrefixModeScreen::render(){
 		int n=prefixes.size();
 		for(int i=0;i<n;++i){
 			defsForPrefixes.push_back(dict->searchForDef(prefixes[i]));
+			dict->removeHistory(prefixes[i]);
 			dict->addHistory(prefixes[i]);
 		}
 		std::cout<<"The keyword(s) with the same prefix that you are looking for is/are: \n";

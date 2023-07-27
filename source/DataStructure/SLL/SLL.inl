@@ -82,7 +82,7 @@ void SLL<T>::push(const T &key)
     pNew->next=head;
     head=pNew;
     if(countNodes(head)>20){
-        pop(head->data);
+        pop(tail->data);
     }
 }
 
