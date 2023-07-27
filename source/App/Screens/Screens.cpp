@@ -435,6 +435,7 @@ Screen * Search1WordHistoryScreen::render(){
 	else{
 		Word* w=dict->searchForDef(word);
 		std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
+		dict->removeHistory(word);
 		dict->addHistory(word);
 		for(int type=0;type<POS::Count;++type){
 			if(w->def[type].empty()) 

@@ -145,7 +145,7 @@ bool Dict::isInHistory(const std::string& word){
     return history.find(word);
 }
 void Dict::addHistory(const std::string& word){
-    history.push(word);
+    history.insert(word);
 }
 void Dict::removeHistory(const std::string& word){
     history.pop(word);

@@ -77,8 +77,17 @@ void SLL<T>::push(const T &key)
         tail=head;
         return;
     }
-    // tail->next=pNew;
-    // tail=pNew;  
+    tail->next=pNew;
+    tail=pNew;  
+}
+template <class T>
+void SLL<T>::insert(const T& key){
+    Node* pNew=new Node(key);
+    if(head==nullptr){
+        head=pNew;
+        tail=head;
+        return;
+    }
     pNew->next=head;
     head=pNew;
     if(countNodes(head)>20){
