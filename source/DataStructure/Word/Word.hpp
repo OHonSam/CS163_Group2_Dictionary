@@ -59,7 +59,7 @@ namespace POS
     const std::string TypeShort[] = {
         "n.",
         "v.",
-        "adj.",
+        "a.",
         "adv.",
         "pron.",
         "prep.",
