@@ -375,13 +375,13 @@ Screen* DisplayExactModeScreen::render(){
 	int choice=inputOption(options.size());
 	switch(choice){
 		case 1:
-			//Edit this word
+			//Edit this word (haven't implemented screen yet)
 			break;
 		case 2:
 			//Remove this word
 			break;
 		case 3:
-			//Add this word to your favorite list
+			nextScreen= new Type2InsertWordFavListScreen(dict);
 			break;
 		case 4:
 			nextScreen=new SearchScreen(dict);
@@ -517,14 +517,14 @@ Screen *Type2InsertWordFavListScreen::render()
 {
 	clearScr();
 
-	std::cout << "Enter the word you want to remove from your favourite list: ";
+	std::cout << "Enter the word you want to insert from your favourite list: ";
 	std::string word;
 	std::getline(std::cin, word);
 
 	dict->uppercase2Lowercase(word);
 	dict->addFav(word);
 
-	std::cout << "The word has been successfully removed from your favourite list!\n";
+	std::cout << "The word has been successfully inserted from your favourite list!\n";
 	int cnt = 0;
 	std::cout << ++cnt << ". Back" << std::endl;
 	inputOption(cnt);
