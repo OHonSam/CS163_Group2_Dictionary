@@ -102,12 +102,15 @@ Screen *Home::render()
             nextScreen=new ViewScreen(dict);
             break;
         case 4:
+			//nextScreen=new DailyWordScreen(dict);
             break;
         case 5:
             break;
         case 6:
             break;
-        case 7: // Exit
+		case7:
+			break;
+        case 8: // Exit
             nextScreen = nullptr;
             break;
     }
@@ -151,13 +154,9 @@ Screen *ViewScreen::render()
             nextScreen=new ViewHistoryScreen(dict);
             break;  
         case 2:
+			//view favorite list
             break;
-        case 3:
-            //View favorite list
-            break;
-        case 4:
-            break;
-        case 5: 
+        case 3: 
             nextScreen=new Home(dict);
             break;
     }
@@ -237,7 +236,9 @@ Screen *FavListChoiceScreen::render()
 //-------------------------Parent: SearchScreen-----------------------------------
 Screen* SearchForDefScreen::render(){
     clearScr();
+
 	Screen* nextScreen = this;
+
     std::cout<<"Enter the word you want to search for: ";
     std::string word;
     std::getline(std::cin,word);
@@ -290,7 +291,6 @@ bool SearchForDefScreen::displayPrefix(const std::string& word)
         int n=prefixes.size();
         for(int i=0;i<n;++i){
             defsForPrefixes.push_back(dict->searchForDef(prefixes[i]));
-            dict->addHistory(prefixes[i]);
         }
         std::cout<<"Here is/are keyword(s) with the same prefix that you may be looking for: \n";
         for(int i=0;i<n;++i){
@@ -299,54 +299,6 @@ bool SearchForDefScreen::displayPrefix(const std::string& word)
     }
     return true;
 }
-// void SearchForDefScreen::displayPrefixMode(const std::string& word)
-// {
-// 	clearScr();
-//     std::vector<std::string> prefixes=dict->searchPrefix(word);
-//     if(prefixes.empty())
-//         std::cout<<"No result found!\n";
-//     else{
-//         std::vector<Word*> defsForPrefixes;
-//         int n=prefixes.size();
-//         for(int i=0;i<n;++i){
-//             defsForPrefixes.push_back(dict->searchForDef(prefixes[i]));
-//             dict->addHistory(prefixes[i]);
-//         }
-// 		std::cout<<"The keyword(s) with the same prefix that you are looking for is/are: \n";
-//         for(int i=0;i<n;++i){
-//             std::cout<<i+1<<". "<<prefixes[i]<<std::endl;
-//             for(int type=0;type<POS::Count;++type){
-//                 if(defsForPrefixes[i]->def[type].empty()) {
-//                     continue;
-//                 }
-//                 std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
-//                 for(int idx=0;idx<defsForPrefixes[i]->def[type].size();++idx){
-//                     std::cout<<"\t\t"<<"-"<<defsForPrefixes[i]->def[type][idx]<<std::endl;
-//                 }
-//             }
-//         }
-//     }
-    
-// }
-// void SearchForDefScreen::displayExactMode(const std::string& word)
-// {	
-// 	clearScr();
-//     Word* w=dict->searchForDef(word);
-//     if(w==nullptr)
-//         std::cout<<"No result found!\n";
-//     else{
-//         std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
-//         dict->addHistory(word);
-//         for(int type=0;type<POS::Count;++type){
-//             if(w->def[type].empty()) 
-//                 continue;
-//             std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
-//             for(int idx=0;idx<w->def[type].size();++idx){
-//                 std::cout<<"\t\t"<<idx+1<<". "<<w->def[type][idx]<<std::endl;
-//             }
-//         }
-//     }
-// }
 //-------------------------End Parent: SearchScreen-------------------------------
 
 //-------------------------Parent: SearchForDefScreen-------------------------------
@@ -358,6 +310,7 @@ Screen* DisplayExactModeScreen::render(){
         std::cout<<"No result found!\n";
     else{
         std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
+		dict->removeHistory(word);
         dict->addHistory(word);
         for(int type=0;type<POS::Count;++type){
             if(w->def[type].empty()) 
@@ -399,6 +352,7 @@ Screen* DisplayPrefixModeScreen::render(){
 		int n=prefixes.size();
 		for(int i=0;i<n;++i){
 			defsForPrefixes.push_back(dict->searchForDef(prefixes[i]));
+			dict->removeHistory(prefixes[i]);
 			dict->addHistory(prefixes[i]);
 		}
 		std::cout<<"The keyword(s) with the same prefix that you are looking for is/are: \n";
@@ -433,18 +387,77 @@ Screen* DisplayPrefixModeScreen::render(){
 Screen *ViewHistoryScreen::render()
 {
 	clearScr();
+	Screen* nextScreen=this;
 	std::cout << "Your search history (20 most recent keywords):\n";
 	std::vector<std::string> display = dict->getHistory();
 	for (int i = 0; i < display.size(); ++i)
 	{
-		std::cout << display[i] << std::endl;
+		std::cout <<i+1<<". "<< display[i] << std::endl;
 	}
 
-	int cnt = 0;
-	std::cout << ++cnt << ". Back" << std::endl;
-	inputOption(cnt);
-	return new ViewScreen(dict);
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			nextScreen= new Search1WordHistoryScreen(dict);
+			break;
+		case 2:
+			nextScreen=new Remove1WordHistoryScreen(dict);
+			break;
+		case 3:
+			nextScreen=new DeleteAllHistoryScreen(dict);
+			break;
+		case 4:
+			nextScreen=new ViewScreen(dict);
+			break;
+	}
+	return nextScreen;
 }
+Screen * Search1WordHistoryScreen::render(){
+	Screen* nextScreen=this;
+	std::cout<<"Enter the word from history you want to search for: ";
+	std::string word;
+	std::getline(std::cin,word);
+
+    while(!dict->lowerStrEng(word))
+    {
+        std::cout<<"Invalid input. Please try again!\n";
+        std::cout<<"Enter the word you want to search for: ";
+        std::string word;
+        std::getline(std::cin,word);
+    }
+	
+	if(!dict->isInHistory(word)){
+		std::cout<<"No result found!\n";
+	}
+	else{
+		Word* w=dict->searchForDef(word);
+		std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
+		dict->removeHistory(word);
+		dict->addHistory(word);
+		for(int type=0;type<POS::Count;++type){
+			if(w->def[type].empty()) 
+				continue;
+			std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
+			for(int idx=0;idx<w->def[type].size();++idx){
+				std::cout<<"\t\t"<<idx+1<<". "<<w->def[type][idx]<<std::endl;
+			}
+		}
+	}
+
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			nextScreen=new ViewHistoryScreen(dict);
+			break;
+	}
+	return nextScreen;
+} 
 
 //-------------------------End Parent: ViewScreen-------------------------------
 
@@ -452,22 +465,40 @@ Screen *ViewHistoryScreen::render()
 Screen *Remove1WordHistoryScreen::render()
 {
 	clearScr();
+	Screen* nextScreen=this;
 	std::cout << "Enter the word you want to remove from your search history: ";
 	std::string word;
 	std::getline(std::cin, word);
 
+	while(!dict->lowerStrEng(word))
+    {
+        std::cout<<"Invalid input. Please try again!\n";
+        std::cout<<"Enter the word you want to search for: ";
+        std::string word;
+        std::getline(std::cin,word);
+    }
 	dict->removeHistory(word);
 
 	std::cout << "The word has been successfully removed from your search history!\n";
-	int cnt = 0;
-	std::cout << ++cnt << ". Back" << std::endl;
-	inputOption(cnt);
-	return new EditScreen(dict);
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			nextScreen=new ViewHistoryScreen(dict);
+			break;
+		case 2:
+			nextScreen=new EditScreen(dict);
+			break;
+	}
+	return nextScreen;
 }
 
 Screen *DeleteAllHistoryScreen::render()
 {
 	clearScr();
+	Screen* nextScreen=this;
 	std::cout << "Are you sure that you want to delete your search history?\n";
 	int cnt = 0;
 	std::string buffer;
@@ -477,7 +508,7 @@ Screen *DeleteAllHistoryScreen::render()
 	switch (choice)
 	{
 	case 1:
-		if (dict->clearAllHistory("History.bin"))
+		if (dict->clearAllHistory(MAIN::HISTORY))
 			std::cout << "Your search history has been successfully deleted!\n";
 		else
 			std::cout << "Errors occurred in clearing time!\n";
@@ -487,10 +518,19 @@ Screen *DeleteAllHistoryScreen::render()
 		break;
 	}
 
-	cnt = 0;
-	std::cout << ++cnt << ". Back" << std::endl;
-	inputOption(cnt);
-	return new EditScreen(dict);
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			nextScreen=new ViewHistoryScreen(dict);
+			break;
+		case 2:
+			nextScreen=new EditScreen(dict);
+			break;
+	}
+	return nextScreen;
 }
 //-------------------------End Parent: EditScreen-------------------------------
 

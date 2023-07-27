@@ -35,6 +35,7 @@ private:
         "Searching",
         "Editing",
         "Viewing",
+        "Daily word",
         "Reset to default",
         "Random",
         "Switch between dictionaries (English-Vietnamese, Vietnamese-English, English-English)",
@@ -81,8 +82,6 @@ private:
     const std::vector<std::string> options = {
         "View your search history",
         "View your favorite words",
-        "View definitions of a word user types in",
-        "View possible keywords of a definition user types in",
         "Back"
     };
 public:
@@ -124,8 +123,6 @@ public:
     SearchForDefScreen(Dict* dict) : Screen(dict){}
     Screen* render();
     bool displayPrefix(const std::string& word);
-    //void displayPrefixMode(const std::string& word);
-    //void displayExactMode(const std::string& word);
 };
 
 //-------------------------End Parent: SearchScreen---------------------------
@@ -159,6 +156,7 @@ public:
 class ViewHistoryScreen: public Screen{
 private:
     const std::vector<std::string> options = {
+        "Search for definition(s) of a word in your search history",
         "Remove a word in your search history",
         "Delete all words in your search history",
         "Back"
@@ -170,14 +168,37 @@ public:
 
 
 //-------------------------End Parent: ViewScreen---------------------------
+//-------------------------Parent: ViewHistoryScreen--------------------------------
+class Search1WordHistoryScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    Search1WordHistoryScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+//-------------------------End Parent: ViewHistoryScreen---------------------------
+
 
 //-------------------------Parent: EditScreen--------------------------------
 class Remove1WordHistoryScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back to View History Screen",
+        "Back to Edit Screen"
+    };
 public:
     Remove1WordHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 class DeleteAllHistoryScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back to View History Screen",
+        "Back to Edit Screen"
+    };
 public:
     DeleteAllHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();

@@ -71,6 +71,9 @@ public:
 	// Add a word to the history
 	void addHistory(const std::string &word); //
 
+	// Check if a word is in the history list
+	bool isInHistory(const std::string &word);
+
 	// Remove a word and corresponding definition
 	void removeWord(const std::string &word);
 	// Remove all words in the history
