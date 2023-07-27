@@ -517,14 +517,14 @@ Screen *Type2InsertWordFavListScreen::render()
 {
 	clearScr();
 
-	std::cout << "Enter the word you want to insert from your favourite list: ";
+	std::cout << "Enter the word you want to insert into your favourite list: ";
 	std::string word;
 	std::getline(std::cin, word);
 
 	dict->uppercase2Lowercase(word);
 	dict->addFav(word);
 
-	std::cout << "The word has been successfully inserted from your favourite list!\n";
+	std::cout << "The word has been successfully inserted into your favourite list!\n";
 	int cnt = 0;
 	std::cout << ++cnt << ". Back" << std::endl;
 	inputOption(cnt);
