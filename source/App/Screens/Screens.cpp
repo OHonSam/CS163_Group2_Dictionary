@@ -291,7 +291,7 @@ bool SearchForDefScreen::displayPrefix(const std::string& word)
         int n=prefixes.size();
         for(int i=0;i<n;++i){
             defsForPrefixes.push_back(dict->searchForDef(prefixes[i]));
-            dict->addHistory(prefixes[i]);
+            //dict->addHistory(prefixes[i]);
         }
         std::cout<<"Here is/are keyword(s) with the same prefix that you may be looking for: \n";
         for(int i=0;i<n;++i){
@@ -439,7 +439,7 @@ Screen *ViewHistoryScreen::render()
 	std::vector<std::string> display = dict->getHistory();
 	for (int i = 0; i < display.size(); ++i)
 	{
-		std::cout << display[i] << std::endl;
+		std::cout <<i+1<<". "<< display[i] << std::endl;
 	}
 
 	std::cout<<"\nOptions: \n";

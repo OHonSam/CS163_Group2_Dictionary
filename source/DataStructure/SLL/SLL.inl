@@ -77,8 +77,10 @@ void SLL<T>::push(const T &key)
         tail=head;
         return;
     }
-    tail->next=pNew;
-    tail=pNew;  
+    // tail->next=pNew;
+    // tail=pNew;  
+    pNew->next=head;
+    head=pNew;
     if(countNodes(head)>20){
         pop(head->data);
     }
