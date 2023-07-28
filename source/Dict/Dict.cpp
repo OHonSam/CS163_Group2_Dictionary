@@ -1,5 +1,7 @@
 #include <Dict.hpp>
-
+// #include "Dict.hpp"
+// #include <iostream>
+// #include <sstream>
 bool Dict::reset(){
     words.clear();
     wordDef.clear();
@@ -217,3 +219,64 @@ bool Dict::uppercase2Lowercase(std::string &str)
     // }
     return lowerStrEng(str);
 }
+// std::vector<std::string> stringCut(const std::string ls) {
+// 	// long string
+//     std::stringstream s(ls);
+//     std::string word;
+//     std::vector <std::string> res;
+//     while (s >> word) res.push_back(word);
+//     return res;
+// }
+// int main() {
+//     Dict* dict = new Dict();
+//     Word* word = new Word();
+//     word->word = "hello";
+//     word->def[0].push_back("xin chao ban rat dep");
+//     word->def[1].push_back("chao");
+//     word->def[7].push_back("thu hut");
+//     word->type = 131;
+//     Word* word1 = new Word();
+//     word1->word = "hellu";
+//     word1->def[0].push_back("chao chao");
+//     word1->def[1].push_back("xin dep");
+//     word1->def[7].push_back("i love you");
+//     word1->type = 131;
+//     dict ->addWord(word);
+//     dict ->addWord(word1);
+//     std::string def; std::cin >> def;
+// 	std::vector<std::string> res = dict -> searchForWord(def);
+// 	if (res.size()) {
+// 		std::cout << "There's no need to correct!\n";
+// 		return;
+// 	}
+// 	std::vector<std::string> p;
+// 	p = stringCut(def);
+// 	std::string correct = "";
+// 	for (int i = 0; i < p.size(); i++) {
+// 		res = dict -> searchForWord(correct + p[i]);
+// 		if (!res.size()) {
+// 			res = dict -> searchPrefixDefTrie(p[i]);
+// 			int temp = p[i].length();
+// 			std::vector <std::string> character(temp, "");
+// 			character[0] += p[i][0];
+// 			for (int j = 1; j < p[i].length(); j++) {
+// 				character[j] = character[j - 1] + p[i][j];
+// 			}
+// 			int idx = temp - 1;
+// 			while (!res.size()) {
+// 				res = dict -> searchPrefixDefTrie(character[idx]);
+// 				idx--;
+// 			}
+// 			for (int j = 0; j < res.size(); j++) {
+// 				if ((dict -> searchForWord(correct + res[j])).size()) {
+// 					correct += res[j];
+// 					break;
+// 				}
+// 			}
+// 			// break;
+// 		} 
+// 		else correct += p[i];
+// 	}
+// 	std::cout << "Did you mean " << correct << " ?\n";
+//     return 0;
+// }
