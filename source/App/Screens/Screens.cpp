@@ -355,6 +355,7 @@ Screen* Display1PrefixModeScreen::render(){
 	for(int i=0;i<prefixes.size();++i){
 		if(word==prefixes[i]){
 			found=true;
+			break;
 		}
 	}
 	if(!found){
