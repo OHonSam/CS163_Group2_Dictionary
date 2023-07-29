@@ -339,6 +339,7 @@ Screen* DisplayExactModeScreen::render(){
 			break;
 		case 4:
 			nextScreen=new SearchScreen(dict);
+			break;
 	}
 	return nextScreen;
 }
