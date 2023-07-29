@@ -270,6 +270,32 @@ bool Dict::importVETxt(const std::string &path)
     return true;
 }
 
+bool Dict::importSlangCsv(const std::string &path)
+{
+    std::ifstream in(path);
+    if(!in.is_open()) return false;
+
+    std::string line;
+    std::getline(in,line);
+
+    int cnt=0;
+    while(!in.eof() && cnt<LIM_WORDS)
+    {
+        std::string ign, word, def;
+        std::getline(in,ign,',');
+        std::getline(in,word,',');
+        for(int i=0; i<3; i++) std::getline(in,ign,',');
+        std::getline(in,def,'\n');
+
+        if(!lowerStrEng(word)) continue;
+
+        addWord(new Word(word,POS::Other,def));
+        cnt++;
+    }
+    in.close();
+    return true;
+}
+
 bool Dict::setup()
 {
     if(!loadFromPrev())

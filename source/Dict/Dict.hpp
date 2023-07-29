@@ -113,6 +113,9 @@ public:
 	// Load from VE data
 	bool importVETxt(const std::string &path);
 
+	// Load from Slang words data
+	bool importSlangCsv(const std::string &path);
+
 	bool setup();
 	
 	// Reset to the default dataset
