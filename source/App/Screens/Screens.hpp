@@ -122,7 +122,7 @@ private:
 public:
     SearchForDefScreen(Dict* dict) : Screen(dict){}
     Screen* render();
-    bool displayPrefix(const std::string& word);
+    bool displayPrefix(std::vector<std::string> &prefixes);
 };
 
 //-------------------------End Parent: SearchScreen---------------------------
@@ -140,14 +140,14 @@ public:
     DisplayExactModeScreen(Dict* dict,const std::string& word) : Screen(dict) , word(word) {}
     Screen* render();
 };
-class DisplayPrefixModeScreen: public Screen{
+class DisplayPrefixesModeScreen: public Screen{
 private:
-    std::string word;//word user typed in
+    std::vector<std::string> prefixes;//word user typed in
     const std::vector<std::string> options = {
         "Back"
     };
 public:
-    DisplayPrefixModeScreen(Dict* dict,const std::string& word) : Screen(dict) , word(word){}
+    DisplayPrefixesModeScreen(Dict* dict,std::vector<std::string>& prefixes) : Screen(dict) , prefixes(prefixes){}
     Screen* render();
 };
 //-------------------------End Parent: SearchForDefScreen---------------------------

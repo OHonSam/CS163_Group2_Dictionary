@@ -249,8 +249,8 @@ Screen* SearchForDefScreen::render(){
         std::string word;
         std::getline(std::cin,word);
     }
-
-	if(displayPrefix(word)){
+	std::vector<std::string> prefixes=dict->searchPrefix(word);
+	if(displayPrefix(prefixes)){
 		std::cout<<"\nOptions: \n";
 			// <<"1. Search for definition(s) of the exact word\n"
 			// <<"2. Search for definition(s) of all words with the same prefix\n"
@@ -264,7 +264,7 @@ Screen* SearchForDefScreen::render(){
 				nextScreen=new DisplayExactModeScreen(dict,word);
 				break;
 			case 2:
-				nextScreen=new DisplayPrefixModeScreen(dict,word);
+				nextScreen=new DisplayPrefixesModeScreen(dict,prefixes);
 				break;
 			case 3:
 				//return new SearchScreen(dict);
@@ -279,9 +279,9 @@ Screen* SearchForDefScreen::render(){
     // return new SearchScreen(dict);
     return nextScreen;
 }
-bool SearchForDefScreen::displayPrefix(const std::string& word)
+bool SearchForDefScreen::displayPrefix(std::vector<std::string>& prefixes)
 {
-    std::vector<std::string> prefixes=dict->searchPrefix(word);
+    //std::vector<std::string> prefixes=dict->searchPrefix(word);
     if(prefixes.empty()){
         std::cout<<"No result found!\n";
 		return false;
@@ -341,10 +341,10 @@ Screen* DisplayExactModeScreen::render(){
 	}
 	return nextScreen;
 }
-Screen* DisplayPrefixModeScreen::render(){
+Screen* DisplayPrefixesModeScreen::render(){
 	clearScr();
 	Screen* nextScreen=this;
-	std::vector<std::string> prefixes=dict->searchPrefix(word);
+	//std::vector<std::string> prefixes=dict->searchPrefix(word);
 	if(prefixes.empty())
 		std::cout<<"No result found!\n";
 	else{
