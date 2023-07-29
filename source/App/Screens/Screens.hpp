@@ -139,6 +139,7 @@ private:
         "English - English",
         "English - Vietnamese",
         "Vietnamese - English",
+        "Slang words",
         "Back"
     };
 

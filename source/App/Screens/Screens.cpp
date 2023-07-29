@@ -323,6 +323,12 @@ Screen *SwitchDataSetScreen::render()
 		std::cout << "Press 1 to go back to the previous page." << std::endl;
 		inputOption(1);
 		break;
+	case 4:
+		dict->switchDataSet(DataSet::Slang);
+		std::cout << "Switched to Slang words dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		break;
 	default:
 		break;
 	}
@@ -339,14 +345,11 @@ Screen* SearchForDefScreen::render(){
     std::string word;
 	
 	switch (dict->getCurDataSet()){
-		case DataSet::EE:
-			word=inputEngString(mess);
-			break;
-		case DataSet::EV:
-			word=inputEngString(mess);
-			break;
 		case DataSet::VE:
 			word=inputVietString(mess);
+			break;
+		default:
+			word=inputEngString(mess);
 			break;
 	}
 
