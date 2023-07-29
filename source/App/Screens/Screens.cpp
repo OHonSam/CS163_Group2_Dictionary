@@ -462,6 +462,44 @@ Screen * Search1WordHistoryScreen::render(){
 //-------------------------End Parent: ViewScreen-------------------------------
 
 //-------------------------Parent: EditScreen-----------------------------------
+Screen *AddWordScreen::render(){
+	clearScr();
+	Screen* nextScreen=this;
+	Word* w=new Word;
+	std::cout<<"Enter the new word you want to add: ";
+	std::getline(std::cin,w->word,'\n');
+
+	while(!dict->lowerStrEng(w->word))
+	{
+		std::cout<<"Invalid input. Please try again!\n";
+		std::cout<<"Enter the new word you want to add: ";
+		std::getline(std::cin,w->word,'\n');
+	}
+
+	// if(dict->isInDict(w->word)){
+	// 	std::cout<<"This word is already in the dictionary!\n";
+	// }
+	// else{
+	// 	std::cout<<"Enter the definition of the new word: ";
+	// 	std::string def;
+	// 	std::getline(std::cin,def,'\n');
+	// 	w->def[POS::Noun].push_back(def);
+	// 	dict->addWord(w);
+	// 	std::cout<<"The new word has been added to the dictionary!\n";
+	// }
+
+
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			nextScreen=new EditScreen(dict);
+			break;
+	}
+	return nextScreen;
+}
 Screen *Remove1WordHistoryScreen::render()
 {
 	clearScr();

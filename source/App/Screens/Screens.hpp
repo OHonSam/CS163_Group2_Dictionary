@@ -183,6 +183,16 @@ public:
 
 
 //-------------------------Parent: EditScreen--------------------------------
+class AddWordScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    AddWordScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+    
 class Remove1WordHistoryScreen: public Screen{
 private:
     const std::vector<std::string> options = {

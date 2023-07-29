@@ -141,6 +141,10 @@ void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choice
 
     std::shuffle(choices.begin(),choices.end(),std::default_random_engine(seed));
 }
+
+bool Dict::isInDict(const std::string& word){
+    return words.checkExist(word);
+}
 bool Dict::isInHistory(const std::string& word){
     return history.find(word);
 }
