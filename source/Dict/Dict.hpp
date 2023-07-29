@@ -13,6 +13,7 @@ namespace DataSet
 		EE,
 		EV,
 		VE,
+		Slang,
 		Count
 	};
 }
@@ -22,6 +23,7 @@ namespace RAW_DATA
 	const std::string EE = "assets/RawData/EE.csv";
 	const std::string EV = "assets/RawData/EV.txt";
 	const std::string VE = "assets/RawData/VE.txt";
+	const std::string Slang = "assets/RawData/Slang.csv";
 }
 
 namespace MAIN
@@ -48,6 +50,14 @@ namespace MAIN
 		const std::string FAVLIST = "assets/DS/VE/main/favList.bin";
 		const std::string HISTORY = "assets/DS/VE/main/history.bin";
 	}
+
+	namespace Slang
+	{
+		const std::string WORDS = "assets/DS/Slang/main/words.bin";
+		const std::string WORDDEF = "assets/DS/Slang/main/wordDef.bin";
+		const std::string FAVLIST = "assets/DS/Slang/main/favList.bin";
+		const std::string HISTORY = "assets/DS/Slang/main/history.bin";
+	}
 }
 
 namespace DEFAULT
@@ -73,6 +83,14 @@ namespace DEFAULT
 		const std::string WORDDEF = "assets/DS/VE/default/wordDef.bin";
 		const std::string FAVLIST = "assets/DS/VE/default/favList.bin";
 		const std::string HISTORY = "assets/DS/VE/default/history.bin";
+	}
+
+	namespace Slang
+	{
+		const std::string WORDS = "assets/DS/Slang/default/words.bin";
+		const std::string WORDDEF = "assets/DS/Slang/default/wordDef.bin";
+		const std::string FAVLIST = "assets/DS/Slang/default/favList.bin";
+		const std::string HISTORY = "assets/DS/Slang/default/history.bin";
 	}
 }
 

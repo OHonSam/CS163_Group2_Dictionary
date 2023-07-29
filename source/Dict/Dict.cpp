@@ -80,6 +80,12 @@ Dict::~Dict()
             favList.save(MAIN::VE::FAVLIST);
             history.saveSLLStr(MAIN::VE::HISTORY);
             break;
+        case DataSet::Slang:
+            words.save(MAIN::Slang::WORDS);
+            wordDef.save(MAIN::Slang::WORDDEF);
+            favList.save(MAIN::Slang::FAVLIST);
+            history.saveSLLStr(MAIN::Slang::HISTORY);
+            break;
     }
 }
 
@@ -106,6 +112,13 @@ bool Dict::loadFromPrev()
                 wordDef.import(MAIN::VE::WORDDEF) &&
                 favList.import(MAIN::VE::FAVLIST) &&
                 history.importSLLStr(MAIN::VE::HISTORY)
+            ;
+        case DataSet::Slang:
+            return 
+                words.import(MAIN::Slang::WORDS) &&
+                wordDef.import(MAIN::Slang::WORDDEF) &&
+                favList.import(MAIN::Slang::FAVLIST) &&
+                history.importSLLStr(MAIN::Slang::HISTORY)
             ;
     }
     return false;
@@ -321,6 +334,13 @@ bool Dict::setup()
                     wordDef.save(DEFAULT::VE::WORDDEF) &&
                     favList.save(DEFAULT::VE::FAVLIST) &&
                     history.saveSLLStr(DEFAULT::VE::HISTORY);
+            case DataSet::Slang:
+                return 
+                    importSlangCsv(RAW_DATA::Slang) &&
+                    words.save(DEFAULT::Slang::WORDS) &&
+                    wordDef.save(DEFAULT::Slang::WORDDEF) &&
+                    favList.save(DEFAULT::Slang::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::Slang::HISTORY);
         }
     return false;
 }
