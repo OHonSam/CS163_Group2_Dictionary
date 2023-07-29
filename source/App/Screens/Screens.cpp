@@ -76,6 +76,7 @@ std::string Screen::inputEngString(const std::string &mess)
 
 	return str;
 }
+
 //
 
 // Home
@@ -487,24 +488,22 @@ Screen *AddWordScreen::render(){
 		std::string buffer;
 		std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
 		std::getline(std::cin,buffer,'\n');
-		//check validity of input if it is a number or a string
 		
-
-		// int* pos=new int [POS::Count+1];
 		std::unordered_set<int> pos;// to avoid duplicate
 		std::stringstream ss(buffer);
-		int temp;
+		std::string temp;
+		int choice;
 		while(ss>>temp){
-			//bool flag=isdigit(temp);
-			if(temp<1||temp>POS::Count){
+			if(!dict->isValidPOS(temp,choice)){//check the input if it is a valid number (1<=num<=9) or a random string or out of bound
 				std::cout<<"Invalid input. Please try again!\n";
 				std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
 				std::getline(std::cin,buffer,'\n');
 				ss.clear();
+				pos.clear();
 				ss.str(buffer);
 			}
 			else{
-				pos.insert(temp);
+				pos.insert(choice);
 			}
 		}
 		for(std::unordered_set<int>::iterator itr=pos.begin();itr!=pos.end();++itr){
@@ -534,7 +533,6 @@ Screen *AddWordScreen::render(){
 
 		dict->addWord(w);
 		std::cout<<"The new word has been added to the dictionary!\n";
-		// delete [] pos;
 	}
 
 

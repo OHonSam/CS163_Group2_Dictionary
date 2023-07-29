@@ -65,6 +65,9 @@ public:
 	// Add a new word and corresponding definition
 	void addWord(Word *word);
 
+	// Check if a string is a valid number representing part of speech
+	bool isValidPOS(const std::string &str, int &pos);
+
 	// Add a word to the favorite list 
 	void addFav(const std::string &word);
 
