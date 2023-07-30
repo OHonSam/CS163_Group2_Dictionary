@@ -333,7 +333,8 @@ Screen* DisplayExactModeScreen::render(){
 			nextScreen= new EditSearchWordScreen(dict,word);
 			break;
 		case 2:
-			//Remove this word
+			clearScr();
+			nextScreen=new DeleteSearchWordScreen(dict,word);
 			break;
 		case 3:
 			nextScreen= new Type2InsertWordFavListScreen(dict);
