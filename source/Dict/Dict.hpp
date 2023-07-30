@@ -104,7 +104,7 @@ private:
 	HashTable wordDef;
 	Trie words;
 	TST favList;
-	DefTrie defTrie;	
+	DefTrie defTrie;
 
 	DataSet::Type curDataSet;
 
@@ -152,18 +152,33 @@ public:
 	// Add a new word and corresponding definition
 	void addWord(Word *word);
 
-	// Add a word to the favorite list 
+	// Check if a string is a valid number representing part of speech
+	bool isValidPOS(const std::string &str, int &pos);
+
+	// Add a word to the favourite list
 	void addFav(const std::string &word);
 
 	// Add a word to the history
 	void addHistory(const std::string &word); //
 
+	// Check if a word is already in the History list
+	bool isInHistory(const std::string &word);
+
+	// Check if a word is already in the favourite list
+	bool isInFavList(const std::string& word);
+
+	// Check if a word is already in the Dictionary
+	bool isInDict(const std::string &word);
+
 	// Remove a word and corresponding definition
 	void removeWord(const std::string &word);
 	// Remove all words in the history
 	bool clearAllHistory(const std::string &path);
+	
+	// Remove all words in the favourite list
+	bool clearFavList(const std::string &path);
 
-	// Remove a word from the favorite list
+	// Remove a word from the favourite list
 	void removeFav(const std::string &word);
 
 	// Remove a word from the history
@@ -172,7 +187,7 @@ public:
 	// Get the history in the vector
 	std::vector<std::string> getHistory();
 
-	// Get the favorite list
+	// Get the favourite list
 	std::vector<std::string> getFav();
 
 	// Return a definition for a required word
@@ -187,10 +202,13 @@ public:
 	// Return the list of words which has an identical given prefix in favourite list
 	std::vector<std::string> searchPrefixFavlist(const std::string &prefix);
 
+	// Get a daily word
+	Word *getDailyWord();
+
 	// Get the list of multple choices
 	std::vector<Word*> getMultiChoices(int k);
 
-	//Turn uppercase to lowercase
+	// Turn uppercase to lowercase
 	bool uppercase2Lowercase(std::string &str);
 };
 #endif

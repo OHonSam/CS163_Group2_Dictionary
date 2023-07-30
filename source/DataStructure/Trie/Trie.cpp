@@ -43,7 +43,11 @@ void Trie::recursiveFind(std::vector<std::string> &res, std::string prefix, Trie
     {
         res.push_back(prefix);
         ++cnt;
-        return;
+        char c = prefix[prefix.size()-1];
+        if(cur->child[getIndex(c)] == nullptr)
+            return;
+        else
+            recursiveFind(res, prefix + c, cur->child[getIndex(c)], cnt);
     }
     for (int i = 0; i < ALPHABET_SIZE; ++i)
     {

@@ -32,6 +32,23 @@ void Dict::addWord(Word *word)
     defTrie.insert(word);
 }
 
+bool Dict::isValidPOS(const std::string & str, int& pos){
+    int length = str.size();
+	if (length > 10 || length == 0)
+		return false;
+
+	for (int j = 0; j < length; ++j)
+		if (str[j] < '0' || str[j] > '9')
+			return false;
+
+	if (length == 10 && str > std::to_string(INT_MAX))
+		return false;
+
+	pos = stoi(str);
+    if(pos<1 || pos>POS::Count) 
+        return false;
+	return true;
+}
 void Dict::addFav(const std::string &word)
 {
     favList.insert(word);
@@ -167,6 +184,13 @@ bool Dict::importEECsv(const std::string &path)
     return true;
 }
 
+
+
+Word* Dict::getDailyWord()
+{
+    wordDef.initSeedForRandom();
+    return wordDef.randomWordOfDay();
+}   
 bool Dict::importEVTxt(const std::string &path)
 {
     std::ifstream in(path);
@@ -284,6 +308,17 @@ bool Dict::importVETxt(const std::string &path)
     return true;
 }
 
+bool Dict::isInDict(const std::string& word){
+    return words.checkExist(word);
+}
+bool Dict::isInHistory(const std::string& word){
+    return history.find(word);
+}
+
+bool Dict::isInFavList(const std::string& word){
+    return favList.isStartedWith(word);
+}
+
 bool Dict::importSlangCsv(const std::string &path)
 {
     std::ifstream in(path);
@@ -347,7 +382,7 @@ bool Dict::setup()
 }
 
 void Dict::addHistory(const std::string& word){
-    history.push(word);
+    history.insert(word);
 }
 void Dict::removeHistory(const std::string& word){
     history.pop(word);
@@ -355,6 +390,11 @@ void Dict::removeHistory(const std::string& word){
 bool Dict::clearAllHistory(const std::string& path){
     return history.clearHistory(path);
 }
+
+bool Dict::clearFavList(const std::string& path){
+    return favList.clearFavList(path);
+}
+
 std::vector<std::string> Dict::getHistory(){
     return history.SLLintoVector();
 }
