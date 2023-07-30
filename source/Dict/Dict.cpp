@@ -30,6 +30,23 @@ void Dict::addWord(Word *word)
     defTrie.insert(word);
 }
 
+bool Dict::isValidPOS(const std::string & str, int& pos){
+    int length = str.size();
+	if (length > 10 || length == 0)
+		return false;
+
+	for (int j = 0; j < length; ++j)
+		if (str[j] < '0' || str[j] > '9')
+			return false;
+
+	if (length == 10 && str > std::to_string(INT_MAX))
+		return false;
+
+	pos = stoi(str);
+    if(pos<1 || pos>POS::Count) 
+        return false;
+	return true;
+}
 void Dict::addFav(const std::string &word)
 {
     favList.insert(word);
@@ -146,8 +163,14 @@ void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choice
     std::shuffle(choices.begin(),choices.end(),std::default_random_engine(seed));
 }
 
+bool Dict::isInDict(const std::string& word){
+    return words.checkExist(word);
+}
+bool Dict::isInHistory(const std::string& word){
+    return history.find(word);
+}
 void Dict::addHistory(const std::string& word){
-    history.push(word);
+    history.insert(word);
 }
 void Dict::removeHistory(const std::string& word){
     history.pop(word);

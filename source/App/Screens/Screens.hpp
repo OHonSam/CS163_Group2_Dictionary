@@ -35,6 +35,7 @@ private:
         "Searching",
         "Editing",
         "Viewing",
+        "Daily word",
         "Reset to default",
         "Random",
         "Switch between dictionaries (English-Vietnamese, Vietnamese-English, English-English)",
@@ -81,8 +82,6 @@ private:
     const std::vector<std::string> options = {
         "View your search history",
         "View your favorite words",
-        "View definitions of a word user types in",
-        "View possible keywords of a definition user types in",
         "Back"
     };
 public:
@@ -109,12 +108,12 @@ private:
         "Type in a word to insert it to your favorite list",
         "Type in a word to remove it from your favorite list",
         "Search prefix of words in your favorite list",
-        "Go back to previous page",
+        "Go back to previous page"
     };
 
     const std::vector<std::string> options2 = {
         "Type in a word to insert it to your favorite list",
-        "Go back to previous page",
+        "Go back to previous page"
     };
 
 public:
@@ -125,11 +124,17 @@ public:
 
 //-------------------------Parent: SearchScreen--------------------------------
 class SearchForDefScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Search for definition(s) of the exact word",
+        "Search for definition(s) of all words with the same prefix",
+        "Back"
+    };
+
 public:
-    SearchForDefScreen(Dict* dict) : Screen(dict) {}
+    SearchForDefScreen(Dict* dict) : Screen(dict){}
     Screen* render();
-    void displayPrefixMode(const std::string& word);
-    void displayExactMode(const std::string& word);
+    bool displayPrefix(const std::string& word);
 };
 
 class SearchForKeywordsScreen: public Screen{
@@ -143,8 +148,41 @@ public:
 //-------------------------End Parent: SearchScreen---------------------------
 
 
+//-------------------------Parent: SearchForDefScreen--------------------------------
+class DisplayExactModeScreen: public Screen{
+private:
+    std::string word;//word user typed in
+    const std::vector<std::string> options = {
+        "Edit this word",
+        "Remove this word",
+        "Add this word to your favorite list",
+        "Back"
+    };
+public:
+    DisplayExactModeScreen(Dict* dict,const std::string& word) : Screen(dict) , word(word) {}
+    Screen* render();
+};
+class DisplayPrefixModeScreen: public Screen{
+private:
+    std::string word;//word user typed in
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    DisplayPrefixModeScreen(Dict* dict,const std::string& word) : Screen(dict) , word(word){}
+    Screen* render();
+};
+//-------------------------End Parent: SearchForDefScreen---------------------------
+
 //-------------------------Parent: ViewScreen--------------------------------
 class ViewHistoryScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Search for definition(s) of a word in your search history",
+        "Remove a word in your search history",
+        "Delete all words in your search history",
+        "Back"
+    };
 public:
     ViewHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
@@ -153,13 +191,90 @@ public:
 
 //-------------------------End Parent: ViewScreen---------------------------
 
+
+//-------------------------Parent: ViewHistoryScreen--------------------------------
+class Search1WordHistoryScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    Search1WordHistoryScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+//-------------------------End Parent: ViewHistoryScreen---------------------------
+
+
 //-------------------------Parent: EditScreen--------------------------------
+class AddWordScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    AddWordScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+class EditWordScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    EditWordScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+class EditSearchWordScreen: public Screen{
+private:
+    std::string word;//word user typed in
+    const std::vector<std::string> options = {
+        "Back to Search Screen",
+        "Back to Edit Screen"
+    };
+public:
+    EditSearchWordScreen(Dict* dict, const std::string& word) : Screen(dict), word(word) {}
+    Screen* render();
+};
+
+class DeleteSearchWordScreen: public Screen{
+private:
+    std::string word;//word user typed in
+    const std::vector<std::string> options = {
+        "Back to Search Screen",
+        "Back to Edit Screen"
+    };
+public:
+    DeleteSearchWordScreen(Dict* dict, const std::string& word) : Screen(dict), word(word) {}
+    Screen* render();
+};
+
+class DeleteWordScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    DeleteWordScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 class Remove1WordHistoryScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back to View History Screen",
+        "Back to Edit Screen"
+    };
 public:
     Remove1WordHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
 class DeleteAllHistoryScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back to View History Screen",
+        "Back to Edit Screen"
+    };
 public:
     DeleteAllHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
