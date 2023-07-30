@@ -207,6 +207,14 @@ public:
 
 
 //-------------------------Parent: EditScreen--------------------------------
+
+class ModifyMeaningScreen: public Screen {
+private: Word* word;
+public: 
+    ModifyMeaningScreen(Dict* dict, Word* word) : Screen(dict), word(word) {}
+    Screen* render();
+    void modify();
+};
 class AddWordScreen: public Screen{
 private:
     const std::vector<std::string> options = {
@@ -305,5 +313,11 @@ public:
     Screen *render();
 };
 //----------------------End Parent: FavListChoiceScreen--------------------------------------
+
+class UpdateDefScreen: public Screen {
+public: 
+    UpdateDefScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 
 #endif // SCREENS_HPP

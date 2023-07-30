@@ -43,7 +43,7 @@ private:
 	HashTable wordDef;
 	Trie words;
 	TST favList;
-	DefTrie defTrie;	
+	DefTrie* defTrie;	
 
 public:
 	// If first time running, import the raw dataset

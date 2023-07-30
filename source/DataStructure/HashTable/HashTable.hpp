@@ -41,7 +41,7 @@ public:
 	void remove(const std::string& word);					
 
 	// Edit definition of existed word
-	void updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef);	
+	Word* updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef);	
 
 	// Find a definition for a required word	
 	Word* searchDef(const std::string& word);

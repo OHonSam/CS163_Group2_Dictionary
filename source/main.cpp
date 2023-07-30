@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-    //Dict dict;
+    // Dict* dict = new Dict();
     App app;
     app.run();
     return 0;

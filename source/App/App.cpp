@@ -2,7 +2,8 @@
 
 App::App()
 {
-    CurrentScreen = new Home(&dict);
+    dict = new Dict();
+    CurrentScreen = new Home(dict);
 }
 
 void App::run()
@@ -16,4 +17,5 @@ void App::run()
             CurrentScreen = NextScreen;
         }
     }
+    return;
 }

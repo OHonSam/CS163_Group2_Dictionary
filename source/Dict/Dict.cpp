@@ -5,13 +5,13 @@
 bool Dict::reset(){
     words.clear();
     wordDef.clear();
-    defTrie.clear();
+    defTrie -> clear();
     favList.clear();
     history.clearSLL();
     return 
         words.import(DEFAULT::WORDS) &&
         wordDef.import(DEFAULT::WORDDEF) &&
-        defTrie.import(DEFAULT::DEFTRIE) &&
+        defTrie -> import(DEFAULT::DEFTRIE) &&
         favList.import(DEFAULT::FAVLIST) &&
         history.importSLLStr(DEFAULT::HISTORY)
     ;
@@ -19,15 +19,15 @@ bool Dict::reset(){
 
 void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
 {
-    wordDef.updateDef(word,type,oldDef,newDef);
-    defTrie.updateDef(word, type, oldDef, newDef);
+    // wordDef.updateDef(word,type,oldDef,newDef);
+    defTrie -> updateDef(word, type, oldDef, newDef);
 }
 
 void Dict::addWord(Word *word)
 {
     words.insert(word->word);
     wordDef.insert(word);
-    defTrie.insert(word);
+    defTrie -> insert(word);
 }
 
 bool Dict::isValidPOS(const std::string & str, int& pos){
@@ -63,13 +63,14 @@ bool Dict::lowerStrEng(std::string &str)
 
 Dict::Dict()
 {
+    defTrie = new DefTrie(wordDef);
     if(!loadFromPrev())
     {
         importEECsv(RAW_DATA::EE);
 
         words.save(DEFAULT::WORDS);
         wordDef.save(DEFAULT::WORDDEF);
-        defTrie.save(DEFAULT::DEFTRIE);
+        defTrie -> save(DEFAULT::DEFTRIE);
         favList.save(DEFAULT::FAVLIST);
         history.saveSLLStr(DEFAULT::HISTORY);
     }
@@ -79,7 +80,7 @@ Dict::~Dict()
 {
     words.save(MAIN::WORDS);
     wordDef.save(MAIN::WORDDEF);
-    defTrie.save(MAIN::DEFTRIE);
+    defTrie -> save(MAIN::DEFTRIE);
     favList.save(MAIN::FAVLIST);
     history.saveSLLStr(MAIN::HISTORY);
 }
@@ -89,7 +90,7 @@ bool Dict::loadFromPrev()
     return 
         words.import(MAIN::WORDS) &&
         wordDef.import(MAIN::WORDDEF) &&
-        defTrie.import(MAIN::DEFTRIE) &&
+        defTrie -> import(MAIN::DEFTRIE) &&
         favList.import(MAIN::FAVLIST) &&
         history.importSLLStr(MAIN::HISTORY)
     ;
@@ -189,12 +190,16 @@ std::vector<std::string> Dict::getFav()
 
 Word *Dict::searchForDef(const std::string &word)
 {
+    removeHistory(word);
+    addHistory(word);
     return wordDef.searchDef(word);
 }
 
 std::vector<std::string> Dict::searchForWord(const std::string &def)
 {
-    return defTrie.searchKeyWord(def);
+    // removeHistory(def);
+    // addHistory(def);
+    return defTrie -> searchKeyWord(def);
 }
 
 std::vector<std::string> Dict::searchPrefix(const std::string &prefix)
@@ -208,7 +213,7 @@ std::vector<std::string> Dict::searchPrefixFavlist(const std::string &prefix)
 }
 
 std::vector<std::string> Dict::searchPrefixDefTrie(const std::string &prefix) {
-    return defTrie.searchPrefix(prefix);
+    return defTrie -> searchPrefix(prefix);
 }
 
 void Dict::removeWord(const std::string& word){
@@ -221,7 +226,7 @@ void Dict::removeWord(const std::string& word){
 
 void Dict::removeDefTrie(const std::string &word) {
     Word* w = wordDef.searchDef(word);
-    defTrie.remove(w);
+    defTrie -> remove(w);
     return;
 }
 

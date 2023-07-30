@@ -192,9 +192,9 @@ std::vector<std::string> DefTrie::getKeyWords(DefTrie::Node* cur) {
 }
 
 void DefTrie::updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef) {
-    Word* oldWord = new Word(word, 1, oldDef);
+    Word* oldWord = wordDef.searchDef(word);
     remove(oldWord);
-    Word* newWord = new Word(word, 1, newDef);
+    Word* newWord = wordDef.updateDef(word, type, oldDef, newDef);
     insert(newWord);
     return;
 }

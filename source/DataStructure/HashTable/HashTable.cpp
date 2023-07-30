@@ -115,23 +115,23 @@ Word* HashTable::randomWordOfDay() {
 
 
 
-void HashTable::updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef) {
+Word* HashTable::updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef) {
     int key = HashTable::hash(word);
     for (int i = 0; i < HashTable::buckets[key].size(); i++)
     {
         if (HashTable::buckets[key][i] -> word == word) {
             for(int j = 0; j < POS::Count; j++) {
-                // type is the type of oldDef
+                // type is the type of oldDef 
                 if (type & (1 << j)) {
                     for (int k = 0; k < buckets[key][i] -> def[j].size(); k++) if (buckets[key][i] -> def[j][k] == oldDef) {
                         buckets[key][i] -> def[j][k] = newDef;
-                        return;
+                        return HashTable::buckets[key][i];
                     }
                 }
             }
         }
     }
-    return;
+    return nullptr;
 }
 
 bool HashTable::import(const std::string& path) {
