@@ -17,5 +17,6 @@ void App::run()
             CurrentScreen = NextScreen;
         }
     }
+    dict -> ~Dict();
     return;
 }
