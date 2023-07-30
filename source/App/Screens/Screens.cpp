@@ -177,7 +177,7 @@ Screen *EditScreen::render()
             nextScreen=new AddWordScreen(dict);
             break;  
         case 2:
-            //"Edit a word",
+            nextScreen=new EditWordScreen(dict);
             break;
         case 3:
             //"Delete a word",
@@ -329,6 +329,7 @@ Screen* DisplayExactModeScreen::render(){
 	int choice=inputOption(options.size());
 	switch(choice){
 		case 1:
+			clearScr();
 			nextScreen= new EditSearchWordScreen(dict,word);
 			break;
 		case 2:
@@ -548,11 +549,31 @@ Screen *AddWordScreen::render(){
 	}
 	return nextScreen;
 }
-Screen* EditSearchWordScreen::render(){
+Screen* EditWordScreen::render(){
 	clearScr();
 	Screen* nextScreen=this;
+	std::cout<<"Enter the word you want to edit: ";
+	std::string word;
+	std::getline(std::cin,word,'\n');
 
-	dict->removeWord(word);
+	while(!dict->lowerStrEng(word))
+	{
+		std::cout<<"Invalid input. Please try again!\n";
+		std::cout<<"Enter the word you want to edit: ";
+		std::getline(std::cin,word,'\n');
+	}
+	//check the existence of the word you want to edit in the dictionary
+	if(!dict->isInDict(word)){
+		std::cout<<"This word is not in the dictionary!\n";
+	}
+	else{
+		nextScreen=new EditSearchWordScreen(dict,word);
+	}
+	return nextScreen;
+}
+Screen* EditSearchWordScreen::render(){
+	//clearScr();
+	Screen* nextScreen=this;
 
 	Word* w=new Word;
 	std::cout<<"Enter the new word: ";
@@ -564,7 +585,8 @@ Screen* EditSearchWordScreen::render(){
 		std::cout<<"Enter the new word you want to add: ";
 		std::getline(std::cin,w->word,'\n');
 	}
-
+	dict->removeWord(word);
+	//Check if the new word you want to override the old one is already in the dictionary or not-> if not then continue
 	if(dict->isInDict(w->word)){
 		std::cout<<"This word is already in the dictionary!\n";
 	}

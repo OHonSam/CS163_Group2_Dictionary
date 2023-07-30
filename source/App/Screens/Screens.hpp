@@ -126,6 +126,8 @@ public:
 };
 
 //-------------------------End Parent: SearchScreen---------------------------
+
+
 //-------------------------Parent: SearchForDefScreen--------------------------------
 class DisplayExactModeScreen: public Screen{
 private:
@@ -168,6 +170,8 @@ public:
 
 
 //-------------------------End Parent: ViewScreen---------------------------
+
+
 //-------------------------Parent: ViewHistoryScreen--------------------------------
 class Search1WordHistoryScreen: public Screen{
 private:
@@ -192,11 +196,22 @@ public:
     AddWordScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
+
+class EditWordScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    EditWordScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 class EditSearchWordScreen: public Screen{
 private:
     std::string word;//word user typed in
     const std::vector<std::string> options = {
-        "Back"
+        "Back to Search Screen",
+        "Back to Edit Screen"
     };
 public:
     EditSearchWordScreen(Dict* dict, const std::string& word) : Screen(dict), word(word) {}
