@@ -452,6 +452,10 @@ Screen* SearchForKeywordsScreen::render() {
 }
 
 void SearchForKeywordsScreen::displayExactMode(const std::string& def) {
+	if (!def.size()) {
+		std::cout << "Invalid input!\n";
+		return;
+	}
 	std::vector<std::string> res = dict -> searchForWord(def);
 	if (!res.size()) {
 		std::cout << "There are no keywords that has your input as a part of their definition\n";
@@ -505,10 +509,11 @@ void SearchForKeywordsScreen::displayCorrectMode(const std::string &def) {
 				character[j] = character[j - 1] + p[i][j];
 			}
 			int idx = temp - 1;
-			while (!res.size()) {
+			while (!res.size() && idx >= 0) {
 				res = dict -> searchPrefixDefTrie(character[idx]);
 				idx--;
 			}
+			if (idx == -1) std::cout << "No further corrections can be made!\n";
 			for (int j = 0; j < res.size(); j++) {
 				if ((dict -> searchForWord(correct + res[j])).size()) {
 					correct += res[j];
@@ -519,14 +524,16 @@ void SearchForKeywordsScreen::displayCorrectMode(const std::string &def) {
 		} 
 		else correct += p[i];
 	}
-	std::cout << "Did you mean " << correct << " ?\n";
-	std::cout << "Options: \n"
-        <<"1. YES\n"
-        <<"2. NO\n";
-    int choice = inputOption(2);
-	// update string online?
-	if (choice == 1) SearchForKeywordsScreen::displayExactMode(correct);
-	else SearchForKeywordsScreen::displayExactMode(def);
+	if (correct.size()) {
+		std::cout << "Did you mean " << correct << " ?\n";
+		std::cout << "Options: \n"
+			<<"1. YES\n"
+			<<"2. NO\n";
+		int choice = inputOption(2);
+		// update string online?
+		if (choice == 1) SearchForKeywordsScreen::displayExactMode(correct);
+		else SearchForKeywordsScreen::displayExactMode(def);
+	}
 	return;
 }
 
