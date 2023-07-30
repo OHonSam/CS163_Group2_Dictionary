@@ -6,23 +6,28 @@ int Trie::getIndex(char c)
         return c - 'a';
     if (c >= 'A' && c <= 'Z')
         return c - 'A';
-    if (c==' ') return ALPHABET_SIZE-1;
-    if (c=='-') return ALPHABET_SIZE-2;
+    if (c == ' ')
+        return ALPHABET_SIZE - 1;
+    if (c == '-')
+        return ALPHABET_SIZE - 2;
     return -1;
 }
 char Trie::rGetIndex(int index)
 {
     if (index < 0 || index >= ALPHABET_SIZE)
         return '\0';
-    if (index < 26) return index + 'a';
-    if (index == ALPHABET_SIZE-1) return ' ';
-    if (index == ALPHABET_SIZE-2) return '-';
+    if (index < 26)
+        return index + 'a';
+    if (index == ALPHABET_SIZE - 1)
+        return ' ';
+    if (index == ALPHABET_SIZE - 2)
+        return '-';
     return '\0';
 }
 
 bool Trie::checkExist(const std::string &key)
 {
-    if(root == nullptr) 
+    if (root == nullptr)
         return false;
     Trie::Node *cur = root;
     int n = key.size();
@@ -44,8 +49,8 @@ void Trie::recursiveFind(std::vector<std::string> &res, std::string prefix, Trie
     {
         res.push_back(prefix);
         ++cnt;
-        char c = prefix[prefix.size()-1];
-        if(cur->child[getIndex(c)] == nullptr)
+        char c = prefix[prefix.size() - 1];
+        if (cur->child[getIndex(c)] == nullptr)
             return;
         else
             recursiveFind(res, prefix + c, cur->child[getIndex(c)], cnt);
@@ -84,13 +89,13 @@ void Trie::import(Node *&root, std::ifstream &file)
 {
     if (root == nullptr)
         root = new Node;
-    file.read((char *)&root->numWords, sizeof(int));
-    file.read((char *)&root->isEnd, sizeof(bool));
+    file >> root->numWords;
+    file >> root->isEnd;
     char c;
     while (1)
     {
-        file.read((char *)&c, sizeof(char));
-        if (c == TERMINATOR)
+        file>>c;
+        if (c == ';')
             break;
         int pos = getIndex(c);
         import(root->child[pos], file);
@@ -101,17 +106,17 @@ void Trie::save(Node *root, std::ofstream &file)
 {
     if (root == nullptr)
         return;
-    file.write((char *)&root->numWords, sizeof(int));
-    file.write((char *)&root->isEnd, sizeof(bool));
+    file << root->numWords;
+    file << root->isEnd;
     for (int i = 0; i < ALPHABET_SIZE; i++)
         if (root->child[i] != nullptr)
         {
             char c = rGetIndex(i);
-            file.write((char *)&c, sizeof(char));
+            file << c;
             save(root->child[i], file);
         }
-    char marker = TERMINATOR;
-    file.write((char *)&marker, sizeof(char));
+    char marker = ';';
+    file << marker;
 }
 
 void Trie::clear()
@@ -125,8 +130,9 @@ void Trie::clear()
 
 bool Trie::import(const std::string &path)
 {
-    std::ifstream file(path, std::ios::binary);
-    if (!file.good() || !file.is_open()) return false;
+    std::ifstream file(path);
+    if (!file.good() || !file.is_open())
+        return false;
     import(root, file);
     file.close();
     return true;
