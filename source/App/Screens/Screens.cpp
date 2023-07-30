@@ -180,7 +180,7 @@ Screen *EditScreen::render()
             nextScreen=new EditWordScreen(dict);
             break;
         case 3:
-            //"Delete a word",
+           	nextScreen=new DeleteWordScreen(dict);
             break;
         case 4:
             //"Add a word to your favorite list",
