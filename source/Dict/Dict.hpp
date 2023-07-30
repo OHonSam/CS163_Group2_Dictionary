@@ -65,14 +65,20 @@ public:
 	// Add a new word and corresponding definition
 	void addWord(Word *word);
 
+	// Check if a string is a valid number representing part of speech
+	bool isValidPOS(const std::string &str, int &pos);
+
 	// Add a word to the favorite list 
 	void addFav(const std::string &word);
 
 	// Add a word to the history
 	void addHistory(const std::string &word); //
 
-	// Check if a word is in the history list
+	// Check if a word is already in the History list
 	bool isInHistory(const std::string &word);
+
+	// Check if a word is already in the Dictionary
+	bool isInDict(const std::string &word);
 
 	// Remove a word and corresponding definition
 	void removeWord(const std::string &word);
