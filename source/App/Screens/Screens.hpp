@@ -108,13 +108,25 @@ public:
     FavListChoiceScreen(Dict *dict) : Screen(dict) {}
     Screen *render();
 };
+class DailyWordScreen: public Screen
+{
+private:
+    const std::vector<std::string> options = {
+        "Look for another word",
+        "Back"
+    };
+public:
+    DailyWordScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 //-------------------------End Parent: Home---------------------------
 
 //-------------------------Parent: SearchScreen--------------------------------
 class SearchForDefScreen: public Screen{
 private:
     const std::vector<std::string> options = {
-        "Search for definition(s) of the exact word",
+        "Search for definition(s) of the initial word",
+        "Search for definition(s) of a word from the given list of prefixes",
         "Search for definition(s) of all words with the same prefix",
         "Back"
     };
@@ -122,7 +134,7 @@ private:
 public:
     SearchForDefScreen(Dict* dict) : Screen(dict){}
     Screen* render();
-    bool displayPrefix(const std::string& word);
+    bool displayPrefix(std::vector<std::string> &prefixes);
 };
 
 //-------------------------End Parent: SearchScreen---------------------------
@@ -142,14 +154,27 @@ public:
     DisplayExactModeScreen(Dict* dict,const std::string& word) : Screen(dict) , word(word) {}
     Screen* render();
 };
-class DisplayPrefixModeScreen: public Screen{
+class Display1PrefixModeScreen: public Screen{
 private:
-    std::string word;//word user typed in
+    std::vector<std::string> prefixes;//word user typed in
+    const std::vector<std::string> options = {
+        "Edit this word",
+        "Remove this word",
+        "Add this word to your favorite list",
+        "Back"
+    };
+public:
+    Display1PrefixModeScreen(Dict* dict,const std::vector<std::string>& prefixes) : Screen(dict) , prefixes(prefixes) {}
+    Screen* render();
+};
+class DisplayPrefixesModeScreen: public Screen{
+private:
+    std::vector<std::string> prefixes;//word user typed in
     const std::vector<std::string> options = {
         "Back"
     };
 public:
-    DisplayPrefixModeScreen(Dict* dict,const std::string& word) : Screen(dict) , word(word){}
+    DisplayPrefixesModeScreen(Dict* dict,std::vector<std::string>& prefixes) : Screen(dict) , prefixes(prefixes){}
     Screen* render();
 };
 //-------------------------End Parent: SearchForDefScreen---------------------------
