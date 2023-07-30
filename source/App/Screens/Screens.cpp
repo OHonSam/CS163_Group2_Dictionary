@@ -366,7 +366,7 @@ Screen *DisplayExactModeScreen::render()
 		nextScreen = new DeleteSearchWordScreen(dict, word);
 		break;
 	case 3:
-		nextScreen = new Type2InsertWordFavListScreen(dict);
+		nextScreen = new Add1WordFavListScreen(dict);
 		break;
 	case 4:
 		nextScreen = new SearchScreen(dict);
