@@ -589,6 +589,7 @@ Screen *SearchPrefixFavList::render()
 	}
 	else
 	{
+		int cnt = 0;
 		std::vector<std::string> display = dict->searchPrefixFavlist(prefix);
 		std::cout << "The words that start with <" << prefix << "> are: \n";
 
