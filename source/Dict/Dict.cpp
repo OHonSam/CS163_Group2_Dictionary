@@ -178,6 +178,11 @@ void Dict::removeHistory(const std::string& word){
 bool Dict::clearAllHistory(const std::string& path){
     return history.clearHistory(path);
 }
+
+bool Dict::clearFavList(const std::string& path){
+    return favList.clearFavList(path);
+}
+
 std::vector<std::string> Dict::getHistory(){
     return history.SLLintoVector();
 }

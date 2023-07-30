@@ -39,7 +39,7 @@ private:
 	HashTable wordDef;
 	Trie words;
 	TST favList;
-	DefTrie defTrie;	
+	DefTrie defTrie;
 
 public:
 	// If first time running, import the raw dataset
@@ -47,9 +47,9 @@ public:
 	Dict();
 
 	// Save data structures before deleting
-	~Dict();	
+	~Dict();
 	// Check if a string is a valid English word (only contains letters from a to z) and convert uppercase letter to lowercase letter
-	bool lowerStrEng(std::string& str);
+	bool lowerStrEng(std::string &str);
 	// Load from previous save data
 	bool loadFromPrev();
 
@@ -68,7 +68,7 @@ public:
 	// Check if a string is a valid number representing part of speech
 	bool isValidPOS(const std::string &str, int &pos);
 
-	// Add a word to the favorite list 
+	// Add a word to the favorite list
 	void addFav(const std::string &word);
 
 	// Add a word to the history
@@ -84,6 +84,9 @@ public:
 	void removeWord(const std::string &word);
 	// Remove all words in the history
 	bool clearAllHistory(const std::string &path);
+	
+	// Remove all words in the favorite list
+	bool clearFavList(const std::string &path);
 
 	// Remove a word from the favorite list
 	void removeFav(const std::string &word);
@@ -110,12 +113,12 @@ public:
 	std::vector<std::string> searchPrefixFavlist(const std::string &prefix);
 
 	// Get a daily word
-	Word* getDailyWord();
+	Word *getDailyWord();
 
 	// Get the list of multple choices
 	void getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord);
 
-	//Turn uppercase to lowercase
+	// Turn uppercase to lowercase
 	bool uppercase2Lowercase(std::string &str);
 };
 #endif
