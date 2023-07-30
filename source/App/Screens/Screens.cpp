@@ -366,7 +366,7 @@ Screen *DisplayExactModeScreen::render()
 		nextScreen = new DeleteSearchWordScreen(dict, word);
 		break;
 	case 3:
-		nextScreen = new Type2InsertWordFavListScreen(dict);
+		nextScreen = new AddGivenWordFavListScreen(dict, word);
 		break;
 	case 4:
 		nextScreen = new SearchScreen(dict);
@@ -441,7 +441,7 @@ Screen *Display1PrefixModeScreen::render()
 			nextScreen = new DeleteSearchWordScreen(dict, word);
 			break;
 		case 3:
-			nextScreen = new Add1WordFavListScreen(dict);
+			nextScreen = new AddGivenWordFavListScreen(dict, word);
 			break;
 		case 4:
 			nextScreen = new SearchScreen(dict);
@@ -1125,6 +1125,28 @@ Screen *Add1WordFavListScreen::render()
 		break;
 	case 2:
 		nextScreen = new EditScreen(dict);
+		break;
+	}
+	return nextScreen;
+}
+
+Screen *AddGivenWordFavListScreen::render()
+{
+	Screen *nextScreen = this;
+	dict->addFav(word);
+
+	std::cout << "The word has been successfully add to your favourite list!\n";
+	std::cout << "\nOptions: \n";
+	for (int i = 0; i < options.size(); ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
+		nextScreen = new DisplayExactModeScreen(dict, word);
+		break;
+	case 2:
+		nextScreen = new Display1PrefixModeScreen(dict, prefixes);
 		break;
 	}
 	return nextScreen;
