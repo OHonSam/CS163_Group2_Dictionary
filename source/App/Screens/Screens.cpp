@@ -1089,7 +1089,7 @@ Screen *Remove1WordFavListScreen::render()
 	{
 	case 1:
 		nextScreen = new ViewFavListScreen(dict);
-		fix break;
+		break;
 	case 2:
 		nextScreen = new EditScreen(dict);
 		break;
@@ -1122,7 +1122,7 @@ Screen *Add1WordFavListScreen::render()
 	{
 	case 1:
 		nextScreen = new ViewFavListScreen(dict);
-		fix break;
+		break;
 	case 2:
 		nextScreen = new EditScreen(dict);
 		break;
