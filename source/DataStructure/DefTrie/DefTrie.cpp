@@ -78,6 +78,7 @@ void DefTrie::insert(Word* word) {
             }
         }
     }
+    std::cout << "yes";
     return;
 }
 

@@ -83,7 +83,7 @@ std::string Screen::inputEngString(const std::string &mess)
 // Home
 Screen *Home::render()
 {
-	clearScr();
+	// clearScr();
 
 	std::cout << "Welcome to Dictionary!" << std::endl;
 	int siz = options.size();
