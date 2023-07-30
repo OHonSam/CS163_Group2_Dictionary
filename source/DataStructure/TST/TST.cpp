@@ -6,14 +6,15 @@ void TST::clear()
     root = nullptr;
 }
 
-bool TST::clearFavList(const std::string& path){
+bool TST::clearFavList(const std::string &path)
+{
     clear();
     std::ofstream fout;
-    fout.open(path,std::ios::binary|std::ios::trunc);
-    if(!fout.is_open())
+    fout.open(path, std::ios::binary | std::ios::trunc);
+    if (!fout.is_open())
         return false;
     fout.close();
-    if(fout.bad())
+    if (fout.bad())
         return false;
     return true;
 }
@@ -206,18 +207,12 @@ bool TST::isStartedWith(const std::string &prefix)
 bool TST::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
-    if (!file.good() || !file.is_open()) return false;
-    import(root, file);
-    file.close();
-    return true;
-}
-
-bool TST::save(const std::string &path)
-{
-    std::ofstream file(path, std::ios::binary);
-    if (!file.is_open())
+    if (!file.good() || !file.is_open())
+    {
+        std::cerr << "\nin import\n";
         return false;
-    save(root, file);
+    }
+    import(root, file);
     file.close();
     return true;
 }
@@ -226,14 +221,21 @@ void TST::import(TSTNode *&root, std::ifstream &file)
 {
     if (root == nullptr)
         root = new TSTNode;
+    std::cerr << "\nimporting\n";
     file.read((char *)&root->numWords, sizeof(int));
+    std::cerr << "\nroot->num: " << root->numWords << '\n';
     file.read((char *)&root->isEnd, sizeof(bool));
-    int _c; // character read in binary file
+    std::cerr << "\nroot->isEnd: " << root->isEnd << '\n';
+    char _c; // character read in binary file
     while (true)
     {
         file.read((char *)&_c, sizeof(char));
+        std::cerr << "\n_c: " << _c << '\n';
         if (_c == TERMINATOR)
+        {
+            std::cerr << "break\n";
             break;
+        }
         if (_c < root->c)
         {
             import(root->left, file);
@@ -256,7 +258,7 @@ void TST::save(TSTNode *root, std::ofstream &file)
     file.write((char *)&root->numWords, sizeof(int));
     file.write((char *)&root->isEnd, sizeof(bool));
     char _c = root->c; // temporary storage of character contained in a TSTNode
-
+    std::cerr << "\nin save\n";
     file.write((char *)&_c, sizeof(char));
     save(root->left, file);
 
@@ -266,6 +268,18 @@ void TST::save(TSTNode *root, std::ofstream &file)
 
     char marker = TERMINATOR;
     file.write((char *)&marker, sizeof(char));
+}
+
+bool TST::save(const std::string &path)
+{
+    std::ofstream file(path, std::ios::binary);
+    if (!file.is_open())
+    {
+        return false;
+    }
+    save(root, file);
+    file.close();
+    return true;
 }
 
 std::vector<std::string> TST::traverse()

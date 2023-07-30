@@ -82,16 +82,16 @@ TEST(Trie_test, searchPrefix)
     EXPECT_EQ(prefix.size(), N);
 }
 
-// TEST(Trie_test, ImportAndSave)
-// {
-//     Trie trie;
-//     input(trie);
+TEST(Trie_test, ImportAndSave)
+{
+    Trie trie;
+    input(trie);
 
-//     ASSERT_TRUE(trie.save("trie.bin"));
-//     trie.clear();
-//     EXPECT_FALSE(trie.checkExist(word[0]));
+    ASSERT_TRUE(trie.save("trie.bin"));
+    trie.clear();
+    EXPECT_FALSE(trie.checkExist(word[0]));
 
-//     ASSERT_TRUE(trie.import("trie.bin"));
-//     for(int i=0; i<N; i++)
-//         EXPECT_TRUE(trie.checkExist(word[i]));
-// }
+    ASSERT_TRUE(trie.import("trie.bin"));
+    for(int i=0; i<N; i++)
+        EXPECT_TRUE(trie.checkExist(word[i]));
+}

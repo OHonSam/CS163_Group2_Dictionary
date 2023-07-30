@@ -7,13 +7,16 @@ App::App()
 
 void App::run()
 {
-    while (CurrentScreen != nullptr)
-    {
-        Screen *NextScreen = CurrentScreen->render();
-        if (NextScreen != CurrentScreen)
-        {
-            delete CurrentScreen;
-            CurrentScreen = NextScreen;
-        }
-    }
+    // while (CurrentScreen != nullptr)
+    // {
+    // Screen *NextScreen = CurrentScreen->render();
+    //     if (NextScreen != CurrentScreen)
+    //     {
+    // delete CurrentScreen;
+    //         CurrentScreen = NextScreen;
+    //     }
+    // }
+
+    CurrentScreen->render();
+
 }

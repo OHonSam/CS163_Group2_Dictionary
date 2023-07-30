@@ -141,18 +141,17 @@ prefix = tst.startWith("I");
     EXPECT_EQ(prefix.size(), N);
 }
 
-// TEST(TST_test, ImportAndSave)
-// {
-//     TST tst;
-//     for(int i=0; i<N; ++i)
-//         tst.insert(word[i]);
+TEST(TST_test, ImportAndSave)
+{
+    TST tst;
+    input(tst);
 
-//     ASSERT_TRUE(tst.save("TST.bin"));
+    ASSERT_TRUE(tst.save("TST.bin"));
 
-//     // for(int i=0; i<N; ++i)
-//     //     EXPECT_FALSE(tst.wordExists(word[i]));
+    tst.clear();
+    EXPECT_FALSE(tst.wordExists(word[0]));
 
-//     ASSERT_TRUE(tst.import("TST.bin"));
+    ASSERT_TRUE(tst.import("TST.bin"));
 //     for(int i=0; i<N; ++i)
 //         EXPECT_TRUE(tst.wordExists(word[i]));
-// }
+}
