@@ -103,7 +103,7 @@ Screen *Home::render()
             nextScreen=new ViewScreen(dict);
             break;
         case 4:
-			//nextScreen=new DailyWordScreen(dict);
+			nextScreen=new DailyWordScreen(dict);
             break;
         case 5:
             break;
@@ -140,7 +140,6 @@ Screen* SearchScreen::render(){
     }
     return nextScreen;
 }
-//-------------------------End Parent: Home-------------------------------
 
 Screen *ViewScreen::render()
 {
@@ -230,6 +229,37 @@ Screen *FavListChoiceScreen::render()
 		break;
 	}
 
+	return nextScreen;
+}
+Screen* DailyWordScreen::render(){
+	clearScr();
+	Word* w=dict->getDailyWord();
+	std::cout<<"Today's word is: "<<w->word;
+	std::cout<<"\nDefinition(s): \n";
+
+	for(int type=0;type<POS::Count;++type){
+		if(w->def[type].empty()) 
+			continue;
+		std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
+		for(int idx=0;idx<w->def[type].size();++idx){
+			std::cout<<"\t\t"<<idx+1<<". "<<w->def[type][idx]<<std::endl;
+		}
+	}
+	
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	Screen* nextScreen=this;//"this"->own object
+	int choice=inputOption(options.size());
+	switch(choice)
+	{
+		case 1:
+			nextScreen=new DailyWordScreen(dict);
+			break;
+		case 2:
+			nextScreen=new Home(dict);
+			break;
+	}
 	return nextScreen;
 }
 //-------------------------End Parent: Home---------------------------

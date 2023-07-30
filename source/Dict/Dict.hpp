@@ -109,6 +109,9 @@ public:
 	// Return the list of words which has an identical given prefix in favourite list
 	std::vector<std::string> searchPrefixFavlist(const std::string &prefix);
 
+	// Get a daily word
+	Word* getDailyWord();
+
 	// Get the list of multple choices
 	void getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord);
 
