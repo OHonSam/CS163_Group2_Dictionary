@@ -455,19 +455,20 @@ void SearchForKeywordsScreen::displayExactMode(const std::string& def) {
 	std::vector<std::string> res = dict -> searchForWord(def);
 	if (!res.size()) {
 		std::cout << "There are no keywords that has your input as a part of their definition\n";
-		return;
 	}
-	std::cout << "Here are the keywords that has your input as a part of their definition: " << '\n';
-	for (int i = 0; i < res.size(); i++) {
-		std::cout << i + 1 << ". " << res[i] << " :\n";
-		Word* w = dict -> searchForDef(res[i]);
-        for(int type = 0; type < POS::Count; ++type){
-            if (w -> def[type].empty()) continue;
-            std::cout << "\t" << POS::TypeString[type] << ": " << std::endl;
-            for(int idx = 0; idx < w -> def[type].size(); ++idx) {
-                std::cout << "\t\t" << "- " << w -> def[type][idx] << std::endl;
-            }
-        }
+	else {
+		std::cout << "Here are the keywords that has your input as a part of their definition: " << '\n';
+		for (int i = 0; i < res.size(); i++) {
+			std::cout << i + 1 << ". " << res[i] << " :\n";
+			Word* w = dict -> searchForDef(res[i]);
+			for(int type = 0; type < POS::Count; ++type){
+				if (w -> def[type].empty()) continue;
+				std::cout << "\t" << POS::TypeString[type] << ": " << std::endl;
+				for(int idx = 0; idx < w -> def[type].size(); ++idx) {
+					std::cout << "\t\t" << "- " << w -> def[type][idx] << std::endl;
+				}
+			}
+		}
 	}
 	std::cout << "Press 1 to go back.\n";
 	int choice = inputOption(1);
