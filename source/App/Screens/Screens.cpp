@@ -441,7 +441,7 @@ Screen *Display1PrefixModeScreen::render()
 			nextScreen = new DeleteSearchWordScreen(dict, word);
 			break;
 		case 3:
-			nextScreen = new Type2InsertWordFavListScreen(dict);
+			nextScreen = new Add1WordFavListScreen(dict);
 			break;
 		case 4:
 			nextScreen = new SearchScreen(dict);
@@ -1089,7 +1089,7 @@ Screen *Remove1WordFavListScreen::render()
 	{
 	case 1:
 		nextScreen = new ViewFavListScreen(dict);
-		fix break;
+		break;
 	case 2:
 		nextScreen = new EditScreen(dict);
 		break;
@@ -1122,7 +1122,7 @@ Screen *Add1WordFavListScreen::render()
 	{
 	case 1:
 		nextScreen = new ViewFavListScreen(dict);
-		fix break;
+		break;
 	case 2:
 		nextScreen = new EditScreen(dict);
 		break;
