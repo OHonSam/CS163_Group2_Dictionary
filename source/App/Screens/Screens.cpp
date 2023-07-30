@@ -132,9 +132,8 @@ Screen *HomeScreen::render()
             nextScreen=new EditScreen(dict);
             break;
         case 4: // Daily word
-            break;
-        case 4:
 			nextScreen=new DailyWordScreen(dict);
+			break;
         case 5: // Multi choices quiz
 			nextScreen=new MultiChoicesScreen(dict);
             break;
@@ -289,7 +288,7 @@ Screen* DailyWordScreen::render(){
 			nextScreen=new DailyWordScreen(dict);
 			break;
 		case 2:
-			nextScreen=new Home(dict);
+			nextScreen=new HomeScreen(dict);
 			break;
 	}
 	return nextScreen;
@@ -374,7 +373,7 @@ Screen* SearchForDefScreen::render(){
     std::string mess="Enter the word you want to search for: ";
     std::string word;
     switch(dict->getCurDataSet()){
-        case DataSet:VE:
+        case DataSet::VE:
             word=inputVietString(mess);
             break;
         default:
@@ -924,7 +923,7 @@ Screen *DeleteAllHistoryScreen::render()
 	switch (choice)
 	{
 	case 1:
-		if (dict->clearAllHistory(MAIN::HISTORY))
+		if (dict->clearAllHistory())
 			std::cout << "Your search history has been successfully deleted!\n";
 		else
 			std::cout << "Errors occurred in clearing time!\n";

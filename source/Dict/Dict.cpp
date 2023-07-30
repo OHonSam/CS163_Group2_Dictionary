@@ -381,8 +381,20 @@ void Dict::addHistory(const std::string& word){
 void Dict::removeHistory(const std::string& word){
     history.pop(word);
 }
-bool Dict::clearAllHistory(const std::string& path){
-    return history.clearHistory(path);
+bool Dict::clearAllHistory(){
+    switch (curDataSet)
+    {
+    case DataSet::EE:
+        return history.clearHistory(MAIN::EE::HISTORY);
+    case DataSet::EV:
+        return history.clearHistory(MAIN::EV::HISTORY);
+    case DataSet::VE:  
+        return history.clearHistory(MAIN::VE::HISTORY);
+    case DataSet::Slang:
+        return history.clearHistory(MAIN::Slang::HISTORY);
+    default:
+        return false;
+    }  
 }
 std::vector<std::string> Dict::getHistory(){
     return history.SLLintoVector();
