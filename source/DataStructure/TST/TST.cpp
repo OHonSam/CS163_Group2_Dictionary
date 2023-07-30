@@ -6,6 +6,18 @@ void TST::clear()
     root = nullptr;
 }
 
+bool TST::clearFavList(const std::string& path){
+    clear();
+    std::ofstream fout;
+    fout.open(path,std::ios::binary|std::ios::trunc);
+    if(!fout.is_open())
+        return false;
+    fout.close();
+    if(fout.bad())
+        return false;
+    return true;
+}
+
 void TST::insert(const std::string &word)
 {
     recursiveInsert(root, word, 0);
@@ -108,6 +120,7 @@ void TST::remove(TSTNode *&node, const std::string &str, int index)
         }
     }
 }
+
 std::vector<std::string> TST::startWith(const std::string &prefix)
 {
     std::vector<std::string> res;

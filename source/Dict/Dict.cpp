@@ -169,6 +169,11 @@ bool Dict::isInDict(const std::string& word){
 bool Dict::isInHistory(const std::string& word){
     return history.find(word);
 }
+
+bool Dict::isInFavList(const std::string& word){
+    return favList.isStartedWith(word);
+}
+
 void Dict::addHistory(const std::string& word){
     history.insert(word);
 }
@@ -178,6 +183,11 @@ void Dict::removeHistory(const std::string& word){
 bool Dict::clearAllHistory(const std::string& path){
     return history.clearHistory(path);
 }
+
+bool Dict::clearFavList(const std::string& path){
+    return favList.clearFavList(path);
+}
+
 std::vector<std::string> Dict::getHistory(){
     return history.SLLintoVector();
 }
