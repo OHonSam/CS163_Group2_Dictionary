@@ -192,7 +192,16 @@ public:
     AddWordScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-    
+class EditSearchWordScreen: public Screen{
+private:
+    std::string word;//word user typed in
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    EditSearchWordScreen(Dict* dict, const std::string& word) : Screen(dict), word(word) {}
+    Screen* render();
+};
 class Remove1WordHistoryScreen: public Screen{
 private:
     const std::vector<std::string> options = {

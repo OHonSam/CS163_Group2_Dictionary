@@ -329,7 +329,7 @@ Screen* DisplayExactModeScreen::render(){
 	int choice=inputOption(options.size());
 	switch(choice){
 		case 1:
-			//Edit this word (haven't implemented screen yet)
+			nextScreen= new EditSearchWordScreen(dict,word);
 			break;
 		case 2:
 			//Remove this word
@@ -544,6 +544,74 @@ Screen *AddWordScreen::render(){
 	switch(choice){
 		case 1:
 			nextScreen=new EditScreen(dict);
+			break;
+	}
+	return nextScreen;
+}
+Screen* EditSearchWordScreen::render(){
+	clearScr();
+	Screen* nextScreen=this;
+
+	dict->removeWord(word);
+
+	Word* w=new Word;
+	std::cout<<"Enter the new word: ";
+	std::getline(std::cin,w->word,'\n');
+
+	while(!dict->lowerStrEng(w->word))
+	{
+		std::cout<<"Invalid input. Please try again!\n";
+		std::cout<<"Enter the new word you want to add: ";
+		std::getline(std::cin,w->word,'\n');
+	}
+
+	if(dict->isInDict(w->word)){
+		std::cout<<"This word is already in the dictionary!\n";
+	}
+	else{
+		std::cout<<"Parts of speech: \n";
+		for(int i=0;i<POS::Count;++i){
+			std::cout<<i+1<<". "<<POS::TypeString[i]<<std::endl;
+		}
+		std::string buffer;
+		std::cout<<"Enter all parts of speech you want to add/edit definition to(ex: 1 2 ... 9): ";
+		std::getline(std::cin,buffer,'\n');
+		
+		std::unordered_set<int> pos;// to avoid duplicate
+		std::stringstream ss(buffer);
+		std::string temp;
+		int choice;
+		while(ss>>temp){
+			if(!dict->isValidPOS(temp,choice)){//check the input if it is a valid number (1<=num<=9) or a random string or out of bound
+				std::cout<<"Invalid input. Please try again!\n";
+				std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
+				std::getline(std::cin,buffer,'\n');
+				ss.clear();
+				pos.clear();
+				ss.str(buffer);
+			}
+			else{
+				pos.insert(choice);
+			}
+		}
+		for(std::unordered_set<int>::iterator itr=pos.begin();itr!=pos.end();++itr){
+			std::cout<<"Enter the word's definition as "<<POS::TypeString[*itr-1]<<": ";
+			std::getline(std::cin,buffer,'\n');
+			w->def[*itr-1].push_back(buffer);
+		}
+
+		dict->addWord(w);
+		std::cout<<"The word has been successfully edited!\n";
+	}
+
+
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			nextScreen=new SearchScreen(dict);
 			break;
 	}
 	return nextScreen;
