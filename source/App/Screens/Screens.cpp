@@ -277,7 +277,6 @@ Screen* SearchForDefScreen::render(){
     {
         std::cout<<"Invalid input. Please try again!\n";
         std::cout<<"Enter the word you want to search for: ";
-        std::string word;
         std::getline(std::cin,word);
     }
 	std::vector<std::string> prefixes=dict->searchPrefix(word);
@@ -391,7 +390,6 @@ Screen* Display1PrefixModeScreen::render(){
     {
         std::cout<<"Invalid input. Please try again!\n";
         std::cout<<"Enter the prefix you want to search for: ";
-        std::string word;
         std::getline(std::cin,word);
 	}
 
@@ -532,7 +530,6 @@ Screen * Search1WordHistoryScreen::render(){
     {
         std::cout<<"Invalid input. Please try again!\n";
         std::cout<<"Enter the word you want to search for: ";
-        std::string word;
         std::getline(std::cin,word);
     }
 	
@@ -791,7 +788,6 @@ Screen *Remove1WordHistoryScreen::render()
     {
         std::cout<<"Invalid input. Please try again!\n";
         std::cout<<"Enter the word you want to search for: ";
-        std::string word;
         std::getline(std::cin,word);
     }
 	dict->removeHistory(word);
