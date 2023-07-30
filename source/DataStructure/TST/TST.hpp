@@ -39,9 +39,10 @@ class TST
     const int LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST = 20;
 
     void import(TSTNode *&root, std::ifstream &file);
+    void importTXT(TSTNode *&root, std::ifstream &file);
     void save(TSTNode *root, std::ofstream &file);
+    void saveTXT(TSTNode *root, std::ofstream &file);
     void traverse(std::vector<std::string> &res, TSTNode *root, std::string str, int &cnt);
-
 
     // Insert into the TST
     void recursiveInsert(TSTNode *&node, const std::string &str, int index);
@@ -65,16 +66,15 @@ public:
         clear();
     }
 
-    //Clear the TST
+    // Clear the TST
     void clear();
 
-    //Clear the favourite list
-    bool clearFavList(const std::string& path);
+    // Clear the favourite list
+    bool clearFavList(const std::string &path);
 
     void insert(const std::string &word);
     void remove(const std::string &word);
     std::vector<std::string> traverse();
-
 
     // Return true if the word is in the TST
     bool wordExists(const std::string &word);
@@ -82,25 +82,26 @@ public:
     // Return true if there is any word in the trie that starts with the given prefix
     bool isStartedWith(const std::string &prefix);
 
-    //Return words in the trie that starts with the given prefix
-    std::vector<std::string>startWith(const std::string &prefix);
+    // Return words in the trie that starts with the given prefix
+    std::vector<std::string> startWith(const std::string &prefix);
 
     bool import(const std::string &path);
-    bool save(const std::string &path);    
+
+    bool importTXT(const std::string &path);
+    bool saveTXT(const std::string &path);
+    bool save(const std::string &path);
 
     bool treeExists();
 
     void uppercase2Lowercase(std::string &str);
-    
-    
-    
-    //for screen type2RemoveWord
+
+    // for screen type2RemoveWord
     void type2RemoveWord();
-    
-    //for screen type2InsertWord
+
+    // for screen type2InsertWord
     void type2InsertWord();
 
-    //for screen searchPrefix
+    // for screen searchPrefix
     void searchPrefix();
 };
 

@@ -209,10 +209,27 @@ bool TST::import(const std::string &path)
     std::ifstream file(path, std::ios::binary);
     if (!file.good() || !file.is_open())
     {
-        std::cerr << "\nin import\n";
+        std::cerr << "file not found\n";
         return false;
     }
     import(root, file);
+    std::cerr << "\nin import\n";
+    std::cerr << "root->c: " << root->c << '\n';
+    file.close();
+    return true;
+}
+
+bool TST::importTXT(const std::string &path)
+{
+    std::ifstream file(path);
+    if (!file.good() || !file.is_open())
+    {
+        std::cerr << "file not found\n";
+        return false;
+    }
+    importTXT(root, file);
+    std::cerr << "\nin import\n";
+    std::cerr << "root->c: " << root->c << '\n';
     file.close();
     return true;
 }
@@ -220,20 +237,24 @@ bool TST::import(const std::string &path)
 void TST::import(TSTNode *&root, std::ifstream &file)
 {
     if (root == nullptr)
+    {
         root = new TSTNode;
-    std::cerr << "\nimporting\n";
-    file.read((char *)&root->numWords, sizeof(int));
-    std::cerr << "\nroot->num: " << root->numWords << '\n';
-    file.read((char *)&root->isEnd, sizeof(bool));
-    std::cerr << "\nroot->isEnd: " << root->isEnd << '\n';
+        // std::cerr << '1\n';
+        return;
+    }
+    // std::cerr << "\nimporting\n";
+    file.read((char *)&(root->numWords), sizeof(int));
+    // std::cerr << "\nroot->num: " << root->numWords << '\n';
+    file.read((char *)&(root->isEnd), sizeof(bool));
+    // std::cerr << "\nroot->isEnd: " << root->isEnd << '\n';
     char _c; // character read in binary file
     while (true)
     {
         file.read((char *)&_c, sizeof(char));
-        std::cerr << "\n_c: " << _c << '\n';
+        // std::cerr << "\n_c: " << _c << '\n';
         if (_c == TERMINATOR)
         {
-            std::cerr << "break\n";
+            // std::cerr << "break\n";
             break;
         }
         if (_c < root->c)
@@ -251,6 +272,63 @@ void TST::import(TSTNode *&root, std::ifstream &file)
     }
 }
 
+void TST::importTXT(TSTNode *&root, std::ifstream &file)
+{
+    if (root == nullptr)
+    {
+        root = new TSTNode;
+        // std::cerr << '1\n';
+        return;
+    }
+    // std::cerr << "\nimporting\n";
+    file >> root->numWords;
+    // std::cerr << "\nroot->num: " << root->numWords << '\n';
+    file >> root->isEnd;
+    // std::cerr << "\nroot->isEnd: " << root->isEnd << '\n';
+    char _c; // character read in binary file
+    while (true)
+    {
+        file >> _c;
+        // std::cerr << "\n_c: " << _c << '\n';
+        if (_c == ';')
+        {
+            // std::cerr << "break\n";
+            break;
+        }
+        if (_c < root->c)
+        {
+            importTXT(root->left, file);
+        }
+        else if (_c > root->c)
+        {
+            importTXT(root->right, file);
+        }
+        else
+        {
+            importTXT(root->mid, file);
+        }
+    }
+}
+
+void TST::saveTXT(TSTNode *root, std::ofstream &file)
+{
+    if (root == nullptr)
+        return;
+    file << root->numWords;
+    file << root->isEnd;
+    char _c = root->c; // temporary storage of character contained in a TSTNode
+    // std::cerr << "\nin save\n";
+    file << _c;
+    saveTXT(root->left, file);
+
+    saveTXT(root->mid, file);
+
+    saveTXT(root->right, file);
+
+    char marker = ';';
+    file << marker;
+}
+
 void TST::save(TSTNode *root, std::ofstream &file)
 {
     if (root == nullptr)
@@ -258,7 +336,7 @@ void TST::save(TSTNode *root, std::ofstream &file)
     file.write((char *)&root->numWords, sizeof(int));
     file.write((char *)&root->isEnd, sizeof(bool));
     char _c = root->c; // temporary storage of character contained in a TSTNode
-    std::cerr << "\nin save\n";
+    // std::cerr << "\nin save\n";
     file.write((char *)&_c, sizeof(char));
     save(root->left, file);
 
@@ -268,6 +346,17 @@ void TST::save(TSTNode *root, std::ofstream &file)
 
     char marker = TERMINATOR;
     file.write((char *)&marker, sizeof(char));
+}
+bool TST::saveTXT(const std::string &path)
+{
+    std::ofstream file(path);
+    if (!file.is_open())
+    {
+        return false;
+    }
+    saveTXT(root, file);
+    file.close();
+    return true;
 }
 
 bool TST::save(const std::string &path)
@@ -284,20 +373,25 @@ bool TST::save(const std::string &path)
 
 std::vector<std::string> TST::traverse()
 {
-    std::vector<std::string> res;
+    std::vector<std::string> res{};
     int cnt = 0;
     traverse(res, root, "", cnt);
-
+    std::cerr << "out traverse\n";
     return res;
 }
 
 void TST::traverse(std::vector<std::string> &res, TSTNode *root, std::string str, int &cnt)
 {
-    if (cnt == LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST)
-        return;
+    // if (cnt == LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST)
+    // {
+    //     return;
+    // }
 
     if (root == nullptr)
+    {
         return;
+    }
+
     traverse(res, root->left, str, cnt);
 
     str = str + root->c;

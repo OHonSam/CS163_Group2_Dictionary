@@ -14,23 +14,29 @@
 int main()
 {
     TST tst;
-    tst.insert("he");
+    tst.insert("hello");
 
-    tst.save("C:/Users/huynh/OneDrive - VNU-HCMUS/KHTN (do not delete)/Year 1/Semester 3/CS163 Data structure/lab project cs163/CS163_Group2_Dictionary/source/DataStructure/TST/TST.bin");
+    tst.saveTXT("C:/Users/huynh/OneDrive - VNU-HCMUS/KHTN (do not delete)/Year 1/Semester 3/CS163 Data structure/lab project cs163/CS163_Group2_Dictionary/source/DataStructure/TST/TST.txt");
     std::cerr << "nice\n";
 
-    // std::vector<std::string> v=tst.traverse();
-    // for(const std::string& s: v)
-    //     std::cout<<s<<std::endl;
+    std::vector<std::string> v=tst.traverse();
+    for(const std::string& s: v)
+        std::cout<<s<<'\n';
 
     // tst.import("test.bin");
     tst.clear();
     std::cerr << "Tree: " << tst.treeExists();
-    tst.import("C:/Users/huynh/OneDrive - VNU-HCMUS/KHTN (do not delete)/Year 1/Semester 3/CS163 Data structure/lab project cs163/CS163_Group2_Dictionary/source/DataStructure/TST/TST.bin");
+    tst.importTXT("C:/Users/huynh/OneDrive - VNU-HCMUS/KHTN (do not delete)/Year 1/Semester 3/CS163 Data structure/lab project cs163/CS163_Group2_Dictionary/source/DataStructure/TST/TST.txt");
+    // std::cerr << "out import\n";
+    // std::vector<std::string> v = tst.traverse();
+    std::cerr << "after import: " << tst.treeExists() << '\n';
+    v = tst.traverse();
+    for (const std::string &s : v)
+    {
+        std::cout << s << std::endl;
+    }
 
-    std::vector<std::string> v=tst.traverse();
-    for(const std::string& s: v)
-        std::cout<<s<<std::endl;
+    std::cerr << "end\n";
 
     return 0;
 }

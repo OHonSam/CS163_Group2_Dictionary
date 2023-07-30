@@ -146,12 +146,17 @@ TEST(TST_test, ImportAndSave)
     TST tst;
     input(tst);
 
-    ASSERT_TRUE(tst.save("TST.bin"));
+    // ASSERT_TRUE(tst.save("TST.bin"));
+
+    ASSERT_TRUE(tst.save("C:/Users/huynh/OneDrive - VNU-HCMUS/KHTN (do not delete)/Year 1/Semester 3/CS163 Data structure/lab project cs163/CS163_Group2_Dictionary/tests/TST.bin"));
+
 
     tst.clear();
     EXPECT_FALSE(tst.wordExists(word[0]));
 
-    ASSERT_TRUE(tst.import("TST.bin"));
+    // ASSERT_TRUE(tst.import("TST.bin"));
+    ASSERT_TRUE(tst.import("C:/Users/huynh/OneDrive - VNU-HCMUS/KHTN (do not delete)/Year 1/Semester 3/CS163 Data structure/lab project cs163/CS163_Group2_Dictionary/tests/TST.bin"));
+
 //     for(int i=0; i<N; ++i)
 //         EXPECT_TRUE(tst.wordExists(word[i]));
 }
