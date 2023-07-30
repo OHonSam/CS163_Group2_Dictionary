@@ -8,7 +8,8 @@ class Screen
 {
 private:
     bool checkStrOption(const std::string &str, int &choice);
-    bool checkStrEng(std::string str);
+    bool checkStrEng(std::string& str);
+    bool checkStrViet(std::string& str);
 
 protected:
     Dict *dict;
@@ -18,8 +19,12 @@ protected:
     int inputOption(
         int maxOption,
         const std::string &mess = "Your choice: ");
+
     std::string inputEngString(
         const std::string &mess = "Enter English word:");
+
+    std::string inputVietString(
+        const std::string &mess = "Enter Vietnamese word:");
 
 public:
     Screen(Dict *dict) : dict(dict) {}
@@ -27,25 +32,26 @@ public:
 };
 //
 
-// Home
-class Home : public Screen
+// HomeScreen
+class HomeScreen : public Screen
 {
 private:
     const std::vector<std::string> options = {
-        "Searching",
-        "Editing",
-        "Viewing",
+        "Search",
+        "View",
+        "Edit",
         "Daily word",
+        "Multile choices quiz",
         "Reset to default",
-        "Random",
-        "Switch between dictionaries (English-Vietnamese, Vietnamese-English, English-English)",
-        "Exit"};
+        "Switch datasets",
+        "Exit"
+    };
 
 public:
-    Home(Dict *dict) : Screen(dict) {}
+    HomeScreen(Dict *dict) : Screen(dict) {}
     Screen *render();
 };
-//-------------------------Parent: Home-------------------------------
+//-------------------------Parent: HomeScreen-------------------------------
 class SearchScreen: public Screen
 {
 private:
@@ -102,7 +108,39 @@ public:
     DailyWordScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-//-------------------------End Parent: Home---------------------------
+
+class MultiChoicesScreen: public Screen
+{
+private:
+    const std::string ques="Options:";
+    const std::vector<std::string> options={
+        "1 word and 4 definitions",
+        "1 definition and 4 words",
+        "Back"
+    };
+
+public:
+    MultiChoicesScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+class SwitchDataSetScreen: public Screen
+{
+private:
+    const std::vector<std::string> options = {
+        "English - English",
+        "English - Vietnamese",
+        "Vietnamese - English",
+        "Slang words",
+        "Back"
+    };
+
+public:
+    SwitchDataSetScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+//-------------------------End Parent: HomeScreen---------------------------
 
 //-------------------------Parent: SearchScreen--------------------------------
 class SearchForDefScreen: public Screen{
@@ -352,5 +390,24 @@ public:
     Screen* render();
 };
 //-------------------------End Parent: Edit---------------------------
+
+//-------------------------Parent: MultipleChoices--------------------------------
+
+class OneWord4DefScreen: public Screen
+{
+public:
+    OneWord4DefScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+class OneDef4WordScreen: public Screen
+{
+public:
+    OneDef4WordScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+//-------------------------End Parent: MultipleChoices---------------------------
+
 
 #endif // SCREENS_HPP

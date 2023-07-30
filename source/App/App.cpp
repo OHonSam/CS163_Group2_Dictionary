@@ -2,7 +2,7 @@
 
 App::App()
 {
-    CurrentScreen = new Home(&dict);
+    CurrentScreen = new HomeScreen(&dict);
 }
 
 void App::run()

@@ -18,7 +18,7 @@ bool Screen::checkStrOption(const std::string &str, int &choice)
 	return true;
 }
 
-bool Screen::checkStrEng(std::string str)
+bool Screen::checkStrEng(std::string& str)
 {
 	int length = str.size();
 	if (length > 100 || length == 0)
@@ -30,6 +30,23 @@ bool Screen::checkStrEng(std::string str)
 
 	for (int j = 0; j < length; ++j)
 		if (str[j] < 'a' || str[j] > 'z')
+			return false;
+
+	return true;
+}
+
+bool Screen::checkStrViet(std::string& str)
+{
+	int length = str.size();
+	if (length > 100 || length == 0)
+		return false;
+
+	for (char &c : str)
+		if (c >= 'A' && c <= 'Z')
+			c += 'a' - 'A';
+
+	for (int j = 0; j < length; ++j)
+		if (!((str[j] >= 'a' && str[j] <= 'z') || str[j] == ' '))
 			return false;
 
 	return true;
@@ -76,11 +93,23 @@ std::string Screen::inputEngString(const std::string &mess)
 
 	return str;
 }
+std::string Screen::inputVietString(const std::string &mess)
+{
+	std::string str;
+	std::cout << mess;
+	std::getline(std::cin, str, '\n');
+	while (!checkStrViet(str))
+	{
+		std::cout << "Invalid input. Please try again: ";
+		std::getline(std::cin, str, '\n');
+	}
 
+	return str;
+}
 //
 
-// Home
-Screen *Home::render()
+// HomeScreen
+Screen *HomeScreen::render()
 {
 	clearScr();
 
@@ -89,35 +118,39 @@ Screen *Home::render()
 	for (int i = 0; i < siz; ++i)
 		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 
-	Screen *nextScreen = this; //"this"->own object
-	int choice = inputOption(options.size());
-	switch (choice)
-	{
-	case 1:
-		nextScreen = new SearchScreen(dict);
-		break;
-	case 2:
-		nextScreen = new EditScreen(dict);
-		break;
-	case 3:
-		nextScreen = new ViewScreen(dict);
-		break;
-	case 4:
-		nextScreen = new DailyWordScreen(dict);
-		break;
-	case 5:
-		break;
-	case 6:
-		break;
-	case7:
-		break;
-	case 8: // Exit
-		nextScreen = nullptr;
-		break;
-	}
+        case 4: // Daily word
+            nextScreen=new DailyWordScreen(dict);
+    Screen* nextScreen=this;//"this"->own object
+    int choice=inputOption(options.size());
+    switch(choice)
+    {
+        case 1: // Search
+            nextScreen=new SearchScreen(dict);
+            break;
+        case 2: // View
+            nextScreen=new ViewScreen(dict);
+            break;
+        case 3: // Edit
+            nextScreen=new EditScreen(dict);
+            break;
+        case 4: // Daily word
+            break;
+        case 5: // Multi choices quiz
+			nextScreen=new MultiChoicesScreen(dict);
+            break;
+        case 6: // Reset to default
+            break;
+        case 7: // Switch datasets
+			nextScreen=new SwitchDataSetScreen(dict);
+            break;
+		default:
+			nextScreen=nullptr;
+			break;
+    }
 
 	return nextScreen;
 }
+		nextScreen = new HomeScreen(dict);
 //-------------------------Parent: Home-------------------------------
 Screen *SearchScreen::render()
 {
@@ -136,10 +169,31 @@ Screen *SearchScreen::render()
 		// nextScreen=new SearchForWordScreen(dict);
 		break;
 	case 3:
-		nextScreen = new Home(dict);
+		nextScreen = new HomeScreen(dict);
 		break;
 	}
 	return nextScreen;
+//-------------------------Parent: HomeScreen-------------------------------
+Screen* SearchScreen::render(){
+    clearScr();
+    for(int i=0;i<options.size();++i)
+        std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+    
+    Screen* nextScreen=this;//"this"->own object
+    int choice=inputOption(options.size());
+    switch(choice)
+    {
+        case 1:
+            nextScreen=new SearchForDefScreen(dict);
+            break;
+        case 2:
+            //nextScreen=new SearchForWordScreen(dict);
+            break;
+        case 3:
+            nextScreen=new HomeScreen(dict);
+            break;
+    }
+    return nextScreen;
 }
 
 Screen *ViewScreen::render()
@@ -148,6 +202,7 @@ Screen *ViewScreen::render()
 	for (int i = 0; i < options.size(); i++)
 		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 
+		nextScreen = new HomeScreen(dict);
 	Screen *nextScreen = this; //"this"->own object
 	int choice = inputOption(options.size());
 	switch (choice)
@@ -162,7 +217,7 @@ Screen *ViewScreen::render()
 		nextScreen = new SearchPrefixFavList(dict);
 		break;
 	case 4:
-		nextScreen = new Home(dict);
+		nextScreen = new HomeScreen(dict);
 		break;
 	}
 	return nextScreen;
@@ -174,6 +229,7 @@ Screen *EditScreen::render()
 	for (int i = 0; i < options.size(); i++)
 		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 
+		nextScreen = new HomeScreen(dict);
 	Screen *nextScreen = this; //"this"->own object
 	int choice = inputOption(options.size());
 	switch (choice)
@@ -203,7 +259,7 @@ Screen *EditScreen::render()
 		nextScreen = new DeleteAllHistoryScreen(dict);
 		break;
 	case 9:
-		nextScreen = new Home(dict);
+		nextScreen = new HomeScreen(dict);
 		break;
 	}
 	return nextScreen;
@@ -449,6 +505,7 @@ Screen *Display1PrefixModeScreen::render()
 		}
 	}
 	return nextScreen;
+
 }
 Screen *DisplayPrefixesModeScreen::render()
 {
