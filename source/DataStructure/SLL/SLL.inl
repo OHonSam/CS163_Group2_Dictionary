@@ -138,12 +138,7 @@ template<class T>
 bool SLL<T>::importSLLStr(const std::string& path) {
     std::ifstream fin;
     fin.open(path, std::ios::binary);
-    if (!fin.is_open()) {
-        //cout << "Can't open the file for reading!";
-        return false;
-    }
-    if(fin.peek() == std::ifstream::traits_type::eof())
-        return true;
+    if (!fin.good() || !fin.is_open()) return false;
     int len;
     while (fin.read((char*)&len,sizeof(int))) {
         char* arr = new char[len];
