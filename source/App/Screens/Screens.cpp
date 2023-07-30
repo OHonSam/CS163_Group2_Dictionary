@@ -260,7 +260,6 @@ Screen* SearchForDefScreen::render(){
 		int choice=inputOption(options.size());
 		switch(choice){
 			case 1:
-				//SearchForDefScreen::displayExactMode(word);
 				nextScreen=new DisplayExactModeScreen(dict,word);
 				break;
 			case 2:
@@ -270,7 +269,18 @@ Screen* SearchForDefScreen::render(){
 				nextScreen=new DisplayPrefixesModeScreen(dict,prefixes);
 				break;
 			case 4:
-				//return new SearchScreen(dict);
+				nextScreen=new SearchScreen(dict);
+				break;
+		}
+	}
+	else{
+		std::cout<<"No result found!\n";
+		std::cout<<"\nOptions: \n";
+		int cnt=0;
+		std::cout<<++cnt<<". "<<"Back\n";
+		int choice=inputOption(cnt);
+		switch(choice){
+			case 1:
 				nextScreen=new SearchScreen(dict);
 				break;
 		}
@@ -281,7 +291,7 @@ bool SearchForDefScreen::displayPrefix(std::vector<std::string>& prefixes)
 {
     //std::vector<std::string> prefixes=dict->searchPrefix(word);
     if(prefixes.empty()){
-        std::cout<<"No result found!\n";
+        //std::cout<<"No result found!\n";
 		return false;
 	}
     else{
@@ -333,6 +343,7 @@ Screen* DisplayExactModeScreen::render(){
 			break;
 		case 4:
 			nextScreen=new SearchScreen(dict);
+			break;
 	}
 	return nextScreen;
 }
@@ -360,7 +371,7 @@ Screen* Display1PrefixModeScreen::render(){
 	}
 	if(!found){
 		std::cout<<"No result found!\n";
-		std::cout<<"Options: \n";
+		std::cout<<"\nOptions: \n";
 		std::cout<<"1. Back\n";
 		int choice=inputOption(1);
 		switch(choice){
