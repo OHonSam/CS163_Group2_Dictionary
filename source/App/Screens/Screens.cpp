@@ -1143,10 +1143,10 @@ Screen *AddGivenWordFavListScreen::render()
 	switch (choice)
 	{
 	case 1:
-		nextScreen = new ViewFavListScreen(dict);
+		nextScreen = new DisplayExactModeScreen(dict, word);
 		break;
 	case 2:
-		nextScreen = new EditScreen(dict);
+		nextScreen = new Display1PrefixModeScreen(dict, prefixes);
 		break;
 	}
 	return nextScreen;

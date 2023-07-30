@@ -307,8 +307,8 @@ public:
 class ClearFavListScreen: public Screen{
 private:
     const std::vector<std::string> options = {
-        "Back to View History Screen",
-        "Back to Edit Screen"
+        // "Back to View History Screen",
+        // "Back to Edit Screen"
     };
 public:
     ClearFavListScreen(Dict* dict) : Screen(dict) {}
@@ -340,12 +340,15 @@ public:
 class AddGivenWordFavListScreen: public Screen{
 private:
     std::string word;
+    std::vector<std::string> prefixes;
     const std::vector<std::string> options = {
         "Back to View Favourite List Screen",
         "Back to Edit Screen"
     };
 public:
-    AddGivenWordFavListScreen(Dict* dict, const std::string& word) : Screen(dict), word(word) {}
+    AddGivenWordFavListScreen(Dict* dict, const std::string& w) : Screen(dict), word(w) {}
+    AddGivenWordFavListScreen(Dict* dict, const std::vector<std::string>& prefix) : Screen(dict), prefixes(prefix) {}
+
     Screen* render();
 };
 //-------------------------End Parent: Edit---------------------------
