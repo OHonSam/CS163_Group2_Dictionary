@@ -1,18 +1,18 @@
-// #include <gtest/gtest.h>
-// #include "SLL.hpp"
-// using namespace std;
+#include <gtest/gtest.h>
+#include "SLL.hpp"
+using namespace std;
 
-// const int N=8;
-// const string word[N]{
-//     "hello",
-//     "world",
-//     "fantastic",
-//     "dramatically",
-//     "I",
-//     "in",
-//     "the",
-//     "a"
-// };
+const int N=8;
+const string word[N]{
+    "hello",
+    "world",
+    "fantastic",
+    "dramatically",
+    "I",
+    "in",
+    "the",
+    "a"
+};
 
 // // TEST(SLL_test, push)
 // // {
@@ -59,28 +59,30 @@
 //         EXPECT_TRUE(sll.find(word[i]));
 //     ASSERT_TRUE(sll.clearHistory("SLL.bin"));
 // }
-// const int M=14;
-// const string word2[M]{
-//     "privilege",
-//     "mitigate",
-//     "love",
-//     "hate",
-//     "anticipate",
-//     "majestic",
-//     "breathtaking",
-//     "wonderful",
-//     "picturesque",
-//     "champion",
-//     "legendary",
-//     "meditation",
-//     "examination",
-//     "exaggeration"
-// };
-// TEST(SLL_test, SLLintoVector){
-//     SLL<string> sll;
-//     for(int i=0; i<N; i++)
-//         sll.push(word[i]);
-//     for(int i=0;i<M;i++)
-//         sll.push(word2[i]);
-//     EXPECT_EQ(sll.SLLintoVector().size(),20);
-// }
+const int M=14;
+const string word2[M]{
+    "privilege",
+    "mitigate",
+    "love",
+    "hate",
+    "anticipate",
+    "majestic",
+    "breathtaking",
+    "wonderful",
+    "picturesque",
+    "champion",
+    "legendary",
+    "meditation",
+    "examination",
+    "exaggeration"
+};
+
+TEST(SLL_test, SLLintoVector){
+    SLL<string> sll;
+    for(int i=0; i<N; i++)
+        sll.insert(word[i]);
+    for(int i=0;i<M;i++)
+        sll.insert(word2[i]);
+    std::cout<<sll.SLLintoVector().size()<<std::endl;
+    EXPECT_EQ(sll.SLLintoVector().size(),20);
+}
