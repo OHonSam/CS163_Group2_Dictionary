@@ -161,7 +161,6 @@ Screen *ViewScreen::render()
 	case 3:
 		nextScreen = new SearchPrefixFavList(dict);
 		break;
-
 	case 4:
 		nextScreen = new Home(dict);
 		break;
@@ -535,12 +534,12 @@ Screen *ViewHistoryScreen::render()
 	}
 	return nextScreen;
 }
-Screen *ViewHistoryScreen::render()
+Screen *ViewFavListScreen::render()
 {
 	clearScr();
 	Screen *nextScreen = this;
 	std::cout << "Your search history (20 most recent keywords):\n";
-	std::vector<std::string> display = dict->getHistory();
+	std::vector<std::string> display = dict->getFav();
 	for (int i = 0; i < display.size(); ++i)
 	{
 		std::cout << i + 1 << ". " << display[i] << std::endl;
@@ -553,15 +552,61 @@ Screen *ViewHistoryScreen::render()
 	switch (choice)
 	{
 	case 1:
-		nextScreen = new Search1WordHistoryScreen(dict);
+		nextScreen = new Add1WordFavListScreen(dict);
 		break;
 	case 2:
-		nextScreen = new Remove1WordHistoryScreen(dict);
+		nextScreen = new Remove1WordFavListScreen(dict);
 		break;
 	case 3:
-		nextScreen = new DeleteAllHistoryScreen(dict);
+		nextScreen = new ClearFavListScreen(dict);
 		break;
 	case 4:
+		nextScreen = new ViewScreen(dict);
+		break;
+	}
+	return nextScreen;
+}
+
+Screen *SearchPrefixFavList::render()
+{
+	clearScr();
+	Screen *nextScreen = this;
+	std::string prefix;
+	std::getline(std::cin, prefix);
+
+	std::cout << "Enter the prefix of word(s) you want to view: ";
+
+	while (!dict->lowerStrEng(prefix))
+	{
+		std::cout << "Invalid input. Please try again!\n";
+		std::cout << "Enter the prefix of word(s) you want to view: ";
+		std::getline(std::cin, prefix);
+	}
+
+	if (dict->isInFavList(prefix))
+	{
+		std::cout << "No result found!\n";
+	}
+	else
+	{
+		std::vector<std::string> display = dict->searchPrefixFavlist(prefix);
+		std::cout << "The words that start with <" << prefix << "> are: \n";
+
+		for (auto i : display)
+		{
+			std::cout << ++cnt << ". " << i << '\n';
+		}
+
+		std::cout << "\nThere are " << cnt << " words that start with <" << prefix << ">\n";
+	}
+
+	std::cout << "\nOptions: \n";
+	for (int i = 0; i < options.size(); ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
 		nextScreen = new ViewScreen(dict);
 		break;
 	}
@@ -1035,44 +1080,3 @@ Screen *Add1WordFavListScreen::render()
 }
 
 //-------------------------End Parent: EditScreen-------------------------------
-
-//----------------------Parent: FavListChoiceScreen-----------------------------
-Screen *SearchPrefixFavList::render()
-{
-	std::string prefix;
-	int cnt = 0;
-
-	clearScr();
-	Screen *nextScreen = this;
-
-	std::cout << "Please type in the prefix of word(s) you want to view: ";
-
-	std::getline(std::cin, prefix, '\n');
-
-	dict->uppercase2Lowercase(prefix);
-
-	std::vector<std::string> display = dict->searchPrefixFavlist(prefix);
-
-	if (display.empty())
-	{
-		std::cout << "No result found!\n";
-	}
-	else
-	{
-
-		std::cout << "The words that start with <" << prefix << "> are: \n";
-
-		for (auto i : display)
-		{
-			std::cout << ++cnt << ". " << i << '\n';
-		}
-
-		std::cout << "\nThere are " << cnt << " words that start with <" << prefix << ">\n";
-	}
-
-	cnt = 0;
-	std::cout << ++cnt << ". Back" << std::endl;
-	inputOption(cnt);
-	return new FavListChoiceScreen(dict);
-}
-//----------------------End Parent: FavListChoiceScreen--------------------------------------

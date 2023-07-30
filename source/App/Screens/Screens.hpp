@@ -179,7 +179,6 @@ public:
 class ViewFavListScreen: public Screen{
 private:
     const std::vector<std::string> options = {
-        "View your whole favourite list",
         "Search for definition(s) of a word in your favourite list",
         "Remove a word from your favourite list",
         "Clear your search history",
@@ -193,6 +192,10 @@ public:
 
 class SearchPrefixFavList : public Screen
 {
+    private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
 public:
     SearchPrefixFavList(Dict *dict) : Screen(dict) {}
     Screen *render();

@@ -169,6 +169,11 @@ bool Dict::isInDict(const std::string& word){
 bool Dict::isInHistory(const std::string& word){
     return history.find(word);
 }
+
+bool Dict::isInFavList(const std::string& word){
+    return favList.isStartedWith(word);
+}
+
 void Dict::addHistory(const std::string& word){
     history.insert(word);
 }
