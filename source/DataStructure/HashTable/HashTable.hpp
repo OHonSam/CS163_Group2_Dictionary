@@ -45,6 +45,7 @@ public:
 
 	// Find a definition for a required word	
 	Word* searchDef(const std::string& word);
+	void displayDef(const std::string& word);
 
 	//	Random a word and its definition
 	void initSeedForRandom();//to avoid srand() in for loop 

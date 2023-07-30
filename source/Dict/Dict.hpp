@@ -4,6 +4,7 @@
 #include "HashTable.hpp"
 #include "SLL.hpp"
 #include "Trie.hpp"
+#include "DefTrie.hpp"
 #include <Libraries.hpp>
 
 namespace RAW_DATA
@@ -15,6 +16,7 @@ namespace MAIN
 {
 	const std::string WORDS = "assets/DS/main/words.bin";
 	const std::string WORDDEF = "assets/DS/main/wordDef.bin";
+	const std::string DEFTRIE = "assets/DS/main/defTrie.bin";
 	const std::string FAVLIST = "assets/DS/main/favList.bin";
 	const std::string HISTORY = "assets/DS/main/history.bin";
 }
@@ -23,6 +25,7 @@ namespace DEFAULT
 {
 	const std::string WORDS = "assets/DS/default/words.bin";
 	const std::string WORDDEF = "assets/DS/default/wordDef.bin";
+	const std::string DEFTRIE = "assets/DS/default/defTrie.bin";
 	const std::string FAVLIST = "assets/DS/default/favList.bin";
 	const std::string HISTORY = "assets/DS/default/history.bin";
 }
@@ -36,8 +39,7 @@ private:
 	HashTable wordDef;
 	Trie words;
 	TST favList;
-
-	bool lowerStrEng(std::string &str);
+	DefTrie defTrie;	
 
 public:
 	// If first time running, import the raw dataset
@@ -45,8 +47,9 @@ public:
 	Dict();
 
 	// Save data structures before deleting
-	~Dict();
-
+	~Dict();	
+	// Check if a string is a valid English word (only contains letters from a to z) and convert uppercase letter to lowercase letter
+	bool lowerStrEng(std::string& str);
 	// Load from previous save data
 	bool loadFromPrev();
 
@@ -62,11 +65,20 @@ public:
 	// Add a new word and corresponding definition
 	void addWord(Word *word);
 
-	// Add a word to the favorite list
+	// Check if a string is a valid number representing part of speech
+	bool isValidPOS(const std::string &str, int &pos);
+
+	// Add a word to the favorite list 
 	void addFav(const std::string &word);
 
 	// Add a word to the history
 	void addHistory(const std::string &word); //
+
+	// Check if a word is already in the History list
+	bool isInHistory(const std::string &word);
+
+	// Check if a word is already in the Dictionary
+	bool isInDict(const std::string &word);
 
 	// Remove a word and corresponding definition
 	void removeWord(const std::string &word);
@@ -86,7 +98,10 @@ public:
 	std::vector<std::string> getFav();
 
 	// Return a definition for a required word
-	Word *searchDef(const std::string &word);
+	Word *searchForDef(const std::string &word);
+
+	// Return the word has given definition
+	std::vector<std::string> searchForWord(const std::string &def);
 
 	// Return the list of words which has an identical given prefix
 	std::vector<std::string> searchPrefix(const std::string &prefix);

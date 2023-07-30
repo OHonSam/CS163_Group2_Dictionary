@@ -38,12 +38,13 @@ public:
 	// Save to a binary file
 	bool saveSLLStr(const std::string& path);						
 
-	// Insert a value->limit to 20 history nodes 
-	void push(const T& key);//	
+	// Insert a value from user's typing into history SLL->limit to 20 history nodes 
+	void insert(const T& key);//
 	int countNodes(Node* head);			
 
-	// Find a value
-	// bool find(const T& key);			
+	// Push a value from file to history SLL
+	void push(const T& key);//	
+
 
 	// Remove a value
 	void pop(const T& key);//		
@@ -52,7 +53,7 @@ public:
 	std::vector<T> SLLintoVector();
 
 	// Check the existence of a word in the history SLL
-	// bool find(const T& key);
+	bool find(const T& key);
 
 	// Display the history SLL in UI
 	void display();	

@@ -67,17 +67,6 @@ int SLL<T>::countNodes(Node* head){
     return ans;
 }
 
-// template <class T>
-// inline bool SLL<T>::find(const T &key)
-// {
-//     Node* cur=head;
-//     while(cur!=nullptr){
-//         if(cur->data==key)
-//             return true;
-//         cur=cur->next;
-//     }
-//     return false;
-// }
 
 template <class T>
 void SLL<T>::push(const T &key)
@@ -90,8 +79,19 @@ void SLL<T>::push(const T &key)
     }
     tail->next=pNew;
     tail=pNew;  
+}
+template <class T>
+void SLL<T>::insert(const T& key){
+    Node* pNew=new Node(key);
+    if(head==nullptr){
+        head=pNew;
+        tail=head;
+        return;
+    }
+    pNew->next=head;
+    head=pNew;
     if(countNodes(head)>20){
-        pop(head->data);
+        pop(tail->data);
     }
 }
 
@@ -177,16 +177,16 @@ std::vector<T> SLL<T>::SLLintoVector(){
     return res;
 }
 
-// template<class T>
-// bool  SLL<T>::find(const T& key){
-//     Node* cur=head;
-//     while(cur!=nullptr){
-//         if(cur->data==key)
-//             return true;
-//         cur=cur->next;
-//     }
-//     return false;
-// }
+template<class T>
+bool SLL<T>::find(const T& key){
+     Node* cur=head;
+     while(cur!=nullptr){
+         if(cur->data==key)
+             return true;
+         cur=cur->next;
+     }
+     return false;
+ }
 
 template<class T>
 void SLL<T>::display(){
