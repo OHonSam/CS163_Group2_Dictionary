@@ -425,13 +425,14 @@ Screen* SearchForKeywordsScreen::render() {
 	clearScr();
     std::cout << "Enter a definition (may consist of one or lots of words) you want to search for: ";
     std::string def;
-    std::getline(std::cin, def, ' ');
-    while (!dict -> lowerStrEng(def))
-    {
-        std::cout<<"Invalid input. Please try again!\n";
-        std::cout<<"Enter a definition (may consist of one or lots of words) you want to search for: ";
-        std::getline(std::cin, def, ' ');
-    }
+    std::getline(std::cin, def);
+	// std::cout << def;
+    // while (!dict -> lowerStrEng(def))
+    // {
+    //     std::cout<<"Invalid input. Please try again!\n";
+    //     std::cout<<"Enter a definition (may consist of one or lots of words) you want to search for: ";
+    //     std::getline(std::cin, def);
+    // }
     std::cout << "Options: \n"
         <<"1. Search for the keyword\n"
         <<"2. If there are nonsense words in the definition you have given, we'll give you some suggestions\n"
