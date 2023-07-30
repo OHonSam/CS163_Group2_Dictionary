@@ -195,6 +195,22 @@ public:
 };
 
 
+class ViewFavListScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "View your whole favourite list",
+        "View word(s) starting with a prefix in your favourite list",
+        "Search for definition(s) of a word in your favourite list",
+        "Remove a word from your favourite list",
+        "Clear your search history",
+        "Back"
+    };
+public:
+    ViewFavListScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+
+
 //-------------------------End Parent: ViewScreen---------------------------
 
 
