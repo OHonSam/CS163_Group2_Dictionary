@@ -431,16 +431,19 @@ Screen* Display1PrefixModeScreen::render(){
 		int choice=inputOption(options.size());
 		switch(choice){
 			case 1:
-				//Edit this word (haven't implemented screen yet)
+				clearScr();
+				nextScreen= new EditSearchWordScreen(dict,word);
 				break;
 			case 2:
-				//Remove this word
+				clearScr();
+				nextScreen=new DeleteSearchWordScreen(dict,word);
 				break;
 			case 3:
 				nextScreen= new Type2InsertWordFavListScreen(dict);
 				break;
 			case 4:
 				nextScreen=new SearchScreen(dict);
+				break;
 		}
 	}
 	return nextScreen;
@@ -614,25 +617,6 @@ Screen *AddWordScreen::render(){
 			std::getline(std::cin,buffer,'\n');
 			w->def[*itr-1].push_back(buffer);
 		}
-
-
-		// for(int i=0;i<POS::Count;++i){
-		// 	if(!(ss>>pos[i])|| pos[i]<1||pos[i]>POS::Count){
-		// 		std::cout<<"Invalid input. Please try again!\n";
-		// 		std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
-		// 		std::getline(std::cin,buffer,'\n');
-		// 		ss.clear();
-		// 		ss.str(buffer);
-		// 		i=-1;
-		// 	}
-		// }
-		// for(int i=0;i<POS::Count;++i){
-		// 	if(pos[i]==0) 
-		// 		continue;
-		// 	std::cout<<"Enter the word's definition as "<<POS::TypeString[pos[i]-1]<<": ";
-		// 	std::getline(std::cin,buffer,'\n');
-		// 	w->def[pos[i]-1].push_back(buffer);
-		// }
 
 		dict->addWord(w);
 		std::cout<<"The new word has been added to the dictionary!\n";
