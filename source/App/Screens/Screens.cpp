@@ -552,7 +552,7 @@ Screen *ViewFavListScreen::render()
 	switch (choice)
 	{
 	case 1:
-		nextScreen = new Add1WordFavListScreen(dict);
+		nextScreen = new Search1WordFavListScreen(dict);
 		break;
 	case 2:
 		nextScreen = new Remove1WordFavListScreen(dict);
@@ -663,8 +663,58 @@ Screen *Search1WordHistoryScreen::render()
 	}
 	return nextScreen;
 }
-
 //-------------------------End Parent: ViewHistoryScreen-------------------------------
+
+
+//-------------------------Parent: ViewFavListScreen--------------------------------
+Screen *Search1WordFavListScreen::render()
+{
+	Screen *nextScreen = this;
+	std::cout << "Enter the word from favourite list you want to search for: ";
+	std::string word;
+	std::getline(std::cin, word);
+
+	while (!dict->lowerStrEng(word))
+	{
+		std::cout << "Invalid input. Please try again!\n";
+		std::cout << "Enter the word you want to search for: ";
+		std::getline(std::cin, word);
+	}
+
+	if (!dict->isInFavList(word))
+	{
+		std::cout << "No result found!\n";
+	}
+	else
+	{
+		Word *w = dict->searchForDef(word);
+		std::cout << "The keyword that you are looking for is: " << w->word << std::endl;
+		for (int type = 0; type < POS::Count; ++type)
+		{
+			if (w->def[type].empty())
+				continue;
+			std::cout << "\t" << POS::TypeString[type] << ": " << std::endl;
+			for (int idx = 0; idx < w->def[type].size(); ++idx)
+			{
+				std::cout << "\t\t" << idx + 1 << ". " << w->def[type][idx] << std::endl;
+			}
+		}
+	}
+
+	std::cout << "\nOptions: \n";
+	for (int i = 0; i < options.size(); ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
+		nextScreen = new ViewFavListScreen(dict);
+		break;
+	}
+	return nextScreen;
+}
+//-------------------------End Parent: ViewFavListScreen---------------------------
+
 
 //-------------------------Parent: EditScreen-----------------------------------
 Screen *AddWordScreen::render()

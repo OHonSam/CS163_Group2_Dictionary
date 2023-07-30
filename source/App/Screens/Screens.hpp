@@ -188,7 +188,6 @@ public:
     ViewFavListScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-//fix
 
 class SearchPrefixFavList : public Screen
 {
@@ -218,6 +217,18 @@ public:
 
 //-------------------------End Parent: ViewHistoryScreen---------------------------
 
+//-------------------------Parent: ViewFavListScreen--------------------------------
+
+class Search1WordFavListScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    Search1WordFavListScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
+//-------------------------End Parent: ViewFavListScreen---------------------------
 
 //-------------------------Parent: EditScreen--------------------------------
 class AddWordScreen: public Screen{
