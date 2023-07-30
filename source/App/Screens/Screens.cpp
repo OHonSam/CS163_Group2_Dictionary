@@ -117,9 +117,6 @@ Screen *HomeScreen::render()
 	int siz = options.size();
 	for (int i = 0; i < siz; ++i)
 		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
-
-        case 4: // Daily word
-            nextScreen=new DailyWordScreen(dict);
     Screen* nextScreen=this;//"this"->own object
     int choice=inputOption(options.size());
     switch(choice)
@@ -134,6 +131,7 @@ Screen *HomeScreen::render()
             nextScreen=new EditScreen(dict);
             break;
         case 4: // Daily word
+			nextScreen=new DailyWordScreen(dict);
             break;
         case 5: // Multi choices quiz
 			nextScreen=new MultiChoicesScreen(dict);
@@ -150,32 +148,13 @@ Screen *HomeScreen::render()
 
 	return nextScreen;
 }
-		nextScreen = new HomeScreen(dict);
-//-------------------------Parent: Home-------------------------------
-Screen *SearchScreen::render()
-{
-	clearScr();
-	for (int i = 0; i < options.size(); ++i)
-		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 
-	Screen *nextScreen = this; //"this"->own object
-	int choice = inputOption(options.size());
-	switch (choice)
-	{
-	case 1:
-		nextScreen = new SearchForDefScreen(dict);
-		break;
-	case 2:
-		// nextScreen=new SearchForWordScreen(dict);
-		break;
-	case 3:
-		nextScreen = new HomeScreen(dict);
-		break;
-	}
-	return nextScreen;
 //-------------------------Parent: HomeScreen-------------------------------
+
+//missing the switch case data set
 Screen* SearchScreen::render(){
     clearScr();
+
     for(int i=0;i<options.size();++i)
         std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
     
@@ -201,8 +180,6 @@ Screen *ViewScreen::render()
 	clearScr();
 	for (int i = 0; i < options.size(); i++)
 		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
-
-		nextScreen = new HomeScreen(dict);
 	Screen *nextScreen = this; //"this"->own object
 	int choice = inputOption(options.size());
 	switch (choice)
@@ -228,8 +205,6 @@ Screen *EditScreen::render()
 
 	for (int i = 0; i < options.size(); i++)
 		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
-
-		nextScreen = new HomeScreen(dict);
 	Screen *nextScreen = this; //"this"->own object
 	int choice = inputOption(options.size());
 	switch (choice)
@@ -294,9 +269,43 @@ Screen *DailyWordScreen::render()
 		nextScreen = new DailyWordScreen(dict);
 		break;
 	case 2:
-		nextScreen = new Home(dict);
+		nextScreen = new HomeScreen(dict);
 		break;
 	}
+	return nextScreen;
+}
+Screen *SwitchDataSetScreen::render()
+{
+	clearScr();
+
+	std::cout << "Which dataset would you like to use?\n" << std::endl;
+	for (int i = 0; i < options.size(); ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+
+	Screen *nextScreen = this;
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
+		dict->switchDataSet(DataSet::EE);
+		std::cout << "Switched to English - English dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		return new HomeScreen(dict);
+	case 2:
+		dict->switchDataSet(DataSet::EV);
+		std::cout << "Switched to English - Vietnamese dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		return new HomeScreen(dict);
+	case 3:
+		// SetNextScreen(app, new VieEngScreen());
+		break;
+	case 4:
+		nextScreen = new HomeScreen(dict);
+		break;
+	}
+
 	return nextScreen;
 }
 //-------------------------End Parent: Home---------------------------
@@ -307,15 +316,17 @@ Screen *SearchForDefScreen::render()
 	clearScr();
 
 	Screen *nextScreen = this;
-
-	std::cout << "Enter the word you want to search for: ";
+    
+	//std::cout << "Enter the word you want to search for: ";
 	std::string word;
-	std::getline(std::cin, word);
-	while (!dict->lowerStrEng(word))
+	switch(dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the word you want to search for: ";
-		std::getline(std::cin, word);
+		case DataSet::VE:
+			word=inputVietString("Enter the word you want to search for: ");
+			break;
+		default:
+			word=inputEngString("Enter the word you want to search for: ");
+			break;
 	}
 	std::vector<std::string> prefixes = dict->searchPrefix(word);
 	if (displayPrefix(prefixes))
@@ -1056,7 +1067,7 @@ Screen *DeleteAllHistoryScreen::render()
 	switch (choice)
 	{
 	case 1:
-		if (dict->clearAllHistory(MAIN::HISTORY))
+		if (dict->clearAllHistory())
 			std::cout << "Your search history has been successfully deleted!\n";
 		else
 			std::cout << "Errors occurred in clearing time!\n";
@@ -1095,7 +1106,7 @@ Screen *ClearFavListScreen::render()
 	switch (choice)
 	{
 	case 1:
-		if (dict->clearFavList(MAIN::FAVLIST))
+		if (dict->clearFavList())
 			std::cout << "Your favourite list has been successfully deleted!\n";
 		else
 			std::cout << "Errors occurred while clearing!\n";

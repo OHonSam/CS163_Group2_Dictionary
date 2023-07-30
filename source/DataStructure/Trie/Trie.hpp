@@ -3,7 +3,6 @@
 
 #include <Libraries.hpp>
 
-const int ALPHABET_SIZE = 28;
 class Trie
 {
 private:

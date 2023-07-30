@@ -47,6 +47,7 @@ public:
 	Word* searchDef(const std::string& word);
 
 	//	Random a word and its definition
+	void initSeedForRandom();
 	Word* randomWordOfDay();//call initSeedForRandom() before randomWordOfDay()
 
 	// Get the list of random k word-definition pairs
