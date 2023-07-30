@@ -336,6 +336,18 @@ public:
     Add1WordFavListScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
+
+class AddGivenWordFavListScreen: public Screen{
+private:
+    std::string word;
+    const std::vector<std::string> options = {
+        "Back to View Favourite List Screen",
+        "Back to Edit Screen"
+    };
+public:
+    AddGivenWordFavListScreen(Dict* dict, const std::string& word) : Screen(dict), word(word) {}
+    Screen* render();
+};
 //-------------------------End Parent: Edit---------------------------
 
 #endif // SCREENS_HPP
