@@ -32,10 +32,34 @@ namespace POS
         "Other"
     };
 
+    const std::string TypeStringViet[] = {
+        "danh tu",
+        "dong tu",
+        "tinh tu",
+        "trang tu",
+        "dai tu",
+        "giap tu",
+        "lien tu",
+        "thanh tu",
+        "khac"
+    };
+
+    const std::string TypeStringVE[] = {
+        "noun",
+        "verb",
+        "adj",
+        "adverb",
+        "pronoun",
+        "prep",
+        "conj",
+        "interj",
+        "other"
+    };
+
     const std::string TypeShort[] = {
         "n.",
         "v.",
-        "adj.",
+        "a.",
         "adv.",
         "pron.",
         "prep.",
@@ -46,6 +70,8 @@ namespace POS
 
     unsigned int getIndex(unsigned int type);
     unsigned int getType(const std::string& str);
+    unsigned int getTypeViet(const std::string& str);
+    unsigned int getTypeVE(const std::string& str);
     std::string getTypeString(unsigned int type);
 }
 
@@ -59,6 +85,9 @@ struct Word
     Word(const std::string& word);
     Word(const std::string& word, unsigned int type);
     Word(const std::string& word, unsigned int type, const std::string& def);
+
+    bool checkDef(const std::string& def);
+    std::string getRandDef();
 };
 
 #endif // WORD_H

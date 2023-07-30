@@ -6,13 +6,17 @@ int Trie::getIndex(char c)
         return c - 'a';
     if (c >= 'A' && c <= 'Z')
         return c - 'A';
+    if (c==' ') return ALPHABET_SIZE-1;
+    if (c=='-') return ALPHABET_SIZE-2;
     return -1;
 }
 char Trie::rGetIndex(int index)
 {
     if (index < 0 || index >= ALPHABET_SIZE)
         return '\0';
-    return index + 'a';
+    if (index < 26) return index + 'a';
+    if (index == ALPHABET_SIZE-1) return ' ';
+    if (index == ALPHABET_SIZE-2) return '-';
 }
 
 bool Trie::checkExist(const std::string &key)
@@ -117,10 +121,7 @@ void Trie::clear()
 bool Trie::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
-    if (!file.is_open())
-        return false;
-    if(file.peek() == std::ifstream::traits_type::eof())
-        return true;
+    if (!file.good() || !file.is_open()) return false;
     import(root, file);
     file.close();
     return true;

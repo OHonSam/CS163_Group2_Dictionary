@@ -5,13 +5,19 @@ bool Dict::reset(){
     wordDef.clear();
     favList.clear();
     history.clearSLL();
-    return 
-        words.import(DEFAULT::WORDS) &&
-        wordDef.import(DEFAULT::WORDDEF) &&
-        defTrie.import(DEFAULT::DEFTRIE) &&
-        favList.import(DEFAULT::FAVLIST) &&
-        history.importSLLStr(DEFAULT::HISTORY)
-    ;
+    return setup();
+}
+
+bool Dict::switchDataSet(DataSet::Type type)
+{
+    if(curDataSet==type) return true;
+    curDataSet=type;
+    return reset();
+}
+
+DataSet::Type Dict::getCurDataSet() const
+{
+    return curDataSet;
 }
 
 void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
@@ -40,38 +46,83 @@ bool Dict::lowerStrEng(std::string &str)
     return true;
 }
 
-Dict::Dict()
+bool Dict::lowerStrViet(std::string &str)
 {
-    if(!loadFromPrev())
-    {
-        importEECsv(RAW_DATA::EE);
+    for (char &c : str) c=std::tolower(c);
+    for (char c: str)
+        if (!(('a'<=c && c<='z') || c==' ' || c=='-'))
+            return false;
+    return true;
+}
 
-        words.save(DEFAULT::WORDS);
-        wordDef.save(DEFAULT::WORDDEF);
-        defTrie.save(DEFAULT::DEFTRIE);
-        favList.save(DEFAULT::FAVLIST);
-        history.saveSLLStr(DEFAULT::HISTORY);
-    }
+Dict::Dict(): curDataSet(DataSet::EE)
+{
+    setup();
 }
 
 Dict::~Dict()
 {
-    words.save(MAIN::WORDS);
-    wordDef.save(MAIN::WORDDEF);
-    defTrie.save(MAIN::DEFTRIE);
-    favList.save(MAIN::FAVLIST);
-    history.saveSLLStr(MAIN::HISTORY);
+    switch(curDataSet){
+        case DataSet::EE:
+            words.save(MAIN::EE::WORDS);
+            wordDef.save(MAIN::EE::WORDDEF);
+            favList.save(MAIN::EE::FAVLIST);
+            history.saveSLLStr(MAIN::EE::HISTORY);
+            break;
+        case DataSet::EV:
+            words.save(MAIN::EV::WORDS);
+            wordDef.save(MAIN::EV::WORDDEF);
+            favList.save(MAIN::EV::FAVLIST);
+            history.saveSLLStr(MAIN::EV::HISTORY);
+            break;
+        case DataSet::VE:
+            words.save(MAIN::VE::WORDS);
+            wordDef.save(MAIN::VE::WORDDEF);
+            favList.save(MAIN::VE::FAVLIST);
+            history.saveSLLStr(MAIN::VE::HISTORY);
+            break;
+        case DataSet::Slang:
+            words.save(MAIN::Slang::WORDS);
+            wordDef.save(MAIN::Slang::WORDDEF);
+            favList.save(MAIN::Slang::FAVLIST);
+            history.saveSLLStr(MAIN::Slang::HISTORY);
+            break;
+    }
 }
 
 bool Dict::loadFromPrev()
 {
-    return 
-        words.import(MAIN::WORDS) &&
-        wordDef.import(MAIN::WORDDEF) &&
-        defTrie.import(MAIN::DEFTRIE) &&
-        favList.import(MAIN::FAVLIST) &&
-        history.importSLLStr(MAIN::HISTORY)
-    ;
+    switch(curDataSet){
+        case DataSet::EE:
+            return 
+                words.import(MAIN::EE::WORDS) &&
+                wordDef.import(MAIN::EE::WORDDEF) &&
+                favList.import(MAIN::EE::FAVLIST) &&
+                history.importSLLStr(MAIN::EE::HISTORY)
+            ;
+        case DataSet::EV:
+            return 
+                words.import(MAIN::EV::WORDS) &&
+                wordDef.import(MAIN::EV::WORDDEF) &&
+                favList.import(MAIN::EV::FAVLIST) &&
+                history.importSLLStr(MAIN::EV::HISTORY)
+            ;
+        case DataSet::VE:
+            return 
+                words.import(MAIN::VE::WORDS) &&
+                wordDef.import(MAIN::VE::WORDDEF) &&
+                favList.import(MAIN::VE::FAVLIST) &&
+                history.importSLLStr(MAIN::VE::HISTORY)
+            ;
+        case DataSet::Slang:
+            return 
+                words.import(MAIN::Slang::WORDS) &&
+                wordDef.import(MAIN::Slang::WORDDEF) &&
+                favList.import(MAIN::Slang::FAVLIST) &&
+                history.importSLLStr(MAIN::Slang::HISTORY)
+            ;
+    }
+    return false;
 }
 
 bool Dict::importEECsv(const std::string &path)
@@ -116,30 +167,183 @@ bool Dict::importEECsv(const std::string &path)
     return true;
 }
 
-void Dict::getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord)
+bool Dict::importEVTxt(const std::string &path)
 {
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::ifstream in(path);
+    if(!in.good() || !in.is_open()) return false;
 
-    std::vector<Word*> list=wordDef.getRandom(numChoices);
-    if(isWord)
+    int cnt=0;
+    std::string line;
+    while(getline(in,line) && cnt<LIM_WORDS)
     {
-        ques=list[0]->word;
-        for(int i=0;i<numChoices;++i)
-            choices.push_back(list[i]->word);
-    }
-    else
-    {
-        for(int i=0; i<POS::Count; i++)
-            if(!list[0]->def[i].empty())
-            {
-                ques=list[0]->def[i][0];
-                break;
+        if(line.empty() || line[0]!='@' || line[1]=='0') continue;
+
+        std::string word;
+        {
+            int p=line.find('/');
+            word=line.substr(1,p-2);
+        }
+
+        if(!lowerStrEng(word)) continue;
+
+        Word* w=new Word(word);
+
+        bool flag=false;
+        while(1){
+            if(!flag){
+                getline(in,line);
+                if(line.empty() || line[0]!='*') break;
             }
-        for(int i=0;i<numChoices;++i)
-            choices.push_back(list[i]->word);
+
+            std::string POS;
+            {
+                int p=line.find(',');
+                if(p==std::string::npos)
+                    POS=line.substr(3);
+                else
+                    POS=line.substr(3,p-3);
+            }
+
+            unsigned int ind=POS::getTypeViet(POS);
+            w->type|=ind;
+
+            flag=false;
+            while(getline(in,line)){
+                if(line.empty()) break;
+                if(line[0]=='*'){
+                    flag=true;
+                    break;
+                }
+                if(line[0]!='-') continue;
+
+                w->def[POS::getIndex(ind)].push_back(line.substr(2));
+            }
+        }
+
+        addWord(w);
+        cnt++;
     }
 
-    std::shuffle(choices.begin(),choices.end(),std::default_random_engine(seed));
+    return true;
+}
+
+bool Dict::importVETxt(const std::string &path)
+{
+    std::ifstream in(path);
+    if(!in.good() || !in.is_open()) return false;
+
+    int cnt=0;
+    std::string line;
+    while(getline(in,line) && cnt<LIM_WORDS)
+    {
+        if(line.empty() || line[0]!='@' || line[1]=='0') continue;
+
+        std::string word=line.substr(1);
+
+        if(!lowerStrViet(word)) continue;
+
+        Word* w=new Word(word);
+
+        bool flag=false;
+        while(1){
+            if(line.empty()) break;
+            if(!flag){
+                getline(in,line);
+                if(line.empty() || line[0]!='*') break;
+            }
+
+            std::string POS;
+            {
+                int p=line.find(',');
+                if(p==std::string::npos)
+                    POS=line.substr(2);
+                else
+                    POS=line.substr(2,p-3);
+            }
+
+            unsigned int ind=POS::getTypeVE(POS);
+            w->type|=ind;
+
+            flag=false;
+            while(getline(in,line)){
+                if(line.empty()) break;
+                if(line[0]=='*'){
+                    flag=true;
+                    break;
+                }
+                if(line[0]!='-') continue;
+
+                w->def[POS::getIndex(ind)].push_back(line.substr(2));
+            }
+        }
+
+        addWord(w);
+        cnt++;
+    }
+
+    return true;
+}
+
+bool Dict::importSlangCsv(const std::string &path)
+{
+    std::ifstream in(path);
+    if(!in.is_open()) return false;
+
+    std::string line;
+    std::getline(in,line);
+
+    int cnt=0;
+    while(!in.eof() && cnt<LIM_WORDS)
+    {
+        std::string ign, word, def;
+        std::getline(in,ign,',');
+        std::getline(in,word,',');
+        for(int i=0; i<3; i++) std::getline(in,ign,',');
+        std::getline(in,def,'\n');
+
+        if(!lowerStrEng(word)) continue;
+
+        addWord(new Word(word,POS::Other,def));
+        cnt++;
+    }
+    in.close();
+    return true;
+}
+
+bool Dict::setup()
+{
+    if(!loadFromPrev())
+        switch(curDataSet){
+            case DataSet::EE:
+                return 
+                    importEECsv(RAW_DATA::EE) &&
+                    words.save(DEFAULT::EE::WORDS) &&
+                    wordDef.save(DEFAULT::EE::WORDDEF) &&
+                    favList.save(DEFAULT::EE::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::EE::HISTORY);
+            case DataSet::EV:
+                return 
+                    importEVTxt(RAW_DATA::EV) &&
+                    words.save(DEFAULT::EV::WORDS) &&
+                    wordDef.save(DEFAULT::EV::WORDDEF) &&
+                    favList.save(DEFAULT::EV::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::EV::HISTORY);
+            case DataSet::VE:
+                return 
+                    importVETxt(RAW_DATA::VE) &&
+                    words.save(DEFAULT::VE::WORDS) &&
+                    wordDef.save(DEFAULT::VE::WORDDEF) &&
+                    favList.save(DEFAULT::VE::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::VE::HISTORY);
+            case DataSet::Slang:
+                return 
+                    importSlangCsv(RAW_DATA::Slang) &&
+                    words.save(DEFAULT::Slang::WORDS) &&
+                    wordDef.save(DEFAULT::Slang::WORDDEF) &&
+                    favList.save(DEFAULT::Slang::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::Slang::HISTORY);
+        }
+    return false;
 }
 
 void Dict::addHistory(const std::string& word){
@@ -178,6 +382,11 @@ std::vector<std::string> Dict::searchPrefix(const std::string &prefix)
 std::vector<std::string> Dict::searchPrefixFavlist(const std::string &prefix)
 {
     return favList.startWith(prefix);
+}
+
+std::vector<Word *> Dict::getMultiChoices(int k)
+{
+    return wordDef.getRandom(k);
 }
 
 void Dict::removeWord(const std::string& word){

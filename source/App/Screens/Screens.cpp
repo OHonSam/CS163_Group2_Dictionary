@@ -18,7 +18,7 @@ bool Screen::checkStrOption(const std::string &str, int &choice)
 	return true;
 }
 
-bool Screen::checkStrEng(std::string str)
+bool Screen::checkStrEng(std::string& str)
 {
 	int length = str.size();
 	if (length > 100 || length == 0)
@@ -30,6 +30,23 @@ bool Screen::checkStrEng(std::string str)
 
 	for (int j = 0; j < length; ++j)
 		if (str[j] < 'a' || str[j] > 'z')
+			return false;
+
+	return true;
+}
+
+bool Screen::checkStrViet(std::string& str)
+{
+	int length = str.size();
+	if (length > 100 || length == 0)
+		return false;
+
+	for (char &c : str)
+		if (c >= 'A' && c <= 'Z')
+			c += 'a' - 'A';
+
+	for (int j = 0; j < length; ++j)
+		if (!((str[j] >= 'a' && str[j] <= 'z') || str[j] == ' '))
 			return false;
 
 	return true;
@@ -77,45 +94,62 @@ std::string Screen::inputEngString(const std::string &mess)
 
 	return str;
 }
+std::string Screen::inputVietString(const std::string &mess)
+{
+	std::string str;
+	std::cout << mess;
+	std::getline(std::cin, str, '\n');
+	while (!checkStrViet(str))
+	{
+		std::cout << "Invalid input. Please try again: ";
+		std::getline(std::cin, str, '\n');
+	}
+
+	return str;
+}
 //
 
-// Home
-Screen *Home::render()
+// HomeScreen
+Screen *HomeScreen::render()
 {
 	clearScr();
 
 	std::cout << "Welcome to Dictionary!" << std::endl;
 	int siz = options.size();
 	for (int i = 0; i < siz; ++i)
-		std::cout << std::to_string(i+1) << ". " << options[i] << std::endl;
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 
     Screen* nextScreen=this;//"this"->own object
     int choice=inputOption(options.size());
     switch(choice)
     {
-        case 1:
+        case 1: // Search
             nextScreen=new SearchScreen(dict);
             break;
-        case 2:
-            nextScreen=new EditScreen(dict);
-            break;
-        case 3:
+        case 2: // View
             nextScreen=new ViewScreen(dict);
             break;
-        case 4:
+        case 3: // Edit
+            nextScreen=new EditScreen(dict);
             break;
-        case 5:
+        case 4: // Daily word
             break;
-        case 6:
+        case 5: // Multi choices quiz
+			nextScreen=new MultiChoicesScreen(dict);
             break;
-        case 7: // Exit
-            nextScreen = nullptr;
+        case 6: // Reset to default
             break;
+        case 7: // Switch datasets
+			nextScreen=new SwitchDataSetScreen(dict);
+            break;
+		default:
+			nextScreen=nullptr;
+			break;
     }
 
 	return nextScreen;
 }
-//-------------------------Parent: Home-------------------------------
+//-------------------------Parent: HomeScreen-------------------------------
 Screen* SearchScreen::render(){
     clearScr();
     for(int i=0;i<options.size();++i)
@@ -132,12 +166,11 @@ Screen* SearchScreen::render(){
             //nextScreen=new SearchForWordScreen(dict);
             break;
         case 3:
-            nextScreen=new Home(dict);
+            nextScreen=new HomeScreen(dict);
             break;
     }
     return nextScreen;
 }
-//-------------------------End Parent: Home-------------------------------
 
 Screen *ViewScreen::render()
 {
@@ -159,7 +192,7 @@ Screen *ViewScreen::render()
         case 4:
             break;
         case 5: 
-            nextScreen=new Home(dict);
+            nextScreen=new HomeScreen(dict);
             break;
     }
     return nextScreen;
@@ -196,7 +229,7 @@ Screen *EditScreen::render()
             nextScreen=new DeleteAllHistoryScreen(dict);
             break;
         case 8:
-            nextScreen=new Home(dict);
+            nextScreen=new HomeScreen(dict);
             break;
     }
     return nextScreen;
@@ -227,27 +260,99 @@ Screen *FavListChoiceScreen::render()
 		// SetNextScreen(app, new SearchPrefixFavList());
 		break;
 	case 4:
-		nextScreen = new Home(dict);
+		nextScreen = new HomeScreen(dict);
 		break;
 	}
 
 	return nextScreen;
 }
-//-------------------------End Parent: Home---------------------------
+
+Screen *MultiChoicesScreen::render()
+{
+	clearScr();
+
+	std::cout << ques << std::endl;
+	for (int i = 0; i < options.size(); ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+
+	Screen *nextScreen = this;
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+		case 1: // 1 word and 4 definitions
+			nextScreen = new OneWord4DefScreen(dict);
+			break;
+		case 2: // 1 definition and 4 words
+			nextScreen = new OneDef4WordScreen(dict);
+			break;
+		case 3:
+			nextScreen = new HomeScreen(dict);
+			break;
+	}
+
+	return nextScreen;
+}
+
+Screen *SwitchDataSetScreen::render()
+{
+	clearScr();
+
+	std::cout << "Which dataset would you like to use?\n" << std::endl;
+	for (int i = 0; i < options.size(); ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+
+	Screen *nextScreen = this;
+	int choice = inputOption(options.size());
+	switch (choice)
+	{
+	case 1:
+		dict->switchDataSet(DataSet::EE);
+		std::cout << "Switched to English - English dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		break;
+	case 2:
+		dict->switchDataSet(DataSet::EV);
+		std::cout << "Switched to English - Vietnamese dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		break;
+	case 3:
+		dict->switchDataSet(DataSet::VE);
+		std::cout << "Switched to Vietnamese - English dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		break;
+	case 4:
+		dict->switchDataSet(DataSet::Slang);
+		std::cout << "Switched to Slang words dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		break;
+	default:
+		break;
+	}
+
+	return new HomeScreen(dict);
+}
+
+//-------------------------End Parent: HomeScreen---------------------------
 
 //-------------------------Parent: SearchScreen-----------------------------------
 Screen* SearchForDefScreen::render(){
     clearScr();
-    std::cout<<"Enter the word you want to search for: ";
+    std::string mess="Enter the word you want to search for: ";
     std::string word;
-    std::getline(std::cin,word);
-    while(!dict->lowerStrEng(word))
-    {
-        std::cout<<"Invalid input. Please try again!\n";
-        std::cout<<"Enter the word you want to search for: ";
-        std::string word;
-        std::getline(std::cin,word);
-    }
+	
+	switch (dict->getCurDataSet()){
+		case DataSet::VE:
+			word=inputVietString(mess);
+			break;
+		default:
+			word=inputEngString(mess);
+			break;
+	}
+
     std::cout<<"Options: \n"
         <<"1. Search for the exact word\n"
         <<"2. Search for the words that has the same prefix\n"
@@ -451,3 +556,77 @@ Screen *SearchPrefixFavList::render()
 	return new FavListChoiceScreen(dict);
 }
 //----------------------End Parent: FavListChoiceScreen--------------------------------------
+
+//-------------------------Parent: MultipleChoices--------------------------------
+
+Screen *OneWord4DefScreen::render()
+{
+	clearScr();
+
+	const int N=4;
+
+	std::vector<Word*> v=dict->getMultiChoices(N);
+
+	std::vector<std::pair<std::string,int>> options;
+	for(int i=0; i<N; i++) options.push_back({v[i]->getRandDef(),i});
+
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	std::shuffle(options.begin(),options.end(),std::default_random_engine(seed));
+
+	std::cout << "Choose the correct definition for the word: " << v[0]->word << std::endl;
+	for (int i = 0; i < N; ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i].first << std::endl << std::endl;
+	std::cout << std::to_string(N + 1) << ". " << "Back" << std::endl;
+
+	while(1)
+	{
+		int choice = inputOption(N + 1);
+		if(choice==N+1) return new MultiChoicesScreen(dict);
+
+		if(options[choice-1].second==0){
+			std::cout<<"Correct!"<<std::endl;
+			std::cout<<"Press 1 to go back to the previous page."<<std::endl;
+			inputOption(1);
+			return new MultiChoicesScreen(dict);
+		}
+		else
+			std::cout<<"Incorrect! Please try again."<<std::endl;
+	}
+}
+
+Screen *OneDef4WordScreen::render()
+{
+    clearScr();
+
+	const int N=4;
+
+	std::vector<Word*> v=dict->getMultiChoices(N);
+
+	std::vector<std::pair<std::string,int>> options;
+	for(int i=0; i<N; i++) options.push_back({v[i]->word,i});
+	
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	std::shuffle(options.begin(),options.end(),std::default_random_engine(seed));
+
+	std::cout << "Choose the correct definition for the word: " << v[0]->getRandDef() << std::endl;
+	for (int i = 0; i < N; ++i)
+		std::cout << std::to_string(i + 1) << ". " << options[i].first << std::endl << std::endl;
+	std::cout << std::to_string(N + 1) << ". " << "Back" << std::endl;
+
+	while(1)
+	{
+		int choice = inputOption(N + 1);
+		if(choice==N+1) return new MultiChoicesScreen(dict);
+
+		if(options[choice-1].second==0){
+			std::cout<<"Correct!"<<std::endl;
+			std::cout<<"Press 1 to go back to the previous page."<<std::endl;
+			inputOption(1);
+			return new MultiChoicesScreen(dict);
+		}
+		else
+			std::cout<<"Incorrect! Please try again."<<std::endl;
+	}
+}
+
+//-------------------------End Parent: MultipleChoices---------------------------

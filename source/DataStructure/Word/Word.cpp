@@ -29,6 +29,32 @@ Word::Word(const std::string &word, unsigned int type, const std::string &def)
             this->def[i].push_back(def);
 }
 
+bool Word::checkDef(const std::string &def)
+{
+    for(int i=0; i<POS::Count; i++)
+        if(type&(1<<i))
+            for(int j=0; j<this->def[i].size(); j++)
+                if(this->def[i][j]==def)
+                    return true;
+    return false;
+}
+
+std::string Word::getRandDef()
+{
+    int cnt=0;
+    for(int i=0; i<POS::Count; i++)
+        if(type&(1<<i))
+            cnt+=this->def[i].size();
+    if(!cnt) return "";
+    int pos=rand()%cnt;
+    for(int i=0; i<POS::Count; i++)
+        if(type&(1<<i))
+            if(pos<this->def[i].size())
+                return this->def[i][pos];
+            else pos-=this->def[i].size();
+    return "";
+}
+
 unsigned int POS::getIndex(unsigned int type)
 {
     for(int i=0; i<Count; i++)
@@ -45,6 +71,42 @@ unsigned int POS::getType(const std::string &str)
         bool flag=false;
         for(int j=0; j+TypeShort[i].size()-1<str.size(); j++)
             if(str.substr(j,TypeShort[i].size())==TypeShort[i])
+            {
+                flag=true;
+                break;
+            }
+        if(flag) res|=1<<i;
+    }
+    if(!res) res=Other;
+    return res;
+}
+
+unsigned int POS::getTypeViet(const std::string &str)
+{
+    int res=0;
+    for(int i=0; i<Count; i++)
+    {
+        bool flag=false;
+        for(int j=0; j+TypeStringViet[i].size()-1<str.size(); j++)
+            if(str.substr(j,TypeStringViet[i].size())==TypeStringViet[i])
+            {
+                flag=true;
+                break;
+            }
+        if(flag) res|=1<<i;
+    }
+    if(!res) res=Other;
+    return res;
+}
+
+unsigned int POS::getTypeVE(const std::string &str)
+{
+    int res=0;
+    for(int i=0; i<Count; i++)
+    {
+        bool flag=false;
+        for(int j=0; j+TypeStringVE[i].size()-1<str.size(); j++)
+            if(str.substr(j,TypeStringVE[i].size())==TypeStringVE[i])
             {
                 flag=true;
                 break;
