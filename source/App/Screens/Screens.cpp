@@ -223,8 +223,8 @@ Screen* ResettoDefaultScreen::render() {
 void ResettoDefaultScreen::ResettoDefault() {
 	std::cout << "Are you sure to reset the dictionary, this would remove all your updates on words, favourite list and history...?\n";
 	std::cout << "Options: \n"
-		<< "YES\n" 
-		<< "NO\n";
+		<< "1. YES\n" 
+		<< "2. NO\n";
 	int choice = inputOption(2);
 	if (choice == 1) {
 		if (dict -> reset()) std::cout << "Successfully reset!\n";
