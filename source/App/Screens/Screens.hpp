@@ -82,7 +82,8 @@ class ViewScreen: public Screen
 private:
     const std::vector<std::string> options = {
         "View your search history",
-        "View your favorite words",
+        "View your favourite list",
+        "View word(s) starting with a prefix in your favourite list",
         "Back"
     };
 public:
@@ -90,25 +91,6 @@ public:
     Screen* render();
 };
 
-// class FavListChoiceScreen : public Screen
-// {
-// private:
-//     const std::vector<std::string> options = {
-//         "Type in a word to insert it to your favorite list",
-//         "Type in a word to remove it from your favorite list",
-//         "Search prefix of words in your favorite list",
-//         "Go back to previous page"
-//     };
-
-//     const std::vector<std::string> options2 = {
-//         "Type in a word to insert it to your favorite list",
-//         "Go back to previous page"
-//     };
-
-// public:
-//     FavListChoiceScreen(Dict *dict) : Screen(dict) {}
-//     Screen *render();
-// };
 class DailyWordScreen: public Screen
 {
 private:
@@ -194,12 +176,10 @@ public:
     Screen* render();
 };
 
-
 class ViewFavListScreen: public Screen{
 private:
     const std::vector<std::string> options = {
         "View your whole favourite list",
-        "View word(s) starting with a prefix in your favourite list",
         "Search for definition(s) of a word in your favourite list",
         "Remove a word from your favourite list",
         "Clear your search history",
@@ -208,6 +188,14 @@ private:
 public:
     ViewFavListScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
+};
+//fix
+
+class SearchPrefixFavList : public Screen
+{
+public:
+    SearchPrefixFavList(Dict *dict) : Screen(dict) {}
+    Screen *render();
 };
 
 
@@ -335,15 +323,5 @@ public:
     Screen* render();
 };
 //-------------------------End Parent: Edit---------------------------
-
-
-//----------------------Parent: FavListChoiceScreen--------------------------------------
-class SearchPrefixFavList : public Screen
-{
-public:
-    SearchPrefixFavList(Dict *dict) : Screen(dict) {}
-    Screen *render();
-};
-//----------------------End Parent: FavListChoiceScreen--------------------------------------
 
 #endif // SCREENS_HPP
