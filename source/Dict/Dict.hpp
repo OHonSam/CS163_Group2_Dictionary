@@ -173,10 +173,10 @@ public:
 	// Remove a word and corresponding definition
 	void removeWord(const std::string &word);
 	// Remove all words in the history
-	bool clearAllHistory(const std::string &path);
+	bool clearAllHistory();
 	
 	// Remove all words in the favourite list
-	bool clearFavList(const std::string &path);
+	bool clearFavList();
 
 	// Remove a word from the favourite list
 	void removeFav(const std::string &word);

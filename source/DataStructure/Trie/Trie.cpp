@@ -17,6 +17,7 @@ char Trie::rGetIndex(int index)
     if (index < 26) return index + 'a';
     if (index == ALPHABET_SIZE-1) return ' ';
     if (index == ALPHABET_SIZE-2) return '-';
+    return '\0';
 }
 
 bool Trie::checkExist(const std::string &key)
