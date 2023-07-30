@@ -635,7 +635,7 @@ Screen* ModifyMeaningScreen::render() {
 	std::cout << "Options: \n" << "1. Modify\n" << "2. Back\n";
 	int choice = inputOption(2);
 	if (choice == 1) modify();
-	else return new EditWordScreen(dict);
+	return new EditWordScreen(dict);
 }
 
 Screen *AddWordScreen::render(){
