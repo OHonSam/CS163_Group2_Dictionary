@@ -538,7 +538,7 @@ Screen *ViewFavListScreen::render()
 {
 	clearScr();
 	Screen *nextScreen = this;
-	std::cout << "Your search history (20 most recent keywords):\n";
+	std::cout << "Your favourite list:\n";
 	std::vector<std::string> display = dict->getFav();
 	for (int i = 0; i < display.size(); ++i)
 	{
