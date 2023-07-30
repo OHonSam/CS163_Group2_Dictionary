@@ -638,6 +638,59 @@ Screen* EditSearchWordScreen::render(){
 	}
 	return nextScreen;
 }
+Screen* DeleteWordScreen::render(){
+	clearScr();
+	Screen* nextScreen=this;
+	std::cout<<"Enter the word you want to delete: ";
+	std::string word;
+	std::getline(std::cin,word,'\n');
+
+	while(!dict->lowerStrEng(word))
+	{
+		std::cout<<"Invalid input. Please try again!\n";
+		std::cout<<"Enter the word you want to delete: ";
+		std::getline(std::cin,word,'\n');
+	}
+	//check the existence of the word you want to delete in the dictionary
+	if(!dict->isInDict(word)){
+		std::cout<<"This word is not in the dictionary!\n";
+	}
+	else{
+		nextScreen=new DeleteSearchWordScreen(dict,word);
+	}
+	return nextScreen;
+}
+Screen* DeleteSearchWordScreen::render(){
+	//clearScr();
+	Screen* nextScreen=this;
+	int cnt=0;
+	std::cout<<"Are you sure you want to delete this word?\n";
+	std::cout<<++cnt<<". Yes\n";
+	std::cout<<++cnt<<". No\n";
+	int choice=inputOption(cnt);
+	switch(choice){
+		case 1:
+			dict->removeWord(word);
+			std::cout<<"The word has been successfully deleted!\n";
+			break;
+		case 2:
+			std::cout <<"The deletion has been cancelled!\n";
+			break;
+	}
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			nextScreen=new SearchScreen(dict);
+			break;
+		case 2:
+			nextScreen= new EditScreen(dict);
+			break;
+	}
+	return nextScreen;
+}
 Screen *Remove1WordHistoryScreen::render()
 {
 	clearScr();

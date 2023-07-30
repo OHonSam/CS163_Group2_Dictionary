@@ -217,6 +217,28 @@ public:
     EditSearchWordScreen(Dict* dict, const std::string& word) : Screen(dict), word(word) {}
     Screen* render();
 };
+
+class DeleteSearchWordScreen: public Screen{
+private:
+    std::string word;//word user typed in
+    const std::vector<std::string> options = {
+        "Back to Search Screen",
+        "Back to Edit Screen"
+    };
+public:
+    DeleteSearchWordScreen(Dict* dict, const std::string& word) : Screen(dict), word(word) {}
+    Screen* render();
+};
+
+class DeleteWordScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Back"
+    };
+public:
+    DeleteWordScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 class Remove1WordHistoryScreen: public Screen{
 private:
     const std::vector<std::string> options = {
