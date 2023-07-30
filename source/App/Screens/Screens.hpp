@@ -67,7 +67,7 @@ private:
         "Delete a word",
         "Add a word to your favorite list",
         "Remove a word from your favorite list",
-        "Remove a word in your search history",
+        "Remove a word from your search history",
         "Delete all words in your search history",
         "Back"
     };
