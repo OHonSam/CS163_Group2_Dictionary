@@ -229,7 +229,7 @@ bool TST::importTXT(const std::string &path)
     }
     importTXT(root, file);
     std::cerr << "\nin import\n";
-    std::cerr << "root->c: " << root->c << '\n';
+    std::cerr << "root->left->left->left->c: " << root->left->left->left->left->c << '\n';
     file.close();
     return true;
 }
@@ -240,7 +240,7 @@ void TST::import(TSTNode *&root, std::ifstream &file)
     {
         root = new TSTNode;
         // std::cerr << '1\n';
-        return;
+        // return;
     }
     // std::cerr << "\nimporting\n";
     file.read((char *)&(root->numWords), sizeof(int));
@@ -251,7 +251,7 @@ void TST::import(TSTNode *&root, std::ifstream &file)
     while (true)
     {
         file.read((char *)&_c, sizeof(char));
-        // std::cerr << "\n_c: " << _c << '\n';
+        std::cerr << "\n_c: " << _c << '\n';
         if (_c == TERMINATOR)
         {
             // std::cerr << "break\n";
@@ -274,40 +274,41 @@ void TST::import(TSTNode *&root, std::ifstream &file)
 
 void TST::importTXT(TSTNode *&root, std::ifstream &file)
 {
-    if (root == nullptr)
-    {
-        root = new TSTNode;
-        // std::cerr << '1\n';
-        return;
-    }
-    // std::cerr << "\nimporting\n";
-    file >> root->numWords;
-    // std::cerr << "\nroot->num: " << root->numWords << '\n';
-    file >> root->isEnd;
-    // std::cerr << "\nroot->isEnd: " << root->isEnd << '\n';
-    char _c; // character read in binary file
-    while (true)
-    {
-        file >> _c;
-        // std::cerr << "\n_c: " << _c << '\n';
-        if (_c == ';')
-        {
-            // std::cerr << "break\n";
-            break;
-        }
-        if (_c < root->c)
-        {
-            importTXT(root->left, file);
-        }
-        else if (_c > root->c)
-        {
-            importTXT(root->right, file);
-        }
-        else
-        {
-            importTXT(root->mid, file);
-        }
-    }
+    root = new TSTNode;
+//     char _c; // character read in binary file
+//     if (root == nullptr)
+//     {
+//         root = new TSTNode;
+//         // std::cerr << '1\n';
+//     // std::cerr << "\nimporting\n";
+//     file >> root->numWords;
+//     // std::cerr << "\nroot->num: " << root->numWords << '\n';
+//     file >> root->isEnd;
+//     // std::cerr << "\nroot->isEnd: " << root->isEnd << '\n';
+//         return;
+//     }
+//     while (true)
+//     {
+//         file >> _c;
+//         // std::cerr << "\n_c: " << _c << '\n';
+//         if (_c == ';')
+//         {
+//             // std::cerr << "break\n";
+//             break;
+//         }
+//         if (_c < root->c)
+//         {
+//             importTXT(root->left, file);
+//         }
+//         else if (_c > root->c)
+//         {
+//             importTXT(root->right, file);
+//         }
+//         else
+//         {
+//             importTXT(root->mid, file);
+//         }
+//     }
 }
 
 void TST::saveTXT(TSTNode *root, std::ofstream &file)
