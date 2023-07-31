@@ -339,78 +339,86 @@ Screen *SwitchDataSetScreen::render()
 //-------------------------End Parent: HomeScreen---------------------------
 
 //-------------------------Parent: SearchScreen-----------------------------------
+
 Screen* SearchForDefScreen::render(){
     clearScr();
+    Screen* nextScreen=this;
     std::string mess="Enter the word you want to search for: ";
     std::string word;
-	
-	switch (dict->getCurDataSet()){
-		case DataSet::VE:
-			word=inputVietString(mess);
-			break;
-		default:
-			word=inputEngString(mess);
-			break;
-	}
-
-    std::cout<<"Options: \n"
-        <<"1. Search for the exact word\n"
-        <<"2. Search for the words that has the same prefix\n"
-        <<"3. Back\n";
-    int choice=inputOption(3);
-    switch(choice){
-        case 1:
-            SearchForDefScreen::displayExactMode(word);
+    switch(dict->getCurDataSet()){
+        case DataSet::VE:
+            word=inputVietString(mess);
             break;
-        case 2:
-            SearchForDefScreen::displayPrefixMode(word);
+        default:
+            word=inputEngString(mess);
             break;
-        case 3:
-            return new SearchScreen(dict);
     }
-    int cnt=0;
-    std::cout<<++cnt<<". Back"<<std::endl;
-    inputOption(cnt);
-    return new SearchScreen(dict);
-    
+        
+	std::vector<std::string> prefixes=dict->searchPrefix(word);
+	if(displayPrefix(prefixes)){
+		std::cout<<"\nOptions: \n";
+			// <<"1. Search for definition(s) of the exact word\n"
+			// <<"2. Search for definition(s) of all words with the same prefix\n"
+			// <<"3. Back\n";
+		for(int i=0;i<options.size();++i)
+			std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+		int choice=inputOption(options.size());
+		switch(choice){
+			case 1:
+				//nextScreen=new DisplayExactModeScreen(dict,word);
+				break;
+			case 2:
+				//nextScreen=new Display1PrefixModeScreen(dict,prefixes);
+				break;
+			case 3:
+				//nextScreen=new DisplayPrefixesModeScreen(dict,prefixes);
+				break;
+			case 4:
+				nextScreen=new SearchScreen(dict);
+				break;
+		}
+	}
+	else{
+		std::cout<<"No result found!\n";
+		std::cout<<"\nOptions: \n";
+		int cnt=0;
+		std::cout<<++cnt<<". "<<"Back\n";
+		int choice=inputOption(cnt);
+		switch(choice){
+			case 1:
+				nextScreen=new SearchScreen(dict);
+				break;
+		}
+	}
+    return nextScreen;
 }
-void SearchForDefScreen::displayPrefixMode(const std::string& word)
+bool SearchForDefScreen::displayPrefix(std::vector<std::string>& prefixes)
 {
-    std::vector<std::string> prefixes=dict->searchPrefix(word);
-    if(prefixes.empty())
-        std::cout<<"No result found!\n";
+    //std::vector<std::string> prefixes=dict->searchPrefix(word);
+    if(prefixes.empty()){
+        //std::cout<<"No result found!\n";
+		return false;
+	}
     else{
         std::vector<Word*> defsForPrefixes;
         int n=prefixes.size();
-        for(int i=0;i<n;++i){
-            defsForPrefixes.push_back(dict->searchDef(prefixes[i]));
-            dict->addHistory(prefixes[i]);
-        }
-        std::cout<<"The keyword(s) that you are looking for is/are: \n";
+        std::cout<<"Here is/are keyword(s) with the same prefix that you may be looking for: \n";
         for(int i=0;i<n;++i){
             std::cout<<i+1<<". "<<prefixes[i]<<std::endl;
-            for(int type=0;type<POS::Count;++type){
-                //std::cout<<type<<std::endl;
-                if(defsForPrefixes[i]->def[type].empty()) {
-                    //std::cout<<"No definition for this type"<<std::endl;
-                    continue;
-                }
-                std::cout<<"\t"<<POS::TypeString[type]<<": "<<std::endl;
-                for(int idx=0;idx<defsForPrefixes[i]->def[type].size();++idx){
-                    std::cout<<"\t\t"<<"-"<<defsForPrefixes[i]->def[type][idx]<<std::endl;
-                }
-            }
         }
     }
-    
+    return true;
 }
-void SearchForDefScreen::displayExactMode(const std::string& word)
-{
-    Word* w=dict->searchDef(word);
+Screen* DisplayExactModeScreen::render(){
+	clearScr();
+	Screen* nextScreen=this;
+    //Word* w=dict->searchForDef(word);
+	Word* w=new Word();//test
     if(w==nullptr)
         std::cout<<"No result found!\n";
     else{
         std::cout<<"The keyword that you are looking for is: "<<w->word<<std::endl;
+		dict->removeHistory(word);
         dict->addHistory(word);
         for(int type=0;type<POS::Count;++type){
             if(w->def[type].empty()) 
@@ -421,6 +429,28 @@ void SearchForDefScreen::displayExactMode(const std::string& word)
             }
         }
     }
+
+	std::cout<<"\nOptions: \n";
+	for(int i=0;i<options.size();++i)
+		std::cout<<std::to_string(i+1)<<". "<<options[i]<<std::endl;
+	int choice=inputOption(options.size());
+	switch(choice){
+		case 1:
+			clearScr();
+			//nextScreen= new EditSearchWordScreen(dict,word);
+			break;
+		case 2:
+			clearScr();
+			//nextScreen=new DeleteSearchWordScreen(dict,word);
+			break;
+		case 3:
+			nextScreen= new Type2InsertWordFavListScreen(dict);
+			break;
+		case 4:
+			nextScreen=new SearchScreen(dict);
+			break;
+	}
+	return nextScreen;
 }
 //-------------------------End Parent: SearchScreen-------------------------------
 

@@ -152,13 +152,33 @@ public:
 
 //-------------------------Parent: SearchScreen--------------------------------
 class SearchForDefScreen: public Screen{
+private:
+    const std::vector<std::string> options = {
+        "Search for definition(s) of the initial word",
+        "Search for definition(s) of a word from the given list of prefixes",
+        "Search for definition(s) of all words with the same prefix",
+        "Back"
+    };
+
 public:
-    SearchForDefScreen(Dict* dict) : Screen(dict) {}
+    SearchForDefScreen(Dict* dict) : Screen(dict){}
     Screen* render();
-    void displayPrefixMode(const std::string& word);
-    void displayExactMode(const std::string& word);
+    bool displayPrefix(std::vector<std::string> &prefixes);
 };
 
+class DisplayExactModeScreen: public Screen{
+private:
+    std::string word;//word user typed in
+    const std::vector<std::string> options = {
+        "Edit this word",
+        "Remove this word",
+        "Add this word to your favorite list",
+        "Back"
+    };
+public:
+    DisplayExactModeScreen(Dict* dict,const std::string& word) : Screen(dict) , word(word) {}
+    Screen* render();
+};
 //-------------------------End Parent: SearchScreen---------------------------
 
 
