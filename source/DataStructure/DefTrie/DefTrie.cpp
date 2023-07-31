@@ -218,11 +218,11 @@ void DefTrie::save(Node* root, std::ofstream& out) {
     if (!root) return;
     out.write((char*) &root -> isEnd, sizeof (bool));
     out.write((char*) &root -> numWords, sizeof (int));
-    out.seekp(4, std::ios::cur);
+    // out.seekp(4, std::ios::cur);
     int trans = SmallTrie::save(root -> st -> root, out);
-    out.seekp(0 - 4 - trans, std::ios::cur);
-    out.write((char*) &trans, sizeof (int));
-    out.seekp(trans, std::ios::cur);
+    // out.seekp(0 - 4 - trans, std::ios::cur);
+    // out.write((char*) &trans, sizeof (int));
+    // out.seekp(trans, std::ios::cur);
     for (int i = 0; i < ALPHABET_SIZE; i++) {
         bool flag = true;
         if (root -> child[i]) {
@@ -253,7 +253,7 @@ void DefTrie::import(Node* &root, std::ifstream& in) {
     in.read((char*) &root -> isEnd, sizeof (bool));
     in.read((char*) &root -> numWords, sizeof (int));
     int read_space;
-    in.read((char*) &read_space, sizeof (int));
+    // in.read((char*) &read_space, sizeof (int));
     SmallTrie::import(root -> st -> root, in, read_space);
     for (int i = 0; i < ALPHABET_SIZE; i++) {
         bool flag;
