@@ -228,7 +228,7 @@ void TST::import(TSTNode *&root, std::ifstream &file)
         root = new TSTNode;
     file.read((char *)&root->numWords, sizeof(int));
     file.read((char *)&root->isEnd, sizeof(bool));
-    int _c; // character read in binary file
+    char _c; // character read in binary file
     while (true)
     {
         file.read((char *)&_c, sizeof(char));
