@@ -74,7 +74,7 @@ void DefTrie::insert(const std::string& word, const std::string& def){
     ++(cur -> numWords);
     for (int i = 0; i < def.size(); ++i) {
         int index = getIndex(def[i]);
-        if(index==-1) continue;
+        if(index==-1) continue;//test
         if (!cur->child[index]) cur->child[index] = new Node();
         ++(cur->child[index]->numWords);
         cur = cur -> child[index];
