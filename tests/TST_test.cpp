@@ -77,13 +77,13 @@ namespace testing
 
 }
 
-testing::AssertionResult sameSiz(int n, int n2)
-{
-    if (n == n2)
-        return testing::AssertionSuccess();
-    else
-        return testing::AssertionFailure() << n;
-}
+// testing::AssertionResult sameSiz(int n, int n2)
+// {
+//     if (n == n2)
+//         return testing::AssertionSuccess();
+//     else
+//         return testing::AssertionFailure() << n;
+// }
 
 // TEST(TST_test, startWith)
 // {
@@ -120,7 +120,6 @@ testing::AssertionResult sameSiz(int n, int n2)
 //     EXPECT_TRUE(sameSiz(prefix.size(), 1));
 //     EXPECT_EQ(prefix[0], "I");
 
-
 //     prefix = tst.startWith("w");
 //     // ASSERT_EQ(prefix.size(), 2);
 //     EXPECT_TRUE(sameSiz(prefix.size(), 3));
@@ -144,14 +143,14 @@ testing::AssertionResult sameSiz(int n, int n2)
 TEST(TST_test, ImportAndSave)
 {
     TST tst;
-    for(int i=0; i<N; ++i)
+    for (int i = 0; i < N; ++i)
         tst.insert(word[i]);
 
     ASSERT_TRUE(tst.save("TST.bin"));
 
     tst.clear();
 
-    for(int i=0; i<N; ++i)
+    for (int i = 0; i < N; ++i)
         EXPECT_FALSE(tst.wordExists(word[i]));
 
     ASSERT_TRUE(tst.import("TST.bin"));
