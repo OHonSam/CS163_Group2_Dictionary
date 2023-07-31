@@ -32,7 +32,7 @@ void Dict::addWord(Word *word)
 {
     words.insert(word->word);
     wordDef.insert(word);
-    // defTrie.insert(word);
+    defTrie.insert(word);
 }
 
 bool Dict::isValidPOS(const std::string & str, int& pos){
