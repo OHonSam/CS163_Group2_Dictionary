@@ -244,6 +244,8 @@ DefTrie::Node* DefTrie::import(const std::string& path) {
     // root = nullptr;
     std::ifstream in(path, std::ios::in | std::ios::binary);
     if (!in.good() || !in.is_open()) return nullptr;
+    if (in.peek() == std::ifstream::traits_type::eof()) 
+        return root = new Node();
     import(root, in);
     return root;
 }

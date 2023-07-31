@@ -33,6 +33,7 @@ namespace MAIN
 	{
 		const std::string WORDS = "assets/DS/EE/main/words.bin";
 		const std::string WORDDEF = "assets/DS/EE/main/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/EE/main/defTrie.bin";
 		const std::string FAVLIST = "assets/DS/EE/main/favList.bin";
 		const std::string HISTORY = "assets/DS/EE/main/history.bin";
 	}
@@ -40,6 +41,7 @@ namespace MAIN
 	{
 		const std::string WORDS = "assets/DS/EV/main/words.bin";
 		const std::string WORDDEF = "assets/DS/EV/main/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/EV/main/defTrie.bin";
 		const std::string FAVLIST = "assets/DS/EV/main/favList.bin";
 		const std::string HISTORY = "assets/DS/EV/main/history.bin";
 	}
@@ -48,6 +50,7 @@ namespace MAIN
 	{
 		const std::string WORDS = "assets/DS/VE/main/words.bin";
 		const std::string WORDDEF = "assets/DS/VE/main/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/VE/main/defTrie.bin";
 		const std::string FAVLIST = "assets/DS/VE/main/favList.bin";
 		const std::string HISTORY = "assets/DS/VE/main/history.bin";
 	}
@@ -56,6 +59,7 @@ namespace MAIN
 	{
 		const std::string WORDS = "assets/DS/Slang/main/words.bin";
 		const std::string WORDDEF = "assets/DS/Slang/main/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/Slang/main/defTrie.bin";
 		const std::string FAVLIST = "assets/DS/Slang/main/favList.bin";
 		const std::string HISTORY = "assets/DS/Slang/main/history.bin";
 	}
@@ -67,6 +71,7 @@ namespace DEFAULT
 	{
 		const std::string WORDS = "assets/DS/EE/default/words.bin";
 		const std::string WORDDEF = "assets/DS/EE/default/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/EE/default/defTrie.bin";
 		const std::string FAVLIST = "assets/DS/EE/default/favList.bin";
 		const std::string HISTORY = "assets/DS/EE/default/history.bin";
 	}
@@ -74,6 +79,7 @@ namespace DEFAULT
 	{
 		const std::string WORDS = "assets/DS/EV/default/words.bin";
 		const std::string WORDDEF = "assets/DS/EV/default/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/EV/default/defTrie.bin";
 		const std::string FAVLIST = "assets/DS/EV/default/favList.bin";
 		const std::string HISTORY = "assets/DS/EV/default/history.bin";
 	}
@@ -82,6 +88,7 @@ namespace DEFAULT
 	{
 		const std::string WORDS = "assets/DS/VE/default/words.bin";
 		const std::string WORDDEF = "assets/DS/VE/default/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/VE/default/defTrie.bin";
 		const std::string FAVLIST = "assets/DS/VE/default/favList.bin";
 		const std::string HISTORY = "assets/DS/VE/default/history.bin";
 	}
@@ -90,6 +97,7 @@ namespace DEFAULT
 	{
 		const std::string WORDS = "assets/DS/Slang/default/words.bin";
 		const std::string WORDDEF = "assets/DS/Slang/default/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/Slang/default/defTrie.bin";
 		const std::string FAVLIST = "assets/DS/Slang/default/favList.bin";
 		const std::string HISTORY = "assets/DS/Slang/default/history.bin";
 	}
@@ -104,7 +112,7 @@ private:
 	HashTable wordDef;
 	Trie words;
 	TST favList;
-	// DefTrie defTrie;
+	DefTrie defTrie;
 
 	DataSet::Type curDataSet;
 

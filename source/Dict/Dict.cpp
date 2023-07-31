@@ -3,6 +3,7 @@
 bool Dict::reset(){
     words.clear();
     wordDef.clear();
+    defTrie.clear();
     favList.clear();
     history.clearSLL();
     return setup();
@@ -23,6 +24,7 @@ DataSet::Type Dict::getCurDataSet() const
 void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
 {
     wordDef.updateDef(word,type,oldDef,newDef);
+    // defTrie.updateDef(word,type,oldDef,newDef);
 }
 
 void Dict::addWord(Word *word)
@@ -83,24 +85,28 @@ Dict::~Dict()
         case DataSet::EE:
             words.save(MAIN::EE::WORDS);
             wordDef.save(MAIN::EE::WORDDEF);
+            defTrie.save(MAIN::EE::DEFTRIE);
             favList.save(MAIN::EE::FAVLIST);
             history.saveSLLStr(MAIN::EE::HISTORY);
             break;
         case DataSet::EV:
             words.save(MAIN::EV::WORDS);
             wordDef.save(MAIN::EV::WORDDEF);
+            defTrie.save(MAIN::EV::DEFTRIE);
             favList.save(MAIN::EV::FAVLIST);
             history.saveSLLStr(MAIN::EV::HISTORY);
             break;
         case DataSet::VE:
             words.save(MAIN::VE::WORDS);
             wordDef.save(MAIN::VE::WORDDEF);
+            defTrie.save(MAIN::VE::DEFTRIE);
             favList.save(MAIN::VE::FAVLIST);
             history.saveSLLStr(MAIN::VE::HISTORY);
             break;
         case DataSet::Slang:
             words.save(MAIN::Slang::WORDS);
             wordDef.save(MAIN::Slang::WORDDEF);
+            defTrie.save(MAIN::Slang::DEFTRIE);
             favList.save(MAIN::Slang::FAVLIST);
             history.saveSLLStr(MAIN::Slang::HISTORY);
             break;
@@ -114,6 +120,7 @@ bool Dict::loadFromPrev()
             return 
                 words.import(MAIN::EE::WORDS) &&
                 wordDef.import(MAIN::EE::WORDDEF) &&
+                defTrie.import(MAIN::EE::DEFTRIE) &&
                 favList.import(MAIN::EE::FAVLIST) &&
                 history.importSLLStr(MAIN::EE::HISTORY)
             ;
@@ -121,6 +128,7 @@ bool Dict::loadFromPrev()
             return 
                 words.import(MAIN::EV::WORDS) &&
                 wordDef.import(MAIN::EV::WORDDEF) &&
+                defTrie.import(MAIN::EV::DEFTRIE) &&
                 favList.import(MAIN::EV::FAVLIST) &&
                 history.importSLLStr(MAIN::EV::HISTORY)
             ;
@@ -128,6 +136,7 @@ bool Dict::loadFromPrev()
             return 
                 words.import(MAIN::VE::WORDS) &&
                 wordDef.import(MAIN::VE::WORDDEF) &&
+                defTrie.import(MAIN::VE::DEFTRIE) &&
                 favList.import(MAIN::VE::FAVLIST) &&
                 history.importSLLStr(MAIN::VE::HISTORY)
             ;
@@ -135,6 +144,7 @@ bool Dict::loadFromPrev()
             return 
                 words.import(MAIN::Slang::WORDS) &&
                 wordDef.import(MAIN::Slang::WORDDEF) &&
+                defTrie.import(MAIN::Slang::DEFTRIE) &&
                 favList.import(MAIN::Slang::FAVLIST) &&
                 history.importSLLStr(MAIN::Slang::HISTORY)
             ;
@@ -190,6 +200,7 @@ Word* Dict::getDailyWord()
     wordDef.initSeedForRandom();
     return wordDef.randomWordOfDay();
 }   
+
 bool Dict::importEVTxt(const std::string &path)
 {
     std::ifstream in(path);
@@ -353,6 +364,7 @@ bool Dict::setup()
                     importEECsv(RAW_DATA::EE) &&
                     words.save(DEFAULT::EE::WORDS) &&
                     wordDef.save(DEFAULT::EE::WORDDEF) &&
+                    defTrie.save(DEFAULT::EE::DEFTRIE) &&
                     favList.save(DEFAULT::EE::FAVLIST) &&
                     history.saveSLLStr(DEFAULT::EE::HISTORY);
             case DataSet::EV:
@@ -360,6 +372,7 @@ bool Dict::setup()
                     importEVTxt(RAW_DATA::EV) &&
                     words.save(DEFAULT::EV::WORDS) &&
                     wordDef.save(DEFAULT::EV::WORDDEF) &&
+                    defTrie.save(DEFAULT::EV::DEFTRIE) &&
                     favList.save(DEFAULT::EV::FAVLIST) &&
                     history.saveSLLStr(DEFAULT::EV::HISTORY);
             case DataSet::VE:
@@ -367,6 +380,7 @@ bool Dict::setup()
                     importVETxt(RAW_DATA::VE) &&
                     words.save(DEFAULT::VE::WORDS) &&
                     wordDef.save(DEFAULT::VE::WORDDEF) &&
+                    defTrie.save(DEFAULT::VE::DEFTRIE) &&
                     favList.save(DEFAULT::VE::FAVLIST) &&
                     history.saveSLLStr(DEFAULT::VE::HISTORY);
             case DataSet::Slang:
@@ -374,6 +388,7 @@ bool Dict::setup()
                     importSlangCsv(RAW_DATA::Slang) &&
                     words.save(DEFAULT::Slang::WORDS) &&
                     wordDef.save(DEFAULT::Slang::WORDDEF) &&
+                    defTrie.save(DEFAULT::Slang::DEFTRIE) &&
                     favList.save(DEFAULT::Slang::FAVLIST) &&
                     history.saveSLLStr(DEFAULT::Slang::HISTORY);
         }
