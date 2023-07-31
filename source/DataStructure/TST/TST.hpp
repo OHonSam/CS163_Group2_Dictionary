@@ -17,7 +17,7 @@ class TSTNode
 
 public:
     TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr), isEnd(0), numWords(0) {}
-    TSTNode() {}
+    TSTNode() : c(' '), left(nullptr), mid(nullptr), right(nullptr), isEnd(0), numWords(0) {}
 
     ~TSTNode()
     {
@@ -102,6 +102,9 @@ public:
 
     //for screen searchPrefix
     void searchPrefix();
+
+    //used for testing
+    void test();
 };
 
 #endif

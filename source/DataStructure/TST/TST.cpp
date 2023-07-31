@@ -211,24 +211,13 @@ bool TST::import(const std::string &path)
         return false;
     if (file.peek() == std::ifstream::traits_type::eof())
         return true;
-
-    if (root == nullptr)
-    {
-        root = new TSTNode;
-    }
-
+    std::cerr << "begin import\n";
+    // TSTNode* dummy = new TSTNode;
+    // dummy->mid = root;
     import(root, file);
+    std::cerr << "out import\n";
     file.close();
-    return true;
-}
-
-bool TST::save(const std::string &path)
-{
-    std::ofstream file(path, std::ios::binary);
-    if (!file.good() || !file.is_open())
-        return false;
-    save(root, file);
-    file.close();
+    // root = dummy->mid;
     return true;
 }
 
@@ -239,24 +228,40 @@ void TST::import(TSTNode *&root, std::ifstream &file)
     file.read((char *)&root->numWords, sizeof(int));
     file.read((char *)&root->isEnd, sizeof(bool));
     char _c; // character read in binary file
-    while (true)
+             // while (true)
+             // {
+    file.read((char *)&_c, sizeof(char));
+    std::cerr << " >> " << int(_c) << ' ' << _c << '\n';
+    std::cerr << " root->c >> " << int(root->c) << ' ' << root->c << '\n';
+    if (_c == TERMINATOR)
+        // break;
+        return;
+    if (_c < root->c)
     {
-        file.read((char *)&_c, sizeof(char));
-        if (_c == TERMINATOR)
-            break;
-        if (_c < root->c)
-        {
-            import(root->left, file);
-        }
-        else if (_c > root->c)
-        {
-            import(root->right, file);
-        }
-        else
-        {
-            import(root->mid, file);
-        }
+        root->left = new TSTNode(_c);
+        import(root->left, file);
     }
+    else if (_c > root->c)
+    {
+        root->right = new TSTNode(_c);
+        import(root->right, file);
+    }
+    else
+    {
+        root->mid = new TSTNode(_c);
+        import(root->mid, file);
+    }
+    // }
+}
+
+bool TST::save(const std::string &path)
+{
+    std::ofstream file(path, std::ios::binary);
+    if (!file.good() || !file.is_open())
+        return false;
+    save(root, file);
+    file.close();
+    return true;
 }
 
 void TST::save(TSTNode *root, std::ofstream &file)
@@ -280,7 +285,7 @@ void TST::save(TSTNode *root, std::ofstream &file)
 
 std::vector<std::string> TST::traverse()
 {
-    std::vector<std::string> res;
+    std::vector<std::string> res{};
     int cnt = 0;
     traverse(res, root, "", cnt);
 
@@ -289,15 +294,15 @@ std::vector<std::string> TST::traverse()
 
 void TST::traverse(std::vector<std::string> &res, TSTNode *root, std::string str, int &cnt)
 {
-    if (cnt == LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST)
-        return;
-
     if (root == nullptr)
         return;
+    std::cerr << "traversing\n";
     traverse(res, root->left, str, cnt);
 
     str = str + root->c;
 
+    std::cerr << "str traverse: " << str << '\n';
+    
     if (root->isEnd == true)
     {
         res.push_back(str);
@@ -367,6 +372,11 @@ void TST::searchPrefix()
 bool TST::treeExists()
 {
     return !(root == nullptr);
+}
+
+void TST::test()
+{
+    root = root->right;
 }
 
 void TST::uppercase2Lowercase(std::string &str)
