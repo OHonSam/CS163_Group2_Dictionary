@@ -449,7 +449,7 @@ Word *Dict::searchForDef(const std::string &word)
 
 std::vector<std::string> Dict::searchForWord(const std::string &def)
 {
-    // return defTrie.searchKeyWord(def);
+    return defTrie.searchKeyWord(def);
 }
 
 std::vector<std::string> Dict::searchPrefix(const std::string &prefix)
