@@ -194,6 +194,7 @@ bool TST::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
     if (!file.good() || !file.is_open()) return false;
+    if(file.peek() == std::ifstream::traits_type::eof()) return true;
     import(root, file);
     file.close();
     return true;
@@ -202,7 +203,7 @@ bool TST::import(const std::string &path)
 bool TST::save(const std::string &path)
 {
     std::ofstream file(path, std::ios::binary);
-    if (!file.is_open())
+    if (!file.good() ||!file.is_open())
         return false;
     save(root, file);
     file.close();
