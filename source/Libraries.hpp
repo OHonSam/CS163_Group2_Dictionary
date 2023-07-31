@@ -14,6 +14,7 @@
 #include <chrono>
 #include <algorithm>
 
+const int ALPHABET_SIZE = 28;
 const std::string FAV_LIST_SAVE_FILE = "";
 
 #endif // !LIBRARIES_H

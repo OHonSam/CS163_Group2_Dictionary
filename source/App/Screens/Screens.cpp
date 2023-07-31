@@ -160,7 +160,7 @@ Screen* SearchScreen::render(){
     switch(choice)
     {
         case 1:
-            nextScreen=new SearchForDefScreen(dict);
+            //nextScreen=new SearchForDefScreen(dict);
             break;
         case 2:
             //nextScreen=new SearchForWordScreen(dict);
@@ -226,7 +226,7 @@ Screen *EditScreen::render()
             nextScreen=new Remove1WordHistoryScreen(dict); 
             break;
         case 7:
-            nextScreen=new DeleteAllHistoryScreen(dict);
+            //nextScreen=new DeleteAllHistoryScreen(dict);
             break;
         case 8:
             nextScreen=new HomeScreen(dict);
@@ -490,33 +490,33 @@ Screen *Remove1WordHistoryScreen::render()
 	return new EditScreen(dict);
 }
 
-Screen *DeleteAllHistoryScreen::render()
-{
-	clearScr();
-	std::cout << "Are you sure that you want to delete your search history?\n";
-	int cnt = 0;
-	std::string buffer;
-	std::cout << ++cnt << ". Yes\n";
-	std::cout << ++cnt << ". No\n";
-	int choice = inputOption(cnt);
-	switch (choice)
-	{
-	case 1:
-		if (dict->clearAllHistory("History.bin"))
-			std::cout << "Your search history has been successfully deleted!\n";
-		else
-			std::cout << "Errors occurred in clearing time!\n";
-		break;
-	case 2:
-		std::cout << "The deletion has been cancelled!\n";
-		break;
-	}
+// Screen *DeleteAllHistoryScreen::render()
+// {
+// 	clearScr();
+// 	std::cout << "Are you sure that you want to delete your search history?\n";
+// 	int cnt = 0;
+// 	std::string buffer;
+// 	std::cout << ++cnt << ". Yes\n";
+// 	std::cout << ++cnt << ". No\n";
+// 	int choice = inputOption(cnt);
+// 	switch (choice)
+// 	{
+// 	case 1:
+// 		if (dict->clearAllHistory("History.bin"))
+// 			std::cout << "Your search history has been successfully deleted!\n";
+// 		else
+// 			std::cout << "Errors occurred in clearing time!\n";
+// 		break;
+// 	case 2:
+// 		std::cout << "The deletion has been cancelled!\n";
+// 		break;
+// 	}
 
-	cnt = 0;
-	std::cout << ++cnt << ". Back" << std::endl;
-	inputOption(cnt);
-	return new EditScreen(dict);
-}
+// 	cnt = 0;
+// 	std::cout << ++cnt << ". Back" << std::endl;
+// 	inputOption(cnt);
+// 	return new EditScreen(dict);
+// }
 //-------------------------End Parent: EditScreen-------------------------------
 
 //----------------------Parent: FavListChoiceScreen-----------------------------

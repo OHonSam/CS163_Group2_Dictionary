@@ -13,7 +13,7 @@
 #include <Libraries.hpp>
 
 
-const int ALPHABET_SIZE = 26;
+const int ALPHABET_SIZE_SM = 26;
 const char TERMINATOR = '\0';
 
 class SmallTrie

@@ -95,6 +95,9 @@ void HashTable::clear()
     bit.clear();
     numWords = 0;
 }
+void HashTable::initSeedForRandom() {
+    srand(time(NULL));
+}
 
 Word* HashTable::randomWordOfDay() {
     int HTSize=buckets.size();//size of the hash table
