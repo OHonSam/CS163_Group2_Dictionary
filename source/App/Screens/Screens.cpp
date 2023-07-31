@@ -225,7 +225,7 @@ Screen *EditScreen::render()
             nextScreen=new Remove1WordHistoryScreen(dict); 
             break;
         case 7:
-            nextScreen=new DeleteAllHistoryScreen(dict);
+            //nextScreen=new DeleteAllHistoryScreen(dict);
             break;
         case 8:
             nextScreen=new HomeScreen(dict);
@@ -263,7 +263,7 @@ Screen *DailyWordScreen::render()
 		nextScreen = new DailyWordScreen(dict);
 		break;
 	case 2:
-		nextScreen = new Home(dict);
+		nextScreen = new HomeScreen(dict);
 		break;
 	}
 	return nextScreen;
@@ -273,18 +273,18 @@ Screen *DailyWordScreen::render()
 //-------------------------Parent: SearchScreen-----------------------------------
 Screen *SearchForDefScreen::render()
 {
-	clearScr();
-
-	Screen *nextScreen = this;
-
-	std::cout << "Enter the word you want to search for: ";
-	std::string word;
-	std::getline(std::cin, word);
-	while (!dict->lowerStrEng(word))
-	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the word you want to search for: ";
-		std::getline(std::cin, word);
+    clearScr();
+	Screen* nextScreen=this;
+    std::string mess="Enter the word you want to search for: ";
+    std::string word;
+	
+	switch (dict->getCurDataSet()){
+		case DataSet::VE:
+			word=inputVietString(mess);
+			break;
+		default:
+			word=inputEngString(mess);
+			break;
 	}
 	std::vector<std::string> prefixes = dict->searchPrefix(word);
 	if (displayPrefix(prefixes))
@@ -474,6 +474,7 @@ Screen *Display1PrefixModeScreen::render()
 		}
 	}
 	return nextScreen;
+}
 Screen *MultiChoicesScreen::render()
 {
 	clearScr();
@@ -546,41 +547,6 @@ Screen *SwitchDataSetScreen::render()
 //-------------------------End Parent: HomeScreen---------------------------
 
 //-------------------------Parent: SearchScreen-----------------------------------
-Screen* SearchForDefScreen::render(){
-    clearScr();
-    std::string mess="Enter the word you want to search for: ";
-    std::string word;
-	
-	switch (dict->getCurDataSet()){
-		case DataSet::VE:
-			word=inputVietString(mess);
-			break;
-		default:
-			word=inputEngString(mess);
-			break;
-	}
-
-    std::cout<<"Options: \n"
-        <<"1. Search for the exact word\n"
-        <<"2. Search for the words that has the same prefix\n"
-        <<"3. Back\n";
-    int choice=inputOption(3);
-    switch(choice){
-        case 1:
-            SearchForDefScreen::displayExactMode(word);
-            break;
-        case 2:
-            SearchForDefScreen::displayPrefixMode(word);
-            break;
-        case 3:
-            return new SearchScreen(dict);
-    }
-    int cnt=0;
-    std::cout<<++cnt<<". Back"<<std::endl;
-    inputOption(cnt);
-    return new SearchScreen(dict);
-    
-}
 Screen *DisplayPrefixesModeScreen::render()
 {
 	clearScr();
@@ -657,7 +623,7 @@ Screen *ViewHistoryScreen::render()
 		nextScreen = new Remove1WordHistoryScreen(dict);
 		break;
 	case 3:
-		nextScreen = new DeleteAllHistoryScreen(dict);
+		//nextScreen = new DeleteAllHistoryScreen(dict);
 		break;
 	case 4:
 		nextScreen = new ViewScreen(dict);
@@ -689,7 +655,7 @@ Screen *ViewFavListScreen::render()
 		nextScreen = new Remove1WordFavListScreen(dict);
 		break;
 	case 3:
-		nextScreen = new ClearFavListScreen(dict);
+		//nextScreen = new ClearFavListScreen(dict);
 		break;
 	case 4:
 		nextScreen = new ViewScreen(dict);
@@ -1046,7 +1012,7 @@ Screen *DeleteWordScreen::render()
 	}
 	else
 	{
-		nextScreen = new DeleteSearchWordScreen(dict, word);
+		//nextScreen = new DeleteSearchWordScreen(dict, word);
 	}
 	return nextScreen;
 }
@@ -1117,83 +1083,83 @@ Screen *Remove1WordHistoryScreen::render()
 	return nextScreen;
 }
 
-Screen *DeleteAllHistoryScreen::render()
-{
-	clearScr();
-	Screen *nextScreen = this;
-	std::cout << "Are you sure that you want to delete your search history?\n";
-	int cnt = 0;
-	std::string buffer;
-	std::cout << ++cnt << ". Yes\n";
-	std::cout << ++cnt << ". No\n";
-	int choice = inputOption(cnt);
-	switch (choice)
-	{
-	case 1:
-		if (dict->clearAllHistory(MAIN::HISTORY))
-			std::cout << "Your search history has been successfully deleted!\n";
-		else
-			std::cout << "Errors occurred in clearing time!\n";
-		break;
-	case 2:
-		std::cout << "The deletion has been cancelled!\n";
-		break;
-	}
+// Screen *DeleteAllHistoryScreen::render()
+// {
+// 	clearScr();
+// 	Screen *nextScreen = this;
+// 	std::cout << "Are you sure that you want to delete your search history?\n";
+// 	int cnt = 0;
+// 	std::string buffer;
+// 	std::cout << ++cnt << ". Yes\n";
+// 	std::cout << ++cnt << ". No\n";
+// 	int choice = inputOption(cnt);
+// 	switch (choice)
+// 	{
+// 	case 1:
+// 		if (dict->clearAllHistory(MAIN::HISTORY))
+// 			std::cout << "Your search history has been successfully deleted!\n";
+// 		else
+// 			std::cout << "Errors occurred in clearing time!\n";
+// 		break;
+// 	case 2:
+// 		std::cout << "The deletion has been cancelled!\n";
+// 		break;
+// 	}
 
-	std::cout << "\nOptions: \n";
-	for (int i = 0; i < options.size(); ++i)
-		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
-	choice = inputOption(options.size());
-	switch (choice)
-	{
-	case 1:
-		nextScreen = new ViewHistoryScreen(dict);
-		break;
-	case 2:
-		nextScreen = new EditScreen(dict);
-		break;
-	}
-	return nextScreen;
-}
+// 	std::cout << "\nOptions: \n";
+// 	for (int i = 0; i < options.size(); ++i)
+// 		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+// 	choice = inputOption(options.size());
+// 	switch (choice)
+// 	{
+// 	case 1:
+// 		nextScreen = new ViewHistoryScreen(dict);
+// 		break;
+// 	case 2:
+// 		nextScreen = new EditScreen(dict);
+// 		break;
+// 	}
+// 	return nextScreen;
+// }
 
-Screen *ClearFavListScreen::render()
-{
-	clearScr();
-	Screen *nextScreen = this;
-	std::cout << "Are you sure that you want to clear your favourite list?\n";
-	int cnt = 0;
-	std::string buffer;
-	std::cout << ++cnt << ". Yes\n";
-	std::cout << ++cnt << ". No\n";
-	int choice = inputOption(cnt);
-	switch (choice)
-	{
-	case 1:
-		if (dict->clearFavList(MAIN::FAVLIST))
-			std::cout << "Your favourite list has been successfully deleted!\n";
-		else
-			std::cout << "Errors occurred while clearing!\n";
-		break;
-	case 2:
-		std::cout << "The deletion has been cancelled!\n";
-		break;
-	}
+// Screen *ClearFavListScreen::render()
+// {
+// 	clearScr();
+// 	Screen *nextScreen = this;
+// 	std::cout << "Are you sure that you want to clear your favourite list?\n";
+// 	int cnt = 0;
+// 	std::string buffer;
+// 	std::cout << ++cnt << ". Yes\n";
+// 	std::cout << ++cnt << ". No\n";
+// 	int choice = inputOption(cnt);
+// 	switch (choice)
+// 	{
+// 	case 1:
+// 		if (dict->clearFavList(MAIN::FAVLIST))
+// 			std::cout << "Your favourite list has been successfully deleted!\n";
+// 		else
+// 			std::cout << "Errors occurred while clearing!\n";
+// 		break;
+// 	case 2:
+// 		std::cout << "The deletion has been cancelled!\n";
+// 		break;
+// 	}
 
-	std::cout << "\nOptions: \n";
-	for (int i = 0; i < options.size(); ++i)
-		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
-	choice = inputOption(options.size());
-	switch (choice)
-	{
-	case 1:
-		nextScreen = new ViewFavListScreen(dict);
-		break;
-	case 2:
-		nextScreen = new EditScreen(dict);
-		break;
-	}
-	return nextScreen;
-}
+// 	std::cout << "\nOptions: \n";
+// 	for (int i = 0; i < options.size(); ++i)
+// 		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
+// 	choice = inputOption(options.size());
+// 	switch (choice)
+// 	{
+// 	case 1:
+// 		nextScreen = new ViewFavListScreen(dict);
+// 		break;
+// 	case 2:
+// 		nextScreen = new EditScreen(dict);
+// 		break;
+// 	}
+// 	return nextScreen;
+// }
 
 Screen *Remove1WordFavListScreen::render()
 {
@@ -1285,11 +1251,6 @@ Screen *AddGivenWordFavListScreen::render()
 
 //-------------------------End Parent: EditScreen-------------------------------
 
-	cnt = 0;
-	std::cout << ++cnt << ". Back" << std::endl;
-	inputOption(cnt);
-	return new FavListChoiceScreen(dict);
-}
 //----------------------End Parent: FavListChoiceScreen--------------------------------------
 
 //-------------------------Parent: MultipleChoices--------------------------------

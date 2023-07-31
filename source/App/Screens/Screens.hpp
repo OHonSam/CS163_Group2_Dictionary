@@ -331,27 +331,27 @@ public:
     Remove1WordHistoryScreen(Dict* dict) : Screen(dict) {}
     Screen* render();
 };
-class DeleteAllHistoryScreen: public Screen{
-private:
-    const std::vector<std::string> options = {
-        "Back to View History Screen",
-        "Back to Edit Screen"
-    };
-public:
-    DeleteAllHistoryScreen(Dict* dict) : Screen(dict) {}
-    Screen* render();
-};
+// class DeleteAllHistoryScreen: public Screen{
+// private:
+//     const std::vector<std::string> options = {
+//         "Back to View History Screen",
+//         "Back to Edit Screen"
+//     };
+// public:
+//     DeleteAllHistoryScreen(Dict* dict) : Screen(dict) {}
+//     Screen* render();
+// };
 
-class ClearFavListScreen: public Screen{
-private:
-    const std::vector<std::string> options = {
-        // "Back to View History Screen",
-        // "Back to Edit Screen"
-    };
-public:
-    ClearFavListScreen(Dict* dict) : Screen(dict) {}
-    Screen* render();
-};
+// class ClearFavListScreen: public Screen{
+// private:
+//     const std::vector<std::string> options = {
+//         // "Back to View History Screen",
+//         // "Back to Edit Screen"
+//     };
+// public:
+//     ClearFavListScreen(Dict* dict) : Screen(dict) {}
+//     Screen* render();
+// };
 
 class Remove1WordFavListScreen: public Screen{
 private:
