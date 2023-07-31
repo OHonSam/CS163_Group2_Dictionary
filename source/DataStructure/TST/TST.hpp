@@ -65,7 +65,11 @@ public:
         clear();
     }
 
+    //Clear the TST
     void clear();
+
+    //Clear the favourite list
+    bool clearFavList(const std::string& path);
 
     void insert(const std::string &word);
     void remove(const std::string &word);

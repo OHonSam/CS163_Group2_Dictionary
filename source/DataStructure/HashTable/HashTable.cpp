@@ -80,6 +80,9 @@ HashTable::HashTable():bit(MOD[NMOD-1])
     buckets.resize(MOD[NMOD-1]);
 }
 
+void HashTable::initSeedForRandom(){
+    srand(time(NULL));
+}
 HashTable::~HashTable()
 {
     clear();
