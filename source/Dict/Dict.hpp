@@ -106,7 +106,13 @@ namespace DEFAULT
 class Dict
 {
 private:
-	const int LIM_WORDS = 100000;
+	const int LIM_WORDS = 500;
+	const int UNIQUE_CHARS = 26;
+	const int LIM_EACH_CHAR = LIM_WORDS/UNIQUE_CHARS;
+
+	int numWordsStartsWith[26];
+
+	int numWords;
 
 	SLL<std::string> history;
 	HashTable wordDef;

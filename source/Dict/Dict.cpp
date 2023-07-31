@@ -1,6 +1,9 @@
 #include <Dict.hpp>
 
 bool Dict::reset(){
+    numWords=0;
+    for(int i=0; i<UNIQUE_CHARS; i++) 
+        numWordsStartsWith[i]=0;
     words.clear();
     wordDef.clear();
     defTrie.clear();
@@ -30,6 +33,10 @@ void Dict::updateDef(const std::string &word, unsigned int type, const std::stri
 
 void Dict::addWord(Word *word)
 {
+    int i=word->word[0]-'a';
+    if(numWordsStartsWith[i]>=LIM_EACH_CHAR) return;
+    numWords++;
+    numWordsStartsWith[i]++;
     words.insert(word->word);
     wordDef.insert(word);
     defTrie.insert(word);
@@ -77,6 +84,9 @@ bool Dict::lowerStrViet(std::string &str)
 
 Dict::Dict(): curDataSet(DataSet::EE)
 {
+    numWords=0;
+    for(int i=0; i<UNIQUE_CHARS; i++) 
+        numWordsStartsWith[i]=0;
     setup();
 }
 
@@ -161,9 +171,9 @@ bool Dict::importEECsv(const std::string &path)
     std::string line;
     std::getline(in,line);
 
-    int cnt=0;
+    numWords=0;
     Word* w=nullptr;
-    while(!in.eof() && cnt<LIM_WORDS)
+    while(!in.eof() && numWords<LIM_WORDS)
     {
         std::string word, len, POS, def;
         std::getline(in,word,',');
@@ -181,7 +191,6 @@ bool Dict::importEECsv(const std::string &path)
         
         if(w==nullptr || w->word!=word)
         {
-            cnt++;
             if(w!=nullptr) addWord(w);
             w=new Word(word,type,def);
         }
@@ -195,7 +204,6 @@ bool Dict::importEECsv(const std::string &path)
     return true;
 }
 
-
 Word* Dict::getDailyWord()
 {
     wordDef.initSeedForRandom();
@@ -207,9 +215,9 @@ bool Dict::importEVTxt(const std::string &path)
     std::ifstream in(path);
     if(!in.good() || !in.is_open()) return false;
 
-    int cnt=0;
+    numWords=0;
     std::string line;
-    while(getline(in,line) && cnt<LIM_WORDS)
+    while(getline(in,line) && numWords<LIM_WORDS)
     {
         if(line.empty() || line[0]!='@' || line[1]=='0') continue;
 
@@ -256,7 +264,6 @@ bool Dict::importEVTxt(const std::string &path)
         }
 
         addWord(w);
-        cnt++;
     }
 
     return true;
@@ -267,9 +274,9 @@ bool Dict::importVETxt(const std::string &path)
     std::ifstream in(path);
     if(!in.good() || !in.is_open()) return false;
 
-    int cnt=0;
+    numWords=0;
     std::string line;
-    while(getline(in,line) && cnt<LIM_WORDS)
+    while(getline(in,line) && numWords<LIM_WORDS)
     {
         if(line.empty() || line[0]!='@' || line[1]=='0') continue;
 
@@ -313,7 +320,6 @@ bool Dict::importVETxt(const std::string &path)
         }
 
         addWord(w);
-        cnt++;
     }
 
     return true;
