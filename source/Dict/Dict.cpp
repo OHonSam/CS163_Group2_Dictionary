@@ -26,7 +26,7 @@ void Dict::updateDef(const std::string &word, unsigned int type, const std::stri
 void Dict::addWord(Word *word)
 {
     std::cout << "yess3";
-    words.insert(word->word);
+    // words.insert(word->word);
     std::cout << "yess2";
     wordDef.insert(word);
     std::cout << "yess1";
@@ -69,22 +69,22 @@ bool Dict::lowerStrEng(std::string &str)
 Dict::Dict()
 {
     defTrie = new DefTrie(wordDef);
-    if(!loadFromPrev())
-    {
-        importEECsv(RAW_DATA::EE);
-        std::cout << "yes";
+    // if(!loadFromPrev())
+    // {
+    //     importEECsv(RAW_DATA::EE);
+    //     std::cout << "yes";
 
-        words.save(DEFAULT::WORDS);
-        std::cout << "yes1";
-        wordDef.save(DEFAULT::WORDDEF);
-        std::cout << "yes2";
-        defTrie -> save(DEFAULT::DEFTRIE);
-        std::cout << "yes3";
-        favList.save(DEFAULT::FAVLIST);
-        std::cout << "yes4";
-        history.saveSLLStr(DEFAULT::HISTORY);
-        std::cout << "yes5";
-    }
+    //     words.save(DEFAULT::WORDS);
+    //     std::cout << "yes1";
+    //     wordDef.save(DEFAULT::WORDDEF);
+    //     std::cout << "yes2";
+    //     defTrie -> save(DEFAULT::DEFTRIE);
+    //     std::cout << "yes3";
+    //     favList.save(DEFAULT::FAVLIST);
+    //     std::cout << "yes4";
+    //     history.saveSLLStr(DEFAULT::HISTORY);
+    //     std::cout << "yes5";
+    // }
 }
 
 Dict::~Dict()
@@ -116,9 +116,9 @@ bool Dict::importEECsv(const std::string &path)
     std::getline(in,line);
 
     int cnt=0;
+    Word* w=nullptr;
     while(!in.eof() && cnt<LIM_WORDS)
     {
-        Word* w=nullptr;
         std::string word, len, POS, def;
         std::getline(in,word,',');
         std::getline(in,len,',');
@@ -137,10 +137,10 @@ bool Dict::importEECsv(const std::string &path)
         {
             cnt++;
             if(w!=nullptr) {
+                std::cout << "w != nullptr";
                 addWord(w);
-                std::cout << "ye";
             }
-            // std::cout << "ye";
+            // std::cout << "ye" << ' ' << cnt << '\n';
             w=new Word(word,type,def);
         }
         else
@@ -148,7 +148,7 @@ bool Dict::importEECsv(const std::string &path)
                 if(type&(1<<i))
                     w->def[i].push_back(def);
     }
-    // if(w!=nullptr) addWord(w);
+    if(w!=nullptr) addWord(w);
     in.close();
     return true;
 }

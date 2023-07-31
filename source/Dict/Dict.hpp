@@ -36,7 +36,7 @@ namespace DEFAULT
 
 class Dict
 {
-private:
+public:
 	const int LIM_WORDS = 100000;
 
 	SLL<std::string> history;
