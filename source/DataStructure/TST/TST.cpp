@@ -6,14 +6,15 @@ void TST::clear()
     root = nullptr;
 }
 
-bool TST::clearFavList(const std::string& path){
+bool TST::clearFavList(const std::string &path)
+{
     clear();
     std::ofstream fout;
-    fout.open(path,std::ios::binary|std::ios::trunc);
-    if(!fout.is_open())
+    fout.open(path, std::ios::binary | std::ios::trunc);
+    if (!fout.is_open())
         return false;
     fout.close();
-    if(fout.bad())
+    if (fout.bad())
         return false;
     return true;
 }
@@ -206,8 +207,16 @@ bool TST::isStartedWith(const std::string &prefix)
 bool TST::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
-    if (!file.good() || !file.is_open()) return false;
-    if(file.peek() == std::ifstream::traits_type::eof()) return true;
+    if (!file.good() || !file.is_open())
+        return false;
+    if (file.peek() == std::ifstream::traits_type::eof())
+        return true;
+
+    if (root == nullptr)
+    {
+        root = new TSTNode;
+    }
+
     import(root, file);
     file.close();
     return true;
@@ -216,7 +225,7 @@ bool TST::import(const std::string &path)
 bool TST::save(const std::string &path)
 {
     std::ofstream file(path, std::ios::binary);
-    if (!file.good() ||!file.is_open())
+    if (!file.good() || !file.is_open())
         return false;
     save(root, file);
     file.close();
