@@ -23,8 +23,9 @@ DataSet::Type Dict::getCurDataSet() const
 
 void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
 {
-    wordDef.updateDef(word,type,oldDef,newDef);
-    // defTrie.updateDef(word,type,oldDef,newDef);
+    Word* oldWord = wordDef.searchDef(word);
+    Word* newWord = wordDef.updateDef(word,type,oldDef,newDef);
+    // if (newWord && oldWord) defTrie.updateDef(oldWord, newWord);
 }
 
 void Dict::addWord(Word *word)
