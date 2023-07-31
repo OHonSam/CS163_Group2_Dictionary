@@ -104,7 +104,7 @@ private:
 	HashTable wordDef;
 	Trie words;
 	TST favList;
-	DefTrie defTrie;
+	// DefTrie defTrie;
 
 	DataSet::Type curDataSet;
 
