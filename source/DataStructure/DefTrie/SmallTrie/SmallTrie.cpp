@@ -79,7 +79,7 @@ void SmallTrie::get(std::vector<std::string> &res, Node* root, std::string word)
 
 void SmallTrie::deallocate(Node* &root) {
     if (!root) return;
-    for (int i = 0; i < ALPHABET_SIZE; i++) deallocate(root -> child[i]);
+    for (int i = 0; i < ALPHABET_SIZE; i++) deallocate(root->child[i]);
     delete root;
     root = nullptr;
     return;
