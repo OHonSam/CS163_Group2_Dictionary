@@ -23,41 +23,6 @@ void TST::insert(const std::string &word)
     recursiveInsert(root, word, 0);
 }
 
-// TSTNode *TST::recursiveInsert(TSTNode *&node, const std::string &str, int index)
-// {
-//     if (!node)
-//     {
-//         node = new TSTNode(str[index]);
-//         return node;
-//     }
-//     else
-//     {
-//         if (node->c > str[index])
-//         {
-//             node->left = recursiveInsert(node->left, str, index);
-//         }
-//         else if (node->c < str[index])
-//         {
-//             node->right = recursiveInsert(node->right, str, index);
-//         }
-//         else
-//         {
-//             node->numWords++;
-
-//             if (index < str.size() - 1)
-//             {
-//                 node->mid = recursiveInsert(node->mid, str, index + 1);
-//             }
-//             else
-//             {
-//                 node->isEnd = true;
-//             }
-//         }
-//     }
-
-//     return node;
-// }
-
 void TST::recursiveInsert(TSTNode *&node, const std::string &str, int index)
 {
     if (!node)
@@ -164,25 +129,6 @@ TSTNode *TST::getNodeLastChar(TSTNode *node, const std::string &str, int index)
 
     return node;
 }
-
-// bool TST::search(const std::string &word)
-// {
-//     TSTNode *p = root->getNodeLastChar(root, word, 0);
-
-//     return p && p->isEnd;
-// }
-
-// TSTNode *TST::search(const std::string &word)
-// {
-//     if (root == nullptr)
-//     {
-//         return nullptr;
-//     }
-
-//     TSTNode *p = getNodeLastChar(root, word, 0);
-
-//     return (p && p->isEnd) ? p : nullptr;
-// }
 
 bool TST::wordExists(const std::string &word)
 {
