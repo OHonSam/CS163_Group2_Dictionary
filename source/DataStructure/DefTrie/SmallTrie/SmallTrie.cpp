@@ -10,7 +10,7 @@ int SmallTrie::getIndex(char c)
 
 char SmallTrie::rGetIndex(int index)
 {
-    if (index < 0 || index >= ALPHABET_SIZE) return '\0';
+    if (index < 0 || index >= ALPHABET_SIZE_DEF) return '\0';
     return index + 'a';
 }
 
@@ -79,7 +79,7 @@ void SmallTrie::get(std::vector<std::string> &res, Node* root, std::string word)
 
 void SmallTrie::deallocate(Node* &root) {
     if (!root) return;
-    for (int i = 0; i < ALPHABET_SIZE; i++) deallocate(root->child[i]);
+    for (int i = 0; i < ALPHABET_SIZE_DEF; i++) deallocate(root->child[i]);
     delete root;
     root = nullptr;
     return;

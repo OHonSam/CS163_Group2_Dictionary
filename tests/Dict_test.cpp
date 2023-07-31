@@ -26,7 +26,7 @@ const vector<string> def={
     "One of the compartments in a church which are separated by low partitions  and have long seats upon which several persons may sit; -- sometimes called slip. Pews were originally made square but are now usually long and narrow."
 };
 
-TEST(Dict_test, searchDef)
+TEST(Dict_test, searchForDef)
 {
     Dict dict;
 

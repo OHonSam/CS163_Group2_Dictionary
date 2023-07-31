@@ -5,19 +5,37 @@
 
 // #include "D:\cs163\CS163_Group2_Dictionary\include\DefTrie.hpp"
 
+// int DefTrie::getIndex(char c)
+// {
+//     if (c >= 'a' && c <= 'z') return c - 'a';
+//     if (c >= 'A' && c <= 'Z') return c - 'A';
+//     return -1;
+// }
+
+// char DefTrie::rGetIndex(int index)
+// {
+//     if (index < 0 || index >= ALPHABET_SIZE_DEF) return '\0';
+//     return index + 'a';
+// }
 int DefTrie::getIndex(char c)
 {
-    if (c >= 'a' && c <= 'z') return c - 'a';
-    if (c >= 'A' && c <= 'Z') return c - 'A';
+    if (c >= 'a' && c <= 'z')
+        return c - 'a';
+    if (c >= 'A' && c <= 'Z')
+        return c - 'A';
+    if (c==' ') return ALPHABET_SIZE_DEF-1;
+    if (c=='-') return ALPHABET_SIZE_DEF-2;
     return -1;
 }
-
 char DefTrie::rGetIndex(int index)
 {
-    if (index < 0 || index >= ALPHABET_SIZE) return '\0';
-    return index + 'a';
+    if (index < 0 || index >= ALPHABET_SIZE_DEF)
+        return '\0';
+    if (index < 26) return index + 'a';
+    if (index == ALPHABET_SIZE_DEF-1) return ' ';
+    if (index == ALPHABET_SIZE_DEF-2) return '-';
+    return '\0';
 }
-
 void DefTrie::remove(Node *&root, const std::string &word, const std::string &keyword, int index)
 {
     // index initialized with 0, word's length = max index including root
@@ -56,8 +74,9 @@ void DefTrie::insert(const std::string& word, const std::string& def){
     ++(cur -> numWords);
     for (int i = 0; i < def.size(); ++i) {
         int index = getIndex(def[i]);
-        if (!cur -> child[index]) cur -> child[index] = new Node();
-        ++(cur -> child[index] -> numWords);
+        if(index==-1) continue;
+        if (!cur->child[index]) cur->child[index] = new Node();
+        ++(cur->child[index]->numWords);
         cur = cur -> child[index];
     }
     cur -> isEnd = true;
@@ -102,7 +121,7 @@ void DefTrie::remove(Word* word) {
 
 void DefTrie::deallocate(Node* &root) {
     if (!root) return;
-    for (int i = 0; i < ALPHABET_SIZE; i++) deallocate(root -> child[i]);
+    for (int i = 0; i < ALPHABET_SIZE_DEF; i++) deallocate(root -> child[i]);
     delete root;
     root = nullptr;
     return;
@@ -134,7 +153,7 @@ void DefTrie::recursiveFind(std::vector<std::string>& res, std::string prefix, D
         res.push_back(prefix);
         cnt++;
     }
-    for(int i = 0; i < ALPHABET_SIZE; i++){
+    for(int i = 0; i < ALPHABET_SIZE_DEF; i++){
         if (cur -> child[i]) {
             char c = rGetIndex(i);
             recursiveFind(res, prefix + c, cur -> child[i], cnt);
@@ -207,7 +226,7 @@ SmallTrie* DefTrie::merge(SmallTrie* st1, SmallTrie* st2) {
 
 void DefTrie::merge(SmallTrie* &res, SmallTrie::Node* p1, SmallTrie::Node* p2, std::string keyword) {
     if (!p1 -> isRoot) if (p1 -> isEnd && !p2 -> isEnd) res -> insert(keyword);
-    for (int i = 0; i < ALPHABET_SIZE; i++) if (p1 -> child[i] && p2 -> child[i]) merge(res, p1 -> child[i], p2 -> child[i], keyword + rGetIndex(i));
+    for (int i = 0; i < ALPHABET_SIZE_DEF; i++) if (p1 -> child[i] && p2 -> child[i]) merge(res, p1 -> child[i], p2 -> child[i], keyword + rGetIndex(i));
     return;
 }
 
@@ -228,7 +247,7 @@ void DefTrie::save(Node* root, std::ofstream& out) {
     out.seekp(0 - 4 - trans, std::ios::cur);
     out.write((char*) &trans, sizeof (int));
     out.seekp(trans, std::ios::cur);
-    for (int i = 0; i < ALPHABET_SIZE; i++) {
+    for (int i = 0; i < ALPHABET_SIZE_DEF; i++) {
         bool flag = true;
         if (root -> child[i]) {
             out.write((char*) &flag, sizeof (bool));
@@ -258,7 +277,7 @@ void DefTrie::import(Node* &root, std::ifstream& in) {
     int read_space;
     in.read((char*) &read_space, sizeof (int));
     SmallTrie::import(root -> st -> root, in, read_space);
-    for (int i = 0; i < ALPHABET_SIZE; i++) {
+    for (int i = 0; i < ALPHABET_SIZE_DEF; i++) {
         bool flag;
         in.read((char*) &flag, sizeof (bool));
         if (flag) import(root -> child[i], in);

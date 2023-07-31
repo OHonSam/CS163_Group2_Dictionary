@@ -5,7 +5,7 @@
 #include "Word.hpp"
 #include "SmallTrie.hpp"
 
-// const int ALPHABET_SIZE = 26;
+//const int ALPHABET_SIZE_DEF = 28;
 // const char TERMINATOR = '\0';
 
 class DefTrie: public SmallTrie
@@ -26,7 +26,7 @@ private:
         {
             isEnd = false;
             numWords = 0;
-            child.resize(28, nullptr);//test
+            child.resize(ALPHABET_SIZE_DEF, nullptr);//test
             st = new SmallTrie();
         }
     };
