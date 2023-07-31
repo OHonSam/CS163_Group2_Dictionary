@@ -3,15 +3,12 @@
 
 int SmallTrie::getIndex(char c)
 {
-    if (c >= 'a' && c <= 'z') return c - 'a';
-    if (c >= 'A' && c <= 'Z') return c - 'A';
-    return -1;
+    return c;
 }
 
 char SmallTrie::rGetIndex(int index)
 {
-    if (index < 0 || index >= ALPHABET_SIZE) return '\0';
-    return index + 'a';
+    return char(index);
 }
 
 void SmallTrie::insert(const std::string& word) {

@@ -7,15 +7,12 @@
 
 int DefTrie::getIndex(char c)
 {
-    if (c >= 'a' && c <= 'z') return c - 'a';
-    if (c >= 'A' && c <= 'Z') return c - 'A';
-    return -1;
+    return c;
 }
 
 char DefTrie::rGetIndex(int index)
 {
-    if (index < 0 || index >= ALPHABET_SIZE) return '\0';
-    return index + 'a';
+    return char(index);
 }
 
 void DefTrie::remove(Node *&root, const std::string &word, const std::string &keyword, int index)

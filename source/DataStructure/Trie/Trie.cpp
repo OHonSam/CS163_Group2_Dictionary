@@ -2,22 +2,11 @@
 #include <Trie.hpp>
 int Trie::getIndex(char c)
 {
-    if (c >= 'a' && c <= 'z')
-        return c - 'a';
-    if (c >= 'A' && c <= 'Z')
-        return c - 'A';
-    if (c==' ') return ALPHABET_SIZE-1;
-    if (c=='-') return ALPHABET_SIZE-2;
-    return -1;
+    return c;
 }
 char Trie::rGetIndex(int index)
 {
-    if (index < 0 || index >= ALPHABET_SIZE)
-        return '\0';
-    if (index < 26) return index + 'a';
-    if (index == ALPHABET_SIZE-1) return ' ';
-    if (index == ALPHABET_SIZE-2) return '-';
-    return '\0';
+    return char(index);
 }
 
 bool Trie::checkExist(const std::string &key)

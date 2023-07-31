@@ -30,7 +30,7 @@ public:
             isRoot = false;
             isEnd = false;
             numWords = 0;
-            child.resize(26, nullptr);
+            child.resize(ALPHABET_SIZE, nullptr);
         }
     };
     Node* root;
