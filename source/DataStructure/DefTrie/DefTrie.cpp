@@ -142,6 +142,16 @@ void DefTrie::recursiveFind(std::vector<std::string>& res, std::string prefix, D
 
 std::vector<std::string> DefTrie::searchKeyWord(const std::string def) {
     std::vector<std::string> defW = defWord(def);
+    std::vector<std::string> filter;
+    SmallTrie* fil = new SmallTrie();
+    for (int i = 0; i < defW.size(); i++) {
+        if (!(fil -> search(defW[i]))) {
+            fil -> insert(defW[i]);
+            filter.push_back(defW[i]);
+        } 
+    }
+    defW = filter;
+    filter.clear();
     // std::vector<SmallTrie*> p;
     // SmallTrie* res;
     if (!defW.size()) return {};
