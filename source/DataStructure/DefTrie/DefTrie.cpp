@@ -1,4 +1,4 @@
-#include <Libraries.hpp>
+// #include <Libraries.hpp>
 #include <DefTrie.hpp>
 #include <sstream>
 // #include<Trie.hpp>
@@ -75,7 +75,6 @@ void DefTrie::insert(Word* word) {
             }
         }
     }
-    std::cout << "yes";
     return;
 }
 
@@ -157,7 +156,9 @@ std::vector<std::string> DefTrie::searchKeyWord(const std::string def) {
             cur = search(defW[i]);
             if (!cur) res = {};
             else {
-                if (cur -> st -> search(res[j])) temp.push_back(res[j]);
+                if (cur -> st -> search(res[j])) {
+                    temp.push_back(res[j]);
+                }
             }
         }
         res.clear();

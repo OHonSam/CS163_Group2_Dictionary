@@ -41,7 +41,7 @@ private:
         "View",
         "Edit",
         "Daily word",
-        "Multile choices quiz",
+        "Multiple choices quiz",
         "Reset to default",
         "Switch datasets",
         "Exit"
@@ -109,7 +109,9 @@ public:
     void ResettoDefault();
 };
 
-class FavListChoiceScreen : public Screen
+class FavListChoiceScreen : public Screen {
+    
+};
 class DailyWordScreen: public Screen
 {
 private:

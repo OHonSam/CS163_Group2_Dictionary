@@ -7,7 +7,6 @@ Word* HashTable::searchDef(const std::string& word) {
     Word* res = nullptr;
     for (int i = 0; i < HashTable::buckets[key].size(); i++)
     {
-        std::cout << "here";
         //std::cout << HashTable::buckets[key][i] -> word << '\n';
         if (HashTable::buckets[key][i] -> word == word) {
             res = HashTable::buckets[key][i];
@@ -43,14 +42,9 @@ std::vector<Word*> HashTable::getRandom(int k)
 int HashTable::insert(Word* word) {
     numWords++;
     // check if this word already exist
-    std::cout << "here";
     int key = HashTable::hash(word->word);
-    // std::cout << "here";
-    // bit.add(key+1,1);
-    // std::cout << "here";
-    std::cout << "here";
-    // HashTable::buckets[key].push_back(word);
-    std::cout << "here";
+    bit.add(key+1,1);
+    HashTable::buckets[key].push_back(word);
     return key;
 }
 

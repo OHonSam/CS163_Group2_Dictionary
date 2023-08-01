@@ -4,15 +4,13 @@
 #include <Libraries.hpp>
 #include "Word.hpp"
 #include "SmallTrie.hpp"
-#include "HashTable.hpp"
 
 // const int ALPHABET_SIZE = 26;
 // const char TERMINATOR = '\0';
 
-class DefTrie: public HashTable, public SmallTrie
+class DefTrie: public SmallTrie
 {
 private:
-    HashTable wordDef;
     struct Node
     {
         bool isEnd;
@@ -53,7 +51,7 @@ private:
 
     void deallocate(Node* &root);
 public:
-    DefTrie(HashTable wordDef) : wordDef(wordDef)
+    DefTrie()
     { 
         root = new Node();
     }

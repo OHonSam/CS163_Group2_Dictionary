@@ -30,7 +30,8 @@ void Dict::updateDef(const std::string &word, unsigned int type, const std::stri
 {
     Word* oldWord = wordDef.searchDef(word);
     Word* newWord = wordDef.updateDef(word,type,oldDef,newDef);
-    // if (newWord && oldWord) defTrie.updateDef(oldWord, newWord);
+    if (newWord && oldWord) defTrie.updateDef(oldWord, newWord);
+    return;
 }
 
 void Dict::addWord(Word *word)
@@ -41,7 +42,7 @@ void Dict::addWord(Word *word)
     numWordsStartsWith[i]++;
     words.insert(word->word);
     wordDef.insert(word);
-    defTrie -> insert(word);
+    defTrie.insert(word);
     return;
 }
 
@@ -461,9 +462,9 @@ Word *Dict::searchForDef(const std::string &word)
 
 std::vector<std::string> Dict::searchForWord(const std::string &def)
 {
-    // removeHistory(def);
-    // addHistory(def);
-    return defTrie -> searchKeyWord(def);
+    removeHistory(def);
+    addHistory(def);
+    return defTrie.searchKeyWord(def);
 }
 
 std::vector<std::string> Dict::searchPrefix(const std::string &prefix)
@@ -477,7 +478,8 @@ std::vector<std::string> Dict::searchPrefixFavlist(const std::string &prefix)
 }
 
 std::vector<std::string> Dict::searchPrefixDefTrie(const std::string &prefix) {
-    return defTrie -> searchPrefix(prefix);
+    return defTrie.searchPrefix(prefix);
+}
 std::vector<Word *> Dict::getMultiChoices(int k)
 {
     return wordDef.getRandom(k);
@@ -493,7 +495,7 @@ void Dict::removeWord(const std::string& word){
 
 void Dict::removeDefTrie(const std::string &word) {
     Word* w = wordDef.searchDef(word);
-    defTrie -> remove(w);
+    defTrie.remove(w);
     return;
 }
 
