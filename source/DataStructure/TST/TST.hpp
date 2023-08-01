@@ -17,7 +17,7 @@ class TSTNode
 
 public:
     TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr), isEnd(0), numWords(0) {}
-    TSTNode() {}
+    TSTNode(): left(nullptr), mid(nullptr), right(nullptr), isEnd(0), numWords(0) {}
 
     ~TSTNode()
     {
@@ -65,7 +65,11 @@ public:
         clear();
     }
 
+    //Clear the TST
     void clear();
+
+    //Clear the favourite list
+    bool clearFavList(const std::string& path);
 
     void insert(const std::string &word);
     void remove(const std::string &word);

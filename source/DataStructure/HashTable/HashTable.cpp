@@ -81,11 +81,12 @@ int HashTable::hash(const std::string& word) {
 
 HashTable::HashTable():bit(MOD[NMOD-1])
 {
+    srand(time(NULL));
     numWords=0;
     buckets.resize(MOD[NMOD-1]);
 }
 
-void initSeedForRandom(){
+void HashTable::initSeedForRandom(){
     srand(time(NULL));
 }
 HashTable::~HashTable()
@@ -131,7 +132,7 @@ Word* HashTable::updateDef(const std::string& word, unsigned int type, const std
                 if (type & (1 << j)) {
                     for (int k = 0; k < buckets[key][i] -> def[j].size(); k++) if (buckets[key][i] -> def[j][k] == oldDef) {
                         buckets[key][i] -> def[j][k] = newDef;
-                        return HashTable::buckets[key][i];
+                        return buckets[key][i];
                     }
                 }
             }
@@ -142,10 +143,7 @@ Word* HashTable::updateDef(const std::string& word, unsigned int type, const std
 
 bool HashTable::import(const std::string& path) {
     std::ifstream in(path, std::ios::in | std::ios::binary);
-    if (!in.is_open()) 
-        return false;
-    if(in.peek() == std::ifstream::traits_type::eof())
-        return true;
+    if (!in.good() || !in.is_open()) return false;
     int temp;
     int tempora;
     std::string w;
@@ -159,6 +157,7 @@ bool HashTable::import(const std::string& path) {
         int tempo;
         in.read((char*)& tempo, sizeof (int));
         buckets[i].resize(tempo);
+        bit.add(i+1, tempo);
         for (int j = 0; j < tempo; j++)
         {
             int tempor;

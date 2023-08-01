@@ -27,7 +27,7 @@ private:
         {
             isEnd = false;
             numWords = 0;
-            child.resize(26, nullptr);
+            child.resize(ALPHABET_SIZE, nullptr);
             st = new SmallTrie();
         }
     };
@@ -80,7 +80,7 @@ public:
     void remove(Word* word);
 
     // Update definition of a word would call thiss function to modify DefTrie
-    void updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef);
+    void updateDef(Word* oldWord, Word* newWord);
 
     // Returns a list of std::strings which have identical prefix
     std::vector<std::string> searchPrefix(const std::string& prefix); 

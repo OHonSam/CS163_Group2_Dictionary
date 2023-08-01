@@ -2,17 +2,11 @@
 #include <Trie.hpp>
 int Trie::getIndex(char c)
 {
-    if (c >= 'a' && c <= 'z')
-        return c - 'a';
-    if (c >= 'A' && c <= 'Z')
-        return c - 'A';
-    return -1;
+    return c;
 }
 char Trie::rGetIndex(int index)
 {
-    if (index < 0 || index >= ALPHABET_SIZE)
-        return '\0';
-    return index + 'a';
+    return char(index);
 }
 
 bool Trie::checkExist(const std::string &key)
@@ -39,11 +33,12 @@ void Trie::recursiveFind(std::vector<std::string> &res, std::string prefix, Trie
     {
         res.push_back(prefix);
         ++cnt;
-        char c = prefix[prefix.size()-1];
-        if(cur->child[getIndex(c)] == nullptr)
-            return;
-        else
-            recursiveFind(res, prefix + c, cur->child[getIndex(c)], cnt);
+        // this comment is a bug
+        // char c = prefix[prefix.size()-1];
+        // if(cur->child[getIndex(c)] == nullptr)
+        //     return;
+        // else
+        //     recursiveFind(res, prefix + c, cur->child[getIndex(c)], cnt);
     }
     for (int i = 0; i < ALPHABET_SIZE; ++i)
     {
@@ -121,10 +116,7 @@ void Trie::clear()
 bool Trie::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
-    if (!file.is_open())
-        return false;
-    if(file.peek() == std::ifstream::traits_type::eof())
-        return true;
+    if (!file.good() || !file.is_open()) return false;
     import(root, file);
     file.close();
     return true;

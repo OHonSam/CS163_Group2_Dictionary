@@ -10,40 +10,120 @@
 // #include "D:\cs163\CS163_Group2_Dictionary\source\DataStructure\HashTable\HashTable.hpp"
 // #include "D:\cs163\CS163_Group2_Dictionary\source\DataStructure\DefTrie\DefTrie.hpp"
 
+namespace DataSet
+{
+	enum Type
+	{
+		EE,
+		EV,
+		VE,
+		Slang,
+		Count
+	};
+}
 
 namespace RAW_DATA
 {
 	const std::string EE = "assets/RawData/EE.csv";
+	const std::string EV = "assets/RawData/EV.txt";
+	const std::string VE = "assets/RawData/VE.txt";
+	const std::string Slang = "assets/RawData/Slang.csv";
 }
 
 namespace MAIN
 {
-	const std::string WORDS = "assets/DS/main/words.bin";
-	const std::string WORDDEF = "assets/DS/main/wordDef.bin";
-	const std::string DEFTRIE = "assets/DS/main/defTrie.bin";
-	const std::string FAVLIST = "assets/DS/main/favList.bin";
-	const std::string HISTORY = "assets/DS/main/history.bin";
+	namespace EE
+	{
+		const std::string WORDS = "assets/DS/EE/main/words.bin";
+		const std::string WORDDEF = "assets/DS/EE/main/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/EE/main/defTrie.bin";
+		const std::string FAVLIST = "assets/DS/EE/main/favList.bin";
+		const std::string HISTORY = "assets/DS/EE/main/history.bin";
+	}
+	namespace EV
+	{
+		const std::string WORDS = "assets/DS/EV/main/words.bin";
+		const std::string WORDDEF = "assets/DS/EV/main/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/EV/main/defTrie.bin";
+		const std::string FAVLIST = "assets/DS/EV/main/favList.bin";
+		const std::string HISTORY = "assets/DS/EV/main/history.bin";
+	}
+
+	namespace VE
+	{
+		const std::string WORDS = "assets/DS/VE/main/words.bin";
+		const std::string WORDDEF = "assets/DS/VE/main/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/VE/main/defTrie.bin";
+		const std::string FAVLIST = "assets/DS/VE/main/favList.bin";
+		const std::string HISTORY = "assets/DS/VE/main/history.bin";
+	}
+
+	namespace Slang
+	{
+		const std::string WORDS = "assets/DS/Slang/main/words.bin";
+		const std::string WORDDEF = "assets/DS/Slang/main/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/Slang/main/defTrie.bin";
+		const std::string FAVLIST = "assets/DS/Slang/main/favList.bin";
+		const std::string HISTORY = "assets/DS/Slang/main/history.bin";
+	}
 }
 
 namespace DEFAULT
 {
-	const std::string WORDS = "assets/DS/default/words.bin";
-	const std::string WORDDEF = "assets/DS/default/wordDef.bin";
-	const std::string DEFTRIE = "assets/DS/default/defTrie.bin";
-	const std::string FAVLIST = "assets/DS/default/favList.bin";
-	const std::string HISTORY = "assets/DS/default/history.bin";
+	namespace EE
+	{
+		const std::string WORDS = "assets/DS/EE/default/words.bin";
+		const std::string WORDDEF = "assets/DS/EE/default/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/EE/default/defTrie.bin";
+		const std::string FAVLIST = "assets/DS/EE/default/favList.bin";
+		const std::string HISTORY = "assets/DS/EE/default/history.bin";
+	}
+	namespace EV
+	{
+		const std::string WORDS = "assets/DS/EV/default/words.bin";
+		const std::string WORDDEF = "assets/DS/EV/default/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/EV/default/defTrie.bin";
+		const std::string FAVLIST = "assets/DS/EV/default/favList.bin";
+		const std::string HISTORY = "assets/DS/EV/default/history.bin";
+	}
+
+	namespace VE
+	{
+		const std::string WORDS = "assets/DS/VE/default/words.bin";
+		const std::string WORDDEF = "assets/DS/VE/default/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/VE/default/defTrie.bin";
+		const std::string FAVLIST = "assets/DS/VE/default/favList.bin";
+		const std::string HISTORY = "assets/DS/VE/default/history.bin";
+	}
+
+	namespace Slang
+	{
+		const std::string WORDS = "assets/DS/Slang/default/words.bin";
+		const std::string WORDDEF = "assets/DS/Slang/default/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/Slang/default/defTrie.bin";
+		const std::string FAVLIST = "assets/DS/Slang/default/favList.bin";
+		const std::string HISTORY = "assets/DS/Slang/default/history.bin";
+	}
 }
 
 class Dict
 {
-public:
-	const int LIM_WORDS = 100000;
+private:
+	const int LIM_WORDS = 5000;
+	const int UNIQUE_CHARS = 26;
+	const int LIM_EACH_CHAR = LIM_WORDS/UNIQUE_CHARS;
+
+	int numWordsStartsWith[26];
+
+	int numWords;
 
 	SLL<std::string> history;
 	HashTable wordDef;
 	Trie words;
 	TST favList;
-	DefTrie* defTrie;	
+	DefTrie defTrie;
+
+	DataSet::Type curDataSet;
 
 public:
 	// If first time running, import the raw dataset
@@ -52,16 +132,36 @@ public:
 
 	// Save data structures before deleting
 	~Dict();	
+
 	// Check if a string is a valid English word (only contains letters from a to z) and convert uppercase letter to lowercase letter
 	bool lowerStrEng(std::string& str);
+
+	bool lowerStrViet(std::string& str);
+
 	// Load from previous save data
 	bool loadFromPrev();
 
-	// Load from csv file
+	// Load from EE data
 	bool importEECsv(const std::string &path);
 
+	// Load from EV data
+	bool importEVTxt(const std::string &path);
+
+	// Load from VE data
+	bool importVETxt(const std::string &path);
+
+	// Load from Slang words data
+	bool importSlangCsv(const std::string &path);
+
+	bool setup();
+	
 	// Reset to the default dataset
 	bool reset();
+
+	bool switchDataSet(DataSet::Type type);
+
+	// Get the current dataset
+	DataSet::Type getCurDataSet() const;
 
 	// Edit definition of existed word
 	void updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef);
@@ -72,7 +172,7 @@ public:
 	// Check if a string is a valid number representing part of speech
 	bool isValidPOS(const std::string &str, int &pos);
 
-	// Add a word to the favorite list 
+	// Add a word to the favourite list
 	void addFav(const std::string &word);
 
 	// Add a word to the history
@@ -81,15 +181,21 @@ public:
 	// Check if a word is already in the History list
 	bool isInHistory(const std::string &word);
 
+	// Check if a word is already in the favourite list
+	bool isInFavList(const std::string& word);
+
 	// Check if a word is already in the Dictionary
 	bool isInDict(const std::string &word);
 
 	// Remove a word and corresponding definition
 	void removeWord(const std::string &word);
 	// Remove all words in the history
-	bool clearAllHistory(const std::string &path);
+	bool clearAllHistory();
+	
+	// Remove all words in the favourite list
+	bool clearFavList();
 
-	// Remove a word from the favorite list
+	// Remove a word from the favourite list
 	void removeFav(const std::string &word);
 
 	// Remove a word from the history
@@ -101,7 +207,7 @@ public:
 	// Get the history in the vector
 	std::vector<std::string> getHistory();
 
-	// Get the favorite list
+	// Get the favourite list
 	std::vector<std::string> getFav();
 
 	// Return a definition for a required word
@@ -117,10 +223,13 @@ public:
 	std::vector<std::string> searchPrefixFavlist(const std::string &prefix);
 	std::vector<std::string> searchPrefixDefTrie(const std::string &prefix);
 
-	// Get the list of multple choices
-	void getMultileChoices(std::string &ques, std::vector<std::string> &choices, int numChoices, bool isWord);
+	// Get a daily word
+	Word *getDailyWord();
 
-	//Turn uppercase to lowercase
+	// Get the list of multple choices
+	std::vector<Word*> getMultiChoices(int k);
+
+	// Turn uppercase to lowercase
 	bool uppercase2Lowercase(std::string &str);
 };
 #endif

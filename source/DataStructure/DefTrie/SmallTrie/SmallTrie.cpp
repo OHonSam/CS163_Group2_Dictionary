@@ -3,15 +3,12 @@
 
 int SmallTrie::getIndex(char c)
 {
-    if (c >= 'a' && c <= 'z') return c - 'a';
-    if (c >= 'A' && c <= 'Z') return c - 'A';
-    return -1;
+    return c;
 }
 
 char SmallTrie::rGetIndex(int index)
 {
-    if (index < 0 || index >= ALPHABET_SIZE) return '\0';
-    return index + 'a';
+    return char(index);
 }
 
 void SmallTrie::insert(const std::string& word) {
@@ -101,7 +98,7 @@ int SmallTrie::save(Node* root, std::ofstream &out) {
 }
 
 bool SmallTrie::import(Node* &root, std::ifstream &in, int read_space) {
-    if (!read_space) return false;
+    // if (!read_space) return false;
     if (!root) root = new Node();
     in.read((char*) &root -> isEnd, sizeof (bool));
     in.read((char*) &root -> numWords, sizeof (int));
@@ -112,8 +109,9 @@ bool SmallTrie::import(Node* &root, std::ifstream &in, int read_space) {
         in.read((char*) &temp, sizeof (int));
         root -> childNum.push_back(temp);
     }
+    // std::cout << read_space << '\n';
     for (int i = 0; i < root -> childNum.size(); i++) {
-        read_space = read_space - sizeof(bool) - sizeof(int) * (size + 2);
+        // read_space = read_space - sizeof(bool) - sizeof(int) * (size + 2);
         import(root -> child[root -> childNum[i]], in, read_space);
     }
     return true;

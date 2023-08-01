@@ -6,45 +6,22 @@ void TST::clear()
     root = nullptr;
 }
 
+bool TST::clearFavList(const std::string& path){
+    clear();
+    std::ofstream fout;
+    fout.open(path,std::ios::binary|std::ios::trunc);
+    if(!fout.is_open())
+        return false;
+    fout.close();
+    if(fout.bad())
+        return false;
+    return true;
+}
+
 void TST::insert(const std::string &word)
 {
     recursiveInsert(root, word, 0);
 }
-
-// TSTNode *TST::recursiveInsert(TSTNode *&node, const std::string &str, int index)
-// {
-//     if (!node)
-//     {
-//         node = new TSTNode(str[index]);
-//         return node;
-//     }
-//     else
-//     {
-//         if (node->c > str[index])
-//         {
-//             node->left = recursiveInsert(node->left, str, index);
-//         }
-//         else if (node->c < str[index])
-//         {
-//             node->right = recursiveInsert(node->right, str, index);
-//         }
-//         else
-//         {
-//             node->numWords++;
-
-//             if (index < str.size() - 1)
-//             {
-//                 node->mid = recursiveInsert(node->mid, str, index + 1);
-//             }
-//             else
-//             {
-//                 node->isEnd = true;
-//             }
-//         }
-//     }
-
-//     return node;
-// }
 
 void TST::recursiveInsert(TSTNode *&node, const std::string &str, int index)
 {
@@ -108,6 +85,7 @@ void TST::remove(TSTNode *&node, const std::string &str, int index)
         }
     }
 }
+
 std::vector<std::string> TST::startWith(const std::string &prefix)
 {
     std::vector<std::string> res;
@@ -152,25 +130,6 @@ TSTNode *TST::getNodeLastChar(TSTNode *node, const std::string &str, int index)
     return node;
 }
 
-// bool TST::search(const std::string &word)
-// {
-//     TSTNode *p = root->getNodeLastChar(root, word, 0);
-
-//     return p && p->isEnd;
-// }
-
-// TSTNode *TST::search(const std::string &word)
-// {
-//     if (root == nullptr)
-//     {
-//         return nullptr;
-//     }
-
-//     TSTNode *p = getNodeLastChar(root, word, 0);
-
-//     return (p && p->isEnd) ? p : nullptr;
-// }
-
 bool TST::wordExists(const std::string &word)
 {
     if (root == nullptr)
@@ -193,9 +152,8 @@ bool TST::isStartedWith(const std::string &prefix)
 bool TST::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
-    if (!file.is_open())
-        return false;
-    if (file.peek() == std::ifstream::traits_type::eof())
+    if (!file.good() || !file.is_open()) return false;
+    if (file.peek() == std::ifstream::traits_type::eof()) 
         return true;
     import(root, file);
     file.close();
@@ -214,48 +172,35 @@ bool TST::save(const std::string &path)
 
 void TST::import(TSTNode *&root, std::ifstream &file)
 {
-    if (root == nullptr)
-        root = new TSTNode;
+    char _c;
+    file.read((char *)&_c, sizeof(char));
+
+    if(_c == TERMINATOR) return;
+
+    root = new TSTNode(_c);
     file.read((char *)&root->numWords, sizeof(int));
     file.read((char *)&root->isEnd, sizeof(bool));
-    int _c; // character read in binary file
-    while (true)
-    {
-        file.read((char *)&_c, sizeof(char));
-        if (_c == TERMINATOR)
-            break;
-        if (_c < root->c)
-        {
-            import(root->left, file);
-        }
-        else if (_c > root->c)
-        {
-            import(root->right, file);
-        }
-        else
-        {
-            import(root->mid, file);
-        }
-    }
+
+    import(root->left, file);
+    import(root->right, file);
+    import(root->mid, file);
 }
 
 void TST::save(TSTNode *root, std::ofstream &file)
 {
-    if (root == nullptr)
+    if (!root) {
+        file.write((char *)&TERMINATOR, sizeof(char));
         return;
+    }
+
+    file.write((char *)&(root->c), sizeof(char));
     file.write((char *)&root->numWords, sizeof(int));
     file.write((char *)&root->isEnd, sizeof(bool));
-    char _c = root->c; // temporary storage of character contained in a TSTNode
+    // char _c = root->c; // temporary storage of character contained in a TSTNode
 
-    file.write((char *)&_c, sizeof(char));
     save(root->left, file);
-
-    save(root->mid, file);
-
     save(root->right, file);
-
-    char marker = TERMINATOR;
-    file.write((char *)&marker, sizeof(char));
+    save(root->mid, file);
 }
 
 std::vector<std::string> TST::traverse()

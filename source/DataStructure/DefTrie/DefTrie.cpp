@@ -7,15 +7,12 @@
 
 int DefTrie::getIndex(char c)
 {
-    if (c >= 'a' && c <= 'z') return c - 'a';
-    if (c >= 'A' && c <= 'Z') return c - 'A';
-    return -1;
+    return c;
 }
 
 char DefTrie::rGetIndex(int index)
 {
-    if (index < 0 || index >= ALPHABET_SIZE) return '\0';
-    return index + 'a';
+    return char(index);
 }
 
 void DefTrie::remove(Node *&root, const std::string &word, const std::string &keyword, int index)
@@ -192,10 +189,8 @@ std::vector<std::string> DefTrie::getKeyWords(DefTrie::Node* cur) {
     return (cur -> st -> keywords());
 }
 
-void DefTrie::updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef) {
-    Word* oldWord = wordDef.searchDef(word);
+void DefTrie::updateDef(Word* oldWord, Word* newWord) {
     remove(oldWord);
-    Word* newWord = wordDef.updateDef(word, type, oldDef, newDef);
     insert(newWord);
     return;
 }
@@ -225,11 +220,11 @@ void DefTrie::save(Node* root, std::ofstream& out) {
     if (!root) return;
     out.write((char*) &root -> isEnd, sizeof (bool));
     out.write((char*) &root -> numWords, sizeof (int));
-    out.seekp(4, std::ios::cur);
+    // out.seekp(4, std::ios::cur);
     int trans = SmallTrie::save(root -> st -> root, out);
-    out.seekp(0 - 4 - trans, std::ios::cur);
-    out.write((char*) &trans, sizeof (int));
-    out.seekp(trans, std::ios::cur);
+    // out.seekp(0 - 4 - trans, std::ios::cur);
+    // out.write((char*) &trans, sizeof (int));
+    // out.seekp(trans, std::ios::cur);
     for (int i = 0; i < ALPHABET_SIZE; i++) {
         bool flag = true;
         if (root -> child[i]) {
@@ -248,7 +243,9 @@ DefTrie::Node* DefTrie::import(const std::string& path) {
     // delete root;
     // root = nullptr;
     std::ifstream in(path, std::ios::in | std::ios::binary);
-    if (!in.is_open()) return nullptr;
+    if (!in.good() || !in.is_open()) return nullptr;
+    if (in.peek() == std::ifstream::traits_type::eof()) 
+        return root = new Node();
     import(root, in);
     return root;
 }
@@ -258,7 +255,7 @@ void DefTrie::import(Node* &root, std::ifstream& in) {
     in.read((char*) &root -> isEnd, sizeof (bool));
     in.read((char*) &root -> numWords, sizeof (int));
     int read_space;
-    in.read((char*) &read_space, sizeof (int));
+    // in.read((char*) &read_space, sizeof (int));
     SmallTrie::import(root -> st -> root, in, read_space);
     for (int i = 0; i < ALPHABET_SIZE; i++) {
         bool flag;
