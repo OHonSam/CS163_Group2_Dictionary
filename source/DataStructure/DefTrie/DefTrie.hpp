@@ -61,6 +61,7 @@ public:
 
     // Cut down a string
     std::vector<std::string> defWord(const std::string def);
+    std::string Purify(std::string s);
 
     // Deallocate all nodes
     void clear();

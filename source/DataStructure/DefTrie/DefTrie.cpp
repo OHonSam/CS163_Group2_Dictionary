@@ -1,6 +1,7 @@
 // #include <Libraries.hpp>
 #include <DefTrie.hpp>
 #include <sstream>
+#include <string>
 // #include<Trie.hpp>
 
 // #include "D:\cs163\CS163_Group2_Dictionary\include\DefTrie.hpp"
@@ -13,6 +14,24 @@ int DefTrie::getIndex(char c)
 char DefTrie::rGetIndex(int index)
 {
     return char(index);
+}
+
+std::string DefTrie::Purify(std::string s) {
+    if (s[0] < 97 || s[0] > 122) {
+        if (s[0] >= 65 && s[0] <= 90) s[0] += 32;
+        else {
+            std::string temp = s.substr(1, s.size() - 1);
+            s = temp;
+        }
+    } 
+    if (s[s.size() - 1] < 97 || s[s.size() - 1] > 122) {
+        if (s[s.size() - 1] >= 65 && s[s.size() - 1] <= 90) s[s.size() - 1] += 32;
+        else {
+            std::string temp = s.substr(0, s.size() - 1);
+            s = temp;
+        }
+    } 
+    return s;
 }
 
 void DefTrie::remove(Node *&root, const std::string &word, const std::string &keyword, int index)
@@ -44,7 +63,10 @@ std::vector<std::string> DefTrie::defWord(const std::string def) {
     std::stringstream s(def);
     std::string word;
     std::vector <std::string> res;
-    while (s >> word) res.push_back(word);
+    while (s >> word) {
+        word = Purify(word);
+        res.push_back(word);
+    }
     return res;
 }
 
