@@ -9,7 +9,7 @@
 class App
 {
 private:
-	Dict dict;
+	Dict* dict;
 	Screen *CurrentScreen;
 
 public:

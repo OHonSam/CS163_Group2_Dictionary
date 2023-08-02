@@ -1036,6 +1036,7 @@ Screen *AddWordScreen::render()
 		<< "1. YES\n" << "2. NO\n";
 		int choice = inputOption(2);
 		if (choice == 1) return new ModifyMeaningScreen(dict, dict -> searchForDef(w -> word));
+		else return new EditScreen(dict);
 	}
 	else
 	{
@@ -1079,7 +1080,7 @@ Screen *AddWordScreen::render()
 		std::cout << "The new word has been added to the dictionary!\n";
 	}
 
-	std::cout << "\nOptions: \n";
+	std::cout << "Options: \n";
 	for (int i = 0; i < options.size(); ++i)
 		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
 	int choice = inputOption(options.size());
@@ -1169,10 +1170,11 @@ Screen *EditWordScreen::render()
 
 		dict->addWord(w);
 		std::cout<<"The new word has been added to the dictionary!\n";
+		}
 		std::cout << "1. Back to Edit section\n";
 		int back = inputOption(1);
 		if (back == 1) nextScreen = new EditScreen(dict);
-		}
+		// else return new EditScreen(dict);
 	}
 	else
 	{
@@ -1204,6 +1206,7 @@ Screen *EditSearchWordScreen::render()
 		<< "1. YES\n" << "2. NO\n";
 		int choice = inputOption(2);
 		if (choice == 1) return new ModifyMeaningScreen(dict, dict -> searchForDef(w -> word));
+		else return new EditScreen(dict);
 	}
 	else
 	{
