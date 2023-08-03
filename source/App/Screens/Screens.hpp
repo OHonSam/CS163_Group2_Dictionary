@@ -219,7 +219,7 @@ private:
     const std::vector<std::string> options = {
         "Search for definition(s) of a word in your favourite list",
         "Remove a word from your favourite list",
-        "Clear your search history",
+        "Clear your favourite list",
         "Back"
     };
 public:
