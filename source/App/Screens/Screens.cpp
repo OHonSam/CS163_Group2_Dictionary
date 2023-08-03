@@ -188,10 +188,10 @@ Screen *ViewScreen::render()
 		nextScreen = new ViewHistoryScreen(dict);
 		break;
 	case 2:
-		//nextScreen = new ViewFavListScreen(dict);
+		nextScreen = new ViewFavListScreen(dict);
 		break;
 	case 3:
-		//nextScreen = new SearchPrefixFavList(dict);
+		nextScreen = new SearchPrefixFavList(dict);
 		break;
 	case 4:
 		nextScreen = new HomeScreen(dict);
@@ -219,13 +219,13 @@ Screen *EditScreen::render()
 		nextScreen = new DeleteWordScreen(dict);
 		break;
 	case 4:
-		//nextScreen = new Add1WordFavListScreen(dict);
+		nextScreen = new Add1WordFavListScreen(dict);
 		break;
 	case 5:
-		//nextScreen = new Remove1WordFavListScreen(dict);
+		nextScreen = new Remove1WordFavListScreen(dict);
 		break;
 	case 6:
-		//nextScreen = new ClearFavListScreen(dict);
+		nextScreen = new ClearFavListScreen(dict);
 		break;
 	case 7:
 		nextScreen = new Remove1WordHistoryScreen(dict);
