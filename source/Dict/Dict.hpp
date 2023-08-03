@@ -106,7 +106,7 @@ namespace DEFAULT
 class Dict
 {
 private:
-	const int LIM_WORDS = 5000;
+	const int LIM_WORDS = 100000;
 	const int UNIQUE_CHARS = 26;
 	const int LIM_EACH_CHAR = LIM_WORDS/UNIQUE_CHARS;
 
@@ -164,7 +164,7 @@ public:
 	void updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef);
 
 	// Add a new word and corresponding definition
-	void addWord(Word *word);
+	void addWord(Word *word, bool fromUser = true);
 
 	// Check if a string is a valid number representing part of speech
 	bool isValidPOS(const std::string &str, int &pos);

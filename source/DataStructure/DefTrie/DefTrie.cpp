@@ -107,7 +107,7 @@ void DefTrie::deallocate(Node* &root) {
 
 void DefTrie::clear() {
     deallocate(DefTrie::root);
-    root = nullptr;
+    root = new Node;
     return;
 }
 
