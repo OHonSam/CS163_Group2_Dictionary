@@ -345,8 +345,8 @@ public:
 class ClearFavListScreen: public Screen{
 private:
     const std::vector<std::string> options = {
-        // "Back to View History Screen",
-        // "Back to Edit Screen"
+        "Back to View Favorite List Screen",
+        "Back to Edit Screen"
     };
 public:
     ClearFavListScreen(Dict* dict) : Screen(dict) {}
