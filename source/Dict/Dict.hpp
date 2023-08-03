@@ -106,7 +106,7 @@ namespace DEFAULT
 class Dict
 {
 private:
-	const int LIM_WORDS = 5000;
+	const int LIM_WORDS = 100000;
 	const int UNIQUE_CHARS = 26;
 	const int LIM_EACH_CHAR = LIM_WORDS/UNIQUE_CHARS;
 
