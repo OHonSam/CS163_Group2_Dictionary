@@ -6,14 +6,15 @@ void TST::clear()
     root = nullptr;
 }
 
-bool TST::clearFavList(const std::string& path){
+bool TST::clearFavList(const std::string &path)
+{
     clear();
     std::ofstream fout;
-    fout.open(path,std::ios::binary|std::ios::trunc);
-    if(!fout.is_open())
+    fout.open(path, std::ios::binary | std::ios::trunc);
+    if (!fout.is_open())
         return false;
     fout.close();
-    if(fout.bad())
+    if (fout.bad())
         return false;
     return true;
 }
@@ -98,12 +99,9 @@ std::vector<std::string> TST::startWith(const std::string &prefix)
     TSTNode *start = getNodeLastChar(root, prefix, 0);
 
     int cnt = 0;
+    std::string str = "";
 
-    if (start->mid == nullptr)
-    {
-        return {prefix};
-    }
-    traverse(res, start->mid, prefix, cnt);
+    traverse(res, start, str, cnt);
     return res;
 }
 
@@ -152,8 +150,9 @@ bool TST::isStartedWith(const std::string &prefix)
 bool TST::import(const std::string &path)
 {
     std::ifstream file(path, std::ios::binary);
-    if (!file.good() || !file.is_open()) return false;
-    if (file.peek() == std::ifstream::traits_type::eof()) 
+    if (!file.good() || !file.is_open())
+        return false;
+    if (file.peek() == std::ifstream::traits_type::eof())
         return true;
     import(root, file);
     file.close();
@@ -175,7 +174,8 @@ void TST::import(TSTNode *&root, std::ifstream &file)
     char _c;
     file.read((char *)&_c, sizeof(char));
 
-    if(_c == TERMINATOR) return;
+    if (_c == TERMINATOR)
+        return;
 
     root = new TSTNode(_c);
     file.read((char *)&root->numWords, sizeof(int));
@@ -188,7 +188,8 @@ void TST::import(TSTNode *&root, std::ifstream &file)
 
 void TST::save(TSTNode *root, std::ofstream &file)
 {
-    if (!root) {
+    if (!root)
+    {
         file.write((char *)&TERMINATOR, sizeof(char));
         return;
     }
