@@ -17,7 +17,7 @@ class TSTNode
 
 public:
     TSTNode(char _c) : c(_c), left(nullptr), mid(nullptr), right(nullptr), isEnd(0), numWords(0) {}
-    TSTNode(): left(nullptr), mid(nullptr), right(nullptr), isEnd(0), numWords(0) {}
+    TSTNode(): c(' '), left(nullptr), mid(nullptr), right(nullptr), isEnd(0), numWords(0) {}
 
     ~TSTNode()
     {
