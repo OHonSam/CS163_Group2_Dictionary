@@ -98,16 +98,17 @@ std::vector<std::string> TST::startWith(const std::string &prefix)
 
     TSTNode *start = getNodeLastChar(root, prefix, 0);
 
-    int cnt = 0;
-    std::string str = prefix;
-
     if (start->mid == nullptr)
     {
         res.push_back(prefix);
         return res;
     }
 
-    traverse(res, start->mid, str, cnt);
+    int cnt = 0;
+    std::string str = prefix;
+
+
+    traverse(res, start, str, cnt);
     return res;
 }
 
