@@ -681,12 +681,12 @@ Screen *SearchPrefixFavList::render()
 		std::getline(std::cin, prefix);
 	}
 
-	if (dict->isInFavList(prefix))
-	{
-		std::cout << "No result found!\n";
-	}
-	else
-	{
+	// if (dict->isInFavList(prefix))
+	// {
+	// 	std::cout << "No result found!\n";
+	// }
+	// else
+	// {
 		int cnt = 0;
 		std::vector<std::string> display = dict->searchPrefixFavlist(prefix);
 		std::cout << "The words that start with <" << prefix << "> are: \n";
@@ -697,7 +697,7 @@ Screen *SearchPrefixFavList::render()
 		}
 
 		std::cout << "\nThere are " << cnt << " words that start with <" << prefix << ">\n";
-	}
+	// }
 
 	std::cout << "\nOptions: \n";
 	for (int i = 0; i < options.size(); ++i)
