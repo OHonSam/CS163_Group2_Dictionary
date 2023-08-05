@@ -670,9 +670,9 @@ Screen *SearchPrefixFavList::render()
 	clearScr();
 	Screen *nextScreen = this;
 	std::string prefix;
-	std::getline(std::cin, prefix);
 
 	std::cout << "Enter the prefix of word(s) you want to view: ";
+	std::getline(std::cin, prefix);
 
 	while (!dict->lowerStrEng(prefix))
 	{
