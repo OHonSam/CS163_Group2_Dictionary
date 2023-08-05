@@ -57,7 +57,7 @@ class TST
 public:
     TST()
     {
-        root = nullptr;
+        root = new TSTNode();
     }
 
     ~TST()
