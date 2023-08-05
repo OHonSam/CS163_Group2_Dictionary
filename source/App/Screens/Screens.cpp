@@ -681,7 +681,7 @@ Screen *SearchPrefixFavList::render()
 		std::getline(std::cin, prefix);
 	}
 
-	if (dict->isInFavList(prefix))
+	if (dict->isInFavList(prefix) == 0)
 	{
 		std::cout << "No result found!\n";
 	}
