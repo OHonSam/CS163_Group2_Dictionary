@@ -696,6 +696,10 @@ Screen *SearchPrefixFavList::render()
 			std::cout << ++cnt << ". " << i << '\n';
 		}
 
+		if (cnt == 1)
+		{
+			std::cout << "The word that start with <" << prefix << "> is: \n";
+		}
 		std::cout << "\nThere are " << cnt << " words that start with <" << prefix << ">\n";
 	}
 
