@@ -214,9 +214,6 @@ std::vector<std::string> TST::traverse()
 
 void TST::traverse(std::vector<std::string> &res, TSTNode *root, std::string str, int &cnt)
 {
-    if (cnt == LIMIT_NUM_OF_RESULTS_PREFIX_FAVLIST)
-        return;
-
     if (root == nullptr)
         return;
     traverse(res, root->left, str, cnt);
