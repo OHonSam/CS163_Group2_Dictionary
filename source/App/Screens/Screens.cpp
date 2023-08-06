@@ -183,7 +183,6 @@ Screen *SearchScreen::render()
             nextScreen=new SearchForDefScreen(dict);
             break;
         case 2:
-            //nextScreen=new SearchForWordScreen(dict);
 			nextScreen = new SearchForKeywordsScreen(dict);
             break;
         case 3:
@@ -275,7 +274,7 @@ Screen* ResettoDefaultScreen::render() {
 }
 
 void ResettoDefaultScreen::ResettoDefault() {
-	std::cout << "Are you sure to reset the dictionary, this would remove all your updates on words, favourite list and history...?\n";
+	std::cout << "Are you sure to reset the dictionary, this would remove all your updates on words, favourite list and search history...?\n";
 	std::cout << "Options: \n"
 		<< "1. YES\n" 
 		<< "2. NO\n";
@@ -702,7 +701,7 @@ Screen* SearchForKeywordsScreen::render() {
     // }
     std::cout << "Options: \n"
         <<"1. Search for the keyword\n"
-        <<"2. If there are nonsense words in the definition you have given, we'll give you some suggestions\n"
+        <<"2. If there are any nonsense words in the definition you have given, we'll offer you some suggestion\n"
         <<"3. Back\n";
     int choice = inputOption(3);
     switch(choice){
@@ -1161,63 +1160,44 @@ Screen *EditWordScreen::render()
 			w -> word = word;
 			w -> type = 0;
 			std::cout<<"Parts of speech: \n";
-		for(int i=0;i<POS::Count;++i){
-			std::cout<<i+1<<". "<<POS::TypeString[i]<<std::endl;
-		}
-		std::string buffer;
-		std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
-		std::getline(std::cin,buffer,'\n');
-		
-		std::unordered_set<int> pos;// to avoid duplicate
-		std::stringstream ss(buffer);
-		std::string temp;
-		int choice;
-		while(ss>>temp){
-			if(!dict->isValidPOS(temp,choice)){//check the input if it is a valid number (1<=num<=9) or a random string or out of bound
-				std::cout<<"Invalid input. Please try again!\n";
-				std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
-				std::getline(std::cin,buffer,'\n');
-				ss.clear();
-				pos.clear();
-				ss.str(buffer);
+			for(int i=0;i<POS::Count;++i){
+				std::cout<<i+1<<". "<<POS::TypeString[i]<<std::endl;
 			}
-			else{
-				pos.insert(choice);
-			}
-		}
-		for(std::unordered_set<int>::iterator itr=pos.begin();itr!=pos.end();++itr){
-			std::cout<<"Enter the word's definition as "<<POS::TypeString[*itr-1]<<": ";
+			std::string buffer;
+			std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
 			std::getline(std::cin,buffer,'\n');
-			w->def[*itr-1].push_back(buffer);
-			w -> type += (1 << ((*itr) - 1));
-		}
+			
+			std::unordered_set<int> pos;// to avoid duplicate
+			std::stringstream ss(buffer);
+			std::string temp;
+			int choice;
+			while(ss>>temp){
+				if(!dict->isValidPOS(temp,choice)){//check the input if it is a valid number (1<=num<=9) or a random string or out of bound
+					std::cout<<"Invalid input. Please try again!\n";
+					std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
+					std::getline(std::cin,buffer,'\n');
+					ss.clear();
+					pos.clear();
+					ss.str(buffer);
+				}
+				else{
+					pos.insert(choice);
+				}
+			}
+			for(std::unordered_set<int>::iterator itr=pos.begin();itr!=pos.end();++itr){
+				std::cout<<"Enter the word's definition as "<<POS::TypeString[*itr-1]<<": ";
+				std::getline(std::cin,buffer,'\n');
+				w->def[*itr-1].push_back(buffer);
+				w -> type += (1 << ((*itr) - 1));
+			}
 
-
-		// for(int i=0;i<POS::Count;++i){
-		// 	if(!(ss>>pos[i])|| pos[i]<1||pos[i]>POS::Count){
-		// 		std::cout<<"Invalid input. Please try again!\n";
-		// 		std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
-		// 		std::getline(std::cin,buffer,'\n');
-		// 		ss.clear();
-		// 		ss.str(buffer);
-		// 		i=-1;
-		// 	}
-		// }
-		// for(int i=0;i<POS::Count;++i){
-		// 	if(pos[i]==0) 
-		// 		continue;
-		// 	std::cout<<"Enter the word's definition as "<<POS::TypeString[pos[i]-1]<<": ";
-		// 	std::getline(std::cin,buffer,'\n');
-		// 	w->def[pos[i]-1].push_back(buffer);
-		// }
-
-		dict->addWord(w);
-		std::cout<<"The new word has been added to the dictionary!\n";
-		}
-		std::cout << "1. Back to Edit section\n";
-		int back = inputOption(1);
-		if (back == 1) nextScreen = new EditScreen(dict);
-		// else return new EditScreen(dict);
+			dict->addWord(w);
+			std::cout<<"The new word has been added to the dictionary!\n";
+			}
+			std::cout << "1. Back to Edit section\n";
+			int back = inputOption(1);
+			if (back == 1) nextScreen = new EditScreen(dict);
+			// else return new EditScreen(dict);
 	}
 	else
 	{
@@ -1367,24 +1347,6 @@ Screen *DeleteWordScreen::render()
 			w -> type += (1 << ((*itr) - 1));
 		}
 
-
-		// for(int i=0;i<POS::Count;++i){
-		// 	if(!(ss>>pos[i])|| pos[i]<1||pos[i]>POS::Count){
-		// 		std::cout<<"Invalid input. Please try again!\n";
-		// 		std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
-		// 		std::getline(std::cin,buffer,'\n');
-		// 		ss.clear();
-		// 		ss.str(buffer);
-		// 		i=-1;
-		// 	}
-		// }
-		// for(int i=0;i<POS::Count;++i){
-		// 	if(pos[i]==0) 
-		// 		continue;
-		// 	std::cout<<"Enter the word's definition as "<<POS::TypeString[pos[i]-1]<<": ";
-		// 	std::getline(std::cin,buffer,'\n');
-		// 	w->def[pos[i]-1].push_back(buffer);
-		// }
 
 		dict->addWord(w);
 		std::cout<<"The new word has been added to the dictionary!\n";
@@ -1615,7 +1577,7 @@ Screen *AddGivenWordFavListScreen::render()
 	Screen *nextScreen = this;
 	dict->addFav(word);
 
-	std::cout << "The word has been successfully add to your favourite list!\n";
+	std::cout << "The word has been successfully added to your favourite list!\n";
 	std::cout << "\nOptions: \n";
 	for (int i = 0; i < options.size(); ++i)
 		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
