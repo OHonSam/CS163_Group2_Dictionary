@@ -21,10 +21,16 @@ protected:
         const std::string &mess = "Your choice: ");
 
     std::string inputEngString(
-        const std::string &mess = "Enter English word:");
+        const std::string &mess = "Enter English word:"
+    );
 
     std::string inputVietString(
-        const std::string &mess = "Enter Vietnamese word:");
+        const std::string &mess = "Enter Vietnamese word:"
+    );
+
+    std::string inputEmojiString(
+        const std::string &mess = "Enter Emoji:"
+    );
 
 public:
     Screen(Dict *dict) : dict(dict) {}

@@ -106,6 +106,20 @@ std::string Screen::inputVietString(const std::string &mess)
 
 	return str;
 }
+
+std::string Screen::inputEmojiString(const std::string &mess)
+{
+    std::string str;
+	std::cout << mess;
+	std::getline(std::cin, str, '\n');
+	while (str.size()>20)
+	{
+		std::cout << "Invalid input. Please try again: ";
+		std::getline(std::cin, str, '\n');
+	}
+
+	return str;
+}
 //
 
 // HomeScreen
@@ -367,6 +381,9 @@ Screen *SearchForDefScreen::render()
 	{
 	case DataSet::VE:
 		word = inputVietString("Enter the word you want to search for: ");
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString("Enter the emoji you want to search for: ");
 		break;
 	default:
 		word = inputEngString("Enter the word you want to search for: ");
