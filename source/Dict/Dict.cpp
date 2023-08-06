@@ -454,7 +454,7 @@ bool Dict::setup()
                     favList.save(DEFAULT::Emoji::FAVLIST) &&
                     history.saveSLLStr(DEFAULT::Emoji::HISTORY);
         }
-    return false;
+    return true;
 }
 
 void Dict::addHistory(const std::string& word){
