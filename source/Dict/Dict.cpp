@@ -122,6 +122,13 @@ Dict::~Dict()
             favList.save(MAIN::Slang::FAVLIST);
             history.saveSLLStr(MAIN::Slang::HISTORY);
             break;
+        case DataSet::Emoji:
+            words.save(MAIN::Emoji::WORDS);
+            wordDef.save(MAIN::Emoji::WORDDEF);
+            defTrie.save(MAIN::Emoji::DEFTRIE);
+            favList.save(MAIN::Emoji::FAVLIST);
+            history.saveSLLStr(MAIN::Emoji::HISTORY);
+            break;
     }
 }
 
@@ -159,6 +166,14 @@ bool Dict::loadFromPrev()
                 defTrie.import(MAIN::Slang::DEFTRIE) &&
                 favList.import(MAIN::Slang::FAVLIST) &&
                 history.importSLLStr(MAIN::Slang::HISTORY)
+            ;
+        case DataSet::Emoji:
+            return 
+                words.import(MAIN::Emoji::WORDS) &&
+                wordDef.import(MAIN::Emoji::WORDDEF) &&
+                defTrie.import(MAIN::Emoji::DEFTRIE) &&
+                favList.import(MAIN::Emoji::FAVLIST) &&
+                history.importSLLStr(MAIN::Emoji::HISTORY)
             ;
     }
     return false;
@@ -382,7 +397,7 @@ bool Dict::importEmojiTxt(const std::string &path)
         addWord(new Word(emoji,POS::Other,meaning),false);
         numWords++;
     }
-    
+
     in.close();
     return true;
 }
@@ -423,6 +438,14 @@ bool Dict::setup()
                     defTrie.save(DEFAULT::Slang::DEFTRIE) &&
                     favList.save(DEFAULT::Slang::FAVLIST) &&
                     history.saveSLLStr(DEFAULT::Slang::HISTORY);
+            case DataSet::Emoji:
+                return 
+                    importEmojiTxt(RAW_DATA::Emoji) &&
+                    words.save(DEFAULT::Emoji::WORDS) &&
+                    wordDef.save(DEFAULT::Emoji::WORDDEF) &&
+                    defTrie.save(DEFAULT::Emoji::DEFTRIE) &&
+                    favList.save(DEFAULT::Emoji::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::Emoji::HISTORY);
         }
     return false;
 }
@@ -444,6 +467,8 @@ bool Dict::clearAllHistory(){
         return history.clearHistory(MAIN::VE::HISTORY);
     case DataSet::Slang:
         return history.clearHistory(MAIN::Slang::HISTORY);
+    case DataSet::Emoji:
+        return history.clearHistory(MAIN::Emoji::HISTORY);
     default:
         return false;
     }  
@@ -460,6 +485,8 @@ bool Dict::clearFavList(){
         return favList.clearFavList(MAIN::VE::FAVLIST);
     case DataSet::Slang:
         return favList.clearFavList(MAIN::Slang::FAVLIST);
+    case DataSet::Emoji:
+        return favList.clearFavList(MAIN::Emoji::FAVLIST);
     default:
         return false;
     }  
