@@ -95,13 +95,14 @@ std::vector<std::string> TST::startWith(const std::string &prefix)
     {
         return {};
     }
-    else
-    {
-        res.push_back(prefix);
-    }
 
     TSTNode *start = getNodeLastChar(root, prefix, 0);
 
+    if (start->isEnd == true)
+    {
+        res.push_back(prefix);
+    }
+    
     int cnt = 0;
     std::string str = prefix;
 
