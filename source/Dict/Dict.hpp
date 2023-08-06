@@ -7,6 +7,9 @@
 #include "DefTrie.hpp"
 #include <Libraries.hpp>
 
+// #include "D:\cs163\CS163_Group2_Dictionary\source\DataStructure\HashTable\HashTable.hpp"
+// #include "D:\cs163\CS163_Group2_Dictionary\source\DataStructure\DefTrie\DefTrie.hpp"
+
 namespace DataSet
 {
 	enum Type
@@ -219,7 +222,10 @@ public:
 	void removeFav(const std::string &word);
 
 	// Remove a word from the history
-	void removeHistory(const std::string &word); //
+	void removeHistory(const std::string &word); 
+
+	// Remove a word from DefTrie
+	void removeDefTrie(const std::string &word);
 
 	// Get the history in the vector
 	std::vector<std::string> getHistory();
@@ -238,6 +244,7 @@ public:
 
 	// Return the list of words which has an identical given prefix in favourite list
 	std::vector<std::string> searchPrefixFavlist(const std::string &prefix);
+	std::vector<std::string> searchPrefixDefTrie(const std::string &prefix);
 
 	// Get a daily word
 	Word *getDailyWord();
