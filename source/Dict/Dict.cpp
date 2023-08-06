@@ -345,8 +345,8 @@ bool Dict::importSlangCsv(const std::string &path)
     std::string line;
     std::getline(in,line);
 
-    int cnt=0;
-    while(!in.eof() && cnt<LIM_WORDS)
+    numWords=0;
+    while(!in.eof() && numWords<LIM_WORDS)
     {
         std::string ign, word, def;
         std::getline(in,ign,',');
@@ -357,8 +357,32 @@ bool Dict::importSlangCsv(const std::string &path)
         if(!lowerStrEng(word)) continue;
 
         addWord(new Word(word,POS::Other,def),false);
-        cnt++;
     }
+    in.close();
+    return true;
+}
+
+bool Dict::importEmojiTxt(const std::string &path)
+{
+    std::ifstream in(path);
+    if(!in.is_open()) return false;
+
+    std::string line;
+    std::getline(in,line);
+
+    numWords=0;
+    while(!in.eof() && numWords<LIM_WORDS)
+    {
+        std::string emoji, meaning;
+        std::getline(in,emoji,'`');
+        std::getline(in,meaning,'\n');
+
+        lowerStrEng(emoji);
+
+        addWord(new Word(emoji,POS::Other,meaning),false);
+        numWords++;
+    }
+    
     in.close();
     return true;
 }

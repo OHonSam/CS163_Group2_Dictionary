@@ -170,6 +170,9 @@ public:
 	// Load from Slang words data
 	bool importSlangCsv(const std::string &path);
 
+	// Load from Emoji data
+	bool importEmojiTxt(const std::string &path);
+
 	bool setup();
 	
 	// Reset to the default dataset
