@@ -34,10 +34,11 @@ void Dict::updateDef(const std::string &word, unsigned int type, const std::stri
     return;
 }
 
-void Dict::addWord(Word *word)
+void Dict::addWord(Word *word, bool fromUser)
 {
     int i=word->word[0]-'a';
-    if(numWordsStartsWith[i]>=LIM_EACH_CHAR) return;
+    if(!fromUser && numWordsStartsWith[i]>=LIM_EACH_CHAR) 
+        return;
     numWords++;
     numWordsStartsWith[i]++;
     words.insert(word->word);
@@ -195,7 +196,7 @@ bool Dict::importEECsv(const std::string &path)
         
         if(w==nullptr || w->word!=word)
         {
-            if(w!=nullptr) addWord(w);
+            if(w!=nullptr) addWord(w,false);
             w=new Word(word,type,def);
         }
         else
@@ -203,7 +204,7 @@ bool Dict::importEECsv(const std::string &path)
                 if(type&(1<<i))
                     w->def[i].push_back(def);
     }
-    if(w!=nullptr) addWord(w);
+    if(w!=nullptr) addWord(w,false);
     in.close();
     return true;
 }
@@ -267,7 +268,7 @@ bool Dict::importEVTxt(const std::string &path)
             }
         }
 
-        addWord(w);
+        addWord(w, false);
     }
 
     return true;
@@ -323,7 +324,7 @@ bool Dict::importVETxt(const std::string &path)
             }
         }
 
-        addWord(w);
+        addWord(w, false);
     }
 
     return true;
@@ -359,7 +360,7 @@ bool Dict::importSlangCsv(const std::string &path)
 
         if(!lowerStrEng(word)) continue;
 
-        addWord(new Word(word,POS::Other,def));
+        addWord(new Word(word,POS::Other,def),false);
         cnt++;
     }
     in.close();

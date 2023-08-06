@@ -229,7 +229,7 @@ private:
     const std::vector<std::string> options = {
         "Search for definition(s) of a word in your search history",
         "Remove a word in your search history",
-        "Delete all words in your search history",
+        "Clear all your search history",
         "Back"
     };
 public:
@@ -242,7 +242,7 @@ private:
     const std::vector<std::string> options = {
         "Search for definition(s) of a word in your favourite list",
         "Remove a word from your favourite list",
-        "Clear your search history",
+        "Clear your favourite list",
         "Back"
     };
 public:
@@ -376,8 +376,8 @@ public:
 class ClearFavListScreen: public Screen{
 private:
     const std::vector<std::string> options = {
-        // "Back to View History Screen",
-        // "Back to Edit Screen"
+        "Back to View Favorite List Screen",
+        "Back to Edit Screen"
     };
 public:
     ClearFavListScreen(Dict* dict) : Screen(dict) {}
