@@ -106,6 +106,20 @@ std::string Screen::inputVietString(const std::string &mess)
 
 	return str;
 }
+
+std::string Screen::inputEmojiString(const std::string &mess)
+{
+    std::string str;
+	std::cout << mess;
+	std::getline(std::cin, str, '\n');
+	while (str.size()>20)
+	{
+		std::cout << "Invalid input. Please try again: ";
+		std::getline(std::cin, str, '\n');
+	}
+
+	return str;
+}
 //
 
 // HomeScreen
@@ -337,7 +351,13 @@ Screen *SwitchDataSetScreen::render()
 		std::cout << "Switched to Slang words dataset!" << std::endl;
 		std::cout << "Press 1 to go back to the previous page." << std::endl;
 		inputOption(1);
-		break;
+		return new HomeScreen(dict);
+	case 5:
+		dict->switchDataSet(DataSet::Emoji);
+		std::cout << "Switched to Emoji dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		return new HomeScreen(dict);
 	default:
 		nextScreen = new HomeScreen(dict);
 		break;
@@ -361,6 +381,9 @@ Screen *SearchForDefScreen::render()
 	{
 	case DataSet::VE:
 		word = inputVietString("Enter the word you want to search for: ");
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString("Enter the emoji you want to search for: ");
 		break;
 	default:
 		word = inputEngString("Enter the word you want to search for: ");
@@ -485,13 +508,28 @@ Screen *Display1PrefixModeScreen::render()
 	Screen *nextScreen = this;
 
 	std::string word;
-	std::cout << "Enter the prefix you want to search for: ";
-	std::getline(std::cin, word);
-	while (!dict->lowerStrEng(word))
+	std::string mess="Enter the prefix you want to search for: ";
+
+	// std::cout << "Enter the prefix you want to search for: ";
+	// std::getline(std::cin, word);
+	// while (!dict->lowerStrEng(word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the prefix you want to search for: ";
+	// 	std::getline(std::cin, word);
+	// }
+
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the prefix you want to search for: ";
-		std::getline(std::cin, word);
+	case DataSet::VE:
+		word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString(mess);
+		break;
+	default:
+		word = inputEngString(mess);
+		break;
 	}
 
 	bool found = false;

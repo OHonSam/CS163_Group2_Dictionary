@@ -33,11 +33,15 @@ void Dict::updateDef(const std::string &word, unsigned int type, const std::stri
 
 void Dict::addWord(Word *word, bool fromUser)
 {
-    int i=word->word[0]-'a';
-    if(!fromUser && numWordsStartsWith[i]>=LIM_EACH_CHAR) 
-        return;
+    if(!fromUser) {
+        if(curDataSet!=DataSet::Emoji){
+            int i=word->word[0]-'a';
+            if(numWordsStartsWith[i]>=LIM_EACH_CHAR) 
+                return;
+            numWordsStartsWith[i]++;
+        }
+    }
     numWords++;
-    numWordsStartsWith[i]++;
     words.insert(word->word);
     wordDef.insert(word);
     defTrie.insert(word);
@@ -122,6 +126,13 @@ Dict::~Dict()
             favList.save(MAIN::Slang::FAVLIST);
             history.saveSLLStr(MAIN::Slang::HISTORY);
             break;
+        case DataSet::Emoji:
+            words.save(MAIN::Emoji::WORDS);
+            wordDef.save(MAIN::Emoji::WORDDEF);
+            defTrie.save(MAIN::Emoji::DEFTRIE);
+            favList.save(MAIN::Emoji::FAVLIST);
+            history.saveSLLStr(MAIN::Emoji::HISTORY);
+            break;
     }
 }
 
@@ -159,6 +170,14 @@ bool Dict::loadFromPrev()
                 defTrie.import(MAIN::Slang::DEFTRIE) &&
                 favList.import(MAIN::Slang::FAVLIST) &&
                 history.importSLLStr(MAIN::Slang::HISTORY)
+            ;
+        case DataSet::Emoji:
+            return 
+                words.import(MAIN::Emoji::WORDS) &&
+                wordDef.import(MAIN::Emoji::WORDDEF) &&
+                defTrie.import(MAIN::Emoji::DEFTRIE) &&
+                favList.import(MAIN::Emoji::FAVLIST) &&
+                history.importSLLStr(MAIN::Emoji::HISTORY)
             ;
     }
     return false;
@@ -345,8 +364,8 @@ bool Dict::importSlangCsv(const std::string &path)
     std::string line;
     std::getline(in,line);
 
-    int cnt=0;
-    while(!in.eof() && cnt<LIM_WORDS)
+    numWords=0;
+    while(!in.eof() && numWords<LIM_WORDS)
     {
         std::string ign, word, def;
         std::getline(in,ign,',');
@@ -357,8 +376,31 @@ bool Dict::importSlangCsv(const std::string &path)
         if(!lowerStrEng(word)) continue;
 
         addWord(new Word(word,POS::Other,def),false);
-        cnt++;
     }
+    in.close();
+    return true;
+}
+
+bool Dict::importEmojiTxt(const std::string &path)
+{
+    std::ifstream in(path);
+    if(!in.is_open()) return false;
+
+    std::string line;
+    std::getline(in,line);
+
+    numWords=0;
+    while(!in.eof() && numWords<LIM_WORDS)
+    {
+        std::string emoji, meaning;
+        std::getline(in,emoji,'`');
+        std::getline(in,meaning,'\n');
+
+        lowerStrEng(emoji);
+
+        addWord(new Word(emoji,POS::Other,meaning),false);
+    }
+
     in.close();
     return true;
 }
@@ -399,6 +441,14 @@ bool Dict::setup()
                     defTrie.save(DEFAULT::Slang::DEFTRIE) &&
                     favList.save(DEFAULT::Slang::FAVLIST) &&
                     history.saveSLLStr(DEFAULT::Slang::HISTORY);
+            case DataSet::Emoji:
+                return 
+                    importEmojiTxt(RAW_DATA::Emoji) &&
+                    words.save(DEFAULT::Emoji::WORDS) &&
+                    wordDef.save(DEFAULT::Emoji::WORDDEF) &&
+                    defTrie.save(DEFAULT::Emoji::DEFTRIE) &&
+                    favList.save(DEFAULT::Emoji::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::Emoji::HISTORY);
         }
     return false;
 }
@@ -420,6 +470,8 @@ bool Dict::clearAllHistory(){
         return history.clearHistory(MAIN::VE::HISTORY);
     case DataSet::Slang:
         return history.clearHistory(MAIN::Slang::HISTORY);
+    case DataSet::Emoji:
+        return history.clearHistory(MAIN::Emoji::HISTORY);
     default:
         return false;
     }  
@@ -436,6 +488,8 @@ bool Dict::clearFavList(){
         return favList.clearFavList(MAIN::VE::FAVLIST);
     case DataSet::Slang:
         return favList.clearFavList(MAIN::Slang::FAVLIST);
+    case DataSet::Emoji:
+        return favList.clearFavList(MAIN::Emoji::FAVLIST);
     default:
         return false;
     }  
