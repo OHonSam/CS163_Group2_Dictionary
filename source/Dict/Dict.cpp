@@ -33,11 +33,15 @@ void Dict::updateDef(const std::string &word, unsigned int type, const std::stri
 
 void Dict::addWord(Word *word, bool fromUser)
 {
-    int i=word->word[0]-'a';
-    if(!fromUser && numWordsStartsWith[i]>=LIM_EACH_CHAR) 
-        return;
+    if(!fromUser) {
+        if(curDataSet!=DataSet::Emoji){
+            int i=word->word[0]-'a';
+            if(numWordsStartsWith[i]>=LIM_EACH_CHAR) 
+                return;
+            numWordsStartsWith[i]++;
+        }
+    }
     numWords++;
-    numWordsStartsWith[i]++;
     words.insert(word->word);
     wordDef.insert(word);
     defTrie.insert(word);
