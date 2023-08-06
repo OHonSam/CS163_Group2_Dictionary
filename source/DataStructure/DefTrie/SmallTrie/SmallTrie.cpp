@@ -59,7 +59,8 @@ bool SmallTrie::search(const std::string& word) {
         if (!cur -> child[index]) return false;
         cur = cur -> child[index];
     }
-    return true;
+    if (cur -> isEnd) return true;
+    return false;
 }
 
 std::vector<std::string> SmallTrie::keywords() {
@@ -115,4 +116,8 @@ bool SmallTrie::import(Node* &root, std::ifstream &in, int read_space) {
         import(root -> child[root -> childNum[i]], in, read_space);
     }
     return true;
+}
+
+void SmallTrie::clear() {
+    deallocate(root);
 }

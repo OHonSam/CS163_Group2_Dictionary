@@ -47,7 +47,7 @@ private:
         "View",
         "Edit",
         "Daily word",
-        "Multile choices quiz",
+        "Multiple choices quiz",
         "Reset to default",
         "Switch datasets",
         "Exit"
@@ -103,6 +103,21 @@ public:
     Screen* render();
 };
 
+class ResettoDefaultScreen : public Screen {
+private:
+    const std::vector<std::string> options = {
+        "Reset the dictionary to default status",
+        "Back"
+    };
+public:
+    ResettoDefaultScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+    void ResettoDefault();
+};
+
+class FavListChoiceScreen : public Screen {
+    
+};
 class DailyWordScreen: public Screen
 {
 private:
@@ -163,6 +178,14 @@ public:
     SearchForDefScreen(Dict* dict) : Screen(dict){}
     Screen* render();
     bool displayPrefix(std::vector<std::string> &prefixes);
+};
+
+class SearchForKeywordsScreen: public Screen{
+public:
+    SearchForKeywordsScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+    void displayExactMode(const std::string& def);
+    void displayCorrectMode(const std::string& def);
 };
 
 //-------------------------End Parent: SearchScreen---------------------------
@@ -276,6 +299,14 @@ public:
 //-------------------------End Parent: ViewFavListScreen---------------------------
 
 //-------------------------Parent: EditScreen--------------------------------
+
+class ModifyMeaningScreen: public Screen {
+private: Word* word;
+public: 
+    ModifyMeaningScreen(Dict* dict, Word* word) : Screen(dict), word(word) {}
+    Screen* render();
+    void modify();
+};
 class AddWordScreen: public Screen{
 private:
     const std::vector<std::string> options = {
@@ -416,5 +447,11 @@ public:
 
 //-------------------------End Parent: MultipleChoices---------------------------
 
+
+class UpdateDefScreen: public Screen {
+public: 
+    UpdateDefScreen(Dict* dict) : Screen(dict) {}
+    Screen* render();
+};
 
 #endif // SCREENS_HPP

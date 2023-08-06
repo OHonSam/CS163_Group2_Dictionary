@@ -10,7 +10,6 @@
 
 class DefTrie: public SmallTrie
 {
-
 private:
     struct Node
     {
@@ -37,8 +36,6 @@ private:
 	// Get the character in the alphabet from the given index
 	char rGetIndex(int index);
 
-    std::vector<std::string> defWord(const std::string def);
-
     void insert(const std::string& word, const std::string& def);
     void remove(Node* &root, const std::string& word, const std::string &keyword, int index);
 
@@ -54,13 +51,17 @@ private:
 
     void deallocate(Node* &root);
 public:
-    DefTrie() 
+    DefTrie()
     { 
         root = new Node();
     }
     ~DefTrie() {
         clear();
-    }
+    }  
+
+    // Cut down a string
+    std::vector<std::string> defWord(const std::string def);
+    std::string Purify(std::string s);
 
     // Deallocate all nodes
     void clear();

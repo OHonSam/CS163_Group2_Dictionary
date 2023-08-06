@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-    App app;
-    app.run();
+    App* app = new App();
+    app -> run();
     return 0;
 }
