@@ -213,7 +213,7 @@ private:
     const std::vector<std::string> options = {
         "Search for definition(s) of a word in your search history",
         "Remove a word in your search history",
-        "Delete all words in your search history",
+        "Clear all your search history",
         "Back"
     };
 public:
