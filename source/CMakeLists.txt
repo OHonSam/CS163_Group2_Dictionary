@@ -39,7 +39,8 @@ target_include_directories(Lib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 add_subdirectory(DataStructure)
 add_subdirectory(Dict)
 add_subdirectory(App)
+add_subdirectory(UI)
 
 add_executable(${PROJECT_NAME} main.cpp)
 
-target_link_libraries(${PROJECT_NAME} App raylib)
+target_link_libraries(${PROJECT_NAME} App raylib UI)
