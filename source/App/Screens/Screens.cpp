@@ -1573,7 +1573,8 @@ Screen *Add1WordFavListScreen::render()
 }
 
 Screen *AddGivenWordFavListScreen::render()
-{
+{	
+	clearScr();
 	Screen *nextScreen = this;
 	dict->addFav(word);
 
@@ -1585,11 +1586,13 @@ Screen *AddGivenWordFavListScreen::render()
 	switch (choice)
 	{
 	case 1:
-		nextScreen = new DisplayExactModeScreen(dict, word);
+		nextScreen = new ViewScreen(dict);
 		break;
 	case 2:
-		nextScreen = new Display1PrefixModeScreen(dict, prefixes);
+		nextScreen = new EditScreen(dict);
 		break;
+	case 3:
+		nextScreen=new SearchScreen(dict);
 	}
 	return nextScreen;
 }
