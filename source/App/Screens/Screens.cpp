@@ -327,12 +327,18 @@ Screen *SwitchDataSetScreen::render()
 		inputOption(1);
 		return new HomeScreen(dict);
 	case 3:
+		dict->switchDataSet(DataSet::VE);
+		std::cout << "Switched to Vietnamese - English dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		return new HomeScreen(dict);
+	case 4:
 		dict->switchDataSet(DataSet::Slang);
 		std::cout << "Switched to Slang words dataset!" << std::endl;
 		std::cout << "Press 1 to go back to the previous page." << std::endl;
 		inputOption(1);
 		break;
-	case 4:
+	default:
 		nextScreen = new HomeScreen(dict);
 		break;
 	}
