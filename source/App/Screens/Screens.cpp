@@ -508,13 +508,28 @@ Screen *Display1PrefixModeScreen::render()
 	Screen *nextScreen = this;
 
 	std::string word;
-	std::cout << "Enter the prefix you want to search for: ";
-	std::getline(std::cin, word);
-	while (!dict->lowerStrEng(word))
+	std::string mess="Enter the prefix you want to search for: ";
+
+	// std::cout << "Enter the prefix you want to search for: ";
+	// std::getline(std::cin, word);
+	// while (!dict->lowerStrEng(word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the prefix you want to search for: ";
+	// 	std::getline(std::cin, word);
+	// }
+
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the prefix you want to search for: ";
-		std::getline(std::cin, word);
+	case DataSet::VE:
+		word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString(mess);
+		break;
+	default:
+		word = inputEngString(mess);
+		break;
 	}
 
 	bool found = false;

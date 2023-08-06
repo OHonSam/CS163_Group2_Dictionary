@@ -395,7 +395,6 @@ bool Dict::importEmojiTxt(const std::string &path)
         lowerStrEng(emoji);
 
         addWord(new Word(emoji,POS::Other,meaning),false);
-        numWords++;
     }
 
     in.close();
