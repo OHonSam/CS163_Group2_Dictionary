@@ -132,6 +132,7 @@ private:
         "English - Vietnamese",
         "Vietnamese - English",
         "Slang words",
+        "Emojis",
         "Back"
     };
 

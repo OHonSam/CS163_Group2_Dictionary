@@ -337,7 +337,13 @@ Screen *SwitchDataSetScreen::render()
 		std::cout << "Switched to Slang words dataset!" << std::endl;
 		std::cout << "Press 1 to go back to the previous page." << std::endl;
 		inputOption(1);
-		break;
+		return new HomeScreen(dict);
+	case 5:
+		dict->switchDataSet(DataSet::Emoji);
+		std::cout << "Switched to Emoji dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		return new HomeScreen(dict);
 	default:
 		nextScreen = new HomeScreen(dict);
 		break;
