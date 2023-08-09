@@ -11,7 +11,38 @@ bool Dict::reset(){
     defTrie.clear();
     favList.clear();
     history.clearSLL();
-    return setup();
+    switch(curDataSet){
+        case DataSet::EE:
+            words.import(DEFAULT::EE::WORDS);
+            wordDef.import(DEFAULT::EE::WORDDEF);
+            defTrie.import(DEFAULT::EE::DEFTRIE);
+            favList.import(DEFAULT::EE::FAVLIST);
+            history.importSLLStr(DEFAULT::EE::HISTORY);
+            break;
+        case DataSet::EV:
+            words.import(DEFAULT::EV::WORDS);
+            wordDef.import(DEFAULT::EV::WORDDEF);
+            defTrie.import(DEFAULT::EV::DEFTRIE);
+            favList.import(DEFAULT::EV::FAVLIST);
+            history.importSLLStr(DEFAULT::EV::HISTORY);
+            break;
+        case DataSet::VE:
+            words.import(DEFAULT::VE::WORDS);
+            wordDef.import(DEFAULT::VE::WORDDEF);
+            defTrie.import(DEFAULT::VE::DEFTRIE);
+            favList.import(DEFAULT::VE::FAVLIST);
+            history.importSLLStr(DEFAULT::VE::HISTORY);
+            break;
+        case DataSet::Slang:
+            words.import(DEFAULT::Slang::WORDS);
+            wordDef.import(DEFAULT::Slang::WORDDEF);
+            defTrie.import(DEFAULT::Slang::DEFTRIE);
+            favList.import(DEFAULT::Slang::FAVLIST);
+            history.importSLLStr(DEFAULT::Slang::HISTORY);
+            break;
+    }
+    return true;
+    // return setup();
 }
 
 bool Dict::switchDataSet(DataSet::Type type)
