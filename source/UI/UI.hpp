@@ -7,6 +7,7 @@ class UI {
 public:
     Texture background;
     Texture noti;
+    Texture ribbon;
     Color title_color;
     Font title_font;
     Button Home;
@@ -38,5 +39,6 @@ public:
 
     void DefaultWindow();
     void Menu();
+    void DrawFavouriteScreen();
     void run();
 };

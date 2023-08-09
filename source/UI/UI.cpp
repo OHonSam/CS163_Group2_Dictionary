@@ -81,6 +81,7 @@ void UI::DefaultWindow() {
     background = LoadTexture("background.png");
 	noti = LoadTexture("notifications.png");
     title_color = {131, 13, 5, 255};
+	ribbon = LoadTexture("ribbontitle.png");
     title_font = LoadFontEx("IrishGrover-Regular.ttf", 120, 0, 0);
 	home = true;
 	status.push_back(&home);
@@ -288,6 +289,7 @@ void UI::Menu() {
 	if (favourite) {
 		DrawRectangleRoundedLines(Home.buttonShape, 0.1, 10, 4, {253, 84, 145, 255});
 		DrawRectangleRoundedLines(Favourite.buttonShape, 0.1, 10, 4, {255, 255, 255, 255});
+		DrawFavouriteScreen();
 		// if (game || datasets || reset || history || home) favourite = false;
 	}
 	
@@ -303,6 +305,11 @@ void UI::Menu() {
 		// if (history || datasets || reset || favourite || home) game = false;
 	}
 	return;
+}
+
+void UI::DrawFavouriteScreen() {
+	DrawTextureEx(ribbon, {100, 150}, 0, 0.4, WHITE);
+	DrawTextEx(title_font, "Favourite Words", {183, 252}, 36, 1, {227, 89, 97, 255});
 }
 
 void UI::run() {

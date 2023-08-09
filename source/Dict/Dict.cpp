@@ -97,6 +97,8 @@ bool Dict::isValidPOS(const std::string & str, int& pos){
 }
 void Dict::addFav(const std::string &word)
 {
+    // if (!searchForDef(word)) return;
+    // do you want to add it?
     favList.insert(word);
 }
 

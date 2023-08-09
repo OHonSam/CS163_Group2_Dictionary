@@ -1,5 +1,5 @@
-// #include <App.hpp>
-// using namespace std;
+#include <App.hpp>
+using namespace std;
 
 // int main()
 // {
@@ -143,7 +143,10 @@
 // }
 
 int main() {
-    UI ui;
-    ui.run();
+    // UI ui;
+    // ui.run();
+    // return 0;
+    App* app = new App();
+    app -> run();
     return 0;
 }
