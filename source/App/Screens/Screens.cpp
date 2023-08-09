@@ -1553,9 +1553,11 @@ Screen *Add1WordFavListScreen::render()
 		std::cout << "Enter the word you want to search for: ";
 		std::getline(std::cin, word);
 	}
-	dict->addFav(word);
-
-	std::cout << "The word has been successfully add to your favourite list!\n";
+	if (!dict -> searchForDef(word)) std::cout << "Sorry, this word is not in the dictionary!\n";
+	else {
+		dict->addFav(word);
+		std::cout << "The word has been successfully add to your favourite list!\n";
+	}
 	std::cout << "\nOptions: \n";
 	for (int i = 0; i < options.size(); ++i)
 		std::cout << std::to_string(i + 1) << ". " << options[i] << std::endl;
@@ -1575,8 +1577,9 @@ Screen *Add1WordFavListScreen::render()
 Screen *AddGivenWordFavListScreen::render()
 {
 	Screen *nextScreen = this;
-	if (!dict -> searchForDef(word)) std::cout << "Sorry, this word is not in the dictionary!";
+	if (!dict -> searchForDef(word)) std::cout << "Sorry, this word is not in the dictionary!\n";
 	else {
+		std::cout << dict -> searchForDef(word)->type << '\n';
 		dict->addFav(word);
 		std::cout << "The word has been successfully add to your favourite list!\n";
 	}
