@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="accessories-dictionary"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
@@ -35,37 +38,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QDialogButtonBox" name="YesNO">
-    <property name="geometry">
-     <rect>
-      <x>580</x>
-      <y>40</y>
-      <width>166</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="standardButtons">
-     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>40</y>
-      <width>371</width>
-      <height>27</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>69</y>
+      <y>110</y>
       <width>371</width>
       <height>181</height>
      </rect>
@@ -147,22 +124,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>20</y>
-      <width>56</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Search</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QSpinBox" name="spinBox">
     <property name="geometry">
      <rect>
@@ -212,26 +173,63 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </attribute>
     </widget>
    </widget>
-   <widget class="QTreeWidget" name="treeWidget">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>250</y>
-      <width>256</width>
-      <height>192</height>
+      <x>210</x>
+      <y>0</y>
+      <width>371</width>
+      <height>41</height>
      </rect>
     </property>
-    <column>
-     <property name="text">
-      <string notr="true">1</string>
-     </property>
-    </column>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string>Group 2</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>80</y>
+      <width>371</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Search</string>
+    </property>
+   </widget>
+   <widget class="QDialogButtonBox" name="YesNO_2">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>80</y>
+      <width>166</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="standardButtons">
+     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_2">
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>40</y>
+      <y>80</y>
       <width>101</width>
       <height>27</height>
      </rect>
@@ -257,27 +255,64 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </item>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QDialogButtonBox" name="YesNO_3">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>80</y>
+      <width>166</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="standardButtons">
+     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>0</y>
+      <y>80</y>
       <width>371</width>
-      <height>31</height>
+      <height>27</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <bold>true</bold>
-      <underline>true</underline>
-     </font>
+    <property name="placeholderText">
+     <string>Search</string>
     </property>
-    <property name="text">
-     <string>Group 2</string>
+   </widget>
+   <widget class="QComboBox" name="comboBox_3">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>80</y>
+      <width>101</width>
+      <height>27</height>
+     </rect>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
+    <item>
+     <property name="text">
+      <string>Eng-Eng</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Eng-Viet</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Slang</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Emoji</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
