@@ -30,5 +30,6 @@
     <qresource prefix="/background">
         <file>watercolor-texture-background/48.eps</file>
         <file>watercolor-texture-background/48.jpg</file>
+        <file>watercolor-texture-background/surface-with-abstract-watercolor-paint.jpg</file>
     </qresource>
 </RCC>
