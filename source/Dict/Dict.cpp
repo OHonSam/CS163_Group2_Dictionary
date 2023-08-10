@@ -541,7 +541,8 @@ bool Dict::setup()
 }
 
 void Dict::addHistory(const std::string& word){
-    history.insert(word);
+    if (!isInHistory(word)) history.insert(word);
+    return;
 }
 void Dict::removeHistory(const std::string& word){
     history.pop(word);
@@ -593,15 +594,13 @@ std::vector<std::string> Dict::getFav()
 
 Word *Dict::searchForDef(const std::string &word)
 {
-    removeHistory(word);
-    addHistory(word);
     return wordDef.searchDef(word);
 }
 
 std::vector<std::string> Dict::searchForWord(const std::string &def)
 {
-    removeHistory(def);
-    addHistory(def);
+    // removeHistory(def);
+    // addHistory(def);
     return defTrie.searchKeyWord(def);
 }
 

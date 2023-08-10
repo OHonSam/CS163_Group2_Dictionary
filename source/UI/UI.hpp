@@ -60,6 +60,7 @@ public:
     Button down1;
     Button def;
     Button key;
+    Button renew;
 
     std::vector <std::string> favlist;
 	Rectangle fav[100];

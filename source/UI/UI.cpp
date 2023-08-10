@@ -376,8 +376,8 @@ void UI::DefaultWindow() {
     InitWindow(screenWidth, screenHeight, "Dictionary");
     SetTargetFPS(60);      
 	homestate = 0;
-	favlist = dict -> getFav();
 	hislist = dict -> getHistory();
+	favlist = dict -> getFav();
 	for (int i = 0; i < favlist.size(); i++) removeFavourite[i] = false;
 	for (int i = 0; i < hislist.size(); i++) removeHistory[i] = false;
     background = LoadTexture("background.png");
@@ -473,13 +473,17 @@ void UI::Menu() {
 			wheel = 0;
 			status.push_back(&favourite);
 		}
+		favlist = dict -> getFav();
 		favourite = true;
 	}
 	if (History.state == 3) {
 		if (!history) {
 			status.push_back(&history);
 			wheel = 0;
+			// std::cout << hislist.size();
+			// for (int i = 0; i < hislist.size(); i++) removeHistory[i] = false;
 		}
+		hislist = dict -> getHistory();
 		history = true;
 	}
 	if (Game.state == 3) {
@@ -726,7 +730,7 @@ void UI::DrawFavouriteScreen() {
 			if (removeYes.state == 3) {
 				dict -> removeFav(favlist[i]);
 				favlist = dict -> getFav();
-				removeFavourite[i] = false;
+				for (int i = 0; i < favlist.size(); i++) removeFavourite[i] = false;
 			}
 			else if (removeNo.state == 3) {
 				removeFavourite[i] = false;
@@ -781,7 +785,10 @@ void UI::DrawFavouriteScreen() {
 }
 
 void UI::DrawHistoryScreen() {
+	hislist = dict -> getHistory();
+	// for (int i = 0; i < hislist.size(); i++) removeHistory[i] = false;
 	int scrollSpeed = 60;      
+	// std::cout << hislist.size() << '\n';
 	wheel += (GetMouseWheelMove()*scrollSpeed);
 	if (wheel < - (370 + ((int) (hislist.size() - 1) / 3) * (80 + 45) + 80) + 738) {
 		wheel = - (370 + ((int) (hislist.size() - 1) / 3) * (80 + 45) + 80) + 738;
@@ -809,7 +816,11 @@ void UI::DrawHistoryScreen() {
 		}
 	}
 	for (int i = 0; i < hislist.size(); i++) {
-		if (removeHis[i].state == 3) removeHistory[i] = true;
+		if (removeHis[i].state == 3) {
+			// std::cout << i << 'x';
+			removeHistory[i] = true;
+		}
+		// break;
 	}
 	// draw words;
 	Rectangle cover;
@@ -828,6 +839,7 @@ void UI::DrawHistoryScreen() {
 	DrawTextEx(title_font, "History Words", {183, 252}, 36, 1, {227, 89, 97, 255});
 	for (int i = 0; i < hislist.size(); i++) {
 		if (removeHistory[i]) {
+			// cout << hislist[i] << i << '\n';
 			Rectangle remove;
 			remove.x = 365;
 			remove.y = 298;
@@ -855,12 +867,12 @@ void UI::DrawHistoryScreen() {
 			if (removehisYes.state == 3) {
 				dict -> removeHistory(hislist[i]);
 				hislist = dict -> getHistory();
-				removeHistory[i] = false;
+				for (int i = 0; i < hislist.size(); i++) removeHistory[i] = false;
 			}
 			else if (removehisNo.state == 3) {
 				removeHistory[i] = false;
 			}
-			break;
+			// break;
 		}
 	}
 	clearHisList.drawCorner = true;
@@ -910,6 +922,8 @@ void UI::DrawHistoryScreen() {
 }
 
 void UI::DrawHomeScreen() {
+	// Button reset
+	// when a new word is done search, the right previous word added to the history?
 	switch (homestate)
 	{
 	case 0:
@@ -934,6 +948,13 @@ void UI::DrawHomeScreen() {
 		DrawTextEx(title_font, "Click here to search for a keyword!", GetCenterPos(title_font, "Click here to search for a keyword!", 35, 1, messagebar), 35, 1, {0, 0, 0, 140});
 		break;
 	case 3:
+		hislist = dict -> getHistory();
+		dict -> searchForDef(search.getInput());
+		if (dict -> searchForDef(search.getInput())) {
+			dict -> addHistory(search.getInput());
+			hislist = dict -> getHistory();
+			for (int i = 0; i < hislist.size(); i++) removeHistory[i] = false;
+		}
 		break;
 	case 4:
 		break;
