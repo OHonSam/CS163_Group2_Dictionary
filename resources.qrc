@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <file>font/Victor_Mono/VictorMono-Italic-VariableFont_wght.ttf</file>
+        <file>font/Victor_Mono/VictorMono-VariableFont_wght.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-Bold.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-BoldItalic.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-ExtraLight.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-ExtraLightItalic.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-Italic.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-Light.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-LightItalic.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-Medium.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-MediumItalic.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-Regular.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-SemiBold.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-SemiBoldItalic.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-Thin.ttf</file>
+        <file>font/Victor_Mono/static/VictorMono-ThinItalic.ttf</file>
+        <file>images/compress/mid ombre.jpg</file>
+    </qresource>
+    <qresource prefix="/img">
+        <file>images/pastel_gradient_2.jpg</file>
+        <file>images/small ombre.png</file>
+        <file>images/compress/long ombre.png</file>
+        <file>images/compress/mid ombre - Copy.jpg</file>
+    </qresource>
+</RCC>
