@@ -129,7 +129,7 @@ namespace DEFAULT
 class Dict
 {
 private:
-	const int LIM_WORDS = 10000;
+	const int LIM_WORDS = 100000;
 	const int UNIQUE_CHARS = 26;
 	const int LIM_EACH_CHAR = LIM_WORDS/UNIQUE_CHARS;
 
@@ -254,5 +254,8 @@ public:
 
 	// Turn uppercase to lowercase
 	bool uppercase2Lowercase(std::string &str);
+
+	// Auto correct
+	std::string CorrectDef(const std::string &def);
 };
 #endif

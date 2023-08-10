@@ -3,6 +3,7 @@
 #include "InputBox.hpp"
 #include "Other.hpp"
 #include <sstream>
+#include <algorithm>
 
 Vector2 GetCenterPos(Font font, string text, float fontSize, float spacing, float x, float y, float width, float height) {
 	Vector2 centerPos;
@@ -383,6 +384,7 @@ void UI::DefaultWindow() {
 	noti = LoadTexture("notifications.png");
     title_color = {131, 13, 5, 255};
 	ribbon = LoadTexture("ribbontitle.png");
+	buttondown = LoadTexture("question.png");
     title_font = LoadFontEx("IrishGrover-Regular.ttf", 120, 0, 0);
 	word_font = LoadFontEx("Margarine-Regular.ttf", 50, 0, 0);
 	home = true;
@@ -493,6 +495,7 @@ void UI::Menu() {
 			wheel = 0;
 		}
 		home = true;
+		homestate = 0;
 	}
 	if (status.size() == 2) {
 		std::vector <bool*> temp;
@@ -907,6 +910,120 @@ void UI::DrawHistoryScreen() {
 }
 
 void UI::DrawHomeScreen() {
+	switch (homestate)
+	{
+	case 0:
+		// DrawDailyWords();
+		break;
+	case 1:
+		messagebar.y = 297;
+		messagebar.x = 135;
+		messagebar.width = 856;
+		messagebar.height = 48;
+		DrawRectangleRec(messagebar, {255, 249, 249, 255});
+		DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
+		DrawTextEx(title_font, "Click here to search for a definition!", GetCenterPos(title_font, "Click here to search for a definition!", 35, 1, messagebar), 35, 1, {0, 0, 0, 140});
+		break;
+	case 2:
+		messagebar.y = 297;
+		messagebar.x = 135;
+		messagebar.width = 856;
+		messagebar.height = 48;
+		DrawRectangleRec(messagebar, {255, 249, 249, 255});
+		DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
+		DrawTextEx(title_font, "Click here to search for a keyword!", GetCenterPos(title_font, "Click here to search for a keyword!", 35, 1, messagebar), 35, 1, {0, 0, 0, 140});
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	case 5:
+		messagebar.y = 297;
+		messagebar.x = 135;
+		messagebar.width = 856;
+		messagebar.height = 48;
+		DrawRectangleRec(messagebar, {255, 249, 249, 255});
+		DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
+		DrawTextEx(title_font, "Click here if you want suggestions for a definition you could type!", GetCenterPos(title_font, "Click here if you want suggestions for a definition you could type!", 27, 1, messagebar), 27, 1, {0, 0, 0, 140});
+		break;
+	case 6:
+		// break;
+		// Rectangle message;
+		// message.x = 365;
+		// message.y = 338;
+		// message.width = 550;
+		// message.height = 210;
+		// DrawRectangleRounded(message, 0.1, 10, {248, 199, 199, 255});
+		// DrawRectangleRoundedLines(message, 0.1, 10, 4, {253, 84, 145, 255});
+		// DrawTextEx(title_font, "Choose your mode!", {500, 350}, 36, 1, {227, 89, 97, 255});
+		// def.drawCorner = true;
+		// def.colorCornerClicked = {255, 255, 255, 255};
+		// def.colorCornerDefault = {255, 255, 255, 255};
+		// def.colorCornerTouched = {255, 255, 255, 255};
+		// def.SetBox(450, 410, 160, 44, {233, 220, 221, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
+		// def.SetText(title_font, "DEF", {499, 415}, 36, 1, {94, 32, 36, 255}, {94, 32, 36, 255}, {94, 32, 36, 255});
+		// def.DrawText(mouseCursor);
+		// key.drawCorner = true;
+		// key.colorCornerClicked = {255, 255, 255, 255};
+		// key.colorCornerDefault = {255, 255, 255, 255};
+		// key.colorCornerTouched = {255, 255, 255, 255};
+		// key.SetBox(680, 410, 160, 44, {233, 220, 221, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
+		// key.SetText(title_font, "KEY", {740, 415}, 36, 1, {94, 32, 36, 255}, {94, 32, 36, 255}, {94, 32, 36, 255});
+		// key.DrawText(mouseCursor);
+		messagebar.y = 297;
+		messagebar.x = 135;
+		messagebar.width = 856;
+		messagebar.height = 48;
+		if (dict -> CorrectDef(search.getInput()) == "No further corrections could be made!")
+		{
+			DrawRectangleRec(messagebar, {255, 249, 249, 255});
+			DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
+			DrawTextEx(title_font, "No further corrections could be made!", GetCenterPos(title_font, "No further corrections could be made!", 35, 1, messagebar), 35, 1, {0, 0, 0, 140});
+			break;
+		}
+		DrawRectangleRec(messagebar, {255, 249, 249, 255});
+		DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
+		DrawTextEx(title_font, dict -> CorrectDef(search.getInput()).c_str(), GetCenterPos(title_font, dict -> CorrectDef(search.getInput()), 50, 1, messagebar), 50, 1, {0, 0, 0, 140});
+		break;
+	case 7:
+		messagebar.y = 297;
+		messagebar.x = 135;
+		messagebar.width = 856;
+		messagebar.height = 48;
+		DrawRectangleRec(messagebar, {255, 249, 249, 255});
+		DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
+		DrawTextEx(title_font, "Click here if you want suggestions for a keyword you could type!", GetCenterPos(title_font, "Click here if you want suggestions for a keyword you could type!", 27, 1, messagebar), 27, 1, {0, 0, 0, 140});
+		break;
+	case 8:
+		if (dict -> searchPrefix(search.getInput()).size()) {
+			messagebar.y = 297;
+			messagebar.x = 135;
+			messagebar.width = 856;
+			messagebar.height = 200 + min(0, (int) dict -> searchPrefix(search.getInput()).size() - 5) * 35;
+			int scrollSpeed = 60;      
+			wheel += (GetMouseWheelMove()*scrollSpeed);
+			if (wheel < 465 - 305 - 35 * min(15, (int) dict -> searchPrefix(search.getInput()).size())) wheel = 465 - 305 - 35 * min(15, (int) dict -> searchPrefix(search.getInput()).size());
+			if (wheel > 0) wheel = 0;
+			DrawRectangleRec(messagebar, {255, 249, 249, 255});
+			DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
+			// std::vector < std::string> display;
+			for (int i = 0; i < min(15, (int) dict -> searchPrefix(search.getInput()).size()); i++) {
+				// std::cout << dict -> searchPrefix(search.getInput())[i] << '\n';
+				if (305 + i * 35 + wheel >= 305 && 305 + i * 35 + wheel <= 465) DrawTextEx(title_font, dict -> searchPrefix(search.getInput())[i].c_str(), {GetCenterPos(title_font, dict -> searchPrefix(search.getInput())[i].c_str(), 40, 1, messagebar).x, (float) 305 + (float) i * 35 + (float) wheel}, 40, 1, {0, 0, 0, 140});
+			}
+		}
+		else {
+			messagebar.y = 297;
+			messagebar.x = 135;
+			messagebar.width = 856;
+			messagebar.height = 48;
+			DrawRectangleRec(messagebar, {255, 249, 249, 255});
+			DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
+			DrawTextEx(title_font, "No further suggestions could be made!", GetCenterPos(title_font, "No further suggestions could be made!", 35, 1, messagebar), 35, 1, {0, 0, 0, 140});
+		}
+		break;
+	}
+	// draw button down here
 	search.SetColorText(title_color, title_color, title_color);
 	search.SetColorBox({248, 199, 199, 255}, {248, 199, 199, 255}, {248, 199, 199, 255});
 	search.colorCornerDefault = {230, 72, 72, 255};
@@ -926,39 +1043,59 @@ void UI::DrawHomeScreen() {
 	enterkey.SetBox(1085, 244, 70, 44, {255, 249, 249, 255}, {173, 170, 171, 255}, {93, 93, 93, 255}); 
 	enterkey.SetText(title_font, "ENTER", GetCenterPos(title_font, "ENTER", 27, 1, enterkey.buttonShape), 27, 1, {253, 84, 145, 255}, {253, 84, 145, 255}, {253, 84, 145, 255});
 	enterkey.DrawText(mouseCursor);
-	if (enterkey.state == 0) homestate = 0;
-	if (enterdef.state == 1) homestate = 1;
-	if (enterdef.state == 3) homestate = 3;
-	if (enterdef.state == 0) homestate = 0; 
-	if (enterkey.state == 1) homestate = 2;
-	if (enterkey.state == 3) homestate = 4;
-	messagebar.y = 297;
-	messagebar.x = 135;
-	messagebar.width = 856;
-	messagebar.height = 48;
-	switch (homestate)
-	{
-	case 0:
-		// DrawDailyWords();
-		break;
-	case 1:
-		DrawRectangleRec(messagebar, {255, 249, 249, 255});
-		DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
-		DrawTextEx(title_font, "Click here to search for a definition!", GetCenterPos(title_font, "Click here to search for a definition!", 27, 1, messagebar), 27, 1, {0, 0, 0, 140});
-		break;
-	case 2:
-		DrawRectangleRec(messagebar, {255, 249, 249, 255});
-		DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
-		DrawTextEx(title_font, "Click here to search for a keyword!", GetCenterPos(title_font, "Click here to search for a definition!", 27, 1, messagebar), 27, 1, {0, 0, 0, 140});
-		break;
-	case 3:
-		break;
-	case 4:
-		break;
-	default:
-		break;
+
+	// down.drawCorner = true;
+	// down.colorCornerClicked = {255, 255, 145, 255};
+	// down.colorCornerDefault = {255, 255, 145, 255};
+	// down.colorCornerTouched = {255, 255, 145, 255};
+	down.roundness = 4;
+	down.SetBox(932, 244, 50, 46, {205, 205, 255, 255}, {220, 205, 255, 255}, {234, 205, 255, 255});
+	down.SetText(title_font, "", GetCenterPos(title_font, "", 27, 1, down.buttonShape), 27, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+	down.DrawText(mouseCursor);
+
+	down1.roundness = 4;
+	down1.SetBox(875, 244, 50, 46, {205, 175, 255, 255}, {220, 175, 255, 255}, {234, 175, 255, 255});
+	down1.SetText(title_font, "", GetCenterPos(title_font, "", 27, 1, down.buttonShape), 27, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+	down1.DrawText(mouseCursor);
+	DrawTextureEx(buttondown, {875, 243}, 0, 0.017, WHITE);
+
+	// if (down.state == 1) homestate = 5;
+	// if (down.state == 3) homestate = 6;
+
+	// if (enterkey.state == 0) homestate = 0;
+	
+	// if (homestate == 3 && enterdef.state == 3) homestate = 0;
+	// if (homestate == 4 && enterkey.state == 3) homestate = 0;
+	if (homestate != 3 && homestate != 4 && homestate != 6 && homestate != 8) {
+		if (enterdef.state == 1) homestate = 1;
+
+		if (down1.state == 1) homestate = 7;
+		// if (enterdef.state == 0) homestate = 0; 
+		if (enterkey.state == 1) homestate = 2;
+		
+		if (down.state == 1) homestate = 5;
+	}
+	
+	if (down.state == 3) {
+		// if (homestate == 6) homestate = 0;
+		homestate = 6;
+	}
+	
+	
+	if (enterdef.state == 3) {
+		// if (homestate == 3) homestate = 0;
+		// else 
+		homestate = 3;
+	}
+	
+	if (enterkey.state == 3) {
+		// if (homestate == 4) homestate = 0;
+		// else 
+		homestate = 4;
 	}
 
+	if (down1.state == 3) homestate = 8;
+	DrawTextureEx(buttondown, {932, 243}, 0, 0.017, WHITE);
 }
 
 void UI::run() {

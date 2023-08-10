@@ -55,6 +55,7 @@ std::vector<std::string> Trie::searchPrefix(const std::string &prefix)
     std::vector<std::string> res;
     Trie::Node *cur = root;
     int n = prefix.size();
+    if (!prefix.size()) return {};
     for (int i = 0; i < n; ++i)
     {
         int index = getIndex(prefix[i]);

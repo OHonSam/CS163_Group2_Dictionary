@@ -2,6 +2,56 @@
 // #include "Dict.hpp"
 // #include <iostream>
 // #include <sstream>
+
+std::vector<std::string> stringCut(const std::string ls) {
+	// long string
+    std::stringstream s(ls);
+    std::string word;
+    std::vector <std::string> res;
+    while (s >> word) res.push_back(word);
+    return res;
+}
+
+std::string Dict::CorrectDef(const std::string &def) {
+    std::vector<std::string> res = searchForWord(def);
+	if (res.size()) {
+		return def;
+	}
+	std::vector<std::string> p;
+	p = stringCut(def);
+	std::string correct = "";
+	for (int i = 0; i < p.size(); i++) {
+		res = searchForWord(correct + " " + p[i]);
+		if (!res.size()) {
+			res = searchPrefixDefTrie(p[i]);
+			int temp = p[i].length();
+			std::vector <std::string> character(temp, "");
+			character[0] += p[i][0];
+			for (int j = 1; j < p[i].length(); j++) {
+				character[j] = character[j - 1] + p[i][j];
+			}
+			int idx = temp - 1;
+			while (!res.size() && idx >= 0) {
+				res = searchPrefixDefTrie(character[idx]);
+				idx--;
+			}
+			if (idx == -1) return "No further corrections could be made!";
+			for (int j = 0; j < res.size(); j++) {
+				if ((searchForWord(correct + " " + res[j])).size()) {
+					correct += " " + res[j];
+					break;
+				}
+			}
+			// break;
+		} 
+		else {
+			correct += " " + p[i];
+		}
+	}
+    if (correct.size()) return correct;
+    return "No further corrections could be made!";
+}
+
 bool Dict::reset(){
     numWords=0;
     for(int i=0; i<UNIQUE_CHARS; i++) 

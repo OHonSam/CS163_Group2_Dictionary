@@ -10,6 +10,7 @@ public:
     Texture background;
     Texture noti;
     Texture ribbon;
+    Texture buttondown;
     Color title_color;
     Font title_font;
     Font word_font;
@@ -55,6 +56,10 @@ public:
     Button enterkey;
     Rectangle messagebar;
     int homestate;
+    Button down;
+    Button down1;
+    Button def;
+    Button key;
 
     std::vector <std::string> favlist;
 	Rectangle fav[100];
