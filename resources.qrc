@@ -19,5 +19,7 @@
     </qresource>
     <qresource prefix="/images">
         <file>images/gradient_background_a_3_28.jpg</file>
+        <file>C:/Users/Admin/Pictures/kinh lup.png</file>
+        <file>C:/Users/Admin/Pictures/KHTN.png</file>
     </qresource>
 </RCC>

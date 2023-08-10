@@ -151,22 +151,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QDialogButtonBox" name="YesNO_4">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>0</y>
-       <width>166</width>
-       <height>27</height>
-      </rect>
-     </property>
-     <property name="whatsThis">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
     <widget class="QComboBox" name="comboBox_4">
      <property name="geometry">
       <rect>
@@ -208,6 +192,19 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
      <property name="placeholderText">
       <string>Search</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>0</y>
+       <width>80</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Enter</string>
      </property>
     </widget>
    </widget>
@@ -270,6 +267,68 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <string>Search</string>
     </property>
    </widget>
+   <widget class="QTreeWidget" name="treeWidget">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>340</y>
+      <width>111</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <column>
+     <property name="text">
+      <string>View</string>
+     </property>
+    </column>
+    <item>
+     <property name="text">
+      <string>Favorite List</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>History</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>270</y>
+      <width>231</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resources.qrc">:/images/images/gradient_background_a_3_28.jpg</pixmap>
+    </property>
+   </widget>
+   <widget class="QDialogButtonBox" name="YesNO_4">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>170</y>
+      <width>166</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="standardButtons">
+     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -284,11 +343,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="title">
      <string>HomeScreen</string>
     </property>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuHomeScreen"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
