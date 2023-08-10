@@ -21,5 +21,8 @@
         <file>images/small ombre.png</file>
         <file>images/compress/long ombre rotated.jpg</file>
         <file>images/search.svg</file>
+        <file>images/heart.svg</file>
+        <file>images/heart-fill.svg</file>
+        <file>images/history.svg</file>
     </qresource>
 </RCC>
