@@ -289,7 +289,7 @@ void DefTrie::import(Node* &root, std::ifstream& in) {
     in.read((char*) &root -> numWords, sizeof (int));
     int read_space;
     // in.read((char*) &read_space, sizeof (int));
-    SmallTrie::import(root -> st -> root, in, read_space);
+    root -> st -> SmallTrie::import(root -> st -> root, in, read_space);
     for (int i = 0; i < ALPHABET_SIZE; i++) {
         bool flag;
         in.read((char*) &flag, sizeof (bool));
