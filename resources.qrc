@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <file>fonts/VictorMono-Italic-VariableFont_wght.ttf</file>
+        <file>fonts/VictorMono-VariableFont_wght.ttf</file>
+        <file>fonts/static/VictorMono-Bold.ttf</file>
+        <file>fonts/static/VictorMono-BoldItalic.ttf</file>
+        <file>fonts/static/VictorMono-ExtraLight.ttf</file>
+        <file>fonts/static/VictorMono-ExtraLightItalic.ttf</file>
+        <file>fonts/static/VictorMono-Italic.ttf</file>
+        <file>fonts/static/VictorMono-Light.ttf</file>
+        <file>fonts/static/VictorMono-LightItalic.ttf</file>
+        <file>fonts/static/VictorMono-Medium.ttf</file>
+        <file>fonts/static/VictorMono-MediumItalic.ttf</file>
+        <file>fonts/static/VictorMono-Regular.ttf</file>
+        <file>fonts/static/VictorMono-SemiBold.ttf</file>
+        <file>fonts/static/VictorMono-SemiBoldItalic.ttf</file>
+        <file>fonts/static/VictorMono-Thin.ttf</file>
+        <file>fonts/static/VictorMono-ThinItalic.ttf</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>images/gradient_background_a_3_28.jpg</file>
+    </qresource>
+</RCC>
