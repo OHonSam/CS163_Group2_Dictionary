@@ -10,7 +10,7 @@
 
 class DefTrie: public SmallTrie
 {
-private:
+public:
     struct Node
     {
         bool isEnd;

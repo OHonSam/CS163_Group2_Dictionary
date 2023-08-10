@@ -18,6 +18,7 @@ namespace DataSet
 		EV,
 		VE,
 		Slang,
+		Emoji,
 		Count
 	};
 }
@@ -28,6 +29,7 @@ namespace RAW_DATA
 	const std::string EV = "assets/RawData/EV.txt";
 	const std::string VE = "assets/RawData/VE.txt";
 	const std::string Slang = "assets/RawData/Slang.csv";
+	const std::string Emoji = "assets/RawData/Emoji.txt";
 }
 
 namespace MAIN
@@ -66,6 +68,15 @@ namespace MAIN
 		const std::string FAVLIST = "assets/DS/Slang/main/favList.bin";
 		const std::string HISTORY = "assets/DS/Slang/main/history.bin";
 	}
+
+	namespace Emoji
+	{
+		const std::string WORDS = "assets/DS/Slang/main/words.bin";
+		const std::string WORDDEF = "assets/DS/Slang/main/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/Slang/main/defTrie.bin";
+		const std::string FAVLIST = "assets/DS/Slang/main/favList.bin";
+		const std::string HISTORY = "assets/DS/Slang/main/history.bin";
+	}
 }
 
 namespace DEFAULT
@@ -97,6 +108,15 @@ namespace DEFAULT
 	}
 
 	namespace Slang
+	{
+		const std::string WORDS = "assets/DS/Slang/default/words.bin";
+		const std::string WORDDEF = "assets/DS/Slang/default/wordDef.bin";
+		const std::string DEFTRIE = "assets/DS/Slang/default/defTrie.bin";
+		const std::string FAVLIST = "assets/DS/Slang/default/favList.bin";
+		const std::string HISTORY = "assets/DS/Slang/default/history.bin";
+	}
+
+	namespace Emoji
 	{
 		const std::string WORDS = "assets/DS/Slang/default/words.bin";
 		const std::string WORDDEF = "assets/DS/Slang/default/wordDef.bin";
@@ -152,6 +172,9 @@ public:
 
 	// Load from Slang words data
 	bool importSlangCsv(const std::string &path);
+
+	// Load from Emoji data
+	bool importEmojiTxt(const std::string &path);
 
 	bool setup();
 	

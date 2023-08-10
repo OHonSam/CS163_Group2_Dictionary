@@ -21,10 +21,16 @@ protected:
         const std::string &mess = "Your choice: ");
 
     std::string inputEngString(
-        const std::string &mess = "Enter English word:");
+        const std::string &mess = "Enter English word:"
+    );
 
     std::string inputVietString(
-        const std::string &mess = "Enter Vietnamese word:");
+        const std::string &mess = "Enter Vietnamese word:"
+    );
+
+    std::string inputEmojiString(
+        const std::string &mess = "Enter Emoji:"
+    );
 
 public:
     Screen(Dict *dict) : dict(dict) {}
@@ -147,6 +153,7 @@ private:
         "English - Vietnamese",
         "Vietnamese - English",
         "Slang words",
+        "Emojis",
         "Back"
     };
 
@@ -411,8 +418,9 @@ private:
     std::string word;
     std::vector<std::string> prefixes;
     const std::vector<std::string> options = {
-        "Back to View Favourite List Screen",
-        "Back to Edit Screen"
+        "Back to View Screen",
+        "Back to Edit Screen",
+        "Back to Search Screen"
     };
 public:
     AddGivenWordFavListScreen(Dict* dict, const std::string& w) : Screen(dict), word(w) {}

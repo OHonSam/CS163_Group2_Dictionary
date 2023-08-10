@@ -107,6 +107,20 @@ std::string Screen::inputVietString(const std::string &mess)
 
 	return str;
 }
+
+std::string Screen::inputEmojiString(const std::string &mess)
+{
+    std::string str;
+	std::cout << mess;
+	std::getline(std::cin, str, '\n');
+	while (str.size()>20)
+	{
+		std::cout << "Invalid input. Please try again: ";
+		std::getline(std::cin, str, '\n');
+	}
+
+	return str;
+}
 //
 
 // HomeScreen
@@ -169,7 +183,6 @@ Screen *SearchScreen::render()
             nextScreen=new SearchForDefScreen(dict);
             break;
         case 2:
-            //nextScreen=new SearchForWordScreen(dict);
 			nextScreen = new SearchForKeywordsScreen(dict);
             break;
         case 3:
@@ -261,7 +274,7 @@ Screen* ResettoDefaultScreen::render() {
 }
 
 void ResettoDefaultScreen::ResettoDefault() {
-	std::cout << "Are you sure to reset the dictionary, this would remove all your updates on words, favourite list and history...?\n";
+	std::cout << "Are you sure to reset the dictionary, this would remove all your updates on words, favourite list and search history...?\n";
 	std::cout << "Options: \n"
 		<< "1. YES\n" 
 		<< "2. NO\n";
@@ -373,7 +386,13 @@ Screen *SwitchDataSetScreen::render()
 		std::cout << "Switched to Slang words dataset!" << std::endl;
 		std::cout << "Press 1 to go back to the previous page." << std::endl;
 		inputOption(1);
-		break;
+		return new HomeScreen(dict);
+	case 5:
+		dict->switchDataSet(DataSet::Emoji);
+		std::cout << "Switched to Emoji dataset!" << std::endl;
+		std::cout << "Press 1 to go back to the previous page." << std::endl;
+		inputOption(1);
+		return new HomeScreen(dict);
 	default:
 		nextScreen = new HomeScreen(dict);
 		break;
@@ -397,6 +416,9 @@ Screen *SearchForDefScreen::render()
 	{
 	case DataSet::VE:
 		word = inputVietString("Enter the word you want to search for: ");
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString("Enter the emoji you want to search for: ");
 		break;
 	default:
 		word = inputEngString("Enter the word you want to search for: ");
@@ -521,13 +543,28 @@ Screen *Display1PrefixModeScreen::render()
 	Screen *nextScreen = this;
 
 	std::string word;
-	std::cout << "Enter the prefix you want to search for: ";
-	std::getline(std::cin, word);
-	while (!dict->lowerStrEng(word))
+	std::string mess="Enter the prefix you want to search for: ";
+
+	// std::cout << "Enter the prefix you want to search for: ";
+	// std::getline(std::cin, word);
+	// while (!dict->lowerStrEng(word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the prefix you want to search for: ";
+	// 	std::getline(std::cin, word);
+	// }
+
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the prefix you want to search for: ";
-		std::getline(std::cin, word);
+	case DataSet::VE:
+		word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString(mess);
+		break;
+	default:
+		word = inputEngString(mess);
+		break;
 	}
 
 	bool found = false;
@@ -664,7 +701,7 @@ Screen* SearchForKeywordsScreen::render() {
     // }
     std::cout << "Options: \n"
         <<"1. Search for the keyword\n"
-        <<"2. If there are nonsense words in the definition you have given, we'll give you some suggestions\n"
+        <<"2. If there are any nonsense words in the definition you have given, we'll offer you some suggestion\n"
         <<"3. Back\n";
     int choice = inputOption(3);
     switch(choice){
@@ -1123,63 +1160,44 @@ Screen *EditWordScreen::render()
 			w -> word = word;
 			w -> type = 0;
 			std::cout<<"Parts of speech: \n";
-		for(int i=0;i<POS::Count;++i){
-			std::cout<<i+1<<". "<<POS::TypeString[i]<<std::endl;
-		}
-		std::string buffer;
-		std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
-		std::getline(std::cin,buffer,'\n');
-		
-		std::unordered_set<int> pos;// to avoid duplicate
-		std::stringstream ss(buffer);
-		std::string temp;
-		int choice;
-		while(ss>>temp){
-			if(!dict->isValidPOS(temp,choice)){//check the input if it is a valid number (1<=num<=9) or a random string or out of bound
-				std::cout<<"Invalid input. Please try again!\n";
-				std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
-				std::getline(std::cin,buffer,'\n');
-				ss.clear();
-				pos.clear();
-				ss.str(buffer);
+			for(int i=0;i<POS::Count;++i){
+				std::cout<<i+1<<". "<<POS::TypeString[i]<<std::endl;
 			}
-			else{
-				pos.insert(choice);
-			}
-		}
-		for(std::unordered_set<int>::iterator itr=pos.begin();itr!=pos.end();++itr){
-			std::cout<<"Enter the word's definition as "<<POS::TypeString[*itr-1]<<": ";
+			std::string buffer;
+			std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
 			std::getline(std::cin,buffer,'\n');
-			w->def[*itr-1].push_back(buffer);
-			w -> type += (1 << ((*itr) - 1));
-		}
+			
+			std::unordered_set<int> pos;// to avoid duplicate
+			std::stringstream ss(buffer);
+			std::string temp;
+			int choice;
+			while(ss>>temp){
+				if(!dict->isValidPOS(temp,choice)){//check the input if it is a valid number (1<=num<=9) or a random string or out of bound
+					std::cout<<"Invalid input. Please try again!\n";
+					std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
+					std::getline(std::cin,buffer,'\n');
+					ss.clear();
+					pos.clear();
+					ss.str(buffer);
+				}
+				else{
+					pos.insert(choice);
+				}
+			}
+			for(std::unordered_set<int>::iterator itr=pos.begin();itr!=pos.end();++itr){
+				std::cout<<"Enter the word's definition as "<<POS::TypeString[*itr-1]<<": ";
+				std::getline(std::cin,buffer,'\n');
+				w->def[*itr-1].push_back(buffer);
+				w -> type += (1 << ((*itr) - 1));
+			}
 
-
-		// for(int i=0;i<POS::Count;++i){
-		// 	if(!(ss>>pos[i])|| pos[i]<1||pos[i]>POS::Count){
-		// 		std::cout<<"Invalid input. Please try again!\n";
-		// 		std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
-		// 		std::getline(std::cin,buffer,'\n');
-		// 		ss.clear();
-		// 		ss.str(buffer);
-		// 		i=-1;
-		// 	}
-		// }
-		// for(int i=0;i<POS::Count;++i){
-		// 	if(pos[i]==0) 
-		// 		continue;
-		// 	std::cout<<"Enter the word's definition as "<<POS::TypeString[pos[i]-1]<<": ";
-		// 	std::getline(std::cin,buffer,'\n');
-		// 	w->def[pos[i]-1].push_back(buffer);
-		// }
-
-		dict->addWord(w);
-		std::cout<<"The new word has been added to the dictionary!\n";
-		}
-		std::cout << "1. Back to Edit section\n";
-		int back = inputOption(1);
-		if (back == 1) nextScreen = new EditScreen(dict);
-		// else return new EditScreen(dict);
+			dict->addWord(w);
+			std::cout<<"The new word has been added to the dictionary!\n";
+			}
+			std::cout << "1. Back to Edit section\n";
+			int back = inputOption(1);
+			if (back == 1) nextScreen = new EditScreen(dict);
+			// else return new EditScreen(dict);
 	}
 	else
 	{
@@ -1329,24 +1347,6 @@ Screen *DeleteWordScreen::render()
 			w -> type += (1 << ((*itr) - 1));
 		}
 
-
-		// for(int i=0;i<POS::Count;++i){
-		// 	if(!(ss>>pos[i])|| pos[i]<1||pos[i]>POS::Count){
-		// 		std::cout<<"Invalid input. Please try again!\n";
-		// 		std::cout<<"Enter all parts of speech you want to add definition to(ex: 1 2 ... 9): ";
-		// 		std::getline(std::cin,buffer,'\n');
-		// 		ss.clear();
-		// 		ss.str(buffer);
-		// 		i=-1;
-		// 	}
-		// }
-		// for(int i=0;i<POS::Count;++i){
-		// 	if(pos[i]==0) 
-		// 		continue;
-		// 	std::cout<<"Enter the word's definition as "<<POS::TypeString[pos[i]-1]<<": ";
-		// 	std::getline(std::cin,buffer,'\n');
-		// 	w->def[pos[i]-1].push_back(buffer);
-		// }
 
 		dict->addWord(w);
 		std::cout<<"The new word has been added to the dictionary!\n";
@@ -1575,7 +1575,8 @@ Screen *Add1WordFavListScreen::render()
 }
 
 Screen *AddGivenWordFavListScreen::render()
-{
+{	
+	clearScr();
 	Screen *nextScreen = this;
 	if (!dict -> searchForDef(word)) std::cout << "Sorry, this word is not in the dictionary!\n";
 	else {
@@ -1590,11 +1591,13 @@ Screen *AddGivenWordFavListScreen::render()
 	switch (choice)
 	{
 	case 1:
-		nextScreen = new DisplayExactModeScreen(dict, word);
+		nextScreen = new ViewScreen(dict);
 		break;
 	case 2:
-		nextScreen = new Display1PrefixModeScreen(dict, prefixes);
+		nextScreen = new EditScreen(dict);
 		break;
+	case 3:
+		nextScreen=new SearchScreen(dict);
 	}
 	return nextScreen;
 }
