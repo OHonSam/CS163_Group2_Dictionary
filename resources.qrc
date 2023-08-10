@@ -32,6 +32,9 @@
         <file>watercolor-texture-background/48.jpg</file>
         <file>images/watercolor button/surface-with-abstract-watercolor-paint.jpg</file>
         <file>images/watercolor button/light water bg.jpg</file>
+        <file>images/bg/orange.jpg</file>
+        <file>images/bg/pink.jpg</file>
+        <file>images/bg/small orange.jpg</file>
     </qresource>
     <qresource prefix="/button">
         <file>images/watercolor button/water-button green.png</file>

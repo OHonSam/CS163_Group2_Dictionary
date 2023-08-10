@@ -31,8 +31,7 @@ background-color: rgb(255, 255, 255);</string>
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/background/images/watercolor button/surface-with-abstract-watercolor-paint.jpg);
-padding: 0px 0px 0px 0px;</string>
+    <string notr="true">padding: 0px 0px 0px 0px;</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="0">
@@ -43,7 +42,7 @@ padding: 0px 0px 0px 0px;</string>
          <bool>false</bool>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/button/images/watercolor button/water-button jade.png);
+         <string notr="true">
 padding: 30px;</string>
         </property>
         <property name="text">
@@ -57,7 +56,7 @@ padding: 30px;</string>
          <bool>false</bool>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/button/images/watercolor button/water-button jade.png);
+         <string notr="true">background-image: url(:/background/images/bg/small orange.jpg);
 padding: 30px;</string>
         </property>
         <property name="text">
@@ -80,7 +79,8 @@ padding: 20px;</string>
        <widget class="QLabel" name="label_11">
         <property name="styleSheet">
          <string notr="true">border-image: url(:/button/images/watercolor button/water-button jade.png);
-padding: 30px;</string>
+padding: 30px;
+background-image: url(:/background/images/watercolor button/light water bg.jpg);</string>
         </property>
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#030303;&quot;&gt;Reset&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -208,6 +208,9 @@ padding: 30px;</string>
           <verstretch>1</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true">padding: 20 px;</string>
+        </property>
         <property name="html">
          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -252,7 +255,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1025</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHomescreen">
