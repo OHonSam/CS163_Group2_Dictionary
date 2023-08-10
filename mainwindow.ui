@@ -35,8 +35,75 @@ background-color: rgb(255, 255, 255);</string>
 padding: 0px 0px 0px 0px;</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_10">
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/button/images/watercolor button/water-button jade.png);
+padding: 30px;</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffffff;&quot;&gt;History&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_13">
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/button/images/watercolor button/water-button jade.png);
+padding: 30px;</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffffff;&quot;&gt;Favourite list&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_12">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/button/images/watercolor button/water-button jade.png);
+padding: 20px;</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffffff;&quot;&gt;Multilple choice&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_11">
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/button/images/watercolor button/water-button jade.png);
+padding: 30px;</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffffff;&quot;&gt;Reset&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item row="0" column="0" colspan="2">
      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
       <item>
        <widget class="QLabel" name="label">
         <property name="sizePolicy">
@@ -52,6 +119,19 @@ padding: 0px 0px 0px 0px;</string>
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
@@ -184,54 +264,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </item>
      </layout>
     </item>
-    <item row="1" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="label_10">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/button/images/watercolor button/water-button jade.png);
-padding: 30px;</string>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffffff;&quot;&gt;History&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignHCenter">
-       <widget class="QLabel" name="label_13">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/button/images/watercolor button/water-button jade.png);
-padding: 30px;</string>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffffff;&quot;&gt;Favourite list&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignHCenter">
-       <widget class="QLabel" name="label_12">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/button/images/watercolor button/water-button jade.png);
-padding: 20px;</string>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffffff;&quot;&gt;Multilple choice&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_11">
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/button/images/watercolor button/water-button jade.png);
-padding: 30px;</string>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffffff;&quot;&gt;Reset&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -240,7 +272,7 @@ padding: 30px;</string>
      <x>0</x>
      <y>0</y>
      <width>1025</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHomescreen">
