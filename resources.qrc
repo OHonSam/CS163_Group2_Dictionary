@@ -35,6 +35,7 @@
         <file>images/bg/orange.jpg</file>
         <file>images/bg/pink.jpg</file>
         <file>images/bg/small orange.jpg</file>
+        <file>images/bg/slash mid bg.jpg</file>
     </qresource>
     <qresource prefix="/button">
         <file>images/watercolor button/water-button green.png</file>

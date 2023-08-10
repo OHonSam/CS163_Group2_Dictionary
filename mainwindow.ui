@@ -227,7 +227,7 @@ border-radius: 20px;
     </item>
     <item row="1" column="1">
      <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
+      <item alignment="Qt::AlignVCenter">
        <widget class="QTextBrowser" name="textBrowser_2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -236,7 +236,7 @@ border-radius: 20px;
          </sizepolicy>
         </property>
         <property name="styleSheet">
-         <string notr="true">padding: 20 px;</string>
+         <string notr="true">background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
         </property>
         <property name="html">
          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -285,7 +285,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1025</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHomescreen">
