@@ -16,12 +16,9 @@
         <file>font/Victor_Mono/static/VictorMono-SemiBoldItalic.ttf</file>
         <file>font/Victor_Mono/static/VictorMono-Thin.ttf</file>
         <file>font/Victor_Mono/static/VictorMono-ThinItalic.ttf</file>
-        <file>images/compress/mid ombre.jpg</file>
     </qresource>
     <qresource prefix="/img">
-        <file>images/pastel_gradient_2.jpg</file>
         <file>images/small ombre.png</file>
-        <file>images/compress/long ombre.png</file>
-        <file>images/compress/mid ombre - Copy.jpg</file>
+        <file>images/compress/long ombre rotated.jpg</file>
     </qresource>
 </RCC>
