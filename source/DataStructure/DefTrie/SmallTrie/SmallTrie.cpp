@@ -84,8 +84,8 @@ void SmallTrie::deallocate(Node* &root) {
 }
 
 int SmallTrie::save(Node* root, std::ofstream &out) {
-    out.write((char*) &root -> isEnd, sizeof (bool));
-    out.write((char*) &root -> numWords, sizeof (int));
+    out.write((char*) &(root -> isEnd), sizeof (bool));
+    out.write((char*) &(root -> numWords), sizeof (int));
     std::vector <int> temp;
     for (int i = 0; i < root -> childNum.size(); i++) {
         if (root -> child[root -> childNum[i]]) temp.push_back(root -> childNum[i]);
@@ -101,8 +101,8 @@ int SmallTrie::save(Node* root, std::ofstream &out) {
 bool SmallTrie::import(Node* &root, std::ifstream &in, int read_space) {
     // if (!read_space) return false;
     if (!root) root = new Node();
-    in.read((char*) &root -> isEnd, sizeof (bool));
-    in.read((char*) &root -> numWords, sizeof (int));
+    in.read((char*) &(root -> isEnd), sizeof (bool));
+    in.read((char*) &(root -> numWords), sizeof (int));
     int size;
     in.read((char*) &size, sizeof (int));
     for (int i = 0; i < size; i++) {
