@@ -374,6 +374,7 @@ int Button::getState() {
 void UI::DefaultWindow() {
     InitWindow(screenWidth, screenHeight, "Dictionary");
     SetTargetFPS(60);      
+	homestate = 0;
 	favlist = dict -> getFav();
 	hislist = dict -> getHistory();
 	for (int i = 0; i < favlist.size(); i++) removeFavourite[i] = false;
@@ -599,6 +600,7 @@ void UI::Menu() {
 	if (home) {
 		DrawRectangleRoundedLines(Home.buttonShape, 0.1, 10, 4, {253, 84, 145, 255});
 		DrawRectangleRoundedLines(Home.buttonShape, 0.1, 10, 4, {255, 255, 255, 255});
+		DrawHomeScreen();
 		// datasets = false;
 		// reset = false;
 		// favourite = false;
@@ -902,6 +904,61 @@ void UI::DrawHistoryScreen() {
 			history_button = 0;
 		}
 	}
+}
+
+void UI::DrawHomeScreen() {
+	search.SetColorText(title_color, title_color, title_color);
+	search.SetColorBox({248, 199, 199, 255}, {248, 199, 199, 255}, {248, 199, 199, 255});
+	search.colorCornerDefault = {230, 72, 72, 255};
+	search.Construct(138, 244, 850, 48, word_font, {139, 245}, 44, 1, 1000);
+	search.Draw();
+	enterdef.drawCorner = true;
+	enterdef.colorCornerClicked = {253, 84, 145, 255};
+	enterdef.colorCornerDefault = {253, 84, 145, 255};
+	enterdef.colorCornerTouched = {253, 84, 145, 255};
+	enterdef.SetBox(1000, 244, 70, 44, {253, 84, 145, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
+	enterdef.SetText(title_font, "ENTER", GetCenterPos(title_font, "ENTER", 27, 1, enterdef.buttonShape), 27, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+	enterdef.DrawText(mouseCursor);
+	enterkey.drawCorner = true;
+	enterkey.colorCornerClicked = {253, 84, 145, 255};
+	enterkey.colorCornerDefault = {253, 84, 145, 255};
+	enterkey.colorCornerTouched = {253, 84, 145, 255};
+	enterkey.SetBox(1085, 244, 70, 44, {255, 249, 249, 255}, {173, 170, 171, 255}, {93, 93, 93, 255}); 
+	enterkey.SetText(title_font, "ENTER", GetCenterPos(title_font, "ENTER", 27, 1, enterkey.buttonShape), 27, 1, {253, 84, 145, 255}, {253, 84, 145, 255}, {253, 84, 145, 255});
+	enterkey.DrawText(mouseCursor);
+	if (enterkey.state == 0) homestate = 0;
+	if (enterdef.state == 1) homestate = 1;
+	if (enterdef.state == 3) homestate = 3;
+	if (enterdef.state == 0) homestate = 0; 
+	if (enterkey.state == 1) homestate = 2;
+	if (enterkey.state == 3) homestate = 4;
+	messagebar.y = 297;
+	messagebar.x = 135;
+	messagebar.width = 856;
+	messagebar.height = 48;
+	switch (homestate)
+	{
+	case 0:
+		// DrawDailyWords();
+		break;
+	case 1:
+		DrawRectangleRec(messagebar, {255, 249, 249, 255});
+		DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
+		DrawTextEx(title_font, "Click here to search for a definition!", GetCenterPos(title_font, "Click here to search for a definition!", 27, 1, messagebar), 27, 1, {0, 0, 0, 140});
+		break;
+	case 2:
+		DrawRectangleRec(messagebar, {255, 249, 249, 255});
+		DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
+		DrawTextEx(title_font, "Click here to search for a keyword!", GetCenterPos(title_font, "Click here to search for a definition!", 27, 1, messagebar), 27, 1, {0, 0, 0, 140});
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	default:
+		break;
+	}
+
 }
 
 void UI::run() {

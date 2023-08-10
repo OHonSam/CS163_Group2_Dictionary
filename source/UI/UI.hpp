@@ -2,6 +2,8 @@
 #include <Dict.hpp>
 #include "raylib.h"
 #include "Button.hpp"
+#include "InputBox.hpp"
+#include "Other.hpp"
 
 class UI {
 public:
@@ -48,6 +50,11 @@ public:
     Button removeNo;
     Button removehisYes;
     Button removehisNo;
+    InputBox search;
+    Button enterdef;
+    Button enterkey;
+    Rectangle messagebar;
+    int homestate;
 
     std::vector <std::string> favlist;
 	Rectangle fav[100];
@@ -64,5 +71,7 @@ public:
     void Menu();
     void DrawFavouriteScreen();
     void DrawHistoryScreen();
+    void DrawHomeScreen();
+    void DrawDailyWords();
     void run();
 };
