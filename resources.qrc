@@ -22,4 +22,8 @@
         <file>images/compress/long ombre rotated.jpg</file>
         <file>images/search.svg</file>
     </qresource>
+    <qresource prefix="/background">
+        <file>watercolor-texture-background/48.eps</file>
+        <file>watercolor-texture-background/48.jpg</file>
+    </qresource>
 </RCC>
