@@ -31,4 +31,8 @@
         <file>watercolor-texture-background/48.eps</file>
         <file>watercolor-texture-background/48.jpg</file>
     </qresource>
+    <qresource prefix="/button">
+        <file>images/watercolor button/water-button green.png</file>
+        <file>images/watercolor button/water-button jade.png</file>
+    </qresource>
 </RCC>
