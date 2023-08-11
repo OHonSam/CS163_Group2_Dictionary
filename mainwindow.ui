@@ -121,7 +121,7 @@ font: 10pt &quot;Comfortaa&quot;;</string>
        <widget class="QComboBox" name="comboBox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-          <horstretch>8</horstretch>
+          <horstretch>6</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
@@ -215,7 +215,7 @@ background-color: rgb(122, 124, 246);</string>
        <widget class="QLineEdit" name="lineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>48</horstretch>
+          <horstretch>45</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
@@ -622,7 +622,7 @@ background-image: url(:/background/images/bg/intro bg.png);</string>
      <x>0</x>
      <y>0</y>
      <width>1124</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHomescreen">
