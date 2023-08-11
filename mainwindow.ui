@@ -129,7 +129,7 @@ font: 10pt &quot;Comfortaa&quot;;</string>
          <widget class="QComboBox" name="comboBox_2">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-            <horstretch>4</horstretch>
+            <horstretch>6</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
@@ -311,6 +311,27 @@ background-image: url(:/background/images/bg/mid button.png);</string>
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_10">
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/heart-fill.svg</normaloff>:/img/images/heart-fill.svg</iconset>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_2">
@@ -587,7 +608,7 @@ border-radius: 20px;
      <x>0</x>
      <y>0</y>
      <width>1025</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHomescreen">
