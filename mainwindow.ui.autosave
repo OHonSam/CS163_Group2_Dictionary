@@ -238,7 +238,7 @@ background-image: url(:/background/images/bg/mid button.png);</string>
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">padding: 1px;
+             <string notr="true">padding: 3px;
 border-width : 1px;
 border-color: rgb(102, 124, 246);
 border-style:inset;
@@ -268,7 +268,7 @@ background-color: rgb(102, 124, 246);</string>
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">padding: 1px;
+             <string notr="true">padding: 3px;
 border-width : 1px;
 border-color: rgb(102, 124, 246);
 border-style:inset;
@@ -298,7 +298,7 @@ background-color: rgb(102, 124, 246);</string>
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">padding: 1px;
+             <string notr="true">padding: 5px;
 border-width : 1px;
 border-color: rgb(102, 124, 246);
 border-style:inset;
@@ -553,8 +553,7 @@ border-style:inset;
 border-radius: 10px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(102, 124, 246);
-border-image:url(:/images/search.svg);</string>
+background-color: rgb(102, 124, 246);</string>
           </property>
           <property name="text">
            <string/>
@@ -593,7 +592,7 @@ border-image:url(:/images/search.svg);</string>
      <x>0</x>
      <y>0</y>
      <width>1025</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHomescreen">
