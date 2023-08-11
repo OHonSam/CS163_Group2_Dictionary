@@ -592,7 +592,7 @@ border-image:url(:/images/search.svg);</string>
      <x>0</x>
      <y>0</y>
      <width>1025</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHomescreen">
