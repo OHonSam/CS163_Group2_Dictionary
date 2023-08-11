@@ -40,6 +40,118 @@ background-color: rgb(255, 255, 255);</string>
     <string notr="true">padding: 0px 0px 0px 0px;</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="font">
+         <font>
+          <family>Comfortaa</family>
+          <pointsize>16</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/images/bg/button.png);
+padding: 30px;
+color: white;
+font: 16pt &quot;Comfortaa&quot;;
+font:bold;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px</string>
+        </property>
+        <property name="text">
+         <string>Edit</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_5">
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/images/bg/button.png);
+padding: 30px;
+color: white;
+font: 16pt &quot;Comfortaa&quot;;
+font:bold;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px</string>
+        </property>
+        <property name="text">
+         <string>History</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_6">
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/images/bg/button.png);
+padding: 30px;
+color: white;
+font: 16pt &quot;Comfortaa&quot;;
+font:bold;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px</string>
+        </property>
+        <property name="text">
+         <string>Favorite List</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_7">
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/images/bg/button.png);
+padding: 30px;
+color: white;
+font: 16pt &quot;Comfortaa&quot;;
+font:bold;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px</string>
+        </property>
+        <property name="text">
+         <string>Quiz</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_8">
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/images/bg/button.png);
+padding: 30px;
+color: white;
+font: 16pt &quot;Comfortaa&quot;;
+font:bold;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px</string>
+        </property>
+        <property name="text">
+         <string>Reset</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item row="1" column="1">
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
@@ -76,6 +188,101 @@ background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
         <property name="bottomMargin">
          <number>0</number>
         </property>
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/edit icon.svg</normaloff>:/img/images/edit icon.svg</iconset>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/heart-fill.svg</normaloff>:/img/images/heart-fill.svg</iconset>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/reset.png</normaloff>:/img/images/reset.png</iconset>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
+           </widget>
+          </item>
+         </layout>
+        </item>
         <item row="2" column="0">
          <widget class="QTextBrowser" name="textBrowser">
           <property name="sizePolicy">
@@ -116,214 +323,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <property name="spacing">
-           <number>5</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton">
-            <property name="styleSheet">
-             <string notr="true">padding: 10px;
-border-color: rgb(223, 34, 102);
-border-width : 0px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/img/images/heart-fill.svg</normaloff>:/img/images/heart-fill.svg</iconset>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
-            </attribute>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="styleSheet">
-             <string notr="true">padding: 10px;
-border-color: rgb(223, 34, 102);
-border-width : 0px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/img/images/edit icon.svg</normaloff>:/img/images/edit icon.svg</iconset>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
-            </attribute>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_3">
-            <property name="styleSheet">
-             <string notr="true">padding: 10px;
-border-color: rgb(223, 34, 102);
-border-width : 0px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/img/images/reset.png</normaloff>:/img/images/reset.png</iconset>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
-            </attribute>
-           </widget>
-          </item>
-         </layout>
-        </item>
        </layout>
-      </item>
-     </layout>
-    </item>
-    <item row="1" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QPushButton" name="pushButton_4">
-        <property name="font">
-         <font>
-          <family>Comfortaa</family>
-          <pointsize>16</pointsize>
-          <italic>false</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/button.png);
-padding: 30px;
-color: white;
-font: 16pt &quot;Comfortaa&quot;;
-font:bold;
-border-color: rgb(3, 3, 3);
-border-width : 0px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px</string>
-        </property>
-        <property name="text">
-         <string>Edit</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_5">
-        <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/purple-abstract-background/v463-aum-12-abstractbackground Resize.jpg);
-padding: 30px;
-color: white;
-font: 16pt &quot;Comfortaa&quot;;
-font:bold;
-border-color: rgb(3, 3, 3);
-border-width : 0px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px</string>
-        </property>
-        <property name="text">
-         <string>History</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_6">
-        <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/purple-abstract-background/v463-aum-12-abstractbackground Resize.jpg);
-padding: 30px;
-color: white;
-font: 16pt &quot;Comfortaa&quot;;
-font: bold;
-border-color: rgb(3, 3, 3);
-border-width : 0px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px</string>
-        </property>
-        <property name="text">
-         <string>Favorite List</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_7">
-        <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/purple-abstract-background/v463-aum-12-abstractbackground Resize.jpg);
-padding: 30px;
-color: white;
-font: 16pt &quot;Comfortaa&quot;;
-font:bold;
-border-color: rgb(3, 3, 3);
-border-width : 0px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px</string>
-        </property>
-        <property name="text">
-         <string>Quiz</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_8">
-        <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/purple-abstract-background/v463-aum-12-abstractbackground Resize.jpg);
-padding: 30px;
-color: white;
-font: 16pt &quot;Comfortaa&quot;;
-font:bold;
-border-color: rgb(3, 3, 3);
-border-width : 0px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px</string>
-        </property>
-        <property name="text">
-         <string>Reset</string>
-        </property>
-       </widget>
       </item>
      </layout>
     </item>
