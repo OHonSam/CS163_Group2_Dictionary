@@ -76,6 +76,92 @@ background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
         <property name="bottomMargin">
          <number>0</number>
         </property>
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/heart-fill.svg</normaloff>:/img/images/heart-fill.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/edit icon.svg</normaloff>:/img/images/edit icon.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/reset.png</normaloff>:/img/images/reset.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
         <item row="2" column="0">
          <widget class="QTextBrowser" name="textBrowser">
           <property name="sizePolicy">
@@ -115,80 +201,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <string>Displaying...</string>
           </property>
          </widget>
-        </item>
-        <item row="1" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <property name="spacing">
-           <number>5</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_3">
-            <property name="styleSheet">
-             <string notr="true">padding: 10px;
-border-color: rgb(223, 34, 102);
-border-width : 1px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
-            </property>
-            <property name="text">
-             <string>Renew Icon</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="styleSheet">
-             <string notr="true">padding: 10px;
-border-color: rgb(223, 34, 102);
-border-width : 1px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
-            </property>
-            <property name="text">
-             <string>Edit Icon</string>
-            </property>
-           </widget>
-          </item>
-          <item alignment="Qt::AlignRight">
-           <widget class="QPushButton" name="pushButton">
-            <property name="styleSheet">
-             <string notr="true">padding: 10px;
-border-color: rgb(223, 34, 102);
-border-width : 1px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
-            </property>
-            <property name="text">
-             <string>Heart Icon</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
         </item>
        </layout>
       </item>
@@ -356,9 +368,11 @@ font: 10pt &quot;Comfortaa&quot;;</string>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_2">
-          <property name="mouseTracking">
-           <bool>true</bool>
+         <widget class="QPushButton" name="pushButton_9">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
           </property>
           <property name="styleSheet">
            <string notr="true">padding: 3px;
@@ -368,13 +382,30 @@ border-style:inset;
 border-radius: 10px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(223, 32, 97);</string>
+background-color: rgb(223, 32, 97);
+border-image:url(:/images/search.svg);</string>
           </property>
           <property name="text">
            <string/>
           </property>
-          <property name="pixmap">
-           <pixmap resource="resources.qrc">:/img/images/search.svg</pixmap>
+          <property name="icon">
+           <iconset resource="resources.qrc">
+            <normaloff>:/img/images/search.svg</normaloff>:/img/images/search.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>22</width>
+            <height>27</height>
+           </size>
+          </property>
+          <property name="autoDefault">
+           <bool>false</bool>
+          </property>
+          <property name="default">
+           <bool>false</bool>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
           </property>
          </widget>
         </item>

@@ -8,6 +8,8 @@
         <file>images/history.svg</file>
         <file>images/button pastel/pastel button blue-pink.png</file>
         <file>images/cloud ombre.png</file>
+        <file>images/edit icon.svg</file>
+        <file>images/reset.png</file>
     </qresource>
     <qresource prefix="/background">
         <file>watercolor-texture-background/48.eps</file>
