@@ -284,6 +284,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -300,7 +301,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </widget>
    <addaction name="menuHomescreen"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
   <include location="resources.qrc"/>
