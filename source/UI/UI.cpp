@@ -924,6 +924,7 @@ void UI::DrawHistoryScreen() {
 void UI::DrawHomeScreen() {
 	// Button reset
 	// when a new word is done search, the right previous word added to the history?
+	// babion
 	switch (homestate)
 	{
 	case 0:
