@@ -37,7 +37,7 @@ background-color: rgb(255, 255, 255);</string>
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">padding: 0px 0px 0px 0px;</string>
+    <string notr="true">background-color: rgb(233, 240, 250);</string>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0" colspan="2">
