@@ -143,10 +143,10 @@ using namespace std;
 // }
 
 int main() {
-    UI ui;
-    ui.run();
-    return 0;
-    // App* app = new App();
-    // app -> run();
+    // UI ui;
+    // ui.run();
     // return 0;
+    App* app = new App();
+    app -> run();
+    return 0;
 }

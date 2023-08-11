@@ -375,6 +375,7 @@ int Button::getState() {
 void UI::DefaultWindow() {
     InitWindow(screenWidth, screenHeight, "Dictionary");
     SetTargetFPS(60);      
+	cur = DataSet::EE;
 	homestate = 0;
 	hislist = dict -> getHistory();
 	favlist = dict -> getFav();
@@ -436,7 +437,9 @@ void UI::DefaultWindow() {
 		Datasets.colorCornerDefault = {253, 84, 145, 255};
 		Datasets.colorCornerTouched = {253, 84, 145, 255};
 		Datasets.SetBox(1120, 5, 160, 44, {253, 84, 145, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
-		Datasets.SetText(title_font, "ENG-ENG", {1133, 7}, 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+		if (cur == DataSet::EE) Datasets.SetText(title_font, "ENG-ENG", {1133, 7}, 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+		else if (cur == DataSet::EV) Datasets.SetText(title_font, "ENG-VIET", GetCenterPos(title_font, "ENG-VIET", 36, 1, Datasets.buttonShape), 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+		else if (cur == DataSet::VE) Datasets.SetText(title_font, "VIET-ENG", GetCenterPos(title_font, "VIET-ENG", 36, 1, Datasets.buttonShape), 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
 		Datasets.DrawText(mouseCursor);
 		frame.x = 110;
 		frame.y = 234;
@@ -587,16 +590,19 @@ void UI::Menu() {
 		DrawTextureEx(noti, {787, 200}, 0, 0.3, WHITE);
 		if (vieteng.state == 3) {
 			dict -> switchDataSet(DataSet::VE);
+			cur = DataSet::VE;
 			datasets = false;
 			status.pop_back();
 		}
 		else if (engeng.state == 3) {
 			dict -> switchDataSet(DataSet::EE);
+			cur = DataSet::EE;
 			datasets = false;
 			status.pop_back();
 		}
 		else if (engviet.state == 3) {
 			dict -> switchDataSet(DataSet::EV);
+			cur = DataSet::EV;
 			datasets = false;
 			status.pop_back();
 		}

@@ -61,6 +61,7 @@ public:
     Button def;
     Button key;
     Button renew;
+    DataSet::Type cur;
 
     std::vector <std::string> favlist;
 	Rectangle fav[100];

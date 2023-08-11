@@ -3,54 +3,54 @@
 // #include <iostream>
 // #include <sstream>
 
-std::vector<std::string> stringCut(const std::string ls) {
-	// long string
-    std::stringstream s(ls);
-    std::string word;
-    std::vector <std::string> res;
-    while (s >> word) res.push_back(word);
-    return res;
-}
+// std::vector<std::string> stringCut(const std::string ls) {
+// 	// long string
+//     std::stringstream s(ls);
+//     std::string word;
+//     std::vector <std::string> res;
+//     while (s >> word) res.push_back(word);
+//     return res;
+// }
 
-std::string Dict::CorrectDef(const std::string &def) {
-    std::vector<std::string> res = searchForWord(def);
-	if (res.size()) {
-		return def;
-	}
-	std::vector<std::string> p;
-	p = stringCut(def);
-	std::string correct = "";
-	for (int i = 0; i < p.size(); i++) {
-		res = searchForWord(correct + " " + p[i]);
-		if (!res.size()) {
-			res = searchPrefixDefTrie(p[i]);
-			int temp = p[i].length();
-			std::vector <std::string> character(temp, "");
-			character[0] += p[i][0];
-			for (int j = 1; j < p[i].length(); j++) {
-				character[j] = character[j - 1] + p[i][j];
-			}
-			int idx = temp - 1;
-			while (!res.size() && idx >= 0) {
-				res = searchPrefixDefTrie(character[idx]);
-				idx--;
-			}
-			if (idx == -1) return "No further corrections could be made!";
-			for (int j = 0; j < res.size(); j++) {
-				if ((searchForWord(correct + " " + res[j])).size()) {
-					correct += " " + res[j];
-					break;
-				}
-			}
-			// break;
-		} 
-		else {
-			correct += " " + p[i];
-		}
-	}
-    if (correct.size()) return correct;
-    return "No further corrections could be made!";
-}
+// std::string Dict::CorrectDef(const std::string &def) {
+//     std::vector<std::string> res = searchForWord(def);
+// 	if (res.size()) {
+// 		return def;
+// 	}
+// 	std::vector<std::string> p;
+// 	p = stringCut(def);
+// 	std::string correct = "";
+// 	for (int i = 0; i < p.size(); i++) {
+// 		res = searchForWord(correct + " " + p[i]);
+// 		if (!res.size()) {
+// 			res = searchPrefixDefTrie(p[i]);
+// 			int temp = p[i].length();
+// 			std::vector <std::string> character(temp, "");
+// 			character[0] += p[i][0];
+// 			for (int j = 1; j < p[i].length(); j++) {
+// 				character[j] = character[j - 1] + p[i][j];
+// 			}
+// 			int idx = temp - 1;
+// 			while (!res.size() && idx >= 0) {
+// 				res = searchPrefixDefTrie(character[idx]);
+// 				idx--;
+// 			}
+// 			if (idx == -1) return "No further corrections could be made!";
+// 			for (int j = 0; j < res.size(); j++) {
+// 				if ((searchForWord(correct + " " + res[j])).size()) {
+// 					correct += " " + res[j];
+// 					break;
+// 				}
+// 			}
+// 			// break;
+// 		} 
+// 		else {
+// 			correct += " " + p[i];
+// 		}
+// 	}
+//     if (correct.size()) return correct;
+//     return "No further corrections could be made!";
+// }
 
 bool Dict::reset(){
     numWords=0;
@@ -98,8 +98,95 @@ bool Dict::reset(){
 bool Dict::switchDataSet(DataSet::Type type)
 {
     if(curDataSet==type) return true;
+    // return reset();
+    // return setup();
+    switch(curDataSet){
+        case DataSet::EE:
+            words.save(MAIN::EE::WORDS);
+            wordDef.save(MAIN::EE::WORDDEF);
+            defTrie.save(MAIN::EE::DEFTRIE);
+            favList.save(MAIN::EE::FAVLIST);
+            history.saveSLLStr(MAIN::EE::HISTORY);
+            break;
+        case DataSet::EV:
+            words.save(MAIN::EV::WORDS);
+            wordDef.save(MAIN::EV::WORDDEF);
+            defTrie.save(MAIN::EV::DEFTRIE);
+            favList.save(MAIN::EV::FAVLIST);
+            history.saveSLLStr(MAIN::EV::HISTORY);
+            break;
+        case DataSet::VE:
+            words.save(MAIN::VE::WORDS);
+            wordDef.save(MAIN::VE::WORDDEF);
+            defTrie.save(MAIN::VE::DEFTRIE);
+            favList.save(MAIN::VE::FAVLIST);
+            history.saveSLLStr(MAIN::VE::HISTORY);
+            break;
+        case DataSet::Slang:
+            words.save(MAIN::Slang::WORDS);
+            wordDef.save(MAIN::Slang::WORDDEF);
+            defTrie.save(MAIN::Slang::DEFTRIE);
+            favList.save(MAIN::Slang::FAVLIST);
+            history.saveSLLStr(MAIN::Slang::HISTORY);
+            break;
+        case DataSet::Emoji:
+            words.save(MAIN::Emoji::WORDS);
+            wordDef.save(MAIN::Emoji::WORDDEF);
+            defTrie.save(MAIN::Emoji::DEFTRIE);
+            favList.save(MAIN::Emoji::FAVLIST);
+            history.saveSLLStr(MAIN::Emoji::HISTORY);
+            break;
+    }
+    words.clear();
+    wordDef.clear();
+    defTrie.clear();
+    favList.clear();
+    history.clearSLL();
     curDataSet=type;
-    return reset();
+    if(!loadFromPrev())
+        switch(curDataSet){
+            case DataSet::EE:
+                return 
+                    importEECsv(RAW_DATA::EE) &&
+                    words.save(DEFAULT::EE::WORDS) &&
+                    wordDef.save(DEFAULT::EE::WORDDEF) &&
+                    defTrie.save(DEFAULT::EE::DEFTRIE) &&
+                    favList.save(DEFAULT::EE::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::EE::HISTORY);
+            case DataSet::EV:
+                return 
+                    importEVTxt(RAW_DATA::EV) &&
+                    words.save(DEFAULT::EV::WORDS) &&
+                    wordDef.save(DEFAULT::EV::WORDDEF) &&
+                    defTrie.save(DEFAULT::EV::DEFTRIE) &&
+                    favList.save(DEFAULT::EV::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::EV::HISTORY);
+            case DataSet::VE:
+                return 
+                    importVETxt(RAW_DATA::VE) &&
+                    words.save(DEFAULT::VE::WORDS) &&
+                    wordDef.save(DEFAULT::VE::WORDDEF) &&
+                    defTrie.save(DEFAULT::VE::DEFTRIE) &&
+                    favList.save(DEFAULT::VE::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::VE::HISTORY);
+            case DataSet::Slang:
+                return 
+                    importSlangCsv(RAW_DATA::Slang) &&
+                    words.save(DEFAULT::Slang::WORDS) &&
+                    wordDef.save(DEFAULT::Slang::WORDDEF) &&
+                    defTrie.save(DEFAULT::Slang::DEFTRIE) &&
+                    favList.save(DEFAULT::Slang::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::Slang::HISTORY);
+            case DataSet::Emoji:
+                return 
+                    importEmojiTxt(RAW_DATA::Emoji) &&
+                    words.save(DEFAULT::Emoji::WORDS) &&
+                    wordDef.save(DEFAULT::Emoji::WORDDEF) &&
+                    defTrie.save(DEFAULT::Emoji::DEFTRIE) &&
+                    favList.save(DEFAULT::Emoji::FAVLIST) &&
+                    history.saveSLLStr(DEFAULT::Emoji::HISTORY);
+        }
+    return true;
 }
 
 DataSet::Type Dict::getCurDataSet() const
@@ -494,6 +581,48 @@ bool Dict::importEmojiTxt(const std::string &path)
 
 bool Dict::setup()
 {
+    // switch(curDataSet){
+    //     case DataSet::EE:
+    //         words.save(MAIN::EE::WORDS);
+    //         wordDef.save(MAIN::EE::WORDDEF);
+    //         defTrie.save(MAIN::EE::DEFTRIE);
+    //         favList.save(MAIN::EE::FAVLIST);
+    //         history.saveSLLStr(MAIN::EE::HISTORY);
+    //         break;
+    //     case DataSet::EV:
+    //         words.save(MAIN::EV::WORDS);
+    //         wordDef.save(MAIN::EV::WORDDEF);
+    //         defTrie.save(MAIN::EV::DEFTRIE);
+    //         favList.save(MAIN::EV::FAVLIST);
+    //         history.saveSLLStr(MAIN::EV::HISTORY);
+    //         break;
+    //     case DataSet::VE:
+    //         words.save(MAIN::VE::WORDS);
+    //         wordDef.save(MAIN::VE::WORDDEF);
+    //         defTrie.save(MAIN::VE::DEFTRIE);
+    //         favList.save(MAIN::VE::FAVLIST);
+    //         history.saveSLLStr(MAIN::VE::HISTORY);
+    //         break;
+    //     case DataSet::Slang:
+    //         words.save(MAIN::Slang::WORDS);
+    //         wordDef.save(MAIN::Slang::WORDDEF);
+    //         defTrie.save(MAIN::Slang::DEFTRIE);
+    //         favList.save(MAIN::Slang::FAVLIST);
+    //         history.saveSLLStr(MAIN::Slang::HISTORY);
+    //         break;
+    //     case DataSet::Emoji:
+    //         words.save(MAIN::Emoji::WORDS);
+    //         wordDef.save(MAIN::Emoji::WORDDEF);
+    //         defTrie.save(MAIN::Emoji::DEFTRIE);
+    //         favList.save(MAIN::Emoji::FAVLIST);
+    //         history.saveSLLStr(MAIN::Emoji::HISTORY);
+    //         break;
+    // }
+    // words.clear();
+    // wordDef.clear();
+    // defTrie.clear();
+    // favList.clear();
+    // history.clearSLL();
     if(!loadFromPrev())
         switch(curDataSet){
             case DataSet::EE:
