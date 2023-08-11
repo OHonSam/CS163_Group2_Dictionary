@@ -228,7 +228,7 @@ background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/purple-abstract-background/v463-aum-12-abstractbackground Resize.jpg);
+         <string notr="true">background-image: url(:/background/images/bg/button.png);
 padding: 30px;
 color: white;
 font: 16pt &quot;Comfortaa&quot;;
@@ -543,7 +543,7 @@ border-image:url(:/images/search.svg);</string>
      <x>0</x>
      <y>0</y>
      <width>1025</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHomescreen">
