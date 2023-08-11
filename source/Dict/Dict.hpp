@@ -256,6 +256,7 @@ public:
 	bool uppercase2Lowercase(std::string &str);
 
 	// Auto correct
+	std::vector<std::string> stringCut(const std::string ls);
 	std::string CorrectDef(const std::string &def);
 };
 #endif

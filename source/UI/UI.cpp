@@ -376,9 +376,14 @@ void UI::DefaultWindow() {
     InitWindow(screenWidth, screenHeight, "Dictionary");
     SetTargetFPS(60);      
 	cur = DataSet::EE;
+	posTextY = 430;
+	posTextX = 236;
 	homestate = 0;
+	keyword = "";
+	definition = "";
 	hislist = dict -> getHistory();
 	favlist = dict -> getFav();
+	dailyword = dict -> getDailyWord();
 	for (int i = 0; i < favlist.size(); i++) removeFavourite[i] = false;
 	for (int i = 0; i < hislist.size(); i++) removeHistory[i] = false;
     background = LoadTexture("background.png");
@@ -387,7 +392,7 @@ void UI::DefaultWindow() {
 	ribbon = LoadTexture("ribbontitle.png");
 	buttondown = LoadTexture("question.png");
     title_font = LoadFontEx("IrishGrover-Regular.ttf", 120, 0, 0);
-	word_font = LoadFontEx("Margarine-Regular.ttf", 50, 0, 0);
+	word_font = LoadFontEx("Margarine-Regular.ttf", 120, 0, 0);
 	home = true;
 	favourite_button = 0;
 	history_button = 0;
@@ -590,18 +595,24 @@ void UI::Menu() {
 		DrawTextureEx(noti, {787, 200}, 0, 0.3, WHITE);
 		if (vieteng.state == 3) {
 			dict -> switchDataSet(DataSet::VE);
+			dailyword = dict -> getDailyWord();
+			homestate = 0;
 			cur = DataSet::VE;
 			datasets = false;
 			status.pop_back();
 		}
 		else if (engeng.state == 3) {
 			dict -> switchDataSet(DataSet::EE);
+			dailyword = dict -> getDailyWord();
+			homestate = 0;
 			cur = DataSet::EE;
 			datasets = false;
 			status.pop_back();
 		}
 		else if (engviet.state == 3) {
 			dict -> switchDataSet(DataSet::EV);
+			dailyword = dict -> getDailyWord();
+			homestate = 0;
 			cur = DataSet::EV;
 			datasets = false;
 			status.pop_back();
@@ -934,9 +945,10 @@ void UI::DrawHomeScreen() {
 	switch (homestate)
 	{
 	case 0:
-		// DrawDailyWords();
+		DrawDailyWords();
 		break;
 	case 1:
+		DrawDailyWords();
 		messagebar.y = 297;
 		messagebar.x = 135;
 		messagebar.width = 856;
@@ -946,6 +958,7 @@ void UI::DrawHomeScreen() {
 		DrawTextEx(title_font, "Click here to search for a definition!", GetCenterPos(title_font, "Click here to search for a definition!", 35, 1, messagebar), 35, 1, {0, 0, 0, 140});
 		break;
 	case 2:
+		DrawDailyWords();
 		messagebar.y = 297;
 		messagebar.x = 135;
 		messagebar.width = 856;
@@ -955,6 +968,7 @@ void UI::DrawHomeScreen() {
 		DrawTextEx(title_font, "Click here to search for a keyword!", GetCenterPos(title_font, "Click here to search for a keyword!", 35, 1, messagebar), 35, 1, {0, 0, 0, 140});
 		break;
 	case 3:
+		wheel = 0;
 		hislist = dict -> getHistory();
 		dict -> searchForDef(search.getInput());
 		if (dict -> searchForDef(search.getInput())) {
@@ -962,10 +976,17 @@ void UI::DrawHomeScreen() {
 			hislist = dict -> getHistory();
 			for (int i = 0; i < hislist.size(); i++) removeHistory[i] = false;
 		}
+		keyword = search.getInput();
+		homestate = 9;
 		break;
 	case 4:
+		wheel = 0;
+		dict -> searchForWord(search.getInput());
+		definition = search.getInput();
+		homestate = 10;
 		break;
 	case 5:
+		DrawDailyWords();
 		messagebar.y = 297;
 		messagebar.x = 135;
 		messagebar.width = 856;
@@ -975,6 +996,7 @@ void UI::DrawHomeScreen() {
 		DrawTextEx(title_font, "Click here if you want suggestions for a definition you could type!", GetCenterPos(title_font, "Click here if you want suggestions for a definition you could type!", 27, 1, messagebar), 27, 1, {0, 0, 0, 140});
 		break;
 	case 6:
+		DrawDailyWords();
 		// break;
 		// Rectangle message;
 		// message.x = 365;
@@ -1014,6 +1036,7 @@ void UI::DrawHomeScreen() {
 		DrawTextEx(title_font, dict -> CorrectDef(search.getInput()).c_str(), GetCenterPos(title_font, dict -> CorrectDef(search.getInput()), 50, 1, messagebar), 50, 1, {0, 0, 0, 140});
 		break;
 	case 7:
+		DrawDailyWords();
 		messagebar.y = 297;
 		messagebar.x = 135;
 		messagebar.width = 856;
@@ -1023,6 +1046,7 @@ void UI::DrawHomeScreen() {
 		DrawTextEx(title_font, "Click here if you want suggestions for a keyword you could type!", GetCenterPos(title_font, "Click here if you want suggestions for a keyword you could type!", 27, 1, messagebar), 27, 1, {0, 0, 0, 140});
 		break;
 	case 8:
+		DrawDailyWords();
 		if (dict -> searchPrefix(search.getInput()).size()) {
 			messagebar.y = 297;
 			messagebar.x = 135;
@@ -1049,6 +1073,18 @@ void UI::DrawHomeScreen() {
 			DrawRectangleLinesEx(messagebar, 2, {113, 201, 206, 255});
 			DrawTextEx(title_font, "No further suggestions could be made!", GetCenterPos(title_font, "No further suggestions could be made!", 35, 1, messagebar), 35, 1, {0, 0, 0, 140});
 		}
+		break;
+	case 9:
+		if (keyword.size()) {
+			DrawSearchforDef(keyword);
+		}	
+		else homestate = 0;
+		break;
+	case 10:
+		if (definition.size()) {
+			DrawSearchforWord(definition);
+		}
+		else homestate = 0;
 		break;
 	}
 	// draw button down here
@@ -1094,14 +1130,15 @@ void UI::DrawHomeScreen() {
 	
 	// if (homestate == 3 && enterdef.state == 3) homestate = 0;
 	// if (homestate == 4 && enterkey.state == 3) homestate = 0;
-	if (homestate != 3 && homestate != 4 && homestate != 6 && homestate != 8) {
+	if (homestate != 3 && homestate != 4 && homestate != 6 && homestate != 8 && homestate != 9 && homestate != 10) {
 		if (enterdef.state == 1) homestate = 1;
 
-		if (down1.state == 1) homestate = 7;
+		else if (down1.state == 1) homestate = 7;
 		// if (enterdef.state == 0) homestate = 0; 
-		if (enterkey.state == 1) homestate = 2;
+		else if (enterkey.state == 1) homestate = 2;
 		
-		if (down.state == 1) homestate = 5;
+		else if (down.state == 1) homestate = 5;
+		else homestate = 0;
 	}
 	
 	if (down.state == 3) {
@@ -1124,6 +1161,115 @@ void UI::DrawHomeScreen() {
 
 	if (down1.state == 3) homestate = 8;
 	DrawTextureEx(buttondown, {932, 243}, 0, 0.017, WHITE);
+}
+
+void UI::DrawDailyWords() {
+	
+	DrawWord(dailyword);
+}
+
+void UI::DrawWord(Word* word) {
+	if (!word) {
+		DrawTextEx(title_font, "No results found!", {193, 380}, 50, 1, {220, 205, 255, 255});
+		return;
+	}
+	int scrollspeed = 50;
+	wheel += GetMouseWheelMove() * scrollspeed;
+	int lim;
+		posTextX = 236;
+		posTextY = 330;
+		for (int i = 0; i < 9; i++) {
+			if (word -> def[i].size()) {
+				posTextY += 50;
+				// DrawTextEx(title_font, (POS::TypeString[i]).c_str(), {193, (float) posTextY}, 50, 1, {220, 205, 255, 255});
+				for (int j = 0; j < word -> def[i].size(); j++) {
+					posTextX = 236;
+					posTextY += 50;
+					// int scrollspeed = 30;
+					// wheel += GetMouseWheelMove() * scrollspeed;
+					std::vector <std::string> words = dict -> stringCut(word -> def[i][j]);
+					// if (posTextY + MeasureTextEx(word_font, "*", 45, 1).y + wheel <= 770 && posTextY + wheel >= 430) DrawTextEx(word_font, "*", {(float) posTextX, (float) posTextY + (float) wheel}, 45, 1, {220, 71, 89, 255});
+					posTextX += MeasureTextEx(word_font, " ", 45, 1).x;
+					posTextX += MeasureTextEx(word_font, "*", 45, 1).x;
+					for (int i = 0; i < words.size(); i++) {
+						if (posTextX + MeasureTextEx(word_font, words[i].c_str(), 45, 1).x > 1123) {
+							posTextX = 236;
+							posTextY += 50;
+						}
+						if (posTextY + MeasureTextEx(word_font, words[i].c_str(), 45, 1).y + wheel <= 770 && posTextY + wheel >= 430) {
+							// DrawTextEx(word_font, words[i].c_str(), {(float) posTextX, (float) posTextY + (float) wheel}, 45, 1, {220, 71, 89, 255});
+						}
+						posTextX += MeasureTextEx(word_font, words[i].c_str(), 45, 1).x;
+						posTextX += MeasureTextEx(word_font, " ", 73, 1).x;
+						lim = posTextY + MeasureTextEx(word_font, words[i].c_str(), 45, 1).y;
+					}
+				}
+			}
+		}
+	if (lim + wheel < 770) wheel = 770 - lim;
+	if (wheel > 0) wheel = 0; 
+	
+	display.x = 138;
+	display.y = 307;
+	display.width = 1017;
+	display.height = 493;
+	DrawRectangleRoundedLines(display, 0.03, 10, 4, {253, 84, 145, 255});
+	// string s = word -> word;
+	// if (s[0] > 90) s[0] -= 32;
+	// cout << s[0];
+	DrawTextEx(word_font, "-", {153, 310}, 73, 1, {220, 71, 89, 255});
+	DrawTextEx(word_font, word -> word.c_str(), {193, 310}, 73, 1, {220, 71, 89, 255});
+	posTextX = 236;
+	posTextY = 330;
+	for (int i = 0; i < 9; i++) {
+		if (word -> def[i].size()) {
+			posTextY += 50;
+			if ((float) posTextY + wheel >= 380 && (float) posTextY + wheel + MeasureTextEx(title_font, (POS::TypeString[i]).c_str(), 50, 1).y <= 770) DrawTextEx(title_font, (POS::TypeString[i]).c_str(), {193, (float) posTextY + wheel}, 50, 1, {220, 205, 255, 255});
+			for (int j = 0; j < word -> def[i].size(); j++) {
+				DrawLongText(word -> def[i][j]);
+			}
+		}
+	}
+	// DrawTextEx(title_font, "Noun.", {193, 380}, 50, 1, {0, 0, 0, 255});
+	// DrawTextEx(word_font, "- em iu anh", {236, 430}, 45, 1, {0, 0, 0, 255});
+	
+	// DrawLongText("It was year ago ago ago ago year it was a good story I was excited I was hooked on these things I'm so thankful!");
+	return;
+}
+
+// reset posTextX posTextY
+void UI::DrawLongText(std::string s) {
+	// reset wheel = 0 where?
+	posTextX = 236;
+	posTextY += 50;
+	std::vector <std::string> words = dict -> stringCut(s);
+	if (posTextY + MeasureTextEx(word_font, "*", 45, 1).y + wheel <= 770 && posTextY + wheel >= 380) DrawTextEx(word_font, "*", {(float) posTextX, (float) posTextY + (float) wheel}, 45, 1, {220, 71, 89, 255});
+	posTextX += MeasureTextEx(word_font, " ", 45, 1).x;
+	posTextX += MeasureTextEx(word_font, "*", 45, 1).x;
+	for (int i = 0; i < words.size(); i++) {
+		if (posTextX + MeasureTextEx(word_font, words[i].c_str(), 45, 1).x > 1123) {
+			posTextX = 236;
+			posTextY += 50;
+		}
+		if (posTextY + MeasureTextEx(word_font, words[i].c_str(), 45, 1).y + wheel <= 770 && posTextY + wheel >= 380) {
+			DrawTextEx(word_font, words[i].c_str(), {(float) posTextX, (float) posTextY + (float) wheel}, 45, 1, {220, 71, 89, 255});
+		}
+		posTextX += MeasureTextEx(word_font, words[i].c_str(), 45, 1).x;
+		posTextX += MeasureTextEx(word_font, " ", 73, 1).x;
+	}
+	return;
+	// centerPos.x = x + (width - MeasureTextEx(font, text.c_str(), fontSize, spacing).x) / 2;
+	// centerPos.y = y + (height - MeasureTextEx(font, text.c_str(), fontSize, spacing).y) / 2;
+}
+
+// bool showText(int x, int y) {}
+
+void UI::DrawSearchforDef(const std::string key) {
+	DrawWord(dict -> searchForDef(key));
+	return;
+}
+void UI::DrawSearchforWord(const std::string def) {
+	return;
 }
 
 void UI::run() {

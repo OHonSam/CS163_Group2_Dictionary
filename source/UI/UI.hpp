@@ -4,6 +4,7 @@
 #include "Button.hpp"
 #include "InputBox.hpp"
 #include "Other.hpp"
+#include <Word.hpp>
 
 class UI {
 public:
@@ -62,12 +63,18 @@ public:
     Button key;
     Button renew;
     DataSet::Type cur;
+    std::string keyword;
+    std::string definition;
+    Rectangle display;
 
+    Word* dailyword;
     std::vector <std::string> favlist;
 	Rectangle fav[100];
     float wheel = 0;
     std::vector <std::string> hislist;
     Rectangle his[100];
+    int posTextY;
+    int posTextX;
 
     const int screenWidth = 1280;
     const int screenHeight = 832;
@@ -80,5 +87,9 @@ public:
     void DrawHistoryScreen();
     void DrawHomeScreen();
     void DrawDailyWords();
+    void DrawSearchforDef(const std::string key);
+    void DrawSearchforWord(const std::string def);
+    void DrawWord(Word* word);
+    void DrawLongText(std::string s);
     void run();
 };
