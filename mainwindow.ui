@@ -40,115 +40,212 @@ background-color: rgb(255, 255, 255);</string>
     <string notr="true">padding: 0px 0px 0px 0px;</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
+    <item row="0" column="0" colspan="2">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QLabel" name="label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="font">
          <font>
-          <family>Comfortaa</family>
-          <pointsize>16</pointsize>
-          <italic>false</italic>
-          <bold>true</bold>
+          <family>Audiowide</family>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/button.png);
-padding: 30px;
-color: white;
-font: 16pt &quot;Comfortaa&quot;;
-font:bold;
-border-color: rgb(3, 3, 3);
-border-width : 0px;
-border-style:inset;
+         <string notr="true">padding: 30px;
 border-radius: 20px;
   min-height: 20px;
-  min-width: 20px</string>
+  min-width: 20px;
+background-image: url(:/background/images/bg/intro bg.png);</string>
         </property>
         <property name="text">
-         <string>Edit</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; color:#ffffff;&quot;&gt;WELCOME TO DICTIONARY - GROUP 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_5">
-        <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/button.png);
-padding: 30px;
-color: white;
-font: 16pt &quot;Comfortaa&quot;;
-font:bold;
-border-color: rgb(3, 3, 3);
-border-width : 0px;
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QComboBox" name="comboBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+            <horstretch>8</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>10000000</height>
+           </size>
+          </property>
+          <property name="contextMenuPolicy">
+           <enum>Qt::DefaultContextMenu</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">padding: 5px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
 border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px</string>
-        </property>
-        <property name="text">
-         <string>History</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_6">
-        <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/button.png);
-padding: 30px;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
 color: white;
-font: 16pt &quot;Comfortaa&quot;;
-font:bold;
-border-color: rgb(3, 3, 3);
-border-width : 0px;
+selection-color: rgb(39, 182, 240);
+selection-background-color: rgb(77, 92, 245);
+font: 10pt &quot;Comfortaa&quot;;</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Eng-Eng</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Eng-Viet</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Slang</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Emoji</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+            <horstretch>4</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>10000000</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">padding: 5px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
 border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px</string>
-        </property>
-        <property name="text">
-         <string>Favorite List</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_7">
-        <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/button.png);
-padding: 30px;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
 color: white;
-font: 16pt &quot;Comfortaa&quot;;
-font:bold;
-border-color: rgb(3, 3, 3);
-border-width : 0px;
+selection-color: rgb(39, 182, 240);
+selection-background-color: rgb(77, 92, 245);
+font: 10pt &quot;Comfortaa&quot;;</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Key</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Def</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+            <horstretch>48</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>13</width>
+            <height>13</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">padding: 5px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
 border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px</string>
-        </property>
-        <property name="text">
-         <string>Quiz</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_8">
-        <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/button.png);
-padding: 30px;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
 color: white;
-font: 16pt &quot;Comfortaa&quot;;
-font:bold;
-border-color: rgb(3, 3, 3);
-border-width : 0px;
+selection-color: rgb(39, 182, 240);
+selection-background-color: rgb(77, 92, 245);
+font: 10pt &quot;Comfortaa&quot;;</string>
+          </property>
+          <property name="placeholderText">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_9">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">padding: 3px;
+border-width : 1px;
 border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px</string>
-        </property>
-        <property name="text">
-         <string>Reset</string>
-        </property>
-       </widget>
+border-radius: 10px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+border-image:url(:/images/search.svg);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="resources.qrc">
+            <normaloff>:/img/images/search.svg</normaloff>:/img/images/search.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>22</width>
+            <height>27</height>
+           </size>
+          </property>
+          <property name="autoDefault">
+           <bool>false</bool>
+          </property>
+          <property name="default">
+           <bool>false</bool>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
@@ -156,6 +253,12 @@ border-radius: 20px;
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="QLabel" name="label_3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>48</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
           <width>82</width>
@@ -234,30 +337,6 @@ background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
-            <property name="styleSheet">
-             <string notr="true">padding: 10px;
-border-color: rgb(223, 34, 102);
-border-width : 0px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/img/images/heart-fill.svg</normaloff>:/img/images/heart-fill.svg</iconset>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
-            </attribute>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="pushButton_3">
             <property name="styleSheet">
              <string notr="true">padding: 10px;
@@ -281,13 +360,43 @@ background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
             </attribute>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/heart-fill.svg</normaloff>:/img/images/heart-fill.svg</iconset>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
+           </widget>
+          </item>
          </layout>
         </item>
         <item row="2" column="0">
          <widget class="QTextBrowser" name="textBrowser">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>50</horstretch>
             <verstretch>3</verstretch>
            </sizepolicy>
           </property>
@@ -327,210 +436,145 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </item>
      </layout>
     </item>
-    <item row="0" column="0" colspan="2">
-     <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item row="1" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QPushButton" name="pushButton_4">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
+         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+          <horstretch>12</horstretch>
+          <verstretch>10</verstretch>
          </sizepolicy>
         </property>
         <property name="font">
          <font>
-          <family>Audiowide</family>
+          <family>Comfortaa</family>
+          <pointsize>16</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">padding: 30px;
+         <string notr="true">background-image: url(:/background/images/bg/button.png);
+padding: 30px;
+color: white;
+font: 16pt &quot;Comfortaa&quot;;
+font:bold;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
+border-style:inset;
 border-radius: 20px;
   min-height: 20px;
-  min-width: 20px;
-background-image: url(:/background/images/bg/intro bg.png);</string>
+  min-width: 20px</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; color:#ffffff;&quot;&gt;WELCOME TO DICTIONARY - GROUP 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <string>Edit</string>
         </property>
        </widget>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QComboBox" name="comboBox">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-            <horstretch>1</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>10000000</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">padding: 5px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
-border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);
+       <widget class="QPushButton" name="pushButton_5">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+          <horstretch>12</horstretch>
+          <verstretch>10</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/images/bg/button.png);
+padding: 30px;
 color: white;
-selection-color: rgb(39, 182, 240);
-selection-background-color: rgb(77, 92, 245);
-font: 10pt &quot;Comfortaa&quot;;</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>Eng-Eng</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Eng-Viet</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Slang</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Emoji</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBox_2">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-            <horstretch>1</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>10000000</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">padding: 5px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
+font: 16pt &quot;Comfortaa&quot;;
+font:bold;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
 border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px</string>
+        </property>
+        <property name="text">
+         <string>History</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_6">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+          <horstretch>12</horstretch>
+          <verstretch>10</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/images/bg/button.png);
+padding: 30px;
 color: white;
-selection-color: rgb(39, 182, 240);
-selection-background-color: rgb(77, 92, 245);
-font: 10pt &quot;Comfortaa&quot;;</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>Key</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Def</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-            <horstretch>5</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>13</width>
-            <height>13</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">padding: 5px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
+font: 16pt &quot;Comfortaa&quot;;
+font:bold;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
 border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px</string>
+        </property>
+        <property name="text">
+         <string>Favorite List</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_7">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+          <horstretch>12</horstretch>
+          <verstretch>10</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/images/bg/button.png);
+padding: 30px;
 color: white;
-selection-color: rgb(39, 182, 240);
-selection-background-color: rgb(77, 92, 245);
-font: 10pt &quot;Comfortaa&quot;;</string>
-          </property>
-          <property name="placeholderText">
-           <string>Search</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_9">
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">padding: 3px;
-background-color: rgb(145, 99, 251);
-border-width : 1px;
+font: 16pt &quot;Comfortaa&quot;;
+font:bold;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
 border-style:inset;
-border-radius: 10px;
-  min-height: 1px;
-  min-width: 1px;
-border-image:url(:/images/search.svg);
-background-color: rgb(102, 124, 246);</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="resources.qrc">
-            <normaloff>:/img/images/search.svg</normaloff>:/img/images/search.svg</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>22</width>
-            <height>27</height>
-           </size>
-          </property>
-          <property name="autoDefault">
-           <bool>false</bool>
-          </property>
-          <property name="default">
-           <bool>false</bool>
-          </property>
-          <property name="flat">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px</string>
+        </property>
+        <property name="text">
+         <string>Quiz</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_8">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+          <horstretch>12</horstretch>
+          <verstretch>10</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/images/bg/button.png);
+padding: 30px;
+color: white;
+font: 16pt &quot;Comfortaa&quot;;
+font:bold;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px</string>
+        </property>
+        <property name="text">
+         <string>Reset</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
