@@ -1,32 +1,22 @@
-Victor Mono Variable Font
-=========================
+Comfortaa Variable Font
+=======================
 
-This download contains Victor Mono as both variable fonts and static fonts.
+This download contains Comfortaa as both a variable font and static fonts.
 
-Victor Mono is a variable font with this axis:
+Comfortaa is a variable font with this axis:
   wght
 
-This means all the styles are contained in these files:
-  VictorMono-VariableFont_wght.ttf
-  VictorMono-Italic-VariableFont_wght.ttf
+This means all the styles are contained in a single file:
+  Comfortaa-VariableFont_wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
 that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for Victor Mono:
-  static/VictorMono-Thin.ttf
-  static/VictorMono-ExtraLight.ttf
-  static/VictorMono-Light.ttf
-  static/VictorMono-Regular.ttf
-  static/VictorMono-Medium.ttf
-  static/VictorMono-SemiBold.ttf
-  static/VictorMono-Bold.ttf
-  static/VictorMono-ThinItalic.ttf
-  static/VictorMono-ExtraLightItalic.ttf
-  static/VictorMono-LightItalic.ttf
-  static/VictorMono-Italic.ttf
-  static/VictorMono-MediumItalic.ttf
-  static/VictorMono-SemiBoldItalic.ttf
-  static/VictorMono-BoldItalic.ttf
+in those cases you can use the static font files for Comfortaa:
+  static/Comfortaa-Light.ttf
+  static/Comfortaa-Regular.ttf
+  static/Comfortaa-Medium.ttf
+  static/Comfortaa-SemiBold.ttf
+  static/Comfortaa-Bold.ttf
 
 Get started
 -----------

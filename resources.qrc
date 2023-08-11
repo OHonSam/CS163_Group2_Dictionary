@@ -1,22 +1,4 @@
 <RCC>
-    <qresource prefix="/fonts">
-        <file>font/Victor_Mono/VictorMono-Italic-VariableFont_wght.ttf</file>
-        <file>font/Victor_Mono/VictorMono-VariableFont_wght.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-Bold.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-BoldItalic.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-ExtraLight.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-ExtraLightItalic.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-Italic.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-Light.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-LightItalic.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-Medium.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-MediumItalic.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-Regular.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-SemiBold.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-SemiBoldItalic.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-Thin.ttf</file>
-        <file>font/Victor_Mono/static/VictorMono-ThinItalic.ttf</file>
-    </qresource>
     <qresource prefix="/img">
         <file>images/small ombre.png</file>
         <file>images/compress/long ombre rotated.jpg</file>
@@ -43,5 +25,14 @@
     <qresource prefix="/button">
         <file>images/watercolor button/water-button green.png</file>
         <file>images/watercolor button/water-button jade.png</file>
+    </qresource>
+    <qresource prefix="/font">
+        <file>font/Comfortaa/static/Comfortaa-Bold.ttf</file>
+        <file>font/Comfortaa/static/Comfortaa-Light.ttf</file>
+        <file>font/Comfortaa/static/Comfortaa-Medium.ttf</file>
+        <file>font/Comfortaa/static/Comfortaa-Regular.ttf</file>
+        <file>font/Comfortaa/static/Comfortaa-SemiBold.ttf</file>
+        <file>font/Comfortaa/static/Comfortaa-VariableFont_wght.ttf</file>
+        <file>font/Audiowide/Audiowide-Regular.ttf</file>
     </qresource>
 </RCC>
