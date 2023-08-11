@@ -23,11 +23,10 @@
         <file>watercolor-texture-background/for title.jpg</file>
         <file>images/bg/intro bg.jpg</file>
         <file>images/bg/intro bg 2.jpg</file>
-        <file>purple-abstract-background/v463-aum-12-abstractbackground.jpg</file>
-        <file>purple-abstract-background/v463-aum-12-abstractbackground Resize.jpg</file>
         <file>images/bg/button.jpg</file>
         <file>images/bg/button.png</file>
         <file>images/bg/mid button.png</file>
+        <file>images/bg/intro bg.png</file>
     </qresource>
     <qresource prefix="/button">
         <file>images/watercolor button/water-button green.png</file>

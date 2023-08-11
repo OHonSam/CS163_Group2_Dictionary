@@ -176,7 +176,7 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+background-image: url(:/background/images/bg/mid button.png);</string>
         </property>
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffffff;&quot;&gt;Daily Word&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -347,7 +347,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-image: url(:/background/images/bg/intro bg.jpg);</string>
+background-image: url(:/background/images/bg/intro bg.png);</string>
         </property>
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; color:#ffffff;&quot;&gt;WELCOME TO DICTIONARY - GROUP 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
