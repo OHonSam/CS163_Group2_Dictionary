@@ -295,7 +295,7 @@ border-style:inset;
 border-radius: 10px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(244, 54, 55);</string>
+background-color: rgb(223, 32, 97);</string>
           </property>
           <property name="text">
            <string/>
