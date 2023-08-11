@@ -212,10 +212,11 @@ font: 10pt &quot;Comfortaa&quot;;</string>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">padding: 3px;
+           <string notr="true">padding: 5px;
 border-width : 1px;
+border-color: rgb(102, 124, 246);
 border-style:inset;
-border-radius: 10px;
+border-radius: 19px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
