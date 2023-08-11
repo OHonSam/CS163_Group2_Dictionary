@@ -168,7 +168,7 @@ font: 10pt &quot;Comfortaa&quot;;</string>
         <item>
          <widget class="QLineEdit" name="lineEdit">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>48</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -184,6 +184,9 @@ font: 10pt &quot;Comfortaa&quot;;</string>
             <width>16777215</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">padding: 5px;
@@ -212,15 +215,14 @@ font: 10pt &quot;Comfortaa&quot;;</string>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">padding: 5px;
-border-width : 1px;
-border-color: rgb(102, 124, 246);
+           <string notr="true">padding: 7px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
 border-style:inset;
-border-radius: 10px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);
-border-image:url(:/images/search.svg);</string>
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-color: rgb(102, 124, 246);</string>
           </property>
           <property name="text">
            <string/>
@@ -419,8 +421,9 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-border-color: rgb(77, 91, 247);
-background-color: rgb(219, 244, 255)</string>
+border-color: rgb(77, 92, 245);
+
+background-color: rgb(207, 234, 246);</string>
           </property>
           <property name="html">
            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -454,7 +457,7 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+background-color: rgb(102, 124, 246);</string>
             </property>
             <property name="text">
              <string/>
@@ -479,7 +482,7 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+background-color: rgb(102, 124, 246);</string>
             </property>
             <property name="text">
              <string/>
@@ -500,7 +503,7 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+background-color: rgb(102, 124, 246);</string>
             </property>
             <property name="text">
              <string/>
@@ -536,7 +539,7 @@ background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
             </property>
             <property name="styleSheet">
              <string notr="true">padding: 30px;
-border-color: rgb(223, 34, 102);
+border-color: rgb(78, 91, 247);
 border-width : 1px;
 border-style:inset;
 border-radius: 20px;
@@ -559,10 +562,14 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+background-color: rgb(102, 124, 246);</string>
             </property>
             <property name="text">
              <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/zoom.svg</normaloff>:/img/images/zoom.svg</iconset>
             </property>
            </widget>
           </item>
@@ -581,7 +588,7 @@ background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
      <x>0</x>
      <y>0</y>
      <width>1025</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHomescreen">

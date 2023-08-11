@@ -11,6 +11,7 @@
         <file>images/edit icon.svg</file>
         <file>images/pencil.svg</file>
         <file>images/reset.svg</file>
+        <file>images/zoom.svg</file>
     </qresource>
     <qresource prefix="/background">
         <file>watercolor-texture-background/48.eps</file>
