@@ -67,7 +67,7 @@ border-style:inset;
 border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(102, 124, 246);
+background-color: rgb(122, 124, 246);
 color: white;
 selection-color: rgb(39, 182, 240);
 selection-background-color: rgb(77, 92, 245);
@@ -81,6 +81,59 @@ font: 10pt &quot;Comfortaa&quot;;</string>
         <item>
          <property name="text">
           <string>Def</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QComboBox" name="comboBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+          <horstretch>8</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>10000000</height>
+         </size>
+        </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::DefaultContextMenu</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">padding: 5px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(122, 124, 246);
+color: white;
+selection-color: rgb(39, 182, 240);
+selection-background-color: rgb(77, 92, 245);
+font: 10pt &quot;Comfortaa&quot;;</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Eng-Eng</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Eng-Viet</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Slang</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Emoji</string>
          </property>
         </item>
        </widget>
@@ -100,7 +153,7 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-color: rgb(102, 124, 246);</string>
+background-color: rgb(122, 124, 246);</string>
         </property>
         <property name="text">
          <string/>
@@ -157,7 +210,7 @@ border-style:inset;
 border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(102, 124, 246);
+background-color: rgb(122, 124, 246);
 color: white;
 selection-color: rgb(39, 182, 240);
 selection-background-color: rgb(77, 92, 245);
@@ -166,59 +219,6 @@ font: 10pt &quot;Comfortaa&quot;;</string>
         <property name="placeholderText">
          <string>Search</string>
         </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QComboBox" name="comboBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-          <horstretch>8</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>10000000</height>
-         </size>
-        </property>
-        <property name="contextMenuPolicy">
-         <enum>Qt::DefaultContextMenu</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">padding: 5px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
-border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);
-color: white;
-selection-color: rgb(39, 182, 240);
-selection-background-color: rgb(77, 92, 245);
-font: 10pt &quot;Comfortaa&quot;;</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Eng-Eng</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Eng-Viet</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Slang</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Emoji</string>
-         </property>
-        </item>
        </widget>
       </item>
      </layout>
@@ -392,9 +392,8 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-border-color: rgb(77, 92, 245);
-
-background-color: rgb(207, 234, 246);</string>
+background-color: #D6E5FA;
+border-color: rgb(99, 112, 243);</string>
           </property>
           <property name="html">
            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -428,7 +427,7 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-color: rgb(102, 124, 246);</string>
+background-color: rgb(122, 124, 246);</string>
             </property>
             <property name="text">
              <string/>
@@ -453,7 +452,7 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-color: rgb(102, 124, 246);</string>
+background-color: rgb(122, 124, 246);</string>
             </property>
             <property name="text">
              <string/>
@@ -474,7 +473,7 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-color: rgb(102, 124, 246);</string>
+background-color: rgb(122, 124, 246);</string>
             </property>
             <property name="text">
              <string/>
@@ -533,7 +532,7 @@ border-style:inset;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-color: rgb(102, 124, 246);</string>
+background-color: rgb(122, 124, 246);</string>
             </property>
             <property name="text">
              <string/>
@@ -551,8 +550,8 @@ background-color: rgb(102, 124, 246);</string>
      </layout>
     </item>
     <item row="0" column="0" colspan="2">
-     <layout class="QFormLayout" name="formLayout_2">
-      <item row="1" column="1">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
        <widget class="QLabel" name="label">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
