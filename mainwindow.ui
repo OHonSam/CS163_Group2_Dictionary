@@ -44,6 +44,12 @@ background-color: rgb(255, 255, 255);</string>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QPushButton" name="pushButton_4">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+          <horstretch>12</horstretch>
+          <verstretch>10</verstretch>
+         </sizepolicy>
+        </property>
         <property name="font">
          <font>
           <family>Comfortaa</family>
@@ -72,6 +78,12 @@ border-radius: 20px;
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_5">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+          <horstretch>12</horstretch>
+          <verstretch>10</verstretch>
+         </sizepolicy>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-image: url(:/background/images/bg/button.png);
 padding: 30px;
@@ -92,6 +104,12 @@ border-radius: 20px;
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_6">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+          <horstretch>12</horstretch>
+          <verstretch>10</verstretch>
+         </sizepolicy>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-image: url(:/background/images/bg/button.png);
 padding: 30px;
@@ -112,6 +130,12 @@ border-radius: 20px;
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_7">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+          <horstretch>12</horstretch>
+          <verstretch>10</verstretch>
+         </sizepolicy>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-image: url(:/background/images/bg/button.png);
 padding: 30px;
@@ -132,6 +156,12 @@ border-radius: 20px;
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_8">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+          <horstretch>12</horstretch>
+          <verstretch>10</verstretch>
+         </sizepolicy>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-image: url(:/background/images/bg/button.png);
 padding: 30px;
@@ -156,6 +186,12 @@ border-radius: 20px;
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="QLabel" name="label_3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>48</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
           <width>82</width>
@@ -235,6 +271,12 @@ background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="styleSheet">
              <string notr="true">padding: 10px;
 border-color: rgb(223, 34, 102);
@@ -286,8 +328,8 @@ background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
         <item row="2" column="0">
          <widget class="QTextBrowser" name="textBrowser">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>50</horstretch>
             <verstretch>3</verstretch>
            </sizepolicy>
           </property>
@@ -363,7 +405,7 @@ background-image: url(:/background/images/bg/intro bg.png);</string>
          <widget class="QComboBox" name="comboBox">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-            <horstretch>1</horstretch>
+            <horstretch>8</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
@@ -372,6 +414,9 @@ background-image: url(:/background/images/bg/intro bg.png);</string>
             <width>16777215</width>
             <height>10000000</height>
            </size>
+          </property>
+          <property name="contextMenuPolicy">
+           <enum>Qt::DefaultContextMenu</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">padding: 5px;
@@ -413,7 +458,7 @@ font: 10pt &quot;Comfortaa&quot;;</string>
          <widget class="QComboBox" name="comboBox_2">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-            <horstretch>1</horstretch>
+            <horstretch>4</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
@@ -453,7 +498,7 @@ font: 10pt &quot;Comfortaa&quot;;</string>
          <widget class="QLineEdit" name="lineEdit">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-            <horstretch>5</horstretch>
+            <horstretch>48</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
@@ -503,8 +548,8 @@ border-style:inset;
 border-radius: 10px;
   min-height: 1px;
   min-width: 1px;
-border-image:url(:/images/search.svg);
-background-color: rgb(102, 124, 246);</string>
+background-color: rgb(145, 99, 251);
+border-image:url(:/images/search.svg);</string>
           </property>
           <property name="text">
            <string/>
