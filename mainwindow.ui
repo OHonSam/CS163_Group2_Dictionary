@@ -439,12 +439,82 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
+        <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_6">
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item row="0" column="0" rowspan="7">
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/heart.svg</normaloff>
+              <normalon>:/img/images/heart-fill.svg</normalon>:/img/images/heart.svg</iconset>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QPushButton" name="pushButton_10">
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/reset.svg</normaloff>:/img/images/reset.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(223, 34, 102);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/pencil.svg</normaloff>:/img/images/pencil.svg</iconset>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="0" rowspan="2">
            <widget class="QLabel" name="label_3">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -479,8 +549,8 @@ background-image: url(:/background/images/bg/mid button.png);</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
-           <widget class="QPushButton" name="pushButton_10">
+          <item row="0" column="3">
+           <widget class="QPushButton" name="pushButton">
             <property name="styleSheet">
              <string notr="true">padding: 10px;
 border-color: rgb(223, 34, 102);
@@ -494,59 +564,6 @@ background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
             <property name="text">
              <string/>
             </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/img/images/reset.svg</normaloff>:/img/images/reset.svg</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="styleSheet">
-             <string notr="true">padding: 10px;
-border-color: rgb(223, 34, 102);
-border-width : 0px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/img/images/heart.svg</normaloff>
-              <normalon>:/img/images/heart-fill.svg</normalon>:/img/images/heart.svg</iconset>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
-            </attribute>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QPushButton" name="pushButton_3">
-            <property name="styleSheet">
-             <string notr="true">padding: 10px;
-border-color: rgb(223, 34, 102);
-border-width : 0px;
-border-style:inset;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px;
-background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/img/images/pencil.svg</normaloff>:/img/images/pencil.svg</iconset>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
-            </attribute>
            </widget>
           </item>
          </layout>
