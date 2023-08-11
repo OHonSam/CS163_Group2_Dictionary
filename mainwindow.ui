@@ -375,16 +375,16 @@ background-image: url(:/background/images/bg/intro bg.png);</string>
           </property>
           <property name="styleSheet">
            <string notr="true">padding: 5px;
-border-color: rgb(223, 34, 102);
+border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
 border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(224, 29, 123);
+background-color: rgb(102, 124, 246);
 color: white;
- selection-color: rgb(223, 34, 98);
-selection-background-color: rgb(255, 210, 215);
+selection-color: rgb(39, 182, 240);
+selection-background-color: rgb(77, 92, 245);
 font: 10pt &quot;Comfortaa&quot;;</string>
           </property>
           <item>
@@ -425,16 +425,16 @@ font: 10pt &quot;Comfortaa&quot;;</string>
           </property>
           <property name="styleSheet">
            <string notr="true">padding: 5px;
-border-color: rgb(223, 34, 102);
+border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
 border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(224, 29, 123);
+background-color: rgb(102, 124, 246);
 color: white;
- selection-color: rgb(223, 34, 98);
-selection-background-color: rgb(255, 210, 215);
+selection-color: rgb(39, 182, 240);
+selection-background-color: rgb(77, 92, 245);
 font: 10pt &quot;Comfortaa&quot;;</string>
           </property>
           <item>
@@ -471,16 +471,16 @@ font: 10pt &quot;Comfortaa&quot;;</string>
           </property>
           <property name="styleSheet">
            <string notr="true">padding: 5px;
-border-color: rgb(223, 34, 102);
+border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
 border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(224, 29, 123);
+background-color: rgb(102, 124, 246);
 color: white;
- selection-color: rgb(223, 34, 98);
-selection-background-color: rgb(255, 210, 215);
+selection-color: rgb(39, 182, 240);
+selection-background-color: rgb(77, 92, 245);
 font: 10pt &quot;Comfortaa&quot;;</string>
           </property>
           <property name="placeholderText">
@@ -497,14 +497,14 @@ font: 10pt &quot;Comfortaa&quot;;</string>
           </property>
           <property name="styleSheet">
            <string notr="true">padding: 3px;
-border-color: rgb(223, 34, 102);
+background-color: rgb(145, 99, 251);
 border-width : 1px;
 border-style:inset;
 border-radius: 10px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(223, 32, 97);
-border-image:url(:/images/search.svg);</string>
+border-image:url(:/images/search.svg);
+background-color: rgb(102, 124, 246);</string>
           </property>
           <property name="text">
            <string/>
