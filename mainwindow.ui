@@ -228,7 +228,7 @@ background-image: url(:/background/images/bg/slash mid bg.jpg);</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/small orange.jpg);
+         <string notr="true">background-image: url(:/background/purple-abstract-background/v463-aum-12-abstractbackground Resize.jpg);
 padding: 30px;
 color: white;
 font: 16pt &quot;Comfortaa&quot;;
@@ -248,7 +248,7 @@ border-radius: 20px;
       <item>
        <widget class="QPushButton" name="pushButton_5">
         <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/small orange.jpg);
+         <string notr="true">background-image: url(:/background/purple-abstract-background/v463-aum-12-abstractbackground Resize.jpg);
 padding: 30px;
 color: white;
 font: 16pt &quot;Comfortaa&quot;;
@@ -268,7 +268,7 @@ border-radius: 20px;
       <item>
        <widget class="QPushButton" name="pushButton_6">
         <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/small orange.jpg);
+         <string notr="true">background-image: url(:/background/purple-abstract-background/v463-aum-12-abstractbackground Resize.jpg);
 padding: 30px;
 color: white;
 font: 16pt &quot;Comfortaa&quot;;
@@ -288,7 +288,7 @@ border-radius: 20px;
       <item>
        <widget class="QPushButton" name="pushButton_7">
         <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/small orange.jpg);
+         <string notr="true">background-image: url(:/background/purple-abstract-background/v463-aum-12-abstractbackground Resize.jpg);
 padding: 30px;
 color: white;
 font: 16pt &quot;Comfortaa&quot;;
@@ -308,7 +308,7 @@ border-radius: 20px;
       <item>
        <widget class="QPushButton" name="pushButton_8">
         <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/small orange.jpg);
+         <string notr="true">background-image: url(:/background/purple-abstract-background/v463-aum-12-abstractbackground Resize.jpg);
 padding: 30px;
 color: white;
 font: 16pt &quot;Comfortaa&quot;;
