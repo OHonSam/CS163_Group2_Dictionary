@@ -282,7 +282,7 @@ background-color: rgb(102, 124, 246);</string>
             </property>
             <property name="icon">
              <iconset resource="resources.qrc">
-              <normaloff>:/img/images/edit icon.svg</normaloff>:/img/images/edit icon.svg</iconset>
+              <normaloff>:/img/images/pencil.svg</normaloff>:/img/images/pencil.svg</iconset>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup</string>
@@ -312,7 +312,8 @@ background-color: rgb(102, 124, 246);</string>
             </property>
             <property name="icon">
              <iconset resource="resources.qrc">
-              <normaloff>:/img/images/heart-fill.svg</normaloff>:/img/images/heart-fill.svg</iconset>
+              <normaloff>:/img/images/heart.svg</normaloff>
+              <normalon>:/img/images/heart-fill.svg</normalon>:/img/images/heart.svg</iconset>
             </property>
            </widget>
           </item>
