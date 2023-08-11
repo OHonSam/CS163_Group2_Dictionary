@@ -87,7 +87,7 @@ background-image: url(:/background/images/bg/intro bg.jpg);</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">padding: 3px;
+           <string notr="true">padding: 4px;
 border-color: rgb(223, 34, 102);
 border-width : 1px;
 border-style:inset;
@@ -179,7 +179,7 @@ font: 9pt &quot;Comfortaa&quot;;
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">padding: 3px;
+           <string notr="true">padding: 4px;
 border-color: rgb(223, 34, 102);
 border-width : 1px;
 border-style:inset;
@@ -228,15 +228,10 @@ background-color: rgb(223, 32, 97);</string>
     <item row="1" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="label_12">
-        <property name="font">
-         <font>
-          <family>Comfortaa</family>
-         </font>
-        </property>
+       <widget class="QLabel" name="label_4">
         <property name="styleSheet">
-         <string notr="true">
-background-image: url(:/background/images/bg/small orange.jpg);
+         <string notr="true">background-image: url(:/background/images/bg/small orange.jpg);
+font: 9pt &quot;Comfortaa&quot;;
 padding: 30px;
 border-color: rgb(3, 3, 3);
 border-width : 0px;
@@ -246,7 +241,33 @@ border-radius: 20px;
   min-width: 20px</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffffff;&quot;&gt;Quiz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#ffffff;&quot;&gt;Edit&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_14">
+        <property name="font">
+         <font>
+          <family>Comfortaa</family>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/images/bg/small orange.jpg);
+padding: 30px;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#ffffff;&quot;&gt;History&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -277,18 +298,15 @@ border-radius: 20px;
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_14">
+       <widget class="QLabel" name="label_12">
         <property name="font">
          <font>
           <family>Comfortaa</family>
-          <bold>true</bold>
          </font>
         </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
         <property name="styleSheet">
-         <string notr="true">background-image: url(:/background/images/bg/small orange.jpg);
+         <string notr="true">
+background-image: url(:/background/images/bg/small orange.jpg);
 padding: 30px;
 border-color: rgb(3, 3, 3);
 border-width : 0px;
@@ -298,7 +316,7 @@ border-radius: 20px;
   min-width: 20px</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#ffffff;&quot;&gt;History&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700; color:#ffffff;&quot;&gt;Quiz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
