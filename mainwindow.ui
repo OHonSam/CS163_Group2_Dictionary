@@ -75,7 +75,7 @@ background-image: url(:/background/images/bg/intro bg.jpg);</string>
         <item>
          <widget class="QComboBox" name="comboBox">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
             <horstretch>1</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -87,7 +87,7 @@ background-image: url(:/background/images/bg/intro bg.jpg);</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">padding: 4px;
+           <string notr="true">padding: 5px;
 border-color: rgb(223, 34, 102);
 border-width : 1px;
 border-style:inset;
@@ -98,8 +98,7 @@ background-color: rgb(223, 32, 97);
 color: white;
  selection-color: rgb(223, 34, 98);
 selection-background-color: rgb(255, 210, 215);
-font: 9pt &quot;Comfortaa&quot;;
-</string>
+font: 10pt &quot;Comfortaa&quot;;</string>
           </property>
           <item>
            <property name="text">
@@ -126,7 +125,7 @@ font: 9pt &quot;Comfortaa&quot;;
         <item>
          <widget class="QComboBox" name="comboBox_2">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
             <horstretch>1</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -138,7 +137,7 @@ font: 9pt &quot;Comfortaa&quot;;
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">padding: 3px;
+           <string notr="true">padding: 5px;
 border-color: rgb(223, 34, 102);
 border-width : 1px;
 border-style:inset;
@@ -149,8 +148,7 @@ background-color: rgb(223, 32, 97);
 color: white;
  selection-color: rgb(223, 34, 98);
 selection-background-color: rgb(255, 210, 215);
-font: 9pt &quot;Comfortaa&quot;;
-</string>
+font: 10pt &quot;Comfortaa&quot;;</string>
           </property>
           <item>
            <property name="text">
@@ -167,7 +165,7 @@ font: 9pt &quot;Comfortaa&quot;;
         <item>
          <widget class="QLineEdit" name="lineEdit">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
             <horstretch>5</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -179,7 +177,7 @@ font: 9pt &quot;Comfortaa&quot;;
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">padding: 4px;
+           <string notr="true">padding: 5px;
 border-color: rgb(223, 34, 102);
 border-width : 1px;
 border-style:inset;
@@ -190,8 +188,7 @@ background-color: rgb(223, 32, 97);
 color: white;
  selection-color: rgb(223, 34, 98);
 selection-background-color: rgb(255, 210, 215);
-font: 9pt &quot;Comfortaa&quot;;
-</string>
+font: 10pt &quot;Comfortaa&quot;;</string>
           </property>
           <property name="placeholderText">
            <string>Search</string>
@@ -427,7 +424,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1025</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHomescreen">
