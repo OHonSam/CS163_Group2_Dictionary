@@ -880,15 +880,29 @@ Screen *SearchPrefixFavList::render()
 	clearScr();
 	Screen *nextScreen = this;
 	std::string prefix;
+	std::string mess="Enter the prefix of word(s) you want to view: ";
 
-	std::cout << "Enter the prefix of word(s) you want to view: ";
-	std::getline(std::cin, prefix);
+	// std::cout << "Enter the prefix of word(s) you want to view: ";
+	// std::getline(std::cin, prefix);
 
-	while (!dict->lowerStrEng(prefix))
+	// while (!dict->lowerStrEng(prefix))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the prefix of word(s) you want to view: ";
+	// 	std::getline(std::cin, prefix);
+	// }
+
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the prefix of word(s) you want to view: ";
-		std::getline(std::cin, prefix);
+	case DataSet::VE:
+		prefix = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		prefix = inputEmojiString(mess);
+		break;
+	default:
+		prefix = inputEngString(mess);
+		break;
 	}
 
 	if (dict->isInFavList(prefix) == 0)
@@ -959,16 +973,31 @@ Screen* ModifyMeaningScreen::render() {
 Screen *Search1WordHistoryScreen::render()
 {
 	Screen *nextScreen = this;
-	std::cout << "Enter the word from history you want to search for: ";
+	// std::cout << "Enter the word from history you want to search for: ";
 	std::string word;
-	std::getline(std::cin, word);
+	std::string mess="Enter the word from history you want to search for: ";
+	// std::getline(std::cin, word);
 
-	while (!dict->lowerStrEng(word))
+	// while (!dict->lowerStrEng(word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the word you want to search for: ";
+	// 	std::getline(std::cin, word);
+	// }
+
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the word you want to search for: ";
-		std::getline(std::cin, word);
+	case DataSet::VE:
+		word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString(mess);
+		break;
+	default:
+		word = inputEngString(mess);
+		break;
 	}
+
 	if (!dict->isInHistory(word))
 	{
 		std::cout << "No result found!\n";
@@ -1009,15 +1038,29 @@ Screen *Search1WordHistoryScreen::render()
 Screen *Search1WordFavListScreen::render()
 {
 	Screen *nextScreen = this;
-	std::cout << "Enter the word from favourite list you want to search for: ";
+	// std::cout << "Enter the word from favourite list you want to search for: ";
 	std::string word;
-	std::getline(std::cin, word);
+	std::string mess="Enter the word from favourite list you want to search for: ";
+	// std::getline(std::cin, word);
 
-	while (!dict->lowerStrEng(word))
+	// while (!dict->lowerStrEng(word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the word you want to search for: ";
+	// 	std::getline(std::cin, word);
+	// }
+
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the word you want to search for: ";
-		std::getline(std::cin, word);
+	case DataSet::VE:
+		word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString(mess);
+		break;
+	default:
+		word = inputEngString(mess);
+		break;
 	}
 
 	if (!dict->isInFavList(word))
@@ -1060,14 +1103,28 @@ Screen *AddWordScreen::render()
 	clearScr();
 	Screen *nextScreen = this;
 	Word *w = new Word;
-	std::cout << "Enter the new word you want to add: ";
-	std::getline(std::cin, w->word, '\n');
+	std::string mess="Enter the new word you want to add: ";
+	// std::cout << "Enter the new word you want to add: ";
+	// std::getline(std::cin, w->word, '\n');
 
-	while (!dict->lowerStrEng(w->word))
+	// while (!dict->lowerStrEng(w->word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the new word you want to add: ";
+	// 	std::getline(std::cin, w->word, '\n');
+	// }
+
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the new word you want to add: ";
-		std::getline(std::cin, w->word, '\n');
+	case DataSet::VE:
+		w->word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		w->word = inputEmojiString(mess);
+		break;
+	default:
+		w->word = inputEngString(mess);
+		break;
 	}
 
 	if (dict->isInDict(w->word))
@@ -1138,16 +1195,31 @@ Screen *EditWordScreen::render()
 {
 	clearScr();
 	Screen *nextScreen = this;
-	std::cout << "Enter the word you want to edit: ";
+	// std::cout << "Enter the word you want to edit: ";
 	std::string word;
-	std::getline(std::cin, word, '\n');
+	std::string mess="Enter the word you want to edit: ";
+	// std::getline(std::cin, word, '\n');
 
-	while (!dict->lowerStrEng(word))
+	// while (!dict->lowerStrEng(word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the word you want to edit: ";
+	// 	std::getline(std::cin, word, '\n');
+	// }
+
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the word you want to edit: ";
-		std::getline(std::cin, word, '\n');
+	case DataSet::VE:
+		word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString(mess);
+		break;
+	default:
+		word = inputEngString(mess);
+		break;
 	}
+
 	//check the existence of the word you want to edit in the dictionary
 	if(!dict->isInDict(word)){
 		std::cout<<"This word is not in the dictionary!\n";
@@ -1212,15 +1284,30 @@ Screen *EditSearchWordScreen::render()
 
 	Word* w=new Word;
 	w -> type = 0;
-	std::cout<<"Enter the updated word you want: ";
-	std::getline(std::cin,w->word,'\n');
+	std::string mess="Enter the updated word you want: ";
 
-	while (!dict->lowerStrEng(w->word))
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the new word you want to add: ";
-		std::getline(std::cin, w->word, '\n');
+	case DataSet::VE:
+		w->word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		w->word = inputEmojiString(mess);
+		break;
+	default:
+		w->word = inputEngString(mess);
+		break;
 	}
+
+	// std::cout<<"Enter the updated word you want: ";
+	// std::getline(std::cin,w->word,'\n');
+
+	// while (!dict->lowerStrEng(w->word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the new word you want to add: ";
+	// 	std::getline(std::cin, w->word, '\n');
+	// }
 	//Check if the new word you want to override the old one is already in the dictionary or not-> if not then continue
 	if(dict->isInDict(w->word)){
 		std::cout<<"This word is already in the dictionary!\n";
@@ -1293,16 +1380,31 @@ Screen *DeleteWordScreen::render()
 {
 	clearScr();
 	Screen *nextScreen = this;
-	std::cout << "Enter the word you want to delete: ";
+	// std::cout << "Enter the word you want to delete: ";
 	std::string word;
-	std::getline(std::cin, word, '\n');
+	std::string mess="Enter the word you want to delete: ";
 
-	while (!dict->lowerStrEng(word))
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the word you want to delete: ";
-		std::getline(std::cin, word, '\n');
+	case DataSet::VE:
+		word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString(mess);
+		break;
+	default:
+		word = inputEngString(mess);
+		break;
 	}
+
+	// std::getline(std::cin, word, '\n');
+
+	// while (!dict->lowerStrEng(word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the word you want to delete: ";
+	// 	std::getline(std::cin, word, '\n');
+	// }
 	// check the existence of the word you want to delete in the dictionary
 	if (!dict->isInDict(word))
 	{
@@ -1399,16 +1501,31 @@ Screen *Remove1WordHistoryScreen::render()
 {
 	clearScr();
 	Screen *nextScreen = this;
-	std::cout << "Enter the word you want to remove from your search history: ";
+	// std::cout << "Enter the word you want to remove from your search history: ";
 	std::string word;
-	std::getline(std::cin, word);
+	std::string mess="Enter the word you want to remove from your search history: ";
 
-	while (!dict->lowerStrEng(word))
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the word you want to search for: ";
-		std::getline(std::cin, word);
+	case DataSet::VE:
+		word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString(mess);
+		break;
+	default:
+		word = inputEngString(mess);
+		break;
 	}
+
+	// std::getline(std::cin, word);
+
+	// while (!dict->lowerStrEng(word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the word you want to search for: ";
+	// 	std::getline(std::cin, word);
+	// }
 	dict->removeHistory(word);
 
 	std::cout << "The word has been successfully removed from your search history!\n";
@@ -1510,16 +1627,33 @@ Screen *Remove1WordFavListScreen::render()
 {
 	clearScr();
 	Screen *nextScreen = this;
-	std::cout << "Enter the word you want to remove from your favourite list: ";
+	// std::cout << "Enter the word you want to remove from your favourite list: ";
 	std::string word;
-	std::getline(std::cin, word);
+	std::string mess="Enter the word you want to remove from your favourite list: ";
 
-	while (!dict->lowerStrEng(word))
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the word you want to search for: ";
-		std::getline(std::cin, word);
+	case DataSet::VE:
+		word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString(mess);
+		break;
+	default:
+		word = inputEngString(mess);
+		break;
 	}
+
+	// std::getline(std::cin, word);
+
+	// while (!dict->lowerStrEng(word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the word you want to search for: ";
+	// 	std::getline(std::cin, word);
+	// }
+
+
 	dict->removeFav(word);
 
 	std::cout << "The word has been successfully removed from your favourite list!\n";
@@ -1543,16 +1677,32 @@ Screen *Add1WordFavListScreen::render()
 {
 	clearScr();
 	Screen *nextScreen = this;
-	std::cout << "Enter the word you want to add to your favourite list: ";
+	// std::cout << "Enter the word you want to add to your favourite list: ";
 	std::string word;
-	std::getline(std::cin, word);
+	std::string mess="Enter the word you want to add to your favourite list: ";
 
-	while (!dict->lowerStrEng(word))
+	switch (dict->getCurDataSet())
 	{
-		std::cout << "Invalid input. Please try again!\n";
-		std::cout << "Enter the word you want to search for: ";
-		std::getline(std::cin, word);
+	case DataSet::VE:
+		word = inputVietString(mess);
+		break;
+	case DataSet::Emoji:
+		word = inputEmojiString(mess);
+		break;
+	default:
+		word = inputEngString(mess);
+		break;
 	}
+
+	// std::getline(std::cin, word);
+
+	// while (!dict->lowerStrEng(word))
+	// {
+	// 	std::cout << "Invalid input. Please try again!\n";
+	// 	std::cout << "Enter the word you want to search for: ";
+	// 	std::getline(std::cin, word);
+	// }
+
 	dict->addFav(word);
 
 	std::cout << "The word has been successfully add to your favourite list!\n";
