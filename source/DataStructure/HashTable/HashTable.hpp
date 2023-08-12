@@ -35,7 +35,8 @@ public:
 	bool save(const std::string& path);						
 
 	// Insert a whole struct word: When inserting, a new struct word would be created and then add to the hash table
-	int insert(Word* word);		
+	// Return true if the word is successfully inserted, false if the word already exists
+	bool insert(Word* word);		
 	
 	// Remove a pair that has a word given in it
 	void remove(const std::string& word);					

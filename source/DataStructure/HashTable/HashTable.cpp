@@ -39,13 +39,21 @@ std::vector<Word*> HashTable::getRandom(int k)
     return res;
 }
 
-int HashTable::insert(Word* word) {
+bool HashTable::insert(Word* word) {
+    Word* w = searchDef(word -> word);
+    if(w){
+        for(int i=0; i<POS::Count; i++)
+            if(word->type & (1<<i))
+                for(const std::string& j: word->def[i])
+                    w->def[i].push_back(j);
+        return false;
+    }
+
     numWords++;
-    // check if this word already exist
     int key = HashTable::hash(word->word);
     bit.add(key+1,1);
     HashTable::buckets[key].push_back(word);
-    return key;
+    return true;
 }
 
 void HashTable::remove(const std::string &word)
