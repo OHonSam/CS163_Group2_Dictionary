@@ -44,9 +44,11 @@ void Dict::addWord(Word *word, bool fromUser)
             numWordsStartsWith[i]++;
         }
     }
-    numWords++;
-    words.insert(word->word);
-    wordDef.insert(word);
+
+    if(wordDef.insert(word)){
+        words.insert(word->word);
+        numWords++;
+    }
     defTrie.insert(word);
     return;
 }
