@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <historyscreen.h>
 #include <Dict.hpp>
 
 QT_BEGIN_NAMESPACE

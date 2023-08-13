@@ -24,6 +24,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         resources.qrc
+        historyscreen.h historyscreen.cpp historyscreen.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Qt_UI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
