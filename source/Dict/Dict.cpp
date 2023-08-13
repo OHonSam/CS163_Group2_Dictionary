@@ -3,6 +3,24 @@
 // #include <iostream>
 // #include <sstream>
 
+std::string Dict::Purify(std::string s) {
+    if (s[0] < 97 || s[0] > 122) {
+        if (s[0] >= 65 && s[0] <= 90) s[0] += 32;
+        else {
+            std::string temp = s.substr(1, s.size() - 1);
+            s = temp;
+        }
+    } 
+    if (s[s.size() - 1] < 97 || s[s.size() - 1] > 122) {
+        if (s[s.size() - 1] >= 65 && s[s.size() - 1] <= 90) s[s.size() - 1] += 32;
+        else {
+            std::string temp = s.substr(0, s.size() - 1);
+            s = temp;
+        }
+    } 
+    return s;
+}
+
 std::vector<std::string> Dict::stringCut(const std::string ls) {
 	// long string
     std::stringstream s(ls);

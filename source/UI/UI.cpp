@@ -388,8 +388,11 @@ void UI::DefaultWindow() {
 	for (int i = 0; i < hislist.size(); i++) removeHistory[i] = false;
     background = LoadTexture("background.png");
 	noti = LoadTexture("notifications.png");
+	next = LoadTexture("rightarrow.png");
     title_color = {131, 13, 5, 255};
 	ribbon = LoadTexture("ribbontitle.png");
+	like = LoadTexture("like.png");
+	dislike = LoadTexture("dislike.png");
 	buttondown = LoadTexture("question.png");
     title_font = LoadFontEx("IrishGrover-Regular.ttf", 120, 0, 0);
 	word_font = LoadFontEx("Margarine-Regular.ttf", 120, 0, 0);
@@ -547,6 +550,7 @@ void UI::Menu() {
 		DrawTextureEx(noti, {787, 200}, 0, 0.3, WHITE);
 		if (reset_yes.state == 3) {
 			dict -> reset();
+			dailyword = dict -> getDailyWord();
 			reset = false;
 			status.pop_back();
 		}
@@ -968,10 +972,11 @@ void UI::DrawHomeScreen() {
 		DrawTextEx(title_font, "Click here to search for a keyword!", GetCenterPos(title_font, "Click here to search for a keyword!", 35, 1, messagebar), 35, 1, {0, 0, 0, 140});
 		break;
 	case 3:
+		likebutt = dict -> isInFavList(search.getInput());
 		wheel = 0;
 		hislist = dict -> getHistory();
-		dict -> searchForDef(search.getInput());
-		if (dict -> searchForDef(search.getInput())) {
+		// dict -> searchForDef(search.getInput());
+		if (draw = (dict -> searchForDef(search.getInput()))) {
 			dict -> addHistory(search.getInput());
 			hislist = dict -> getHistory();
 			for (int i = 0; i < hislist.size(); i++) removeHistory[i] = false;
@@ -980,8 +985,9 @@ void UI::DrawHomeScreen() {
 		homestate = 9;
 		break;
 	case 4:
+		// likebutt = dict -> isInFavList(search.getInput());
 		wheel = 0;
-		dict -> searchForWord(search.getInput());
+		foundwords = dict -> searchForWord(search.getInput());
 		definition = search.getInput();
 		homestate = 10;
 		break;
@@ -1076,13 +1082,13 @@ void UI::DrawHomeScreen() {
 		break;
 	case 9:
 		if (keyword.size()) {
-			DrawSearchforDef(keyword);
+			DrawSearchforDef(draw);
 		}	
 		else homestate = 0;
 		break;
 	case 10:
 		if (definition.size()) {
-			DrawSearchforWord(definition);
+			DrawSearchforWord(definition, foundwords);
 		}
 		else homestate = 0;
 		break;
@@ -1164,12 +1170,14 @@ void UI::DrawHomeScreen() {
 }
 
 void UI::DrawDailyWords() {
-	
-	DrawWord(dailyword);
+	static bool li = dict -> isInFavList(dailyword -> word);
+	DrawWord(dailyword, li, nullptr);
 }
 
-void UI::DrawWord(Word* word) {
+void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 	if (!word) {
+		// DrawTextEx(word_font, "-", {153, 310}, 73, 1, {220, 71, 89, 255});
+		// DrawTextEx(word_font, word -> word.c_str(), {193, 310}, 73, 1, {220, 71, 89, 255});
 		DrawTextEx(title_font, "No results found!", {193, 380}, 50, 1, {220, 205, 255, 255});
 		return;
 	}
@@ -1219,6 +1227,28 @@ void UI::DrawWord(Word* word) {
 	// cout << s[0];
 	DrawTextEx(word_font, "-", {153, 310}, 73, 1, {220, 71, 89, 255});
 	DrawTextEx(word_font, word -> word.c_str(), {193, 310}, 73, 1, {220, 71, 89, 255});
+	if (x) DrawTextureEx(like, {860, 304}, 0, 0.07, WHITE);
+	else DrawTextureEx(dislike, {860, 304}, 0, 0.07, WHITE);
+	Like.drawCorner = true;
+	Like.colorCornerClicked = {253, 84, 145, 0};
+	Like.colorCornerDefault = {253, 84, 145, 0};
+	Like.colorCornerTouched = {253, 84, 145, 0};
+	Like.SetBox(870, 310, 53, 53, {253, 84, 145, 0}, {173, 170, 171, 0}, {93, 93, 93, 0});
+	Like.SetText(title_font, "", {25, 7}, 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+	Like.DrawText(mouseCursor);
+	if (Like.state == 3) {
+		x ^= 1;
+		if (!x) {
+			dict -> removeFav(word -> word);
+			favlist = dict -> getFav();
+			for (int index = 0; index < favlist.size(); index++) removeFavourite[index] = false;
+		}
+		else {
+			dict -> addFav(word -> word);
+			favlist = dict -> getFav();
+			for (int index = 0; index < favlist.size(); index++) removeFavourite[index] = false;
+		}
+	}
 	posTextX = 236;
 	posTextY = 330;
 	for (int i = 0; i < 9; i++) {
@@ -1226,7 +1256,7 @@ void UI::DrawWord(Word* word) {
 			posTextY += 50;
 			if ((float) posTextY + wheel >= 380 && (float) posTextY + wheel + MeasureTextEx(title_font, (POS::TypeString[i]).c_str(), 50, 1).y <= 770) DrawTextEx(title_font, (POS::TypeString[i]).c_str(), {193, (float) posTextY + wheel}, 50, 1, {220, 205, 255, 255});
 			for (int j = 0; j < word -> def[i].size(); j++) {
-				DrawLongText(word -> def[i][j]);
+				DrawLongText(word -> def[i][j], highlight);
 			}
 		}
 	}
@@ -1238,7 +1268,7 @@ void UI::DrawWord(Word* word) {
 }
 
 // reset posTextX posTextY
-void UI::DrawLongText(std::string s) {
+void UI::DrawLongText(std::string s, SmallTrie* highlight) {
 	// reset wheel = 0 where?
 	posTextX = 236;
 	posTextY += 50;
@@ -1252,7 +1282,10 @@ void UI::DrawLongText(std::string s) {
 			posTextY += 50;
 		}
 		if (posTextY + MeasureTextEx(word_font, words[i].c_str(), 45, 1).y + wheel <= 770 && posTextY + wheel >= 380) {
-			DrawTextEx(word_font, words[i].c_str(), {(float) posTextX, (float) posTextY + (float) wheel}, 45, 1, {220, 71, 89, 255});
+			if (highlight && highlight -> search(dict -> Purify(words[i]))) {
+				DrawTextEx(word_font, words[i].c_str(), {(float) posTextX, (float) posTextY + (float) wheel}, 45, 1, {150, 0, 0, 255});
+			}
+			else DrawTextEx(word_font, words[i].c_str(), {(float) posTextX, (float) posTextY + (float) wheel}, 45, 1, {220, 71, 89, 255});
 		}
 		posTextX += MeasureTextEx(word_font, words[i].c_str(), 45, 1).x;
 		posTextX += MeasureTextEx(word_font, " ", 73, 1).x;
@@ -1264,12 +1297,38 @@ void UI::DrawLongText(std::string s) {
 
 // bool showText(int x, int y) {}
 
-void UI::DrawSearchforDef(const std::string key) {
-	DrawWord(dict -> searchForDef(key));
+void UI::DrawSearchforDef(Word* word) {
+	DrawWord(draw, likebutt, nullptr);
 	return;
 }
-void UI::DrawSearchforWord(const std::string def) {
-	return;
+void UI::DrawSearchforWord(const std::string def, std::vector <std::string> foundwords) {
+	static int index = 0;
+	std::vector <std::string> cut = dict -> stringCut(def);
+	SmallTrie* highlight = new SmallTrie();
+	for (int i = 0; i < cut.size(); i++) {
+		highlight -> insert(cut[i]);
+	}
+	right.SetBox(1105, 760, 40, 40, {253, 84, 145, 0}, {173, 170, 171, 0}, {93, 93, 93, 0});
+	right.SetText(title_font, "", {25, 7}, 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+	right.DrawText(mouseCursor);
+	left.SetBox(1055, 760, 40, 40, {253, 84, 145, 0}, {173, 170, 171, 0}, {93, 93, 93, 0});
+	left.SetText(title_font, "", {25, 7}, 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+	left.DrawText(mouseCursor);
+	if (right.state == 3) {
+		wheel = 0;
+		index++;
+	}
+	if (left.state == 3) {
+		wheel = 0;
+		index--;
+	}
+	DrawTextureEx(next, {1105, 755}, 0, 0.1, WHITE);
+	DrawTextureEx(next, {1103, 807}, 180, 0.1, WHITE);
+	if (index < 0) index = 0;
+	if (index >= foundwords.size()) index = foundwords.size() - 1;
+	static bool lik = dict -> isInFavList(foundwords[index]);
+	DrawWord(dict -> searchForDef(foundwords[index]), lik, highlight);
+ 	return;
 }
 
 void UI::run() {
@@ -1277,3 +1336,11 @@ void UI::run() {
     DefaultWindow();
 	dict->~Dict();
 }
+
+void UI::DrawModifyBox(Word* word) {
+	
+}
+
+// add renew button to view random words, homestate = 0, get daily word again;
+// add modify button 
+// add remove button 

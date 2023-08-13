@@ -5,6 +5,7 @@
 #include "InputBox.hpp"
 #include "Other.hpp"
 #include <Word.hpp>
+#include <SmallTrie.hpp>
 
 class UI {
 public:
@@ -12,9 +13,13 @@ public:
     Texture noti;
     Texture ribbon;
     Texture buttondown;
+    Texture dislike;
+    Texture like;
+    Texture next;
     Color title_color;
     Font title_font;
     Font word_font;
+    Button Like;
     Button Home;
     Button Reset;
     Button Favourite;
@@ -22,6 +27,7 @@ public:
     Button Game;
     Button Datasets;
     Rectangle frame;
+    bool likebutt;
     int mouseCursor;
     int favourite_button;
     int history_button;
@@ -33,6 +39,8 @@ public:
     bool history = false;
     bool game = false;
     std::vector <bool*> status;
+    Button right;
+    Button left;
     Button clear_yes;
     Button clear_no;
 	Button reset_yes;
@@ -68,10 +76,12 @@ public:
     Rectangle display;
 
     Word* dailyword;
+    Word* draw;
     std::vector <std::string> favlist;
 	Rectangle fav[100];
     float wheel = 0;
     std::vector <std::string> hislist;
+    std::vector <std::string> foundwords;
     Rectangle his[100];
     int posTextY;
     int posTextX;
@@ -87,9 +97,10 @@ public:
     void DrawHistoryScreen();
     void DrawHomeScreen();
     void DrawDailyWords();
-    void DrawSearchforDef(const std::string key);
-    void DrawSearchforWord(const std::string def);
-    void DrawWord(Word* word);
-    void DrawLongText(std::string s);
+    void DrawSearchforDef(Word* word);
+    void DrawSearchforWord(const std::string def, std::vector <std::string> foundwords);
+    void DrawWord(Word* word, bool &x, SmallTrie* highlight);
+    void DrawLongText(std::string s, SmallTrie* highlight);
+    void DrawModifyBox(Word* word);
     void run();
 };

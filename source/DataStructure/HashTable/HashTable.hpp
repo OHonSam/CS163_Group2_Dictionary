@@ -44,14 +44,16 @@ public:
 	Word* updateDef(const std::string& word, unsigned int type, const std::string& oldDef, const std::string& newDef);	
 
 	// Find a definition for a required word	
-	Word* searchDef(const std::string& word);
+	Word *searchDef(const std::string& word);
 
 	//	Random a word and its definition
 	void initSeedForRandom();
 	Word* randomWordOfDay();//call initSeedForRandom() before randomWordOfDay()
 
 	// Get the list of random k word-definition pairs
-	std::vector<Word*> getRandom(int k);			
+	std::vector<Word*> getRandom(int k);	
+
+	Word* Merge(Word* &w1, Word* &w2);		
 };
 
 #endif

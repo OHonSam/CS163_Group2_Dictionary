@@ -258,5 +258,8 @@ public:
 	// Auto correct
 	std::vector<std::string> stringCut(const std::string ls);
 	std::string CorrectDef(const std::string &def);
+
+	// Purify
+	std::string Purify(std::string s);
 };
 #endif

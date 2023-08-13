@@ -2,17 +2,49 @@
 #include <HashTable.hpp>
 #include<Word.hpp>
 
-Word* HashTable::searchDef(const std::string& word) {
-    int key = HashTable::hash(word);
-    Word* res = nullptr;
-    for (int i = 0; i < HashTable::buckets[key].size(); i++)
-    {
-        //std::cout << HashTable::buckets[key][i] -> word << '\n';
-        if (HashTable::buckets[key][i] -> word == word) {
-            res = HashTable::buckets[key][i];
-            break;
+Word* HashTable::Merge(Word* &w1, Word* &w2) {
+    if (w1 -> word == "") {
+        w1 -> word += w2 -> word;
+        w1 -> type += w2 -> type;
+        // std::cout << w1 -> word;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < w2 -> def[i].size(); j++) {
+                std::string s = w2 -> def[i][j];
+                w1 -> def[i]. push_back(s);
+            }
         }
     }
+    else {
+        for (int i = 0; i < 9; i++) {
+            if (w2 -> def[i].size()) {
+                if (w1 -> def[i].size()) {
+                    for (int j = 0; j < w2 -> def[i].size(); j++) w1 -> def[i].push_back(w2 -> def[i][j]);
+                }
+                else {
+                    w1 -> type += 1 << i;
+                    for (int j = 0; j < w2 -> def[i].size(); j++) w1 -> def[i].push_back(w2 -> def[i][j]);
+                }
+            }
+        }
+    }
+    return w1;
+}
+
+Word* HashTable::searchDef(const std::string& word) {
+    int key = HashTable::hash(word);
+    Word* res = new Word();
+    for (int i = 0; i < HashTable::buckets[key].size(); i++)
+    {
+        // std::cout << HashTable::buckets[key][i] -> word << '\n';
+        if (HashTable::buckets[key][i] -> word == word) {
+            res = Merge(res, HashTable::buckets[key][i]);
+            delete buckets[key][i];
+            buckets[key].erase(buckets[key].begin() + i);
+            i--;
+            // break;
+        }
+    }
+    buckets[key].push_back(res);
     // remember to check if a word exist on Trie
     return res;
 }
