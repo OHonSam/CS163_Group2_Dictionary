@@ -1175,6 +1175,10 @@ void UI::DrawDailyWords() {
 }
 
 void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
+	x = dict -> isInFavList(word -> word);
+	// std::cout << dict -> isInFavList(word -> word) << '\n'; 
+	// favlist = dict -> getFav();
+	// std::cout << favlist.size();
 	if (!word) {
 		// DrawTextEx(word_font, "-", {153, 310}, 73, 1, {220, 71, 89, 255});
 		// DrawTextEx(word_font, word -> word.c_str(), {193, 310}, 73, 1, {220, 71, 89, 255});
@@ -1248,6 +1252,7 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 			favlist = dict -> getFav();
 			for (int index = 0; index < favlist.size(); index++) removeFavourite[index] = false;
 		}
+		// x = dict -> isInFavList(word -> word);
 	}
 	posTextX = 236;
 	posTextY = 330;

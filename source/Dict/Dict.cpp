@@ -545,7 +545,7 @@ bool Dict::isInHistory(const std::string& word){
 }
 
 bool Dict::isInFavList(const std::string& word){
-    return favList.isStartedWith(word);
+    return favList.check(word);
 }
 
 bool Dict::importSlangCsv(const std::string &path)

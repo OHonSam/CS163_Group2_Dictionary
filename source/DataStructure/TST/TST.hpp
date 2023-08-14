@@ -91,6 +91,8 @@ public:
     bool treeExists();
 
     void uppercase2Lowercase(std::string &str);
+
+    bool check(const std::string &word);
     
     
     

@@ -116,7 +116,6 @@ TSTNode *TST::getNodeLastChar(TSTNode *node, const std::string &str, int index)
     {
         return NULL;
     }
-
     if (node->c > str[index])
     {
         return getNodeLastChar(node->left, str, index);
@@ -143,6 +142,11 @@ bool TST::wordExists(const std::string &word)
     TSTNode *p = getNodeLastChar(root, word, 0);
 
     return p && p->isEnd;
+}
+
+bool TST::check(const std::string &word) {
+    TSTNode *p = getNodeLastChar(root, word, 0);
+    return p != NULL && p -> isEnd;
 }
 
 bool TST::isStartedWith(const std::string &prefix)
