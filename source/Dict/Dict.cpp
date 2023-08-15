@@ -212,12 +212,14 @@ DataSet::Type Dict::getCurDataSet() const
     return curDataSet;
 }
 
-void Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
+bool Dict::updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef)
 {
     Word* oldWord = wordDef.searchDef(word);
+    if (!oldWord) return false;
+    defTrie.remove(oldWord);
     Word* newWord = wordDef.updateDef(word,type,oldDef,newDef);
-    if (newWord && oldWord) defTrie.updateDef(oldWord, newWord);
-    return;
+    defTrie.insert(newWord);
+    return true;
 }
 
 void Dict::addWord(Word *word, bool fromUser)
@@ -773,8 +775,11 @@ void Dict::removeWord(const std::string& word){
     removeHistory(word);
     removeFav(word);
     removeDefTrie(word);
+    // std::cout << "done deftrie";
     wordDef.remove(word);
+    // std::cout << "done hashtable";
     words.remove(word);
+    // std::cout << "done trie";
 }
 
 void Dict::removeDefTrie(const std::string &word) {

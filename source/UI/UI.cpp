@@ -384,10 +384,16 @@ void UI::DefaultWindow() {
 	hislist = dict -> getHistory();
 	favlist = dict -> getFav();
 	dailyword = dict -> getDailyWord();
+	beingmodified = false;
+	neww = false;
+	isdeleted = false;
 	for (int i = 0; i < favlist.size(); i++) removeFavourite[i] = false;
 	for (int i = 0; i < hislist.size(); i++) removeHistory[i] = false;
     background = LoadTexture("background.png");
 	noti = LoadTexture("notifications.png");
+	deleteword = LoadTexture("delete.png");
+	modify = LoadTexture("modify.png");
+	newword = LoadTexture("new.png");
 	next = LoadTexture("rightarrow.png");
     title_color = {131, 13, 5, 255};
 	ribbon = LoadTexture("ribbontitle.png");
@@ -1175,7 +1181,7 @@ void UI::DrawDailyWords() {
 }
 
 void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
-	x = dict -> isInFavList(word -> word);
+	
 	// std::cout << dict -> isInFavList(word -> word) << '\n'; 
 	// favlist = dict -> getFav();
 	// std::cout << favlist.size();
@@ -1185,6 +1191,7 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 		DrawTextEx(title_font, "No results found!", {193, 380}, 50, 1, {220, 205, 255, 255});
 		return;
 	}
+	x = dict -> isInFavList(word -> word);
 	int scrollspeed = 50;
 	wheel += GetMouseWheelMove() * scrollspeed;
 	int lim;
@@ -1229,6 +1236,9 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 	// string s = word -> word;
 	// if (s[0] > 90) s[0] -= 32;
 	// cout << s[0];
+	DrawTextureEx(newword, {1090, 316}, 0, 0.032, WHITE);
+	DrawTextureEx(modify, {950, 314}, 0, 0.13, WHITE);
+	DrawTextureEx(deleteword, {1022, 310}, 0, 0.3, WHITE);
 	DrawTextEx(word_font, "-", {153, 310}, 73, 1, {220, 71, 89, 255});
 	DrawTextEx(word_font, word -> word.c_str(), {193, 310}, 73, 1, {220, 71, 89, 255});
 	if (x) DrawTextureEx(like, {860, 304}, 0, 0.07, WHITE);
@@ -1240,6 +1250,22 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 	Like.SetBox(870, 310, 53, 53, {253, 84, 145, 0}, {173, 170, 171, 0}, {93, 93, 93, 0});
 	Like.SetText(title_font, "", {25, 7}, 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
 	Like.DrawText(mouseCursor);
+	Modify.SetBox(950, 315, 63, 63, {253, 84, 145, 0}, {173, 170, 171, 0}, {93, 93, 93, 0});
+	Modify.SetText(title_font, "", {25, 7}, 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+	Modify.DrawText(mouseCursor);
+	Deleteword.SetBox(1030, 315, 53, 53, {253, 84, 145, 0}, {173, 170, 171, 0}, {93, 93, 93, 0});
+	Deleteword.SetText(title_font, "", {25, 7}, 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+	Deleteword.DrawText(mouseCursor);
+	Neww.SetBox(1093, 318, 60, 60, {253, 84, 145, 0}, {173, 170, 171, 0}, {93, 93, 93, 0});
+	Neww.SetText(title_font, "", {25, 7}, 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+	Neww.DrawText(mouseCursor);
+	if (Deleteword.state == 3) {
+		isdeleted = true;
+	}
+	if (Neww.state == 3) neww = true;
+	if (Modify.state == 3) {
+		beingmodified ^= 1;
+	}
 	if (Like.state == 3) {
 		x ^= 1;
 		if (!x) {
@@ -1264,6 +1290,44 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 				DrawLongText(word -> def[i][j], highlight);
 			}
 		}
+	}
+	if (beingmodified) DrawModifyBox(word);
+	if (isdeleted) {
+		Rectangle clearall;
+		clearall.x = 365;
+		clearall.y = 298;
+		clearall.width = 550;
+		clearall.height = 210;
+		DrawRectangleRounded(clearall, 0.1, 10, {248, 199, 199, 255});
+		DrawRectangleRoundedLines(clearall, 0.1, 10, 4, {253, 84, 145, 255});
+		DrawTextEx(title_font, "Message!", {580, 310}, 36, 1, {227, 89, 97, 255});
+		DrawTextEx(title_font, "Are you sure?", {540, 343}, 36, 1, {94, 32, 36, 255});
+		reset_yes.drawCorner = true;
+		reset_yes.colorCornerClicked = {255, 255, 255, 255};
+		reset_yes.colorCornerDefault = {255, 255, 255, 255};
+		reset_yes.colorCornerTouched = {255, 255, 255, 255};
+		reset_yes.SetBox(450, 390, 160, 44, {233, 220, 221, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
+		reset_yes.SetText(title_font, "YES", {499, 395}, 36, 1, {94, 32, 36, 255}, {94, 32, 36, 255}, {94, 32, 36, 255});
+		reset_yes.DrawText(mouseCursor);
+		reset_no.drawCorner = true;
+		reset_no.colorCornerClicked = {255, 255, 255, 255};
+		reset_no.colorCornerDefault = {255, 255, 255, 255};
+		reset_no.colorCornerTouched = {255, 255, 255, 255};
+		reset_no.SetBox(680, 390, 160, 44, {233, 220, 221, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
+		reset_no.SetText(title_font, "NO", {740, 395}, 36, 1, {94, 32, 36, 255}, {94, 32, 36, 255}, {94, 32, 36, 255});
+		reset_no.DrawText(mouseCursor);
+		if (reset_yes.state == 3) {
+			dict -> removeWord(word -> word);
+			// remove in history, favlist, all?
+			homestate = 0;
+			if (word == dailyword) dailyword = dict -> getDailyWord();
+			isdeleted = false;
+		}
+		else if (reset_no.state == 3) isdeleted = false;
+	}
+	if (neww) {
+		Word* new_word = new Word();
+		DrawModifyBox(new_word);
 	}
 	// DrawTextEx(title_font, "Noun.", {193, 380}, 50, 1, {0, 0, 0, 255});
 	// DrawTextEx(word_font, "- em iu anh", {236, 430}, 45, 1, {0, 0, 0, 255});
@@ -1343,7 +1407,13 @@ void UI::run() {
 }
 
 void UI::DrawModifyBox(Word* word) {
-	
+	display.x = 138;
+	display.y = 307;
+	display.width = 1017;
+	display.height = 493;
+	DrawRectangleRoundedLines(display, 0.03, 10, 4, {253, 84, 145, 255});
+	DrawTextEx(title_font, "Modifying", {138, 190}, 50, 1, {227, 89, 97, 255});
+	return;
 }
 
 // add renew button to view random words, homestate = 0, get daily word again;

@@ -46,6 +46,7 @@ Word* HashTable::searchDef(const std::string& word) {
     }
     buckets[key].push_back(res);
     // remember to check if a word exist on Trie
+    if (!res -> word.size()) return nullptr;
     return res;
 }
 
@@ -88,7 +89,8 @@ void HashTable::remove(const std::string &word)
         {
             delete buckets[h][i];
             buckets[h].erase(buckets[h].begin()+i);
-            break;
+            i--;
+            // break;
         }
     return;
 }

@@ -16,6 +16,11 @@ public:
     Texture dislike;
     Texture like;
     Texture next;
+    Texture modify;
+    Texture deleteword;
+    Texture newword;
+    Button Neww;
+    bool neww;
     Color title_color;
     Font title_font;
     Font word_font;
@@ -26,7 +31,10 @@ public:
     Button History;
     Button Game;
     Button Datasets;
+    Button Modify;
     Rectangle frame;
+    Button Deleteword;
+    bool isdeleted;
     bool likebutt;
     int mouseCursor;
     int favourite_button;
@@ -39,6 +47,7 @@ public:
     bool history = false;
     bool game = false;
     std::vector <bool*> status;
+    bool beingmodified;
     Button right;
     Button left;
     Button clear_yes;

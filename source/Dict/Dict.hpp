@@ -129,7 +129,7 @@ namespace DEFAULT
 class Dict
 {
 private:
-	const int LIM_WORDS = 100000;
+	const int LIM_WORDS = 10000;
 	const int UNIQUE_CHARS = 26;
 	const int LIM_EACH_CHAR = LIM_WORDS/UNIQUE_CHARS;
 
@@ -187,7 +187,7 @@ public:
 	DataSet::Type getCurDataSet() const;
 
 	// Edit definition of existed word
-	void updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef);
+	bool updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef);
 
 	// Add a new word and corresponding definition
 	void addWord(Word *word, bool fromUser = true);

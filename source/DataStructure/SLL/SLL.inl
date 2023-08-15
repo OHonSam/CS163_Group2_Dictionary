@@ -147,7 +147,7 @@ bool SLL<T>::importSLLStr(const std::string& path) {
 
         std::string keyword;
         keyword = arr;
-        
+        std::cout << path << '\n';
         SLL<T>::push(keyword);
         delete[] arr;
     }
