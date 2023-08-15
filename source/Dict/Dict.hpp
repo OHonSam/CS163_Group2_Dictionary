@@ -187,7 +187,7 @@ public:
 	DataSet::Type getCurDataSet() const;
 
 	// Edit definition of existed word
-	void updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef);
+	bool updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef);
 
 	// Add a new word and corresponding definition
 	void addWord(Word *word, bool fromUser = true);
