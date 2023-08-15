@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <historyscreen.h>
+#include<searchfordef.h>
+#include<searchforkey.h>
 #include <Dict.hpp>
 
 QT_BEGIN_NAMESPACE
