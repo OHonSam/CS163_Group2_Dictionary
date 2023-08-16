@@ -17,6 +17,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_comboBox_dictVersion_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 
