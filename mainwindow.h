@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <historyscreen.h>
 #include <Dict.hpp>
 
 QT_BEGIN_NAMESPACE
@@ -14,7 +13,10 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(
+        Dict* dict,
+        QWidget *parent = nullptr
+    );
     ~MainWindow();
 
 private slots:
@@ -22,7 +24,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
-    Dict dict;
+    Dict* dict;
 };
 #endif // MAINWINDOW_H
