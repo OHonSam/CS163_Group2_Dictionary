@@ -17,6 +17,12 @@ public:
     explicit HistoryScreen(Dict *dict, QWidget *parent = nullptr);
     ~HistoryScreen();
 
+signals:
+    void goBack();
+
+private slots:
+    void on_pushButton_goBack_clicked();
+
 private:
     Ui::HistoryScreen *ui;
     Dict *dict;

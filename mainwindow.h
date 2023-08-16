@@ -34,6 +34,7 @@ public:
 
 public slots:
     void switchToHistoryScreen();
+    void switchToHomeScreen();
 
 private:
     const int DEF_WIDTH=1072;

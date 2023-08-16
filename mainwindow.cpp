@@ -52,6 +52,10 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &homeScreen,SIGNAL(switchToHistoryScreen()),
         this,SLOT(switchToHistoryScreen())
     );
+    connect(
+        &historyScreen,SIGNAL(goBack()),
+        this,SLOT(switchToHomeScreen())
+    );
 }
 
 MainWindow::~MainWindow()
@@ -61,4 +65,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::switchToHistoryScreen(){
     ui->stackedWidget->setCurrentIndex(Screens::History);
+}
+
+void MainWindow::switchToHomeScreen(){
+    ui->stackedWidget->setCurrentIndex(Screens::Home);
 }

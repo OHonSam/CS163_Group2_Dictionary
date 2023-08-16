@@ -13,3 +13,9 @@ HistoryScreen::~HistoryScreen()
 {
     delete ui;
 }
+
+void HistoryScreen::on_pushButton_goBack_clicked()
+{
+    emit goBack();
+}
+
