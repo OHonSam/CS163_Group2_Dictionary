@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <homescreen.h>
+
 #include <Dict.hpp>
 
 QT_BEGIN_NAMESPACE
@@ -20,9 +22,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_comboBox_dictVersion_currentIndexChanged(int index);
+//    void on_comboBox_dictVersion_currentIndexChanged(int index);
 
 private:
+    const int DEF_WIDTH=1072;
+    const int DEF_HEIGHT=729;
+
     Ui::MainWindow *ui;
     Dict* dict;
 };

@@ -15,6 +15,8 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
 {
     ui->setupUi(this);
 
+    this->resize(DEF_WIDTH,DEF_HEIGHT);
+
     // Load fonts from the resource folder
 
     // 1. Audiowide
@@ -37,6 +39,11 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         QFontDatabase::addApplicationFontFromData(fontData);
     }
 
+
+    // set stack widget
+    ui->stackedWidget->addWidget(new HomeScreen(dict,this));
+
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 MainWindow::~MainWindow()
@@ -45,28 +52,28 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_comboBox_dictVersion_currentIndexChanged(int index)
-{
-    switch(index){
-    case 0: // EE
-        dict->switchDataSet(DataSet::EE);
-        break;
-    case 1: // EV
-        dict->switchDataSet(DataSet::EV);
-        break;
-    case 2: // VE
-        dict->switchDataSet(DataSet::VE);
-        break;
-    case 3: // Slang
-        dict->switchDataSet(DataSet::Slang);
-        break;
-    case 4: // Emoji
-        dict->switchDataSet(DataSet::Emoji);
-        break;
-    default:
-        QMessageBox::warning(this,"Warning","This dictionary does not have your version choice!");
-        break;
-    }
-    ui->statusbar->showMessage("Switched successfully!",5000);
-}
+//void MainWindow::on_comboBox_dictVersion_currentIndexChanged(int index)
+//{
+//    switch(index){
+//    case 0: // EE
+//        dict->switchDataSet(DataSet::EE);
+//        break;
+//    case 1: // EV
+//        dict->switchDataSet(DataSet::EV);
+//        break;
+//    case 2: // VE
+//        dict->switchDataSet(DataSet::VE);
+//        break;
+//    case 3: // Slang
+//        dict->switchDataSet(DataSet::Slang);
+//        break;
+//    case 4: // Emoji
+//        dict->switchDataSet(DataSet::Emoji);
+//        break;
+//    default:
+//        QMessageBox::warning(this,"Warning","This dictionary does not have your version choice!");
+//        break;
+//    }
+//    ui->statusbar->showMessage("Switched successfully!",5000);
+//}
 

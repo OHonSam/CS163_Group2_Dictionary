@@ -12,5 +12,6 @@ int main(int argc, char *argv[])
 
     MainWindow w(&dict);
     w.show();
+
     return a.exec();
 }

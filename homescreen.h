@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <Dict.hpp>
+
 namespace Ui {
 class HomeScreen;
 }
@@ -12,11 +14,13 @@ class HomeScreen : public QWidget
     Q_OBJECT
 
 public:
-    explicit HomeScreen(QWidget *parent = nullptr);
+    explicit HomeScreen(Dict *dict, QWidget *parent = nullptr);
     ~HomeScreen();
 
 private:
     Ui::HomeScreen *ui;
+
+    Dict *dict;
 };
 
 #endif // HOMESCREEN_H
