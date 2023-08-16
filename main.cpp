@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     MainWindow w;
     //w.show();
     HistoryScreen h;
-    h.show();
+    SearchForDef sfd;
+    sfd.show();
     return a.exec();
 }
