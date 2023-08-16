@@ -39,6 +39,7 @@ public:
     int mouseCursor;
     int favourite_button;
     int history_button;
+    int inputindex;
 
     bool datasets = false;
 	bool reset = false;
@@ -70,6 +71,7 @@ public:
     Button removehisYes;
     Button removehisNo;
     InputBox search;
+    InputBox typenew[100];
     Button enterdef;
     Button enterkey;
     Rectangle messagebar;
@@ -79,6 +81,7 @@ public:
     Button def;
     Button key;
     Button renew;
+    Button done;
     DataSet::Type cur;
     std::string keyword;
     std::string definition;

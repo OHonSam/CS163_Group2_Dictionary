@@ -1098,6 +1098,8 @@ void UI::DrawHomeScreen() {
 		}
 		else homestate = 0;
 		break;
+	default:
+		break;
 	}
 	// draw button down here
 	search.SetColorText(title_color, title_color, title_color);
@@ -1262,7 +1264,10 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 	if (Deleteword.state == 3) {
 		isdeleted = true;
 	}
-	if (Neww.state == 3) neww = true;
+	if (Neww.state == 3) {
+		inputindex = 0;
+		neww ^= 1;
+	}
 	if (Modify.state == 3) {
 		beingmodified ^= 1;
 	}
@@ -1326,6 +1331,7 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 		else if (reset_no.state == 3) isdeleted = false;
 	}
 	if (neww) {
+		inputindex = 0;
 		Word* new_word = new Word();
 		DrawModifyBox(new_word);
 	}
@@ -1412,7 +1418,49 @@ void UI::DrawModifyBox(Word* word) {
 	display.width = 1017;
 	display.height = 493;
 	DrawRectangleRoundedLines(display, 0.03, 10, 4, {253, 84, 145, 255});
-	DrawTextEx(title_font, "Modifying", {138, 190}, 50, 1, {227, 89, 97, 255});
+	if (neww) {
+		DrawRectangleRounded(display, 0.1, 10, {248, 224, 224, 255});
+		done.drawCorner = true;
+		done.colorCornerClicked = {253, 84, 145, 255};
+		done.colorCornerDefault = {253, 84, 145, 255};
+		done.colorCornerTouched = {253, 84, 145, 255};
+		done.SetBox(1010, 180, 128, 44, {253, 84, 145, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
+		done.SetText(title_font, "Done", GetCenterPos(title_font, "Done", 36, 1, done.buttonShape), 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+		done.DrawText(mouseCursor);
+		if (done.state == 3) {
+			neww ^= 1;
+			homestate = 9;
+			keyword = word -> word;
+			draw = dict -> searchForDef(word -> word);
+		}
+	}
+	// posTextX = 236;
+	// posTextY = 330;
+	// for (int i = 0; i < 9; i++) {
+	// 	if (word -> def[i].size()) {
+	// 		posTextY += 50;
+	// 		if ((float) posTextY + wheel >= 380 && (float) posTextY + wheel + MeasureTextEx(title_font, (POS::TypeString[i]).c_str(), 50, 1).y <= 770) DrawTextEx(title_font, (POS::TypeString[i]).c_str(), {193, (float) posTextY + wheel}, 50, 1, {220, 205, 255, 255});
+	// 		for (int j = 0; j < word -> def[i].size(); j++) {
+	// 			DrawLongText(word -> def[i][j], highlight);
+	// 		}
+	// 	}
+	// }
+	DrawTextEx(word_font, "-", {153, 310}, 73, 1, {220, 71, 89, 255});
+	// DrawTextEx(word_font, word -> word.c_str(), {193, 310}, 73, 1, {220, 71, 89, 255});
+	if (beingmodified) {
+		DrawTextEx(title_font, "Modifying", {138, 190}, 50, 1, {227, 89, 97, 255});
+		DrawTextEx(word_font, word -> word.c_str(), {193, 310}, 73, 1, {220, 71, 89, 255});
+	}
+	else {
+		DrawTextEx(title_font, "Adding", {138, 190}, 50, 1, {227, 89, 97, 255});
+		typenew[inputindex].SetColorText(title_color, title_color, title_color);
+		typenew[inputindex].SetColorBox({248, 199, 199, 255}, {248, 199, 199, 255}, {248, 199, 199, 255});
+		typenew[inputindex].colorCornerDefault = {230, 72, 72, 255};
+		typenew[inputindex].Construct(193, 315, 750, 48, word_font, {193, 315}, 44, 1, 1000);
+		typenew[inputindex].Draw();
+	}
+	// call remove and add.
+	inputindex++;
 	return;
 }
 
