@@ -236,6 +236,10 @@ font: 11pt &quot;Comfortaa&quot;;</string>
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
+border-style:solid;
+border-color: rgb(78, 91, 247);
+border-width : 1px;
+border-style:inset;
 background-image: url(:/background/images/bg/intro bg.png);</string>
         </property>
         <property name="text">
@@ -620,7 +624,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1124</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHomescreen">

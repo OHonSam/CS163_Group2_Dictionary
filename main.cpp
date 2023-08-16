@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
     //w.show();
     HistoryScreen h;
     SearchForDef sfd;
-    sfd.show();
+    EditChoice ec;
+    ec.show();
     return a.exec();
 }
