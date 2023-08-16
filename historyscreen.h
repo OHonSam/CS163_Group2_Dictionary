@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <Dict.hpp>
+
 namespace Ui {
 class HistoryScreen;
 }
@@ -12,11 +14,12 @@ class HistoryScreen : public QWidget
     Q_OBJECT
 
 public:
-    explicit HistoryScreen(QWidget *parent = nullptr);
+    explicit HistoryScreen(Dict *dict, QWidget *parent = nullptr);
     ~HistoryScreen();
 
 private:
     Ui::HistoryScreen *ui;
+    Dict *dict;
 };
 
 #endif // HISTORYSCREEN_H

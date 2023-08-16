@@ -38,11 +38,12 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         QFontDatabase::addApplicationFontFromData(fontData);
     }
 
-
     // set stack widget
     ui->stackedWidget->addWidget(new HomeScreen(dict,this));
+    ui->stackedWidget->addWidget(new HistoryScreen(dict,this));
 
-    ui->stackedWidget->setCurrentIndex(Screens::home);
+    // set default screen
+    ui->stackedWidget->setCurrentIndex(Screens::Home);
 }
 
 MainWindow::~MainWindow()

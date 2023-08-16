@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include <homescreen.h>
+#include <historyscreen.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -11,11 +12,12 @@ QT_END_NAMESPACE
 
 namespace Screens{
 enum Type{
-    dummy,
-    home,
-    history,
-    fav,
-    search
+    Dummy,
+    Home,
+    History,
+    Fav,
+    Search,
+    Count
 };
 }
 

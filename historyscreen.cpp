@@ -1,9 +1,10 @@
 #include "historyscreen.h"
 #include "ui_historyscreen.h"
 
-HistoryScreen::HistoryScreen(QWidget *parent) :
+HistoryScreen::HistoryScreen(Dict *dict, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::HistoryScreen)
+    ui(new Ui::HistoryScreen),
+    dict(dict)
 {
     ui->setupUi(this);
 }
