@@ -42,7 +42,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     // set stack widget
     ui->stackedWidget->addWidget(new HomeScreen(dict,this));
 
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(Screens::home);
 }
 
 MainWindow::~MainWindow()

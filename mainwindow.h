@@ -9,6 +9,16 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+namespace Screens{
+enum Type{
+    dummy,
+    home,
+    history,
+    fav,
+    search
+};
+}
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
