@@ -11,6 +11,8 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , dict(dict)
+    , homeScreen(dict,this)
+    , historyScreen(dict,this)
 {
     ui->setupUi(this);
 
@@ -39,14 +41,24 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     }
 
     // set stack widget
-    ui->stackedWidget->addWidget(new HomeScreen(dict,this));
-    ui->stackedWidget->addWidget(new HistoryScreen(dict,this));
+    ui->stackedWidget->addWidget(&homeScreen);
+    ui->stackedWidget->addWidget(&historyScreen);
 
     // set default screen
     ui->stackedWidget->setCurrentIndex(Screens::Home);
+
+    // connect signals and slot
+    connect(
+        &homeScreen,SIGNAL(switchToHistoryScreen()),
+        this,SLOT(switchToHistoryScreen())
+    );
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::switchToHistoryScreen(){
+    ui->stackedWidget->setCurrentIndex(Screens::History);
 }

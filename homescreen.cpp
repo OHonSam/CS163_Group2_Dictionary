@@ -40,3 +40,9 @@ void HomeScreen::on_comboBox_dictVersion_currentIndexChanged(int index)
     }
 }
 
+
+void HomeScreen::on_pushButton_HistoryScreen_clicked()
+{
+    emit switchToHistoryScreen();
+}
+

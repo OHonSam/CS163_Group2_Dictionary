@@ -45,7 +45,7 @@ background-image: url(:/background/images/bg/intro bg.png);</string>
    <item row="1" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout_5">
      <item row="0" column="4">
-      <widget class="QPushButton" name="pushButton_9">
+      <widget class="QPushButton" name="pushButton_search">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>2</horstretch>
@@ -227,7 +227,7 @@ font: 11pt &quot;Comfortaa&quot;;</string>
    <item row="2" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="pushButton_edit">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
          <horstretch>12</horstretch>
@@ -264,7 +264,7 @@ border-radius: 20px;
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="pushButton_HistoryScreen">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
          <horstretch>12</horstretch>
@@ -290,7 +290,7 @@ border-radius: 20px;
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="pushButton_FavScreen">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
          <horstretch>12</horstretch>
@@ -316,7 +316,7 @@ border-radius: 20px;
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_7">
+      <widget class="QPushButton" name="pushButton_QuizScreen">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
          <horstretch>12</horstretch>
@@ -382,7 +382,7 @@ border-radius: 20px;
           <number>0</number>
          </property>
          <item row="0" column="2">
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="pushButton_setFav">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -437,7 +437,7 @@ background-color: rgb(102, 124, 246);</string>
           </widget>
          </item>
          <item row="1" column="2">
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="pushButton_editWord">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
              <horstretch>0</horstretch>

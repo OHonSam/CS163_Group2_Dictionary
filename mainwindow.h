@@ -32,11 +32,17 @@ public:
     );
     ~MainWindow();
 
+public slots:
+    void switchToHistoryScreen();
+
 private:
     const int DEF_WIDTH=1072;
     const int DEF_HEIGHT=729;
 
     Ui::MainWindow *ui;
     Dict* dict;
+
+    HomeScreen homeScreen;
+    HistoryScreen historyScreen;
 };
 #endif // MAINWINDOW_H
