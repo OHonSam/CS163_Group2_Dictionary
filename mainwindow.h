@@ -2,9 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <homescreen.h>
 
-#include <Dict.hpp>
+#include <homescreen.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,9 +19,6 @@ public:
         QWidget *parent = nullptr
     );
     ~MainWindow();
-
-private slots:
-//    void on_comboBox_dictVersion_currentIndexChanged(int index);
 
 private:
     const int DEF_WIDTH=1072;
