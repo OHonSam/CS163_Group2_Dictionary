@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1127</width>
+    <width>1124</width>
     <height>711</height>
    </rect>
   </property>
@@ -80,7 +80,7 @@ selection-background-color: rgb(77, 92, 245);
 font: 11pt &quot;Comfortaa&quot;;</string>
              </property>
              <property name="placeholderText">
-              <string>Search for Definition(s)</string>
+              <string>Search for Keyword(s)</string>
              </property>
             </widget>
            </item>

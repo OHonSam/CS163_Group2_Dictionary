@@ -13,7 +13,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     , dict(dict)
     , homeScreen(dict,this)
     , historyScreen(dict,this)
-    , searchForKeyScreen(dict,this)
+    , searchForDefScreen(dict,this)
 {
     ui->setupUi(this);
 
@@ -44,7 +44,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     // set stack widget
     ui->stackedWidget->addWidget(&homeScreen);
     ui->stackedWidget->addWidget(&historyScreen);
-    ui->stackedWidget->addWidget(&searchForKeyScreen);
+    ui->stackedWidget->addWidget(&searchForDefScreen);
 
     // set default screen
     ui->stackedWidget->setCurrentIndex(Screens::Home);
@@ -63,16 +63,16 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &historyScreen,SLOT(updateHistory(std::string,bool))
     );
     connect(
-        &homeScreen,SIGNAL(switchToSearchForKeyScreen(std::string)),
-        this,SLOT(switchToSearchForKeyScreen(std::string))
+        &homeScreen,SIGNAL(switchToSearchForDefScreen(std::string)),
+        this,SLOT(switchToSearchForDefScreen(std::string))
     );
     connect(
-        &searchForKeyScreen,SIGNAL(goBack()),
+        &searchForDefScreen,SIGNAL(goBack()),
         this,SLOT(switchToHomeScreen())
     );
     connect(
         this,SIGNAL(giveWord(std::string)),
-        &searchForKeyScreen,SLOT(receiveWord(std::string))
+        &searchForDefScreen,SLOT(receiveWord(std::string))
     );
     connect(
         &homeScreen,SIGNAL(switchDataSet()),
@@ -80,7 +80,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     );
     connect(
         &homeScreen,SIGNAL(switchDataSet()),
-        &searchForKeyScreen,SLOT(updateCompleter())
+        &searchForDefScreen,SLOT(updateCompleter())
     );
 }
 
@@ -97,7 +97,7 @@ void MainWindow::switchToHomeScreen(){
     ui->stackedWidget->setCurrentIndex(Screens::Home);
 }
 
-void MainWindow::switchToSearchForKeyScreen(const std::string& word){
-    ui->stackedWidget->setCurrentIndex(Screens::SearchForKey);
+void MainWindow::switchToSearchForDefScreen(const std::string& word){
+    ui->stackedWidget->setCurrentIndex(Screens::SearchForDef);
     emit giveWord(word);
 }

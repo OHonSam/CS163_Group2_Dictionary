@@ -5,7 +5,7 @@
 
 #include <homescreen.h>
 #include <historyscreen.h>
-#include <searchforkey.h>
+#include <searchfordef.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,7 +16,7 @@ enum Type{
     Dummy,
     Home,
     History,
-    SearchForKey,
+    SearchForDef,
     Count
 };
 }
@@ -38,7 +38,7 @@ signals:
 public slots:
     void switchToHistoryScreen();
     void switchToHomeScreen();
-    void switchToSearchForKeyScreen(const std::string& word);
+    void switchToSearchForDefScreen(const std::string& word);
 
 private:
     const int DEF_WIDTH=1072;
@@ -49,6 +49,6 @@ private:
 
     HomeScreen homeScreen;
     HistoryScreen historyScreen;
-    SearchForKey searchForKeyScreen;
+    SearchForDef searchForDefScreen;
 };
 #endif // MAINWINDOW_H

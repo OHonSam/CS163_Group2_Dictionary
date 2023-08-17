@@ -24,7 +24,7 @@ signals:
     void switchToHistoryScreen();
     void updateHistory(const std::string& word, bool isAdd=true);
 
-    void switchToSearchForKeyScreen(const std::string& word);
+    void switchToSearchForDefScreen(const std::string& word);
 
 public slots:
     void updateCompleter();
