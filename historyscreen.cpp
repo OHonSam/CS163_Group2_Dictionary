@@ -42,3 +42,15 @@ void HistoryScreen::on_pushButton_clear_clicked()
     update();
 }
 
+
+void HistoryScreen::on_pushButton_remove_clicked()
+{
+    int delItem = ui->listWidget_history->currentRow();
+
+    if(0<=delItem && delItem<ui->listWidget_history->count()){
+        QString word=ui->listWidget_history->item(delItem)->text();
+        dict->removeHistory(word.mid(word.indexOf(' ')+1).toStdString());
+        update();
+    }
+}
+

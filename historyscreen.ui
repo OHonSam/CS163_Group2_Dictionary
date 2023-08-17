@@ -102,7 +102,7 @@ font: 13pt &quot;Comfortaa&quot;;</string>
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0">
+          <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
            <item>
             <spacer name="horizontalSpacer">
              <property name="orientation">
@@ -115,6 +115,24 @@ font: 13pt &quot;Comfortaa&quot;;</string>
               </size>
              </property>
             </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_remove">
+             <property name="styleSheet">
+              <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Remove</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_clear">
