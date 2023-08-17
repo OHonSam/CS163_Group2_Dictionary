@@ -74,6 +74,14 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         this,SIGNAL(giveWord(std::string)),
         &searchForKeyScreen,SLOT(receiveWord(std::string))
     );
+    connect(
+        &homeScreen,SIGNAL(switchDataSet()),
+        &homeScreen,SLOT(updateCompleter())
+    );
+    connect(
+        &homeScreen,SIGNAL(switchDataSet()),
+        &searchForKeyScreen,SLOT(updateCompleter())
+    );
 }
 
 MainWindow::~MainWindow()

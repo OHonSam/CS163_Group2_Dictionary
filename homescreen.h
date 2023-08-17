@@ -19,10 +19,15 @@ public:
     ~HomeScreen();
 
 signals:
+    void switchDataSet();
+
     void switchToHistoryScreen();
     void updateHistory(const std::string& word, bool isAdd=true);
 
     void switchToSearchForKeyScreen(const std::string& word);
+
+public slots:
+    void updateCompleter();
 
 private slots:
     void on_comboBox_dictVersion_currentIndexChanged(int index);
@@ -40,7 +45,6 @@ private:
     Dict *dict;
     QStringList suggestions;
 
-    void updateSuggestion();
     void showDailyWord();
 };
 

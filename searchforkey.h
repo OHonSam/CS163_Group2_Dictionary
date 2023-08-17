@@ -2,6 +2,9 @@
 #define SEARCHFORKEY_H
 
 #include <QWidget>
+#include <QCompleter>
+#include <QStringList>
+#include <QStringListModel>
 
 #include <Dict.hpp>
 
@@ -22,6 +25,7 @@ signals:
 
 public slots:
     void receiveWord(const std::string& word);
+    void updateCompleter();
 
 private slots:
     void on_pushButton_goBack_clicked();
@@ -29,6 +33,9 @@ private slots:
 private:
     Ui::SearchForKey *ui;
     Dict *dict;
+
+    QCompleter completer;
+    QStringList suggestions;
 };
 
 #endif // SEARCHFORKEY_H

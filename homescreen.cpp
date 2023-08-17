@@ -18,8 +18,6 @@ HomeScreen::HomeScreen(Dict *dict, QWidget *parent) :
 
     ui->lineEdit_search->setCompleter(&completer);
 
-    updateSuggestion();
-
     QListView *popupListView = qobject_cast<QListView *>(completer.popup());
     if (popupListView) {
         popupListView->setStyleSheet("QListView {"
@@ -38,6 +36,8 @@ HomeScreen::HomeScreen(Dict *dict, QWidget *parent) :
                                      "}"
                                     );
     }
+
+    updateCompleter();
 
     showDailyWord();
 }
@@ -70,7 +70,8 @@ void HomeScreen::on_comboBox_dictVersion_currentIndexChanged(int index)
         return;
     }
     showDailyWord();
-    updateSuggestion();
+
+    emit switchDataSet();
 }
 
 
@@ -79,12 +80,12 @@ void HomeScreen::on_pushButton_HistoryScreen_clicked()
     emit switchToHistoryScreen();
 }
 
-void HomeScreen::updateSuggestion(){
+void HomeScreen::updateCompleter(){
     QStringListModel *model=qobject_cast<QStringListModel*>(completer.model());
-    if(!model) {
-        model = new QStringListModel(&completer);
-        completer.setModel(model);
-    }
+    if(model) delete model;
+
+    model = new QStringListModel(&completer);
+    completer.setModel(model);
 
     suggestions.clear();
     std::vector<std::string> sug = dict->searchPrefix("");
@@ -104,7 +105,6 @@ void HomeScreen::on_pushButton_search_clicked()
 void HomeScreen::showDailyWord(){
     ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->getDailyWord()));
 }
-
 
 void HomeScreen::on_pushButton_resetDailyWord_clicked()
 {
