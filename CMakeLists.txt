@@ -24,9 +24,20 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         resources.qrc
-        historyscreen.h historyscreen.cpp historyscreen.ui
+        historyscreen.h historyscreen.cpp
+        viewscreen.h viewscreen.cpp viewscreen.ui
+        favlistscreen.h favlistscreen.cpp
+        favlistscreen.ui
+
+        editscreen.h editscreen.cpp
+
+        searchres.h searchres.cpp
+        editscreen.ui
+        searchres.ui
+
+
     )
-# Define target properties for Android with Qt 6 as:
+# Define target properties for Andro
 #    set_property(TARGET Qt_UI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation

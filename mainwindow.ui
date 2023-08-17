@@ -219,30 +219,18 @@ font: 11pt &quot;Comfortaa&quot;;</string>
     <item row="0" column="0" colspan="2">
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
-       <widget class="QLabel" name="title">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Audiowide</family>
-         </font>
-        </property>
+       <widget class="QPushButton" name="pushButton_11">
         <property name="styleSheet">
          <string notr="true">padding: 30px;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-image: url(:/background/images/bg/intro bg.png);</string>
+background-image: url(:/background/images/bg/intro bg.png);
+color: white;
+font: 24pt &quot;Audiowide&quot;;</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; color:#ffffff;&quot;&gt;WELCOME TO DICTIONARY - GROUP 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <string>WELCOME TO DICTIONARY - GROUP 2</string>
         </property>
        </widget>
       </item>
@@ -614,22 +602,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1124</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuHomescreen">
-    <property name="title">
-     <string>Homescreen</string>
-    </property>
-   </widget>
-   <addaction name="menuHomescreen"/>
-  </widget>
  </widget>
  <resources>
   <include location="resources.qrc"/>
