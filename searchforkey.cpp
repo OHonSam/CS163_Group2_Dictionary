@@ -13,3 +13,9 @@ SearchForKey::~SearchForKey()
 {
     delete ui;
 }
+
+void SearchForKey::on_pushButton_goBack_clicked()
+{
+    emit goBack();
+}
+

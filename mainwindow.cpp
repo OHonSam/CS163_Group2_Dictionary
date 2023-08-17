@@ -66,6 +66,10 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &homeScreen,SIGNAL(switchToSearchForKeyScreen()),
         this,SLOT(switchToSearchForKeyScreen())
     );
+    connect(
+        &searchForKeyScreen,SIGNAL(goBack()),
+        this,SLOT(switchToHomeScreen())
+    );
 }
 
 MainWindow::~MainWindow()

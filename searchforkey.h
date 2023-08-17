@@ -17,6 +17,12 @@ public:
     explicit SearchForKey(Dict *dict, QWidget *parent = nullptr);
     ~SearchForKey();
 
+signals:
+    void goBack();
+
+private slots:
+    void on_pushButton_goBack_clicked();
+
 private:
     Ui::SearchForKey *ui;
     Dict *dict;
