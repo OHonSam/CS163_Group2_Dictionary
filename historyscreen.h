@@ -26,6 +26,8 @@ public slots:
 private slots:
     void on_pushButton_goBack_clicked();
 
+    void on_pushButton_clear_clicked();
+
 private:
     Ui::HistoryScreen *ui;
     Dict *dict;

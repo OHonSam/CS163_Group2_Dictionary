@@ -24,6 +24,7 @@ void HistoryScreen::on_pushButton_goBack_clicked()
 }
 
 void HistoryScreen::update(){
+    ui->listWidget_history->clear();
     std::vector<std::string> v=dict->getHistory();
     for(int i=0; i<v.size(); i++)
         ui->listWidget_history->addItem(QString::number(i+1)+". "+QString::fromStdString(v[i]));
@@ -31,6 +32,13 @@ void HistoryScreen::update(){
 
 void HistoryScreen::updateHistory(const std::string& word, bool isAdd){
     if(isAdd) dict->addHistory(word); else dict->removeHistory(word);
+    update();
+}
+
+
+void HistoryScreen::on_pushButton_clear_clicked()
+{
+    dict->clearAllHistory();
     update();
 }
 
