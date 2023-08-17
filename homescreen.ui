@@ -412,7 +412,7 @@ background-color: rgb(102, 124, 246);</string>
           </widget>
          </item>
          <item row="1" column="3">
-          <widget class="QPushButton" name="pushButton_10">
+          <widget class="QPushButton" name="pushButton_resetDailyWord">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
              <horstretch>0</horstretch>

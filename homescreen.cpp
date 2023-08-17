@@ -102,3 +102,9 @@ void HomeScreen::showDailyWord(){
     ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->getDailyWord()));
 }
 
+
+void HomeScreen::on_pushButton_resetDailyWord_clicked()
+{
+    showDailyWord();
+}
+

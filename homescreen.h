@@ -29,6 +29,8 @@ private slots:
 
     void on_pushButton_search_clicked();
 
+    void on_pushButton_resetDailyWord_clicked();
+
 private:
     Ui::HomeScreen *ui;
     QCompleter completer;
