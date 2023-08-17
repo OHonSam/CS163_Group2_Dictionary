@@ -22,6 +22,8 @@ signals:
     void switchToHistoryScreen();
     void updateHistory(const std::string& word, bool isAdd=true);
 
+    void switchToSearchForKeyScreen();
+
 private slots:
     void on_comboBox_dictVersion_currentIndexChanged(int index);
 

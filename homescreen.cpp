@@ -70,6 +70,7 @@ void HomeScreen::on_comboBox_dictVersion_currentIndexChanged(int index)
         return;
     }
     showDailyWord();
+    updateSuggestion();
 }
 
 
@@ -96,6 +97,7 @@ void HomeScreen::updateSuggestion(){
 void HomeScreen::on_pushButton_search_clicked()
 {
     emit updateHistory(ui->lineEdit_search->text().toLower().toStdString(),true);
+    emit switchToSearchForKeyScreen();
 }
 
 void HomeScreen::showDailyWord(){

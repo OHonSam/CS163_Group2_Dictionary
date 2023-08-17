@@ -13,6 +13,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     , dict(dict)
     , homeScreen(dict,this)
     , historyScreen(dict,this)
+    , searchForKeyScreen(dict,this)
 {
     ui->setupUi(this);
 
@@ -43,6 +44,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     // set stack widget
     ui->stackedWidget->addWidget(&homeScreen);
     ui->stackedWidget->addWidget(&historyScreen);
+    ui->stackedWidget->addWidget(&searchForKeyScreen);
 
     // set default screen
     ui->stackedWidget->setCurrentIndex(Screens::Home);
@@ -60,6 +62,10 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &homeScreen,SIGNAL(updateHistory(std::string,bool)),
         &historyScreen,SLOT(updateHistory(std::string,bool))
     );
+    connect(
+        &homeScreen,SIGNAL(switchToSearchForKeyScreen()),
+        this,SLOT(switchToSearchForKeyScreen())
+    );
 }
 
 MainWindow::~MainWindow()
@@ -73,4 +79,8 @@ void MainWindow::switchToHistoryScreen(){
 
 void MainWindow::switchToHomeScreen(){
     ui->stackedWidget->setCurrentIndex(Screens::Home);
+}
+
+void MainWindow::switchToSearchForKeyScreen(){
+    ui->stackedWidget->setCurrentIndex(Screens::SearchForKey);
 }
