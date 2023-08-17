@@ -3,6 +3,7 @@
 
 #include <QMessageBox>
 #include <QStringListModel>
+#include <QListView>
 
 HomeScreen::HomeScreen(Dict *dict, QWidget *parent) :
     QWidget(parent),
@@ -17,6 +18,25 @@ HomeScreen::HomeScreen(Dict *dict, QWidget *parent) :
     ui->lineEdit_search->setCompleter(&completer);
 
     updateSuggestion();
+
+    QListView *popupListView = qobject_cast<QListView *>(completer.popup());
+    if (popupListView) {
+        popupListView->setStyleSheet("QListView {"
+                                     "  padding: 9px;"
+                                     "  border-color: rgb(77, 101, 246);"
+                                     "  border-width : 1px;"
+                                     "  border-style:inset;"
+                                     "  border-radius: 8px;"
+                                     "  min-height: 1px;"
+                                     "  min-width: 1px;"
+                                     "  background-color: rgb(102, 124, 246);"
+                                     "  color: white;"
+                                     "  selection-color: rgb(39, 182, 240);"
+                                     "  selection-background-color: rgb(77, 92, 245);"
+                                     "  font: 11pt \"Comfortaa\";"
+                                     "}"
+                                    );
+    }
 }
 
 HomeScreen::~HomeScreen()
