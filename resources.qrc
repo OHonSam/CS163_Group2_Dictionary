@@ -14,15 +14,12 @@
         <file>images/zoom.svg</file>
     </qresource>
     <qresource prefix="/background">
-        <file>watercolor-texture-background/48.eps</file>
-        <file>watercolor-texture-background/48.jpg</file>
         <file>images/watercolor button/surface-with-abstract-watercolor-paint.jpg</file>
         <file>images/watercolor button/light water bg.jpg</file>
         <file>images/bg/orange.jpg</file>
         <file>images/bg/pink.jpg</file>
         <file>images/bg/small orange.jpg</file>
         <file>images/bg/slash mid bg.jpg</file>
-        <file>watercolor-texture-background/for title.jpg</file>
         <file>images/bg/intro bg.jpg</file>
         <file>images/bg/intro bg 2.jpg</file>
         <file>images/bg/button.png</file>
