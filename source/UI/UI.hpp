@@ -89,6 +89,7 @@ public:
 
     Word* dailyword;
     Word* draw;
+    Word* new_word;
     std::vector <std::string> favlist;
 	Rectangle fav[100];
     float wheel = 0;
