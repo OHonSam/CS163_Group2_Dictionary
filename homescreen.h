@@ -37,6 +37,7 @@ private:
     QStringList suggestions;
 
     void updateSuggestion();
+    void showDailyWord();
 };
 
 #endif // HOMESCREEN_H

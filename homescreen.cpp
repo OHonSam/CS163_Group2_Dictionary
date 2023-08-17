@@ -39,7 +39,7 @@ HomeScreen::HomeScreen(Dict *dict, QWidget *parent) :
                                     );
     }
 
-    ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->searchForDef("aback")));
+    showDailyWord();
 }
 
 HomeScreen::~HomeScreen()
@@ -67,8 +67,9 @@ void HomeScreen::on_comboBox_dictVersion_currentIndexChanged(int index)
         break;
     default:
         QMessageBox::warning(this,"Warning","This dictionary does not have your version choice!");
-        break;
+        return;
     }
+    showDailyWord();
 }
 
 
@@ -95,5 +96,9 @@ void HomeScreen::updateSuggestion(){
 void HomeScreen::on_pushButton_search_clicked()
 {
     emit updateHistory(ui->lineEdit_search->text().toLower().toStdString(),true);
+}
+
+void HomeScreen::showDailyWord(){
+    ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->getDailyWord()));
 }
 
