@@ -56,6 +56,10 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &historyScreen,SIGNAL(goBack()),
         this,SLOT(switchToHomeScreen())
     );
+    connect(
+        &homeScreen,SIGNAL(updateHistory(std::string,bool)),
+        &historyScreen,SLOT(updateHistory(std::string,bool))
+    );
 }
 
 MainWindow::~MainWindow()

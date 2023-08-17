@@ -20,11 +20,14 @@ public:
 
 signals:
     void switchToHistoryScreen();
+    void updateHistory(const std::string& word, bool isAdd=true);
 
 private slots:
     void on_comboBox_dictVersion_currentIndexChanged(int index);
 
     void on_pushButton_HistoryScreen_clicked();
+
+    void on_pushButton_search_clicked();
 
 private:
     Ui::HomeScreen *ui;

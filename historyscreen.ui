@@ -76,10 +76,7 @@ color: black;;</string>
           </widget>
          </item>
          <item>
-          <widget class="QScrollArea" name="test_3">
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
+          <widget class="QListWidget" name="listWidget_history">
            <property name="styleSheet">
             <string notr="true">padding: 20px;
 border-width : 2px;
@@ -91,19 +88,6 @@ background-color: rgb(233, 240, 250);
 border-color: rgb(99, 112, 243);
 font: 13pt &quot;Comfortaa&quot;;</string>
            </property>
-           <property name="widgetResizable">
-            <bool>true</bool>
-           </property>
-           <widget class="QWidget" name="scrollAreaWidgetContents_3">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>500</width>
-              <height>507</height>
-             </rect>
-            </property>
-           </widget>
           </widget>
          </item>
          <item>

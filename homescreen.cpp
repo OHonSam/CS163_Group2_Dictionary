@@ -68,3 +68,9 @@ void HomeScreen::updateSuggestion(){
     model->setStringList(suggestions);
 }
 
+
+void HomeScreen::on_pushButton_search_clicked()
+{
+    emit updateHistory(ui->lineEdit_search->text().toLower().toStdString(),true);
+}
+
