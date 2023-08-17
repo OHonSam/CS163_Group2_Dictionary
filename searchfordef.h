@@ -31,6 +31,8 @@ public slots:
 private slots:
     void on_pushButton_goBack_clicked();
 
+    void on_pushButton_search_clicked();
+
 private:
     Ui::SearchForDef *ui;
     Dict *dict;

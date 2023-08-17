@@ -65,3 +65,11 @@ void SearchForDef::updateCompleter(){
     model->setStringList(suggestions);
 }
 
+
+void SearchForDef::on_pushButton_search_clicked()
+{
+    ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->searchForDef(
+        ui->lineEdit_search->text().toStdString()
+    )));
+}
+
