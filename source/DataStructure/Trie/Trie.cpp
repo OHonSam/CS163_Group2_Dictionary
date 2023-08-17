@@ -27,8 +27,8 @@ bool Trie::checkExist(const std::string &key)
 
 void Trie::recursiveFind(std::vector<std::string> &res, std::string prefix, Trie::Node *cur, int &cnt)
 {
-    if (cnt == 20)
-        return;
+//    if (cnt == 20)
+//        return;
     if (cur->isEnd == true)
     {
         res.push_back(prefix);

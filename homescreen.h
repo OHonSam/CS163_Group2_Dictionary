@@ -2,6 +2,7 @@
 #define HOMESCREEN_H
 
 #include <QWidget>
+#include <QCompleter>
 
 #include <Dict.hpp>
 
@@ -27,8 +28,12 @@ private slots:
 
 private:
     Ui::HomeScreen *ui;
+    QCompleter completer;
 
     Dict *dict;
+    QStringList suggestions;
+
+    void updateSuggestion();
 };
 
 #endif // HOMESCREEN_H

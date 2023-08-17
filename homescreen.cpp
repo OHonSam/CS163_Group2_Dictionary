@@ -2,13 +2,21 @@
 #include "ui_homescreen.h"
 
 #include <QMessageBox>
+#include <QStringListModel>
 
 HomeScreen::HomeScreen(Dict *dict, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HomeScreen),
+    completer(this),
     dict(dict)
 {
     ui->setupUi(this);
+
+    completer.setCaseSensitivity(Qt::CaseInsensitive);
+
+    ui->lineEdit_search->setCompleter(&completer);
+
+    updateSuggestion();
 }
 
 HomeScreen::~HomeScreen()
@@ -44,5 +52,19 @@ void HomeScreen::on_comboBox_dictVersion_currentIndexChanged(int index)
 void HomeScreen::on_pushButton_HistoryScreen_clicked()
 {
     emit switchToHistoryScreen();
+}
+
+void HomeScreen::updateSuggestion(){
+    QStringListModel *model=qobject_cast<QStringListModel*>(completer.model());
+    if(!model) {
+        model = new QStringListModel(&completer);
+        completer.setModel(model);
+    }
+
+    suggestions.clear();
+    std::vector<std::string> sug = dict->searchPrefix("");
+    for(const std::string& str:sug) suggestions<<str.c_str();
+
+    model->setStringList(suggestions);
 }
 
