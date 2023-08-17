@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QStringListModel>
 #include <QListView>
+#include "html_creator.h"
 
 HomeScreen::HomeScreen(Dict *dict, QWidget *parent) :
     QWidget(parent),
@@ -37,6 +38,8 @@ HomeScreen::HomeScreen(Dict *dict, QWidget *parent) :
                                      "}"
                                     );
     }
+
+    ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->searchForDef("aback")));
 }
 
 HomeScreen::~HomeScreen()
