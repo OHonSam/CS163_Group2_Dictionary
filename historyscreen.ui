@@ -20,6 +20,17 @@
       <layout class="QHBoxLayout" name="horizontalLayout_5">
        <item>
         <widget class="QPushButton" name="pushButton_goBack">
+         <property name="styleSheet">
+          <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;</string>
+         </property>
          <property name="text">
           <string>Back </string>
          </property>
@@ -113,8 +124,19 @@ font: 13pt &quot;Comfortaa&quot;;</string>
                <height>16777215</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;</string>
+             </property>
              <property name="text">
-              <string>Clear all History</string>
+              <string>Clear</string>
              </property>
             </widget>
            </item>
@@ -200,7 +222,7 @@ font: 13pt &quot;Comfortaa&quot;;</string>
               <x>0</x>
               <y>0</y>
               <width>499</width>
-              <height>548</height>
+              <height>543</height>
              </rect>
             </property>
            </widget>
