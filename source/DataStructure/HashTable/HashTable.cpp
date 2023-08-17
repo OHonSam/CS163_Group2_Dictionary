@@ -97,11 +97,15 @@ void HashTable::remove(const std::string &word)
 
 int HashTable::hash(const std::string& word) {
     int res=0;
+    std::string s = word;
     for(int i=0; i<NMOD; i++)
     {
         int tot=0;
-        for(char c: word)
+        int a = word.size();
+        for(int x = 0; x < word.size(); x++) {
+            char c = word[x];
             tot=(1LL*tot*BASE%MOD[i]+c)%MOD[i];
+        }
         res=(res+1LL*i*tot%MOD[i])%MOD[i];
     }
     return res;

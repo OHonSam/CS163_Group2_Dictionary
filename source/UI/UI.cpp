@@ -1413,6 +1413,10 @@ void UI::DrawSearchforDef(Word* word) {
 }
 void UI::DrawSearchforWord(const std::string def, std::vector <std::string> foundwords) {
 	static int index = 0;
+	if (!foundwords.size()) {
+		DrawTextEx(title_font, "No results found!", {193, 380}, 50, 1, {220, 205, 255, 255});
+		return;
+	}
 	std::vector <std::string> cut = dict -> stringCut(def);
 	SmallTrie* highlight = new SmallTrie();
 	for (int i = 0; i < cut.size(); i++) {
@@ -1447,7 +1451,7 @@ void UI::run() {
 	dict->~Dict();
 }
 
-void UI::DrawModifyBox(Word* word) {
+void UI::DrawModifyBox(Word* &word) {
 	int scrollspeed = 50;
 	wheel += GetMouseWheelMove() * scrollspeed;
 	display.x = 138;
@@ -1467,13 +1471,31 @@ void UI::DrawModifyBox(Word* word) {
 	done.DrawText(mouseCursor);
 	if (done.state == 3) {
 		if (beingmodified) {
+			dict -> removeDefTrie(word);
+			// std::cout << word -> word << 'y';
+			// for (int i = 0; i < 9; i++) {
+			// 	if (word -> def[i].size()) {
+			// 		for (int j = 0; j < word -> def[i].size(); j++) {word -> def[i][j] = "hsg";
+			// 		std::cout << word -> def[i][j] << '\n';}
+			// 	}
+			// }
 			int cnt = 1;
 			for (int i = 0; i < 9; i++) {
 				if (word -> def[i].size()) {
+					// std::cout << word -> def[i].size();
 					for (int j = 0; j < word -> def[i].size(); j++) {
 						// std::cout << word -> def[i].size() << ' ' << i << ' ' << j << '\n';
 						// std::cout << typenew[cnt].getInput() << '\n';
-						if (typenew[cnt].getInput().size()) word -> def[i][j] = typenew[cnt].getInput();
+						if (typenew[cnt].getInput().size()) {
+							// dict -> updateDef(word -> word, 1 << i, word -> def[i][j], typenew[cnt].getInput());
+							// std::cout << word -> def[i].size() << ' ' << i << ' ' << j << '\n';
+							// std::cout << word -> def[0][0] << '\n';
+							// std::cout << typenew[cnt].getInput() << '\n';
+							word -> def[i][j] = typenew[cnt].getInput();
+							// std::cout << word -> def[0][0] << '\n';
+							// std::cout << "done";
+							// break;
+						}
 						else {
 							word -> def[i].erase(word -> def[i].begin() + j);
 							j--;
@@ -1483,14 +1505,18 @@ void UI::DrawModifyBox(Word* word) {
 					}
 				}
 			}
+			dict -> addDefTrie(word);
 		}
-
-		if (neww) neww ^= 1;
-		else if (beingmodified) beingmodified ^= 1;
+		
+		
 		
 		homestate = 9;
 		keyword = word -> word;
 		draw = dict -> searchForDef(word -> word);
+		// std::cout << draw -> word << " " << word -> word << '\n';
+		if (neww) neww ^= 1;
+		else if (beingmodified) beingmodified ^= 1;
+		// std::cout << draw -> def[0][0] << '\n';
 	}
 	// posTextX = 236;
 	// posTextY = 330;

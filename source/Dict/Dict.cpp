@@ -287,6 +287,7 @@ Dict::Dict(): curDataSet(DataSet::EE)
     for(int i=0; i<UNIQUE_CHARS; i++) 
         numWordsStartsWith[i]=0;
     setup();
+    std::cout << "100% set up" << '\n';
 }
 
 Dict::~Dict()
@@ -736,6 +737,11 @@ std::vector<std::string> Dict::getHistory(){
     return history.SLLintoVector();
 }
 
+void Dict::addDefTrie(Word* word) {
+    defTrie.insert(word);
+    return; 
+}
+
 std::vector<std::string> Dict::getFav()
 {
     return favList.traverse();
@@ -774,7 +780,7 @@ std::vector<Word *> Dict::getMultiChoices(int k)
 void Dict::removeWord(const std::string& word){
     removeHistory(word);
     removeFav(word);
-    removeDefTrie(word);
+    removeDefTrie(searchForDef(word));
     // std::cout << "done deftrie";
     wordDef.remove(word);
     // std::cout << "done hashtable";
@@ -782,9 +788,9 @@ void Dict::removeWord(const std::string& word){
     // std::cout << "done trie";
 }
 
-void Dict::removeDefTrie(const std::string &word) {
-    Word* w = wordDef.searchDef(word);
-    defTrie.remove(w);
+void Dict::removeDefTrie(Word* word) {
+    // Word* w = wordDef.searchDef(word);
+    defTrie.remove(word);
     return;
 }
 

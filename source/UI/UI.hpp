@@ -114,6 +114,6 @@ public:
     void DrawSearchforWord(const std::string def, std::vector <std::string> foundwords);
     void DrawWord(Word* word, bool &x, SmallTrie* highlight);
     void DrawLongText(std::string s, SmallTrie* highlight);
-    void DrawModifyBox(Word* word);
+    void DrawModifyBox(Word* &word);
     void run();
 };

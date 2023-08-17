@@ -129,7 +129,7 @@ namespace DEFAULT
 class Dict
 {
 private:
-	const int LIM_WORDS = 10000;
+	const int LIM_WORDS = 5000;
 	const int UNIQUE_CHARS = 26;
 	const int LIM_EACH_CHAR = LIM_WORDS/UNIQUE_CHARS;
 
@@ -225,7 +225,10 @@ public:
 	void removeHistory(const std::string &word); 
 
 	// Remove a word from DefTrie
-	void removeDefTrie(const std::string &word);
+	void removeDefTrie(Word* word);
+
+	// Add a word to DefTrie
+	void addDefTrie(Word* word);
 
 	// Get the history in the vector
 	std::vector<std::string> getHistory();

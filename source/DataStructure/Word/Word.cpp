@@ -6,6 +6,7 @@ Word::Word()
 {
     word = "";
     type = 0;
+    // def -> resize(9);
 }
 
 Word::Word(const std::string &word)
