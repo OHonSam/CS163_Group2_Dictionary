@@ -20,6 +20,9 @@ public:
 signals:
     void goBack();
 
+public slots:
+    void receiveWord(const std::string& word);
+
 private slots:
     void on_pushButton_goBack_clicked();
 

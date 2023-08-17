@@ -14,6 +14,10 @@ SearchForKey::~SearchForKey()
     delete ui;
 }
 
+void SearchForKey::receiveWord(const std::string &word){
+    ui->lineEdit_search->setText(QString::fromStdString(word));
+}
+
 void SearchForKey::on_pushButton_goBack_clicked()
 {
     emit goBack();

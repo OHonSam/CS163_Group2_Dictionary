@@ -63,12 +63,16 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &historyScreen,SLOT(updateHistory(std::string,bool))
     );
     connect(
-        &homeScreen,SIGNAL(switchToSearchForKeyScreen()),
-        this,SLOT(switchToSearchForKeyScreen())
+        &homeScreen,SIGNAL(switchToSearchForKeyScreen(std::string)),
+        this,SLOT(switchToSearchForKeyScreen(std::string))
     );
     connect(
         &searchForKeyScreen,SIGNAL(goBack()),
         this,SLOT(switchToHomeScreen())
+    );
+    connect(
+        this,SIGNAL(giveWord(std::string)),
+        &searchForKeyScreen,SLOT(receiveWord(std::string))
     );
 }
 
@@ -85,6 +89,7 @@ void MainWindow::switchToHomeScreen(){
     ui->stackedWidget->setCurrentIndex(Screens::Home);
 }
 
-void MainWindow::switchToSearchForKeyScreen(){
+void MainWindow::switchToSearchForKeyScreen(const std::string& word){
     ui->stackedWidget->setCurrentIndex(Screens::SearchForKey);
+    emit giveWord(word);
 }

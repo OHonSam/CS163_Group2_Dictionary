@@ -32,10 +32,13 @@ public:
     );
     ~MainWindow();
 
+signals:
+    void giveWord(const std::string& input);
+
 public slots:
     void switchToHistoryScreen();
     void switchToHomeScreen();
-    void switchToSearchForKeyScreen();
+    void switchToSearchForKeyScreen(const std::string& word);
 
 private:
     const int DEF_WIDTH=1072;

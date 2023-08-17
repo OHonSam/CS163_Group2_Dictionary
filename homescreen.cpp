@@ -96,8 +96,9 @@ void HomeScreen::updateSuggestion(){
 
 void HomeScreen::on_pushButton_search_clicked()
 {
-    emit updateHistory(ui->lineEdit_search->text().toLower().toStdString(),true);
-    emit switchToSearchForKeyScreen();
+    std::string input=ui->lineEdit_search->text().toLower().toStdString();
+    emit updateHistory(input,true);
+    emit switchToSearchForKeyScreen(input);
 }
 
 void HomeScreen::showDailyWord(){
