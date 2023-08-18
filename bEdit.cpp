@@ -1,5 +1,5 @@
 #include "editchoice.h"
-#include "ui_editchoice.h"
+#include "ui_bEdit.h"
 
 EditChoice::EditChoice(QWidget *parent) :
     QWidget(parent),

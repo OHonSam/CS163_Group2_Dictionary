@@ -6,9 +6,9 @@
 #include <homescreen.h>
 #include <historyscreen.h>
 #include<searchfordef.h>
-#include<searchforkey.h>
+#include<cSearch.h>
 #include <Dict.hpp>
-#include<editchoice.h>
+#include<bEdit.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

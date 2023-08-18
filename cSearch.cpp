@@ -1,5 +1,5 @@
 #include "searchforkey.h"
-#include "ui_searchforkey.h"
+#include "ui_cSearch.h"
 
 SearchForKey::SearchForKey(Dict *dict, QWidget *parent) :
     QWidget(parent),

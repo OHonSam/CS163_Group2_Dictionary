@@ -1,5 +1,5 @@
-#ifndef EDITCHOICE_H
-#define EDITCHOICE_H
+#ifndef BEDIT_H
+#define BEDIT_H
 
 #include <QWidget>
 
@@ -19,4 +19,4 @@ private:
     Ui::EditChoice *ui;
 };
 
-#endif // EDITCHOICE_H
+#endif // BEDIT_H

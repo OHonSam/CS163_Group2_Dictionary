@@ -25,6 +25,9 @@
      <property name="font">
       <font>
        <family>Audiowide</family>
+       <pointsize>24</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -32,7 +35,8 @@
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-image: url(:/background/images/bg/intro bg.png);</string>
+background-image: url(:/background/images/bg/intro bg.png);
+font: 24pt &quot;Audiowide&quot;;</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; color:#ffffff;&quot;&gt;WELCOME TO DICTIONARY - GROUP 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

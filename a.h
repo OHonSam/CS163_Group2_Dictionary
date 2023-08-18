@@ -1,5 +1,5 @@
-#ifndef VIEWSCREEN_H
-#define VIEWSCREEN_H
+#ifndef A_H
+#define A_H
 
 #include <QWidget>
 
@@ -19,4 +19,4 @@ private:
     Ui::viewScreen *ui;
 };
 
-#endif // VIEWSCREEN_H
+#endif // A_H

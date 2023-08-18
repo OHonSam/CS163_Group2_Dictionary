@@ -1,5 +1,5 @@
-#ifndef SEARCHFORKEY_H
-#define SEARCHFORKEY_H
+#ifndef CSEARCH_H
+#define CSEARCH_H
 
 #include <QWidget>
 #include "html_creator.h"
@@ -29,4 +29,4 @@ private:
     Dict *dict;
 };
 
-#endif // SEARCHFORKEY_H
+#endif // CSEARCH_H

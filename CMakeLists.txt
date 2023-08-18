@@ -27,11 +27,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         historyscreen.h historyscreen.cpp historyscreen.ui
 		homescreen.h homescreen.cpp homescreen.ui
         searchfordef.h searchfordef.cpp searchfordef.ui
-        searchforkey.h searchforkey.cpp searchforkey.ui
+        cSearch.h cSearch.cpp cSearch.ui
 		html_creator.h html_creator.cpp
-        editchoice.h editchoice.cpp editchoice.ui
+                bEdit.h bEdit.cpp bEdit.ui
         historyscreen.h historyscreen.cpp
-        viewscreen.h viewscreen.cpp viewscreen.ui
+        a.h a.cpp a.ui
         favlistscreen.h favlistscreen.cpp
         favlistscreen.ui
 
