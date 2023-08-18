@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(240, 243, 250);</string>
+  </property>
   <layout class="QFormLayout" name="formLayout">
    <item row="0" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout">

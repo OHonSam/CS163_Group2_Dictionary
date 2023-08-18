@@ -40,6 +40,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dSearch.h dSearch.cpp
         editscreen.ui
         dSearch.ui
+        addnewword.h addnewword.cpp
+        baddnewword.ui
 
 
     )

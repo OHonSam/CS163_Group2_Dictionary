@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(240, 243, 250);</string>
+  </property>
   <layout class="QFormLayout" name="formLayout">
    <item row="0" column="0" colspan="2">
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -53,7 +56,7 @@ color:white;</string>
            <item row="0" column="0">
             <widget class="QPushButton" name="pushButton_goBack">
              <property name="styleSheet">
-              <string notr="true">padding: 6px;
+              <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
@@ -61,7 +64,8 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
-font: 11pt &quot;Comfortaa&quot;;</string>
+font: 11pt &quot;Comfortaa&quot;;
+color:white;</string>
              </property>
              <property name="text">
               <string>Back </string>
