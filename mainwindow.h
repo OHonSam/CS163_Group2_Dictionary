@@ -5,7 +5,10 @@
 
 #include <homescreen.h>
 #include <historyscreen.h>
-#include <searchfordef.h>
+#include<searchfordef.h>
+#include<searchforkey.h>
+#include <Dict.hpp>
+#include<editchoice.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

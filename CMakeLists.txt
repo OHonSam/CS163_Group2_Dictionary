@@ -29,6 +29,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         searchfordef.h searchfordef.cpp searchfordef.ui
         searchforkey.h searchforkey.cpp searchforkey.ui
 		html_creator.h html_creator.cpp
+        editchoice.h editchoice.cpp editchoice.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Qt_UI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
