@@ -4,13 +4,14 @@
         <file>images/heart.svg</file>
         <file>images/heart-fill.svg</file>
         <file>images/history.svg</file>
-        <file>images/cloud ombre.png</file>
         <file>images/edit icon.svg</file>
         <file>images/pencil.svg</file>
         <file>images/reset.svg</file>
         <file>images/zoom.svg</file>
         <file>images/back.svg</file>
         <file>images/trash-bin.svg</file>
+        <file>images/remove.svg</file>
+        <file>images/eraser.svg</file>
     </qresource>
     <qresource prefix="/background">
         <file>images/bg/slash mid bg.jpg</file>
