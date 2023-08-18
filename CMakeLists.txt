@@ -33,7 +33,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         historyscreen.h historyscreen.cpp
         a.h a.cpp a.ui
         favlistscreen.h favlistscreen.cpp
-        favlistscreen.ui
+
 
         editscreen.h editscreen.cpp
 
@@ -44,6 +44,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         addnewword.ui
         quiz.h quiz.cpp quiz.ui
         editword.ui
+        favlistscreen.ui
 
 
 
