@@ -17,7 +17,7 @@
    <item row="0" column="0" colspan="2">
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <property name="topMargin">
-      <number>10</number>
+      <number>0</number>
      </property>
      <item>
       <widget class="QPushButton" name="pushButton">
@@ -31,7 +31,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">padding: 30px;
+        <string notr="true">padding: 20px;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
@@ -40,109 +40,16 @@ font: 24pt &quot;Audiowide&quot;;
 color:white;</string>
        </property>
        <property name="text">
-        <string>Dictionary - Group 02</string>
+        <string>Dictionary - Group 2</string>
        </property>
       </widget>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5"/>
-       </item>
-       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <layout class="QGridLayout" name="gridLayout_5">
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit_search">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>40</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">padding: 9px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
-border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);
-color: white;
-selection-color: rgb(39, 182, 240);
-selection-background-color: rgb(77, 92, 245);
-font: 11pt &quot;Comfortaa&quot;;</string>
-             </property>
-             <property name="placeholderText">
-              <string>Search for Keyword(s)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QPushButton" name="pushButton_search">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>2</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-             <property name="layoutDirection">
-              <enum>Qt::LeftToRight</enum>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">padding: 6px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
-border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="resources.qrc">
-               <normaloff>:/img/images/search.svg</normaloff>:/img/images/search.svg</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>22</width>
-               <height>27</height>
-              </size>
-             </property>
-             <property name="autoDefault">
-              <bool>false</bool>
-             </property>
-             <property name="default">
-              <bool>false</bool>
-             </property>
-             <property name="flat">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
            <item row="0" column="0">
             <widget class="QPushButton" name="pushButton_goBack">
              <property name="styleSheet">
@@ -160,6 +67,19 @@ font: 11pt &quot;Comfortaa&quot;;</string>
               <string>Back </string>
              </property>
             </widget>
+           </item>
+           <item row="0" column="1">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </item>
@@ -258,7 +178,8 @@ border-radius: 20px;
   min-width: 20px;
 background-color: rgb(233, 240, 250);
 border-color: rgb(99, 112, 243);
-font: 13pt &quot;Comfortaa&quot;;</string>
+font: 13pt &quot;Comfortaa&quot;;
+color: rgb(56, 64, 139);</string>
        </property>
        <property name="html">
         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;

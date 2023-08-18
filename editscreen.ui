@@ -221,7 +221,7 @@ font: 11pt &quot;Comfortaa&quot;;</string>
       <item row="0" column="0">
        <widget class="QPushButton" name="pushButton_4">
         <property name="styleSheet">
-         <string notr="true">padding: 30px;
+         <string notr="true">padding: 20px;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;

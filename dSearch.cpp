@@ -1,5 +1,5 @@
 #include "searchres.h"
-#include "ui_searchres.h"
+#include "ui_dSearch.h"
 
 searchRes::searchRes(QWidget *parent) :
     QWidget(parent),

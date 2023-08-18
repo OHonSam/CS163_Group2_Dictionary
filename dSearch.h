@@ -1,5 +1,5 @@
-#ifndef SEARCHRES_H
-#define SEARCHRES_H
+#ifndef DSEARCH_H
+#define DSEARCH_H
 
 #include <QWidget>
 
@@ -19,4 +19,4 @@ private:
     Ui::searchRes *ui;
 };
 
-#endif // SEARCHRES_H
+#endif // DSEARCH_H

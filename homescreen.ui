@@ -31,7 +31,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">padding: 30px;
+      <string notr="true">padding: 20px;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
@@ -39,7 +39,7 @@ background-image: url(:/background/images/bg/intro bg.png);
 font: 24pt &quot;Audiowide&quot;;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; color:#ffffff;&quot;&gt;WELCOME TO DICTIONARY - GROUP 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; color:#ffffff;&quot;&gt;DICTIONARY - GROUP 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -564,7 +564,8 @@ border-radius: 20px;
   min-width: 20px;
 background-color: rgb(233, 240, 250);
 border-color: rgb(99, 112, 243);
-font: 13pt &quot;Comfortaa&quot;;</string>
+font: 13pt &quot;Comfortaa&quot;;
+color: rgb(56, 64, 139);</string>
          </property>
          <property name="html">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;

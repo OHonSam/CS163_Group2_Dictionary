@@ -26,7 +26,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         resources.qrc
         historyscreen.h historyscreen.cpp historyscreen.ui
 		homescreen.h homescreen.cpp homescreen.ui
-        searchfordef.h searchfordef.cpp searchfordef.ui
+                searchscreen.h searchscreen.cpp searchscreen.ui
         cSearch.h cSearch.cpp cSearch.ui
 		html_creator.h html_creator.cpp
                 bEdit.h bEdit.cpp bEdit.ui
@@ -37,9 +37,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         editscreen.h editscreen.cpp
 
-        searchres.h searchres.cpp
+        dSearch.h dSearch.cpp
         editscreen.ui
-        searchres.ui
+        dSearch.ui
 
 
     )
