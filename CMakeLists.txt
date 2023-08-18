@@ -38,11 +38,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         editscreen.h editscreen.cpp
 
         dSearch.h dSearch.cpp
-        editscreen.ui
+
         dSearch.ui
         addnewword.h addnewword.cpp
         addnewword.ui
         quiz.h quiz.cpp quiz.ui
+        editword.ui
 
 
 

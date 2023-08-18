@@ -103,7 +103,7 @@ background-image: url(:/background/images/bg/mid button.png);
 </string>
            </property>
            <property name="text">
-            <string>Enter a new word</string>
+            <string>Edit keyword</string>
            </property>
           </widget>
          </item>
@@ -170,7 +170,7 @@ background-image: url(:/background/images/bg/mid button.png);
 </string>
            </property>
            <property name="text">
-            <string>Enter new definition(s)</string>
+            <string>Edit definition(s)</string>
            </property>
           </widget>
          </item>

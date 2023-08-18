@@ -1,5 +1,5 @@
 #include "editscreen.h"
-#include "ui_editscreen.h"
+#include "ui_aeditscreen.h"
 
 editScreen::editScreen(QWidget *parent) :
     QWidget(parent),
