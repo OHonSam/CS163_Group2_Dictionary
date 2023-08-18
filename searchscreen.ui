@@ -68,7 +68,11 @@ font: 11pt &quot;Comfortaa&quot;;
 color:white;</string>
              </property>
              <property name="text">
-              <string>Back </string>
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/img/images/back.svg</normaloff>:/img/images/back.svg</iconset>
              </property>
             </widget>
            </item>

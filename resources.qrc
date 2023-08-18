@@ -10,6 +10,8 @@
         <file>images/reset.svg</file>
         <file>images/zoom.svg</file>
         <file>images/back.svg</file>
+        <file>images/clear-all.svg</file>
+        <file>images/remove.svg</file>
     </qresource>
     <qresource prefix="/background">
         <file>images/bg/slash mid bg.jpg</file>

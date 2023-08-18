@@ -26,8 +26,11 @@
        </property>
        <item>
         <widget class="QPushButton" name="pushButton_goBack">
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
          <property name="styleSheet">
-          <string notr="true">padding: 6px;
+          <string notr="true">padding: 5px;
 border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
@@ -39,7 +42,11 @@ font: 11pt &quot;Comfortaa&quot;;
 color: white;</string>
          </property>
          <property name="text">
-          <string>Back </string>
+          <string>Back</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/img/images/back.svg</normaloff>:/img/images/back.svg</iconset>
          </property>
         </widget>
        </item>
@@ -55,6 +62,25 @@ color: white;</string>
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="styleSheet">
+          <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
+color: white;</string>
+         </property>
+         <property name="text">
+          <string>Remove</string>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushButton_clear">
@@ -77,7 +103,11 @@ font: 11pt &quot;Comfortaa&quot;;
 color: white;</string>
          </property>
          <property name="text">
-          <string>Clear</string>
+          <string>Reset</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/img/images/clear-all.svg</normaloff>:/img/images/clear-all.svg</iconset>
          </property>
         </widget>
        </item>
@@ -160,6 +190,8 @@ color:white;</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
