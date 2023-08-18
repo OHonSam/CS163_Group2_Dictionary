@@ -107,7 +107,7 @@ color: white;</string>
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
-           <normaloff>:/img/images/clear-all.svg</normaloff>:/img/images/clear-all.svg</iconset>
+           <normaloff>:/img/images/trash-bin.svg</normaloff>:/img/images/trash-bin.svg</iconset>
          </property>
         </widget>
        </item>
