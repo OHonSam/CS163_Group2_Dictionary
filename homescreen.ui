@@ -280,6 +280,26 @@ border-radius: 20px;
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="styleSheet">
+        <string notr="true">background-image: url(:/background/images/bg/button.png);
+padding: 30px;
+color: white;
+font: 16pt &quot;Comfortaa&quot;;
+font:bold;
+border-color: rgb(3, 3, 3);
+border-width : 0px;
+border-style:inset;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px</string>
+       </property>
+       <property name="text">
+        <string>Add </string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_HistoryScreen">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">

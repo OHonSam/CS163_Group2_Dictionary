@@ -255,7 +255,7 @@ font: 13pt &quot;Comfortaa&quot;;
 color: rgb(56, 64, 139);</string>
        </property>
        <property name="placeholderText">
-        <string>Old Word</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -274,7 +274,7 @@ font: 13pt &quot;Comfortaa&quot;;
 color: rgb(56, 64, 139);</string>
        </property>
        <property name="placeholderText">
-        <string>Old Definition(s) of POS of Old Word</string>
+        <string/>
        </property>
       </widget>
      </item>
