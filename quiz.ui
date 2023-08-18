@@ -30,6 +30,7 @@ border-radius: 20px;
   min-width: 20px;
 background-image: url(:/background/images/bg/intro bg.png);
 font: 24pt &quot;Audiowide&quot;;
+font: bold;
 color:white;</string>
          </property>
          <property name="text">
@@ -60,10 +61,15 @@ border-radius: 8px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
 font: 11pt &quot;Comfortaa&quot;;
+font: bold;
 color: white;</string>
            </property>
            <property name="text">
             <string>Back </string>
+           </property>
+           <property name="icon">
+            <iconset resource="resources.qrc">
+             <normaloff>:/img/images/back.svg</normaloff>:/img/images/back.svg</iconset>
            </property>
           </widget>
          </item>
@@ -100,6 +106,7 @@ color: white;
 selection-color: rgb(39, 182, 240);
 selection-background-color: rgb(77, 92, 245);
 font: 11pt &quot;Comfortaa&quot;;
+font: bold;
 background-color: rgb(102, 124, 246);</string>
            </property>
            <item>
@@ -394,6 +401,7 @@ border-radius: 8px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
 font: 11pt &quot;Comfortaa&quot;;
+font: bold;
 color: white;</string>
          </property>
          <property name="text">
@@ -409,6 +417,9 @@ color: white;</string>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">padding: 6px;
 border-color: rgb(77, 101, 246);
@@ -419,10 +430,15 @@ border-radius: 8px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
 font: 11pt &quot;Comfortaa&quot;;
+font: bold;
 color: white;</string>
          </property>
          <property name="text">
           <string>Retry</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/img/images/reset.svg</normaloff>:/img/images/reset.svg</iconset>
          </property>
         </widget>
        </item>
@@ -432,6 +448,8 @@ color: white;</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -30,7 +30,7 @@
        <family>Audiowide</family>
        <pointsize>24</pointsize>
        <italic>false</italic>
-       <bold>false</bold>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -39,7 +39,8 @@ border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
 background-image: url(:/background/images/bg/intro bg.png);
-font: 24pt &quot;Audiowide&quot;;</string>
+font: 24pt &quot;Audiowide&quot;;
+font: bold;</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; color:#ffffff;&quot;&gt;DICTIONARY - GROUP 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -62,6 +63,8 @@ font: 24pt &quot;Audiowide&quot;;</string>
        <property name="font">
         <font>
          <pointsize>14</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
         </font>
        </property>
        <property name="layoutDirection">
@@ -75,7 +78,8 @@ border-style:inset;
 border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(102, 124, 246);</string>
+background-color: rgb(102, 124, 246);
+font: bold;</string>
        </property>
        <property name="text">
         <string/>
@@ -130,6 +134,7 @@ color: white;
 selection-color: rgb(39, 182, 240);
 selection-background-color: rgb(77, 92, 245);
 font: 11pt &quot;Comfortaa&quot;;
+font: bold;
 background-color: rgb(102, 124, 246);</string>
        </property>
        <item>
@@ -173,6 +178,7 @@ color: white;
 selection-color: rgb(39, 182, 240);
 selection-background-color: rgb(77, 92, 245);
 font: 11pt &quot;Comfortaa&quot;;
+font: bold;
 background-color: rgb(102, 124, 246);</string>
        </property>
        <item>
@@ -224,6 +230,7 @@ background-color: rgb(102, 124, 246);</string>
 	selection-color: rgb(39, 182, 240);
 	selection-background-color: rgb(77, 92, 245);
 	font: 11pt &quot;Comfortaa&quot;;
+	font: bold;
 }</string>
        </property>
        <property name="placeholderText">
@@ -406,7 +413,8 @@ border-style:inset;
 border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(102, 124, 246);</string>
+background-color: rgb(102, 124, 246);
+font: bold;</string>
            </property>
            <property name="text">
             <string/>
@@ -434,7 +442,8 @@ border-style:inset;
 border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(102, 124, 246);</string>
+background-color: rgb(102, 124, 246);
+font: bold;</string>
            </property>
            <property name="text">
             <string/>
@@ -461,7 +470,8 @@ border-style:inset;
 border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(102, 124, 246);</string>
+background-color: rgb(102, 124, 246);
+font: bold;</string>
            </property>
            <property name="text">
             <string/>
@@ -488,7 +498,8 @@ border-style:inset;
 border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
-background-color: rgb(102, 124, 246);</string>
+background-color: rgb(102, 124, 246);
+font: bold;</string>
            </property>
            <property name="text">
             <string/>
@@ -518,7 +529,7 @@ background-color: rgb(102, 124, 246);</string>
              <family>Comfortaa</family>
              <pointsize>17</pointsize>
              <italic>false</italic>
-             <bold>false</bold>
+             <bold>true</bold>
             </font>
            </property>
            <property name="styleSheet">
@@ -530,7 +541,8 @@ border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
 background-image: url(:/background/images/bg/mid button.png);
-font: 17pt &quot;Comfortaa&quot;;</string>
+font: 17pt &quot;Comfortaa&quot;;
+font: bold;</string>
            </property>
            <property name="text">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:700; color:#ffffff;&quot;&gt;Daily Word&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

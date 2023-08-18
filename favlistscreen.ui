@@ -191,6 +191,7 @@ border-radius: 20px;
   min-width: 20px;
 background-image: url(:/background/images/bg/intro bg.png);
 font: 24pt &quot;Audiowide&quot;;
+font: bold;
 color:white;</string>
        </property>
        <property name="text">
