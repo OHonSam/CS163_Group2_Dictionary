@@ -32,7 +32,8 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
-font: 11pt &quot;Comfortaa&quot;;</string>
+font: 11pt &quot;Comfortaa&quot;;
+color: white;</string>
          </property>
          <property name="text">
           <string>Back </string>
@@ -63,7 +64,8 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
-font: 11pt &quot;Comfortaa&quot;;</string>
+font: 11pt &quot;Comfortaa&quot;;
+color: white;</string>
          </property>
          <property name="text">
           <string>Remove</string>
@@ -87,7 +89,8 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
-font: 11pt &quot;Comfortaa&quot;;</string>
+font: 11pt &quot;Comfortaa&quot;;
+color: white;</string>
          </property>
          <property name="text">
           <string>Clear</string>
