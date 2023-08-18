@@ -42,6 +42,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dSearch.ui
         addnewword.h addnewword.cpp
         addnewword.ui
+        quiz.h quiz.cpp quiz.ui
+
+
 
 
     )
