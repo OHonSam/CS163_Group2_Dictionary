@@ -49,6 +49,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
 
 
+
     )
 # Define target properties for Andro
 #    set_property(TARGET Qt_UI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
