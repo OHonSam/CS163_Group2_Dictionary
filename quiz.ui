@@ -391,6 +391,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">padding: 6px;
 border-color: rgb(77, 101, 246);
@@ -406,6 +409,10 @@ color: white;</string>
          </property>
          <property name="text">
           <string>New Quiz</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/img/images/new.svg</normaloff>:/img/images/new.svg</iconset>
          </property>
         </widget>
        </item>

@@ -12,6 +12,7 @@
         <file>images/trash-bin.svg</file>
         <file>images/remove.svg</file>
         <file>images/eraser.svg</file>
+        <file>images/new.svg</file>
     </qresource>
     <qresource prefix="/background">
         <file>images/bg/slash mid bg.jpg</file>
