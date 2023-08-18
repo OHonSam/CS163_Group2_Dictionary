@@ -41,7 +41,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         editscreen.ui
         dSearch.ui
         addnewword.h addnewword.cpp
-        baddnewword.ui
+        addnewword.ui
 
 
     )

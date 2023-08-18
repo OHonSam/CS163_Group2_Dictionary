@@ -6,7 +6,7 @@
 #include <Dict.hpp>
 
 namespace Ui {
-class HistoryScreen;
+class AddNewWord;
 }
 
 class HistoryScreen : public QWidget
@@ -31,7 +31,7 @@ private slots:
     void on_pushButton_remove_clicked();
 
 private:
-    Ui::HistoryScreen *ui;
+    Ui::AddNewWord *ui;
     Dict *dict;
 
     void update();
