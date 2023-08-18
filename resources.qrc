@@ -1,35 +1,23 @@
 <RCC>
-    <qresource prefix="/img">
-        <file>images/small ombre.png</file>
-        <file>images/compress/long ombre rotated.jpg</file>
+    <qresource prefix="/icon">
         <file>images/search.svg</file>
         <file>images/heart.svg</file>
         <file>images/heart-fill.svg</file>
         <file>images/history.svg</file>
-        <file>images/button pastel/pastel button blue-pink.png</file>
         <file>images/cloud ombre.png</file>
         <file>images/edit icon.svg</file>
         <file>images/pencil.svg</file>
         <file>images/reset.svg</file>
         <file>images/zoom.svg</file>
+        <file>images/back.svg</file>
     </qresource>
     <qresource prefix="/background">
-        <file>images/watercolor button/surface-with-abstract-watercolor-paint.jpg</file>
-        <file>images/watercolor button/light water bg.jpg</file>
-        <file>images/bg/orange.jpg</file>
-        <file>images/bg/pink.jpg</file>
-        <file>images/bg/small orange.jpg</file>
         <file>images/bg/slash mid bg.jpg</file>
-        <file>images/bg/intro bg.jpg</file>
-        <file>images/bg/intro bg 2.jpg</file>
         <file>images/bg/button.png</file>
         <file>images/bg/mid button.png</file>
         <file>images/bg/intro bg.png</file>
     </qresource>
-    <qresource prefix="/button">
-        <file>images/watercolor button/water-button green.png</file>
-        <file>images/watercolor button/water-button jade.png</file>
-    </qresource>
+    <qresource prefix="/button"/>
     <qresource prefix="/font">
         <file>font/Comfortaa/static/Comfortaa-Bold.ttf</file>
         <file>font/Comfortaa/static/Comfortaa-Light.ttf</file>
