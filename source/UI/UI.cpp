@@ -660,6 +660,7 @@ void UI::Menu() {
 	if (game) {
 		DrawRectangleRoundedLines(Home.buttonShape, 0.1, 10, 4, {253, 84, 145, 255});
 		DrawRectangleRoundedLines(Game.buttonShape, 0.1, 10, 4, {255, 255, 255, 255});
+		DrawGame();
 		// if (history || datasets || reset || favourite || home) game = false;
 	}
 	return;
@@ -1273,6 +1274,7 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 				for (int j = 0; j < new_word -> def[i].size(); j++)
 				{
 					typenew[inputindex].currentInput = new_word -> def[i][j];
+					typenew[inputindex].posCursor = 0;
 					inputindex++;
 				}
 			}
@@ -1282,6 +1284,7 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 		inputindex = 0;
 		wheel = 0;
 		neww ^= 1;
+		
 	}
 	if (Modify.state == 3) {
 		inputindex = 1;
@@ -1290,8 +1293,14 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 				for (int j = 0; j < word -> def[i].size(); j++)
 				{
 					typenew[inputindex].currentInput = word -> def[i][j];
+					typenew[inputindex].posCursor = 0;
 					inputindex++;
 				}
+			}
+			else {
+				word -> def[i].push_back("");
+				word -> type += (1 << i);
+				i--;
 			}
 		}
 		posTextX = 236;
@@ -1452,6 +1461,11 @@ void UI::run() {
 }
 
 void UI::DrawModifyBox(Word* &word) {
+	
+	if (!word) {
+		std::cout << "Error" << '\n';
+		return;
+	}
 	static float wheelModify = 0;
 	int scrollspeed = 50;
 	display.x = 138;
@@ -1469,6 +1483,7 @@ void UI::DrawModifyBox(Word* &word) {
 	done.SetBox(1010, 180, 128, 44, {253, 84, 145, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
 	done.SetText(title_font, "Done", GetCenterPos(title_font, "Done", 36, 1, done.buttonShape), 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
 	done.DrawText(mouseCursor);
+	
 	if (done.state == 3) {
 		if (beingmodified) {
 			dict -> removeDefTrie(word);
@@ -1503,23 +1518,63 @@ void UI::DrawModifyBox(Word* &word) {
 						cnt++;
 						// verb always?
 					}
+					if (!word -> def[i].size()) word -> type -= (1 << i);
 				}
 			}
 			dict -> addDefTrie(word);
 		}
+		else if (neww) {
+			std::cout << word -> word << "y" << '\n';
+			int cnt = 0;
+			if (typenew[0].getInput().size()) {
+				word -> word = typenew[cnt].getInput();
+				cnt++;
+				for (int i = 0; i < 9; i++) {
+					if (word -> def[i].size()) {
+						// std::cout << word -> def[i].size();
+						for (int j = 0; j < word -> def[i].size(); j++) {
+							// std::cout << word -> def[i].size() << ' ' << i << ' ' << j << '\n';
+							// std::cout << typenew[cnt].getInput() << '\n';
+							if (typenew[cnt].getInput().size()) {
+								// dict -> updateDef(word -> word, 1 << i, word -> def[i][j], typenew[cnt].getInput());
+								// std::cout << word -> def[i].size() << ' ' << i << ' ' << j << '\n';
+								// std::cout << word -> def[0][0] << '\n';
+								// std::cout << typenew[cnt].getInput() << '\n';
+								word -> def[i][j] = typenew[cnt].getInput();
+								// std::cout << word -> def[0][0] << '\n';
+								// std::cout << "done";
+								// break;
+							}
+							else {
+								word -> def[i].erase(word -> def[i].begin() + j);
+								j--;
+							}
+							cnt++;
+							// verb always?
+						}
+					}
+					if (word -> def[i].size()) word -> type += (1 << i);
+				}
+			}
+			else {
+				delete word;
+				word = nullptr;
+			}
+		}
 		
+		homestate = 0;
 		
-		
-		homestate = 9;
-		if (word -> word.size()) {
+		if (word && word -> word.size()) {
+			if (!dict -> isInDict(word -> word)) dict -> addWord(word, true);
+			homestate = 9;
 			keyword = word -> word;
 			draw = dict -> searchForDef(word -> word);
 		}
-		
 		// std::cout << draw -> word << " " << word -> word << '\n';
 		if (neww) neww ^= 1;
 		else if (beingmodified) beingmodified ^= 1;
 		wheelModify = 0;
+		return;
 		// std::cout << draw -> def[0][0] << '\n';
 	}
 	// posTextX = 236;
@@ -1548,24 +1603,36 @@ void UI::DrawModifyBox(Word* &word) {
 		typenew[inputindex].Draw();
 	}
 	inputindex++;
+	
 	for (int i = 0; i < 9; i++) {
 		if (word -> def[i].size()) {
 			posTextY += 50;
-			if ((float) posTextY + wheelModify >= 380 && (float) posTextY + wheelModify + MeasureTextEx(title_font, (POS::TypeString[i]).c_str(), 50, 1).y <= 770) DrawTextEx(title_font, (POS::TypeString[i]).c_str(), {193, (float) posTextY + wheelModify}, 50, 1, {220, 205, 255, 255});
+			if ((float) posTextY + wheelModify >= 380 && (float) posTextY + wheelModify + MeasureTextEx(title_font, (POS::TypeString[i]).c_str(), 50, 1).y <= 770) {
+				DrawTextEx(title_font, (POS::TypeString[i]).c_str(), {193, (float) posTextY + wheelModify}, 50, 1, {220, 205, 255, 255});
+				DrawTextureEx(newword, {193 + MeasureTextEx(title_font, (POS::TypeString[i]).c_str(), 50, 1).x + 20, (float) posTextY + wheelModify + 10}, 0, 0.017, WHITE);
+				addpos[i].SetBox(193 + MeasureTextEx(title_font, (POS::TypeString[i]).c_str(), 50, 1).x + 20, (float) posTextY + wheelModify + 10, 35, 35, {253, 84, 145, 0}, {173, 170, 171, 0}, {93, 93, 93, 0});
+				addpos[i].SetText(title_font, "", {25, 7}, 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+				addpos[i].DrawText(mouseCursor);
+			}
 			for (int j = 0; j < word -> def[i].size(); j++) {
+				
 				posTextY += 50;
 				typenew[inputindex].SetColorText(title_color, title_color, title_color);
 				typenew[inputindex].SetColorBox({248, 199, 199, 255}, {248, 199, 199, 255}, {248, 199, 199, 255});
 				typenew[inputindex].colorCornerDefault = {230, 72, 72, 255};
 				typenew[inputindex].Construct(posTextX, posTextY + wheelModify, 750, 48, word_font, {(float) posTextX, (float) posTextY + wheelModify}, 44, 1, 1000);
-				if ((float) posTextY + wheelModify >= 380 && (float) posTextY + wheelModify + 48 <= 770) typenew[inputindex].Draw();
 				typenew[inputindex].MAX_SIZE = 10000;
+				// std::cout << inputindex << '\n';
+				if ((float) posTextY + wheelModify >= 380 && (float) posTextY + wheelModify + 48 <= 770) typenew[inputindex].Draw();
 				inputindex++;
+				// std::cout << new_word -> word << "x" << '\n';
 				// DrawLongText(word -> def[i][j], highlight);
 			}
 		}
 	}
-	
+	for (int i = 0; i < 9; i++) {
+		if (addpos[i].state == 3) word -> def[i].push_back("");
+	}
 	wheelModify += GetMouseWheelMove() * scrollspeed;
 	if (wheelModify + posTextY + 50 < 770) wheelModify = 770 - posTextY - 50;
 	if (wheelModify > 0) wheelModify = 0;
@@ -1574,6 +1641,9 @@ void UI::DrawModifyBox(Word* &word) {
 	return;
 }
 
+void UI::DrawGame() {
+	return;
+}
 // add renew button to view random words, homestate = 0, get daily word again;
 // add modify button 
 // add remove button 

@@ -82,6 +82,7 @@ public:
     Button key;
     Button renew;
     Button done;
+    Button addpos[9]; // pos: part of speech
     DataSet::Type cur;
     std::string keyword;
     std::string definition;
@@ -104,12 +105,12 @@ public:
     const int screenHeight = 832;
 
     Dict* dict;
-
     void DefaultWindow();
     void Menu();
     void DrawFavouriteScreen();
     void DrawHistoryScreen();
     void DrawHomeScreen();
+    void DrawGame();
     void DrawDailyWords();
     void DrawSearchforDef(Word* word);
     void DrawSearchforWord(const std::string def, std::vector <std::string> foundwords);
