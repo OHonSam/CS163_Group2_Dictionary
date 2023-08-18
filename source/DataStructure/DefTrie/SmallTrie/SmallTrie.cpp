@@ -46,7 +46,7 @@ void SmallTrie::remove(Node* &root, const std::string& word, int index) {
     
     if (root -> numWords == 0 && root != SmallTrie::root)
     {
-        delete root;
+        // delete root;
         root = nullptr;
     }
     return;
@@ -100,7 +100,10 @@ int SmallTrie::save(Node* root, std::ofstream &out) {
 
 bool SmallTrie::import(Node* &root, std::ifstream &in, int read_space) {
     // if (!read_space) return false;
-    if (!root) root = new Node();
+    // int a = 0;
+    // if (root) a = 9;
+    // if (!root)
+    root = new Node();
     in.read((char*) &(root -> isEnd), sizeof (bool));
     in.read((char*) &(root -> numWords), sizeof (int));
     int size;

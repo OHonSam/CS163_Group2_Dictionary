@@ -93,6 +93,7 @@ public:
     std::vector <std::string> favlist;
 	Rectangle fav[100];
     float wheel = 0;
+    float wheel1 = 0;
     std::vector <std::string> hislist;
     std::vector <std::string> foundwords;
     Rectangle his[100];

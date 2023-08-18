@@ -1195,7 +1195,7 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 	}
 	x = dict -> isInFavList(word -> word);
 	int scrollspeed = 50;
-	wheel += GetMouseWheelMove() * scrollspeed;
+	if (!neww && !beingmodified) wheel += GetMouseWheelMove() * scrollspeed;
 	int lim;
 		posTextX = 236;
 		posTextY = 330;
@@ -1452,8 +1452,8 @@ void UI::run() {
 }
 
 void UI::DrawModifyBox(Word* &word) {
+	static float wheelModify = 0;
 	int scrollspeed = 50;
-	wheel += GetMouseWheelMove() * scrollspeed;
 	display.x = 138;
 	display.y = 307;
 	display.width = 1017;
@@ -1511,11 +1511,15 @@ void UI::DrawModifyBox(Word* &word) {
 		
 		
 		homestate = 9;
-		keyword = word -> word;
-		draw = dict -> searchForDef(word -> word);
+		if (word -> word.size()) {
+			keyword = word -> word;
+			draw = dict -> searchForDef(word -> word);
+		}
+		
 		// std::cout << draw -> word << " " << word -> word << '\n';
 		if (neww) neww ^= 1;
 		else if (beingmodified) beingmodified ^= 1;
+		wheelModify = 0;
 		// std::cout << draw -> def[0][0] << '\n';
 	}
 	// posTextX = 236;
@@ -1523,7 +1527,7 @@ void UI::DrawModifyBox(Word* &word) {
 	// for (int i = 0; i < 9; i++) {
 	// 	if (word -> def[i].size()) {
 	// 		posTextY += 50;
-	// 		if ((float) posTextY + wheel >= 380 && (float) posTextY + wheel + MeasureTextEx(title_font, (POS::TypeString[i]).c_str(), 50, 1).y <= 770) DrawTextEx(title_font, (POS::TypeString[i]).c_str(), {193, (float) posTextY + wheel}, 50, 1, {220, 205, 255, 255});
+	// 		if ((float) posTextY + wheelModify >= 380 && (float) posTextY + wheelModify + MeasureTextEx(title_font, (POS::TypeString[i]).c_str(), 50, 1).y <= 770) DrawTextEx(title_font, (POS::TypeString[i]).c_str(), {193, (float) posTextY + wheelModify}, 50, 1, {220, 205, 255, 255});
 	// 		for (int j = 0; j < word -> def[i].size(); j++) {
 	// 			DrawLongText(word -> def[i][j], highlight);
 	// 		}
@@ -1547,22 +1551,24 @@ void UI::DrawModifyBox(Word* &word) {
 	for (int i = 0; i < 9; i++) {
 		if (word -> def[i].size()) {
 			posTextY += 50;
-			if ((float) posTextY + wheel >= 380 && (float) posTextY + wheel + MeasureTextEx(title_font, (POS::TypeString[i]).c_str(), 50, 1).y <= 770) DrawTextEx(title_font, (POS::TypeString[i]).c_str(), {193, (float) posTextY + wheel}, 50, 1, {220, 205, 255, 255});
+			if ((float) posTextY + wheelModify >= 380 && (float) posTextY + wheelModify + MeasureTextEx(title_font, (POS::TypeString[i]).c_str(), 50, 1).y <= 770) DrawTextEx(title_font, (POS::TypeString[i]).c_str(), {193, (float) posTextY + wheelModify}, 50, 1, {220, 205, 255, 255});
 			for (int j = 0; j < word -> def[i].size(); j++) {
 				posTextY += 50;
 				typenew[inputindex].SetColorText(title_color, title_color, title_color);
 				typenew[inputindex].SetColorBox({248, 199, 199, 255}, {248, 199, 199, 255}, {248, 199, 199, 255});
 				typenew[inputindex].colorCornerDefault = {230, 72, 72, 255};
-				typenew[inputindex].Construct(posTextX, posTextY + wheel, 750, 48, word_font, {(float) posTextX, (float) posTextY + wheel}, 44, 1, 1000);
-				if ((float) posTextY + wheel >= 380 && (float) posTextY + wheel + 48 <= 770) typenew[inputindex].Draw();
+				typenew[inputindex].Construct(posTextX, posTextY + wheelModify, 750, 48, word_font, {(float) posTextX, (float) posTextY + wheelModify}, 44, 1, 1000);
+				if ((float) posTextY + wheelModify >= 380 && (float) posTextY + wheelModify + 48 <= 770) typenew[inputindex].Draw();
 				typenew[inputindex].MAX_SIZE = 10000;
 				inputindex++;
 				// DrawLongText(word -> def[i][j], highlight);
 			}
 		}
 	}
-	if (wheel + (inputindex - 1)* 48 + (inputindex + 7) * 50 < 770) wheel = 770 - ((inputindex - 1)* 48 + (inputindex + 7) * 50);
-	if (wheel > 0) wheel = 0;
+	
+	wheelModify += GetMouseWheelMove() * scrollspeed;
+	if (wheelModify + posTextY + 50 < 770) wheelModify = 770 - posTextY - 50;
+	if (wheelModify > 0) wheelModify = 0;
 	// call remove and add.
 
 	return;
