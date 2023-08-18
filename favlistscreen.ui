@@ -57,25 +57,6 @@ color: white;</string>
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_remove">
-         <property name="styleSheet">
-          <string notr="true">padding: 6px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
-border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);
-font: 11pt &quot;Comfortaa&quot;;
-color: white;</string>
-         </property>
-         <property name="text">
-          <string>Edit</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QPushButton" name="pushButton_clear">
          <property name="maximumSize">
           <size>
