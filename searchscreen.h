@@ -1,5 +1,5 @@
-#ifndef SEARCHFORDEF_H
-#define SEARCHFORDEF_H
+#ifndef SEARCHSCREEN_H
+#define SEARCHSCREEN_H
 
 #include <QWidget>
 #include <QCompleter>
@@ -41,4 +41,4 @@ private:
     QStringList suggestions;
 };
 
-#endif // SEARCHFORDEF_H
+#endif // SEARCHSCREEN_H

@@ -16,8 +16,11 @@
   <layout class="QFormLayout" name="formLayout">
    <item row="0" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
+     <item row="1" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <property name="topMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QPushButton" name="pushButton_goBack">
          <property name="styleSheet">
@@ -29,7 +32,8 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
-font: 11pt &quot;Comfortaa&quot;;</string>
+font: 11pt &quot;Comfortaa&quot;;
+color: white;</string>
          </property>
          <property name="text">
           <string>Back </string>
@@ -49,9 +53,53 @@ font: 11pt &quot;Comfortaa&quot;;</string>
          </property>
         </spacer>
        </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_remove">
+         <property name="styleSheet">
+          <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
+color: white;</string>
+         </property>
+         <property name="text">
+          <string>Remove</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_clear">
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
+color: white;</string>
+         </property>
+         <property name="text">
+          <string>Clear</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
-     <item row="1" column="0">
+     <item row="2" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -75,11 +123,13 @@ border-style:solid;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
-background-color: rgb(233, 240, 250);
 border-color: rgb(99, 112, 243);
 font: 13pt &quot;Comfortaa&quot;;
 font: bold;
-color: black;;</string>
+color: white;
+border-color: rgb(78, 91, 247);
+background-image: url(:/background/images/bg/mid button.png);
+</string>
            </property>
            <property name="text">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Top 20 most recent history search &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -97,72 +147,30 @@ border-radius: 20px;
   min-width: 20px;
 background-color: rgb(233, 240, 250);
 border-color: rgb(99, 112, 243);
-font: 13pt &quot;Comfortaa&quot;;</string>
+font: 13pt &quot;Comfortaa&quot;;
+color: rgb(56, 64, 139);</string>
            </property>
           </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_remove">
-             <property name="styleSheet">
-              <string notr="true">padding: 6px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
-border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);
-font: 11pt &quot;Comfortaa&quot;;</string>
-             </property>
-             <property name="text">
-              <string>Remove</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_clear">
-             <property name="maximumSize">
-              <size>
-               <width>100</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">padding: 6px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
-border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);
-font: 11pt &quot;Comfortaa&quot;;</string>
-             </property>
-             <property name="text">
-              <string>Clear</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
          </item>
         </layout>
        </item>
       </layout>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushButton">
+       <property name="styleSheet">
+        <string notr="true">padding: 20px;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-image: url(:/background/images/bg/intro bg.png);
+font: 24pt &quot;Audiowide&quot;;
+color:white;</string>
+       </property>
+       <property name="text">
+        <string>Dictionary - Group 2</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

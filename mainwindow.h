@@ -5,7 +5,7 @@
 
 #include <homescreen.h>
 #include <historyscreen.h>
-#include<searchfordef.h>
+#include<searchscreen.h>
 #include<cSearch.h>
 #include <Dict.hpp>
 #include<bEdit.h>

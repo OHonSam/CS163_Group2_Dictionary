@@ -1,5 +1,5 @@
 #include "searchfordef.h"
-#include "ui_searchfordef.h"
+#include "ui_searchscreen.h"
 
 #include <QListView>
 
