@@ -100,7 +100,7 @@ color: white;</string>
        <property name="styleSheet">
         <string notr="true">padding: 12px;
 padding-left: 30px;
-padding-right: 32px;
+padding-right: 40px;
 border-width : 2px;
 border-style:solid;
 border-radius: 20px;
