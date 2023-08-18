@@ -21,24 +21,6 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item>
-          <widget class="QPushButton" name="pushButton_goBack">
-           <property name="styleSheet">
-            <string notr="true">padding: 6px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
-border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);
-font: 11pt &quot;Comfortaa&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Back </string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <spacer name="horizontalSpacer_3">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -146,6 +128,24 @@ background-color: rgb(102, 124, 246);</string>
               </size>
              </property>
             </spacer>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="pushButton_goBack">
+             <property name="styleSheet">
+              <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Back </string>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>

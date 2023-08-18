@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>881</width>
+    <height>935</height>
+   </rect>
+  </property>
   <property name="font">
    <font>
     <family>Rounded Mplus 1c</family>
@@ -36,7 +44,7 @@
       <widget class="QWidget" name="dummy"/>
      </widget>
     </item>
-    <item row="0" column="0" colspan="2">
+    <item>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
        <widget class="QLabel" name="title">
@@ -72,7 +80,7 @@ background-image: url(:/background/images/bg/intro bg.png);</string>
       </item>
      </layout>
     </item>
-    <item row="2" column="0">
+    <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QPushButton" name="pushButton_4">
@@ -217,7 +225,7 @@ border-radius: 20px;
       </item>
      </layout>
     </item>
-    <item row="2" column="1">
+    <item>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <layout class="QGridLayout" name="gridLayout_2">
@@ -229,37 +237,6 @@ border-radius: 20px;
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">padding: 10px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
-border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-background-color: rgb(102, 124, 246);</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="resources.qrc">
-              <normaloff>:/img/images/heart.svg</normaloff>
-              <normalon>:/img/images/heart-fill.svg</normalon>:/img/images/heart.svg</iconset>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
-            </attribute>
-           </widget>
-          </item>
           <item row="1" column="3">
            <widget class="QPushButton" name="pushButton_10">
             <property name="sizePolicy">
@@ -342,6 +319,37 @@ background-color: rgb(102, 124, 246);</string>
              <iconset resource="resources.qrc">
               <normaloff>:/img/images/zoom.svg</normaloff>:/img/images/zoom.svg</iconset>
             </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">padding: 10px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/img/images/heart.svg</normaloff>
+              <normalon>:/img/images/heart-fill.svg</normalon>:/img/images/heart.svg</iconset>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
            </widget>
           </item>
           <item row="0" column="0" rowspan="2" colspan="2">
@@ -443,7 +451,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1124</width>
+     <width>881</width>
      <height>24</height>
     </rect>
    </property>
@@ -455,7 +463,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="menuHomescreen"/>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
  <buttongroups>
   <buttongroup name="buttonGroup"/>
