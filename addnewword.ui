@@ -77,18 +77,24 @@ color: white;</string>
          </item>
         </layout>
        </item>
-       <item>
-        <layout class="QFormLayout" name="formLayout">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="pushButton_2">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">padding: 10px;
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="1">
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">padding: 12px;
+padding-left: 30px;
+padding-right: 32px;
 border-width : 2px;
 border-style:solid;
 border-radius: 20px;
@@ -101,48 +107,13 @@ color: white;
 border-color: rgb(78, 91, 247);
 background-image: url(:/background/images/bg/mid button.png);
 </string>
-           </property>
-           <property name="text">
-            <string>Enter a new word</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QTextEdit" name="textEdit_4">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>34</width>
-             <height>34</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">padding: 5px;
-border-width : 2px;
-border-style:solid;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px;
-background-color: rgb(233, 240, 250);
-border-color: rgb(99, 112, 243);
-font: 13pt &quot;Comfortaa&quot;;
-color: rgb(56, 64, 139);</string>
-           </property>
-           <property name="placeholderText">
-            <string>Old Word</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
+       </property>
+       <property name="text">
+        <string>Enter a new word</string>
+       </property>
+      </widget>
      </item>
-     <item>
+     <item row="1" column="0">
       <layout class="QFormLayout" name="formLayout_2">
        <item row="0" column="0">
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -248,10 +219,24 @@ background-color: rgb(102, 124, 246);</string>
          </item>
         </layout>
        </item>
-       <item row="0" column="1">
-        <widget class="QTextEdit" name="textEdit_3">
-         <property name="styleSheet">
-          <string notr="true">padding: 20px;
+      </layout>
+     </item>
+     <item row="0" column="1">
+      <widget class="QTextEdit" name="textEdit_4">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>34</width>
+         <height>34</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">padding: 5px;
 border-width : 2px;
 border-style:solid;
 border-radius: 20px;
@@ -261,13 +246,30 @@ background-color: rgb(233, 240, 250);
 border-color: rgb(99, 112, 243);
 font: 13pt &quot;Comfortaa&quot;;
 color: rgb(56, 64, 139);</string>
-         </property>
-         <property name="placeholderText">
-          <string>Old Definition(s) of POS of Old Word</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+       </property>
+       <property name="placeholderText">
+        <string>Old Word</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QTextEdit" name="textEdit_3">
+       <property name="styleSheet">
+        <string notr="true">padding: 20px;
+border-width : 2px;
+border-style:solid;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-color: rgb(233, 240, 250);
+border-color: rgb(99, 112, 243);
+font: 13pt &quot;Comfortaa&quot;;
+color: rgb(56, 64, 139);</string>
+       </property>
+       <property name="placeholderText">
+        <string>Old Definition(s) of POS of Old Word</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
