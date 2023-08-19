@@ -37,7 +37,7 @@ QString HTML_Creator::toHTML(const Word *word){
                    "<p align=\"justify\" "
                    "style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
                    "<span style=\" font-size:14pt; font-weight:700; color:#414699;\">"
-                   "    - %1"
+                   "- %1"
                    "</span></p>"
                            ).arg(QString::fromStdString(def));
         }

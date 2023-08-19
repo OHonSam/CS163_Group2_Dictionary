@@ -27,7 +27,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
 		html_creator.h html_creator.cpp
 
-        historyscreen.h historyscreen.cpp historyscreen.ui
+		historyscreen.h historyscreen.cpp historyscreen.ui
 
 		homescreen.h homescreen.cpp homescreen.ui
 

@@ -63,7 +63,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &historyScreen,SLOT(updateHistory(std::string,bool))
     );
     connect(
-        &homeScreen,SIGNAL(switchToScreenScreen(std::string)),
+        &homeScreen,SIGNAL(switchToSearchScreen(std::string)),
         this,SLOT(switchToSearchScreen(std::string))
     );
     connect(
@@ -73,14 +73,6 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     connect(
         this,SIGNAL(giveWord(std::string)),
         &searchScreen,SLOT(receiveWord(std::string))
-    );
-    connect(
-        &homeScreen,SIGNAL(switchDataSet()),
-        &homeScreen,SLOT(updateCompleter())
-    );
-    connect(
-        &homeScreen,SIGNAL(switchDataSet()),
-        &searchScreen,SLOT(updateCompleter())
     );
 }
 

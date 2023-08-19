@@ -70,8 +70,7 @@ void HomeScreen::on_comboBox_dictVersion_currentIndexChanged(int index)
         return;
     }
     showDailyWord();
-
-    emit switchDataSet();
+    updateCompleter();
 }
 
 
