@@ -115,3 +115,9 @@ void HomeScreen::on_pushButton_FavScreen_clicked()
     emit switchScreen(Screen::FavList);
 }
 
+
+void HomeScreen::on_pushButton_EditScreen_clicked()
+{
+    emit switchScreen(Screen::Edit);
+}
+

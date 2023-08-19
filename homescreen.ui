@@ -244,7 +244,7 @@ background-color: rgb(102, 124, 246);</string>
    <item row="2" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton_edit">
+      <widget class="QPushButton" name="pushButton_EditScreen">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
          <horstretch>12</horstretch>
@@ -281,7 +281,7 @@ border-radius: 20px;
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushButton_AddScreen">
        <property name="styleSheet">
         <string notr="true">background-image: url(:/background/images/bg/button.png);
 padding: 30px;
@@ -379,7 +379,7 @@ border-radius: 20px;
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_8">
+      <widget class="QPushButton" name="pushButton_reset">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
          <horstretch>12</horstretch>

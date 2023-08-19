@@ -32,6 +32,8 @@ private slots:
 
     void on_pushButton_FavScreen_clicked();
 
+    void on_pushButton_EditScreen_clicked();
+
 private:
     Ui::HomeScreen *ui;
     QCompleter completer;
