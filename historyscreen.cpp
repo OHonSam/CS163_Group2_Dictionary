@@ -42,3 +42,11 @@ void HistoryScreen::on_pushButton_remove_clicked()
         update();
     }
 }
+
+void HistoryScreen::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+    QString word=item->text();
+    emit sendToSearchScreen(word.mid(word.indexOf(' ')+1).toStdString());
+    emit switchScreen(Screen::Search);
+}
+

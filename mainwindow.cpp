@@ -111,6 +111,10 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &homeScreen,SIGNAL(sendToSearchScreen(std::string)),
         &searchScreen,SLOT(receiveInputString(std::string))
     );
+    connect(
+        &historyScreen,SIGNAL(sendToSearchScreen(std::string)),
+        &searchScreen,SLOT(receiveInputString(std::string))
+    );
 }
 
 MainWindow::~MainWindow()
