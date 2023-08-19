@@ -104,6 +104,15 @@ void HomeScreen::showDailyWord(){
     Word* w=dict->getDailyWord();
     dailyWord=w->word;
     ui->textBrowser->setHtml(HTML_Creator::toHTML(w));
+
+    if(dict->isInFavList(dailyWord)){
+        ui->pushButton_setFav->setCheckable(true);
+        ui->pushButton_setFav->setIcon(heartFillIcon);
+    }
+    else{
+        ui->pushButton_setFav->setCheckable(false);
+        ui->pushButton_setFav->setIcon(heartIcon);
+    }
 }
 
 void HomeScreen::on_pushButton_resetDailyWord_clicked()
@@ -152,10 +161,12 @@ void HomeScreen::on_lineEdit_search_returnPressed()
 void HomeScreen::on_pushButton_setFav_clicked(bool checked)
 {
     if(checked){
+        dict->removeFav(dailyWord);
         ui->pushButton_setFav->setCheckable(false);
         ui->pushButton_setFav->setIcon(heartIcon);
     }
     else{
+        dict->addFav(dailyWord);
         ui->pushButton_setFav->setCheckable(true);
         ui->pushButton_setFav->setIcon(heartFillIcon);
     }
