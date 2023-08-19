@@ -11,8 +11,6 @@
 #include "addnewword.h"
 #include "quiz.h"
 
-#include "screen.h"
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE

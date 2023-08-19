@@ -4,7 +4,7 @@
 #include <QWidget>
 
 #include <Dict.hpp>
-#include "screen.h"
+#include "myscreen.h"
 
 namespace Ui {
 class FavListScreen;

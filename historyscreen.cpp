@@ -2,9 +2,8 @@
 #include "ui_historyscreen.h"
 
 HistoryScreen::HistoryScreen(Dict *dict, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::FavListScreen),
-    dict(dict)
+    MyScreen(dict,parent),
+    ui(new Ui::HistoryScreen)
 {
     ui->setupUi(this);
 
@@ -52,11 +51,4 @@ void HistoryScreen::on_pushButton_remove_clicked()
         dict->removeHistory(word.mid(word.indexOf(' ')+1).toStdString());
         update();
     }
-}
-
-
-void HistoryScreen::on_pushButton_title_clicked()
-{
-    qDebug()<<"Go back to home screen from history screen";
-    emit switchScreen(Screen::Home);
 }

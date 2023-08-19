@@ -25,7 +25,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         resources.qrc
 
-		screen.h
+		myscreen.h myscreen.cpp
 
 		html_creator.h html_creator.cpp
 

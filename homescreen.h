@@ -5,7 +5,7 @@
 #include <QCompleter>
 
 #include <Dict.hpp>
-#include "screen.h"
+#include "myscreen.h"
 
 namespace Ui {
 class HomeScreen;

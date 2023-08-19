@@ -1,26 +1,18 @@
 #ifndef HISTORYSCREEN_H
 #define HISTORYSCREEN_H
 
-#include <QWidget>
-
 #include <Dict.hpp>
-#include "screen.h"
+#include "myscreen.h"
 
 namespace Ui {
-class FavListScreen;
+class HistoryScreen;
 }
 
-class HistoryScreen : public QWidget
+class HistoryScreen : public MyScreen
 {
-    Q_OBJECT
-
 public:
     explicit HistoryScreen(Dict *dict, QWidget *parent = nullptr);
     ~HistoryScreen();
-
-signals:
-    void goBack();
-    void switchScreen(Screen::Type id);
 
 public slots:
     void updateHistory(const std::string& word, bool isAdd);
@@ -32,11 +24,8 @@ private slots:
 
     void on_pushButton_remove_clicked();
 
-    void on_pushButton_title_clicked();
-
 private:
-    Ui::FavListScreen *ui;
-    Dict *dict;
+    Ui::HistoryScreen *ui;
 
     void update();
 };
