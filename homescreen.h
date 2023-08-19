@@ -22,6 +22,9 @@ signals:
     void sendToSearchScreen(const std::string& input, Search::Type type);
     void sendToEditScreen(Word* word);
 
+public slots:
+    void updateDailyWord();
+
 private slots:
     void on_comboBox_dictVersion_currentIndexChanged(int index);
 

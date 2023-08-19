@@ -135,4 +135,9 @@ void MainWindow::switchScreen(Screen::Type id){
     if(id==Screen::GoBack) stackScreen.pop();
     else stackScreen.push(id);
     ui->stackedWidget->setCurrentIndex(stackScreen.top());
+    switch (stackScreen.top()){
+    case Screen::Home:
+        homeScreen.updateDailyWord();
+        break;
+    }
 }

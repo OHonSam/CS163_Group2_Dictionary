@@ -181,3 +181,6 @@ void HomeScreen::on_pushButton_editWord_clicked()
     emit switchScreen(Screen::Edit);
 }
 
+void HomeScreen::updateDailyWord(){
+    ui->textBrowser->setHtml(HTML_Creator::toHTML(dailyWord));
+}
