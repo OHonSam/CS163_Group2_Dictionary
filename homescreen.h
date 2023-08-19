@@ -20,7 +20,7 @@ public:
 signals:
     void updateHistory();
     void updateFavList();
-    void sendToSearchScreen(const std::string& word);
+    void sendToSearchScreen(const std::string& input, Search::Type type);
 
 private slots:
     void on_comboBox_dictVersion_currentIndexChanged(int index);

@@ -147,12 +147,14 @@ void HomeScreen::on_pushButton_QuizScreen_clicked()
 
 void HomeScreen::on_lineEdit_search_returnPressed()
 {
-    QString raw_word=ui->lineEdit_search->text();
-    std::string word=raw_word.toLower().toLocal8Bit().toStdString();
-    if(raw_word.toLower()==QString::fromStdString(word)){
-        dict->addHistory(word);
+    QString raw=ui->lineEdit_search->text();
+    std::string input=raw.toLower().toLocal8Bit().toStdString();
+    if(raw.toLower()==QString::fromStdString(input)){
         emit updateHistory();
-        emit sendToSearchScreen(word);
+        if(ui->comboBox_searchType->currentIndex()==int(Search::ForDef))
+            emit sendToSearchScreen(input,Search::ForDef);
+        else
+            emit sendToSearchScreen(input,Search::ForWord);
         emit switchScreen(Screen::Search);
     }
     else

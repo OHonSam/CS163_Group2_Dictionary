@@ -107,16 +107,16 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
 
     // 3. Send typed input to search screen
     connect(
-        &homeScreen,SIGNAL(sendToSearchScreen(std::string)),
-        &searchScreen,SLOT(receiveInputString(std::string))
+        &homeScreen,SIGNAL(sendToSearchScreen(std::string,Search::Type)),
+        &searchScreen,SLOT(receiveInputString(std::string,Search::Type))
     );
     connect(
-        &historyScreen,SIGNAL(sendToSearchScreen(std::string)),
-        &searchScreen,SLOT(receiveInputString(std::string))
+        &historyScreen,SIGNAL(sendToSearchScreen(std::string,Search::Type)),
+        &searchScreen,SLOT(receiveInputString(std::string,Search::Type))
     );
     connect(
-        &favListScreen,SIGNAL(sendToSearchScreen(std::string)),
-        &searchScreen,SLOT(receiveInputString(std::string))
+        &favListScreen,SIGNAL(sendToSearchScreen(std::string,Search::Type)),
+        &searchScreen,SLOT(receiveInputString(std::string,Search::Type))
     );
 }
 

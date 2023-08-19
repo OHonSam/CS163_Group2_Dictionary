@@ -123,12 +123,12 @@ background-color: rgb(102, 124, 246);</string>
        </property>
        <item>
         <property name="text">
-         <string>Key</string>
+         <string>Def</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Def</string>
+         <string>Word</string>
         </property>
        </item>
       </widget>

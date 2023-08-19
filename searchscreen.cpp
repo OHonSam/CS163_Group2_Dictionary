@@ -18,16 +18,20 @@ SearchScreen::~SearchScreen()
     delete ui;
 }
 
-void SearchScreen::receiveInputString(const std::string &word){
-    input=word;
-    ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->searchForDef(word)));
-    if(dict->isInFavList(word)){
-        ui->pushButton_setFav->setCheckable(true);
-        ui->pushButton_setFav->setIcon(heartFillIcon);
+void SearchScreen::receiveInputString(const std::string &input, Search::Type type){
+    if(type==Search::ForDef){ // input is a word
+        ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->searchForDef(input)));
+        if(dict->isInFavList(input)){
+            ui->pushButton_setFav->setCheckable(true);
+            ui->pushButton_setFav->setIcon(heartFillIcon);
+        }
+        else{
+            ui->pushButton_setFav->setCheckable(false);
+            ui->pushButton_setFav->setIcon(heartIcon);
+        }
     }
-    else{
-        ui->pushButton_setFav->setCheckable(false);
-        ui->pushButton_setFav->setIcon(heartIcon);
+    else{ // input is a definition
+        // to be continued
     }
 }
 

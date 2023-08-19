@@ -22,7 +22,7 @@ signals:
     void updateFavList();
 
 public slots:
-    void receiveInputString(const std::string& word);
+    void receiveInputString(const std::string& input, Search::Type type);
 
 private slots:
     void on_pushButton_setFav_clicked(bool checked);

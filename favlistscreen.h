@@ -18,7 +18,7 @@ public:
     ~FavListScreen();
 
 signals:
-    void sendToSearchScreen(const std::string& word);
+    void sendToSearchScreen(const std::string& word, Search::Type type = Search::ForDef);
 
 public slots:
     void update();

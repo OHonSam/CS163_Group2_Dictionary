@@ -19,6 +19,13 @@ enum Type{
 };
 }
 
+namespace Search{
+enum Type{
+    ForDef,
+    ForWord
+};
+}
+
 class MyScreen: public QWidget
 {
     Q_OBJECT
