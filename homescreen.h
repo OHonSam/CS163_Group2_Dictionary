@@ -20,6 +20,7 @@ public:
 signals:
     void updateFavList();
     void sendToSearchScreen(const std::string& input, Search::Type type);
+    void sendToEditScreen(Word* word);
 
 private slots:
     void on_comboBox_dictVersion_currentIndexChanged(int index);
@@ -42,12 +43,14 @@ private slots:
 
     void on_pushButton_setFav_clicked(bool checked);
 
+    void on_pushButton_editWord_clicked();
+
 private:
     Ui::HomeScreen *ui;
     QCompleter completer;
 
     QStringList suggestions;
-    std::string dailyWord;
+    Word *dailyWord;
 
     QIcon heartIcon, heartFillIcon;
 

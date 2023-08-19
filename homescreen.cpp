@@ -101,11 +101,10 @@ void HomeScreen::on_pushButton_search_clicked()
 }
 
 void HomeScreen::showDailyWord(){
-    Word* w=dict->getDailyWord();
-    dailyWord=w->word;
-    ui->textBrowser->setHtml(HTML_Creator::toHTML(w));
+    dailyWord=dict->getDailyWord();
+    ui->textBrowser->setHtml(HTML_Creator::toHTML(dailyWord));
 
-    if(dict->isInFavList(dailyWord)){
+    if(dict->isInFavList(dailyWord->word)){
         ui->pushButton_setFav->setCheckable(true);
         ui->pushButton_setFav->setIcon(heartFillIcon);
     }
@@ -163,15 +162,22 @@ void HomeScreen::on_lineEdit_search_returnPressed()
 void HomeScreen::on_pushButton_setFav_clicked(bool checked)
 {
     if(checked){
-        dict->removeFav(dailyWord);
+        dict->removeFav(dailyWord->word);
         ui->pushButton_setFav->setCheckable(false);
         ui->pushButton_setFav->setIcon(heartIcon);
     }
     else{
-        dict->addFav(dailyWord);
+        dict->addFav(dailyWord->word);
         ui->pushButton_setFav->setCheckable(true);
         ui->pushButton_setFav->setIcon(heartFillIcon);
     }
     emit updateFavList();
+}
+
+
+void HomeScreen::on_pushButton_editWord_clicked()
+{
+    emit sendToEditScreen(dailyWord);
+    emit switchScreen(Screen::Edit);
 }
 

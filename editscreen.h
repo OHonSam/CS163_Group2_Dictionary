@@ -20,6 +20,8 @@ public slots:
 
 private:
     Ui::EditScreen *ui;
+
+    Word *curWord;
 };
 
 #endif // EDITSCREEN_H

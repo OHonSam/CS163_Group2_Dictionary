@@ -14,5 +14,7 @@ EditScreen::~EditScreen()
 }
 
 void EditScreen::receiveWord(Word* word){
+    curWord=word;
 
+    ui->lineEdit_word->setText(QString::fromStdString(word->word));
 }
