@@ -3,7 +3,7 @@
 
 HistoryScreen::HistoryScreen(Dict *dict, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::AddNewWord),
+    ui(new Ui::HistoryScreen),
     dict(dict)
 {
     ui->setupUi(this);

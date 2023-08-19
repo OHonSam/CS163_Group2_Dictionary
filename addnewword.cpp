@@ -3,7 +3,7 @@
 
 AddNewWord::AddNewWord(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::AddNewWord)
+    ui(new Ui::EditScreen)
 {
     ui->setupUi(this);
 }

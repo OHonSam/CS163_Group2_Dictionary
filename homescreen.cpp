@@ -99,7 +99,7 @@ void HomeScreen::on_pushButton_search_clicked()
 {
     std::string input=ui->lineEdit_search->text().toLower().toStdString();
     emit updateHistory(input,true);
-    emit switchToSearchForDefScreen(input);
+    emit switchToSearchScreen(input);
 }
 
 void HomeScreen::showDailyWord(){

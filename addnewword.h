@@ -4,7 +4,7 @@
 #include <QWidget>
 
 namespace Ui {
-class AddNewWord;
+class EditScreen;
 }
 
 class AddNewWord : public QWidget
@@ -16,7 +16,7 @@ public:
     ~AddNewWord();
 
 private:
-    Ui::AddNewWord *ui;
+    Ui::EditScreen *ui;
 };
 
 #endif // ADDNEWWORD_H

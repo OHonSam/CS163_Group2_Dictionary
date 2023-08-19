@@ -3,12 +3,12 @@
 
 #include <QMainWindow>
 
+#include <Dict.hpp>
+
 #include <homescreen.h>
 #include <historyscreen.h>
-#include<searchscreen.h>
-#include<cSearch.h>
-#include <Dict.hpp>
-#include<bEdit.h>
+#include <searchscreen.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,7 +19,7 @@ enum Type{
     Dummy,
     Home,
     History,
-    SearchForDef,
+    Search,
     Count
 };
 }
@@ -41,7 +41,7 @@ signals:
 public slots:
     void switchToHistoryScreen();
     void switchToHomeScreen();
-    void switchToSearchForDefScreen(const std::string& word);
+    void switchToSearchScreen(const std::string& word);
 
 private:
     const int DEF_WIDTH=1072;
@@ -52,6 +52,6 @@ private:
 
     HomeScreen homeScreen;
     HistoryScreen historyScreen;
-    SearchForDef searchForDefScreen;
+    SearchScreen searchScreen;
 };
 #endif // MAINWINDOW_H

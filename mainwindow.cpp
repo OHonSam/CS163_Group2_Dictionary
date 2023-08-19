@@ -13,7 +13,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     , dict(dict)
     , homeScreen(dict,this)
     , historyScreen(dict,this)
-    , searchForDefScreen(dict,this)
+    , searchScreen(dict,this)
 {
     ui->setupUi(this);
 
@@ -44,7 +44,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     // set stack widget
     ui->stackedWidget->addWidget(&homeScreen);
     ui->stackedWidget->addWidget(&historyScreen);
-    ui->stackedWidget->addWidget(&searchForDefScreen);
+    ui->stackedWidget->addWidget(&searchScreen);
 
     // set default screen
     ui->stackedWidget->setCurrentIndex(Screens::Home);
@@ -63,16 +63,16 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &historyScreen,SLOT(updateHistory(std::string,bool))
     );
     connect(
-        &homeScreen,SIGNAL(switchToSearchForDefScreen(std::string)),
-        this,SLOT(switchToSearchForDefScreen(std::string))
+        &homeScreen,SIGNAL(switchToScreenScreen(std::string)),
+        this,SLOT(switchToSearchScreen(std::string))
     );
     connect(
-        &searchForDefScreen,SIGNAL(goBack()),
+        &searchScreen,SIGNAL(goBack()),
         this,SLOT(switchToHomeScreen())
     );
     connect(
         this,SIGNAL(giveWord(std::string)),
-        &searchForDefScreen,SLOT(receiveWord(std::string))
+        &searchScreen,SLOT(receiveWord(std::string))
     );
     connect(
         &homeScreen,SIGNAL(switchDataSet()),
@@ -80,7 +80,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     );
     connect(
         &homeScreen,SIGNAL(switchDataSet()),
-        &searchForDefScreen,SLOT(updateCompleter())
+        &searchScreen,SLOT(updateCompleter())
     );
 }
 
@@ -97,7 +97,7 @@ void MainWindow::switchToHomeScreen(){
     ui->stackedWidget->setCurrentIndex(Screens::Home);
 }
 
-void MainWindow::switchToSearchForDefScreen(const std::string& word){
-    ui->stackedWidget->setCurrentIndex(Screens::SearchForDef);
+void MainWindow::switchToSearchScreen(const std::string& word){
+    ui->stackedWidget->setCurrentIndex(Screens::Search);
     emit giveWord(word);
 }
