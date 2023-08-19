@@ -76,7 +76,7 @@ void HomeScreen::on_comboBox_dictVersion_currentIndexChanged(int index)
 
 void HomeScreen::on_pushButton_HistoryScreen_clicked()
 {
-    emit switchToHistoryScreen();
+    emit switchScreen(Screen::History);
 }
 
 void HomeScreen::updateCompleter(){
@@ -98,7 +98,7 @@ void HomeScreen::on_pushButton_search_clicked()
 {
     std::string input=ui->lineEdit_search->text().toLower().toStdString();
     emit updateHistory(input,true);
-    emit switchToSearchScreen(input);
+    emit sendToSearchScreen(input);
 }
 
 void HomeScreen::showDailyWord(){
@@ -113,6 +113,6 @@ void HomeScreen::on_pushButton_resetDailyWord_clicked()
 
 void HomeScreen::on_pushButton_FavScreen_clicked()
 {
-    emit switchToFavListScreen();
+    emit switchScreen(Screen::FavList);
 }
 

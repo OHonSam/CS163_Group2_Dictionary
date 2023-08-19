@@ -14,9 +14,8 @@ EditScreen::~EditScreen()
     delete ui;
 }
 
-
 void EditScreen::on_pushButton_title_clicked()
 {
-    emit switchToHomeScreen();
+    emit switchScreen(Screen::Home);
 }
 

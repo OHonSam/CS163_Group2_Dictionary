@@ -57,5 +57,6 @@ void HistoryScreen::on_pushButton_remove_clicked()
 
 void HistoryScreen::on_pushButton_title_clicked()
 {
-    emit switchToHomeScreen();
+    qDebug()<<"Go back to home screen from history screen";
+    emit switchScreen(Screen::Home);
 }

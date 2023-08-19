@@ -16,6 +16,6 @@ Quiz::~Quiz()
 
 void Quiz::on_pushButton_title_clicked()
 {
-    emit switchToHomeScreen();
+    emit switchScreen(Screen::Home);
 }
 

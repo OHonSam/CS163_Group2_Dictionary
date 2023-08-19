@@ -5,6 +5,7 @@
 #include <QCompleter>
 
 #include <Dict.hpp>
+#include "screen.h"
 
 namespace Ui {
 class HomeScreen;
@@ -19,11 +20,9 @@ public:
     ~HomeScreen();
 
 signals:
-    void switchToHistoryScreen();
     void updateHistory(const std::string& word, bool isAdd=true);
-
-    void switchToSearchScreen(const std::string& word);
-    void switchToFavListScreen();
+    void sendToSearchScreen(const std::string& word);
+    void switchScreen(Screen::Type id);
 
 private slots:
     void on_comboBox_dictVersion_currentIndexChanged(int index);

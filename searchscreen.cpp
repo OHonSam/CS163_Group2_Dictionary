@@ -27,6 +27,6 @@ void SearchScreen::on_pushButton_goBack_clicked()
 
 void SearchScreen::on_pushButton_title_clicked()
 {
-    emit switchToHomeScreen();
+    emit switchScreen(Screen::Home);
 }
 

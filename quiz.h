@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include <Dict.hpp>
+#include "screen.h"
 
 namespace Ui {
 class Quiz;
@@ -18,7 +19,7 @@ public:
     ~Quiz();
 
 signals:
-    void switchToHomeScreen();
+    void switchScreen(Screen::Type id);
 
 private slots:
     void on_pushButton_title_clicked();

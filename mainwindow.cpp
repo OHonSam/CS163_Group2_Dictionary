@@ -55,60 +55,52 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     ui->stackedWidget->addWidget(&quizScreen);
 
     // set default screen
-    ui->stackedWidget->setCurrentIndex(Screens::Home);
+    ui->stackedWidget->setCurrentIndex(Screen::Home);
 
     // connect signals and slot
     connect(
-        &homeScreen,SIGNAL(switchToHistoryScreen()),
-        this,SLOT(switchToHistoryScreen())
+        &homeScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
     );
     connect(
-        &historyScreen,SIGNAL(goBack()),
-        this,SLOT(switchToHomeScreen())
+        &historyScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
     );
+    connect(
+        &favListScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
+    );
+    connect(
+        &editScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
+    );
+    connect(
+        &addScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
+    );
+    connect(
+        &quizScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
+    );
+//    connect(
+//        &historyScreen,SIGNAL(goBack()),
+//        this,SLOT(switchToHomeScreen())
+//    );
     connect(
         &homeScreen,SIGNAL(updateHistory(std::string,bool)),
         &historyScreen,SLOT(updateHistory(std::string,bool))
     );
-    connect(
-        &homeScreen,SIGNAL(switchToSearchScreen(std::string)),
-        this,SLOT(switchToSearchScreen(std::string))
-    );
-    connect(
-        &searchScreen,SIGNAL(goBack()),
-        this,SLOT(switchToHomeScreen())
-    );
+//    connect(
+//        &homeScreen,SIGNAL(switchToSearchScreen(std::string)),
+//        this,SLOT(switchToSearchScreen(std::string))
+//    );
+//    connect(
+//        &searchScreen,SIGNAL(goBack()),
+//        this,SLOT(switchToHomeScreen())
+//    );
     connect(
         this,SIGNAL(giveWord(std::string)),
         &searchScreen,SLOT(receiveWord(std::string))
-    );
-    connect(
-        &historyScreen,SIGNAL(switchToHomeScreen()),
-        this,SLOT(switchToHomeScreen())
-    );
-    connect(
-        &searchScreen,SIGNAL(switchToHomeScreen()),
-        this,SLOT(switchToHomeScreen())
-    );
-    connect(
-        &favListScreen,SIGNAL(switchToHomeScreen()),
-        this,SLOT(switchToHomeScreen())
-    );
-    connect(
-        &editScreen,SIGNAL(switchToHomeScreen()),
-        this,SLOT(switchToHomeScreen())
-    );
-    connect(
-        &addScreen,SIGNAL(switchToHomeScreen()),
-        this,SLOT(switchToHomeScreen())
-    );
-    connect(
-        &quizScreen,SIGNAL(switchToHomeScreen()),
-        this,SLOT(switchToHomeScreen())
-    );
-    connect(
-        &homeScreen,SIGNAL(switchToFavListScreen()),
-        this,SLOT(switchToFavListScreen())
     );
 }
 
@@ -117,19 +109,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::switchToHistoryScreen(){
-    ui->stackedWidget->setCurrentIndex(Screens::History);
-}
-
-void MainWindow::switchToHomeScreen(){
-    ui->stackedWidget->setCurrentIndex(Screens::Home);
-}
-
-void MainWindow::switchToSearchScreen(const std::string& word){
-    ui->stackedWidget->setCurrentIndex(Screens::Search);
-    emit giveWord(word);
-}
-
-void MainWindow::switchToFavListScreen(){
-    ui->stackedWidget->setCurrentIndex(Screens::FavList);
+void MainWindow::switchScreen(Screen::Type id){
+    ui->stackedWidget->setCurrentIndex(id);
 }

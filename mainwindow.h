@@ -3,31 +3,19 @@
 
 #include <QMainWindow>
 
-#include <homescreen.h>
-#include <historyscreen.h>
-#include <searchscreen.h>
-#include <favlistscreen.h>
-#include <editscreen.h>
-#include <addnewword.h>
-#include <quiz.h>
+#include "homescreen.h"
+#include "historyscreen.h"
+#include "searchscreen.h"
+#include "favlistscreen.h"
+#include "editscreen.h"
+#include "addnewword.h"
+#include "quiz.h"
+
+#include "screen.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
-
-namespace Screens{
-enum Type{
-    Dummy,
-    Home,
-    History,
-    Search,
-    FavList,
-    Edit,
-    Add,
-    Quiz,
-    Count
-};
-}
 
 class MainWindow : public QMainWindow
 {
@@ -44,10 +32,7 @@ signals:
     void giveWord(const std::string& input);
 
 public slots:
-    void switchToHistoryScreen();
-    void switchToHomeScreen();
-    void switchToSearchScreen(const std::string& word);
-    void switchToFavListScreen();
+    void switchScreen(Screen::Type id);
 
 private:
     const int DEF_WIDTH=1072;

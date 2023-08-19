@@ -16,6 +16,6 @@ FavListScreen::~FavListScreen()
 
 void FavListScreen::on_pushButton_title_clicked()
 {
-    emit switchToHomeScreen();
+    emit switchScreen(Screen::Home);
 }
 

@@ -16,6 +16,6 @@ AddNewWord::~AddNewWord()
 
 void AddNewWord::on_pushButton_title_clicked()
 {
-    emit switchToHomeScreen();
+    emit switchScreen(Screen::Home);
 }
 

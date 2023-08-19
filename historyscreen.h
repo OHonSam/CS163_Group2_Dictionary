@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include <Dict.hpp>
+#include "screen.h"
 
 namespace Ui {
 class FavListScreen;
@@ -19,7 +20,7 @@ public:
 
 signals:
     void goBack();
-    void switchToHomeScreen();
+    void switchScreen(Screen::Type id);
 
 public slots:
     void updateHistory(const std::string& word, bool isAdd);

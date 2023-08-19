@@ -5,6 +5,7 @@
 
 #include "html_creator.h"
 #include <Dict.hpp>
+#include "screen.h"
 
 namespace Ui {
 class SearchScreen;
@@ -20,7 +21,7 @@ public:
 
 signals:
     void goBack();
-    void switchToHomeScreen();
+    void switchScreen(Screen::Type id);
 
 public slots:
     void receiveWord(const std::string& word);

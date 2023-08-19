@@ -25,6 +25,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         resources.qrc
 
+		screen.h
+
 		html_creator.h html_creator.cpp
 
 		historyscreen.h historyscreen.cpp historyscreen.ui
