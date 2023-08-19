@@ -2,9 +2,8 @@
 #include "ui_quiz.h"
 
 Quiz::Quiz(Dict *dict, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Quiz),
-    dict(dict)
+    MyScreen(dict,parent),
+    ui(new Ui::Quiz)
 {
     ui->setupUi(this);
 }
@@ -12,10 +11,5 @@ Quiz::Quiz(Dict *dict, QWidget *parent) :
 Quiz::~Quiz()
 {
     delete ui;
-}
-
-void Quiz::on_pushButton_title_clicked()
-{
-    emit switchScreen(Screen::Home);
 }
 

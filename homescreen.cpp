@@ -7,10 +7,9 @@
 #include "html_creator.h"
 
 HomeScreen::HomeScreen(Dict *dict, QWidget *parent) :
-    QWidget(parent),
+    MyScreen(dict,parent),
     ui(new Ui::HomeScreen),
-    completer(this),
-    dict(dict)
+    completer(this)
 {
     ui->setupUi(this);
 

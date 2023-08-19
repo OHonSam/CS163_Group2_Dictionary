@@ -1,17 +1,15 @@
 #ifndef HOMESCREEN_H
 #define HOMESCREEN_H
 
-#include <QWidget>
 #include <QCompleter>
 
-#include <Dict.hpp>
 #include "myscreen.h"
 
 namespace Ui {
 class HomeScreen;
 }
 
-class HomeScreen : public QWidget
+class HomeScreen : public MyScreen
 {
     Q_OBJECT
 
@@ -22,7 +20,6 @@ public:
 signals:
     void updateHistory(const std::string& word, bool isAdd=true);
     void sendToSearchScreen(const std::string& word);
-    void switchScreen(Screen::Type id);
 
 private slots:
     void on_comboBox_dictVersion_currentIndexChanged(int index);
@@ -39,7 +36,6 @@ private:
     Ui::HomeScreen *ui;
     QCompleter completer;
 
-    Dict *dict;
     QStringList suggestions;
 
     void showDailyWord();

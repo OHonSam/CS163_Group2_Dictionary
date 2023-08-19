@@ -2,9 +2,8 @@
 #include "ui_favlistscreen.h"
 
 FavListScreen::FavListScreen(Dict *dict, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::FavListScreen),
-    dict(dict)
+    MyScreen(dict,parent),
+    ui(new Ui::FavListScreen)
 {
     ui->setupUi(this);
 }
@@ -12,10 +11,5 @@ FavListScreen::FavListScreen(Dict *dict, QWidget *parent) :
 FavListScreen::~FavListScreen()
 {
     delete ui;
-}
-
-void FavListScreen::on_pushButton_title_clicked()
-{
-    emit switchScreen(Screen::Home);
 }
 

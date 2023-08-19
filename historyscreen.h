@@ -10,6 +10,7 @@ class HistoryScreen;
 
 class HistoryScreen : public MyScreen
 {
+    Q_OBJECT
 public:
     explicit HistoryScreen(Dict *dict, QWidget *parent = nullptr);
     ~HistoryScreen();
