@@ -18,6 +18,9 @@ public:
 public slots:
     void update();
 
+private slots:
+    void on_pushButton_remove_clicked();
+
 private:
     Ui::FavListScreen *ui;
 };

@@ -22,3 +22,15 @@ void FavListScreen::update(){
         ui->listWidget->addItem(QString::number(i+1)+". "+QString::fromStdString(v[i]));
 }
 
+
+void FavListScreen::on_pushButton_remove_clicked()
+{
+    int delItem = ui->listWidget->currentRow();
+
+    if(0<=delItem && delItem<ui->listWidget->count()){
+        QString word=ui->listWidget->item(delItem)->text();
+        dict->removeHistory(word.mid(word.indexOf(' ')+1).toStdString());
+        update();
+    }
+}
+
