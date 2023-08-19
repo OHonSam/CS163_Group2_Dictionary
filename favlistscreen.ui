@@ -163,7 +163,7 @@ background-image: url(:/background/images/bg/mid button.png);
           </widget>
          </item>
          <item>
-          <widget class="QListWidget" name="listWidget_history">
+          <widget class="QListWidget" name="listWidget">
            <property name="styleSheet">
             <string notr="true">padding: 20px;
 border-width : 2px;

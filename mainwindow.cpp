@@ -96,6 +96,12 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &historyScreen,SLOT(updateHistory(std::string,bool))
     );
 
+    // 3. Update favourite list
+    connect(
+        &homeScreen,SIGNAL(updateFavList()),
+        &favListScreen,SLOT(update())
+    );
+
     // 3. Send typed input to search screen
     connect(
         &homeScreen,SIGNAL(sendToSearchScreen(std::string)),

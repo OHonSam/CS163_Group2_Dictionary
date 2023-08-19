@@ -170,5 +170,6 @@ void HomeScreen::on_pushButton_setFav_clicked(bool checked)
         ui->pushButton_setFav->setCheckable(true);
         ui->pushButton_setFav->setIcon(heartFillIcon);
     }
+    emit updateFavList();
 }
 

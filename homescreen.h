@@ -19,6 +19,7 @@ public:
 
 signals:
     void updateHistory(const std::string& word, bool isAdd=true);
+    void updateFavList();
     void sendToSearchScreen(const std::string& word);
 
 private slots:

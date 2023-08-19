@@ -15,6 +15,9 @@ public:
     explicit FavListScreen(Dict *dict, QWidget *parent = nullptr);
     ~FavListScreen();
 
+public slots:
+    void update();
+
 private:
     Ui::FavListScreen *ui;
 };
