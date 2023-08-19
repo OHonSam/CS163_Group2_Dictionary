@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <stack>
 
 #include "homescreen.h"
 #include "historyscreen.h"
@@ -47,6 +48,6 @@ private:
     AddNewWord addScreen;
     Quiz quizScreen;
 
-    Screen::Type preScreen, curScreen;
+    std::stack<Screen::Type> stackScreen;
 };
 #endif // MAINWINDOW_H

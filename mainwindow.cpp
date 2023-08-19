@@ -18,8 +18,6 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     , editScreen(dict,this)
     , addScreen(dict,this)
     , quizScreen(dict,this)
-    , preScreen(Screen::Home)
-    , curScreen(Screen::Home)
 {
     ui->setupUi(this);
 
@@ -58,6 +56,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
 
     // set default screen
     ui->stackedWidget->setCurrentIndex(Screen::Home);
+    stackScreen.push(Screen::Home);
 
     // connect signals and slot
     // 1. Switching screens
@@ -127,7 +126,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::switchScreen(Screen::Type id){
-    std::swap(curScreen,preScreen);
-    if(id!=Screen::GoBack) curScreen=id;
-    ui->stackedWidget->setCurrentIndex(curScreen);
+    if(id==Screen::GoBack) stackScreen.pop();
+    else stackScreen.push(id);
+    ui->stackedWidget->setCurrentIndex(stackScreen.top());
 }
