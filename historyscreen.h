@@ -19,8 +19,6 @@ public slots:
     void updateHistory(const std::string& word, bool isAdd);
 
 private slots:
-    void on_pushButton_goBack_clicked();
-
     void on_pushButton_clear_clicked();
 
     void on_pushButton_remove_clicked();

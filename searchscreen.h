@@ -17,10 +17,7 @@ public:
     ~SearchScreen();
 
 public slots:
-    void receiveWord(const std::string& word);
-
-private slots:
-    void on_pushButton_goBack_clicked();
+    void receiveInputString(const std::string& word);
 
 private:
     Ui::SearchScreen *ui;

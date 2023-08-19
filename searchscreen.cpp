@@ -15,12 +15,7 @@ SearchScreen::~SearchScreen()
     delete ui;
 }
 
-void SearchScreen::receiveWord(const std::string &word){
+void SearchScreen::receiveInputString(const std::string &word){
     ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->searchForDef(word)));
-}
-
-void SearchScreen::on_pushButton_goBack_clicked()
-{
-//    emit goBack();
 }
 

@@ -17,11 +17,6 @@ HistoryScreen::~HistoryScreen()
     delete ui;
 }
 
-void HistoryScreen::on_pushButton_goBack_clicked()
-{
-//    emit goBack();
-}
-
 void HistoryScreen::update(){
     ui->listWidget_history->clear();
     std::vector<std::string> v=dict->getHistory();

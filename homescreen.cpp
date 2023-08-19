@@ -137,7 +137,9 @@ void HomeScreen::on_lineEdit_search_returnPressed()
     QString raw_word=ui->lineEdit_search->text();
     std::string word=raw_word.toLower().toLocal8Bit().toStdString();
     if(raw_word.toLower()==QString::fromStdString(word)){
-
+        emit updateHistory(word,true);
+        emit sendToSearchScreen(word);
+        emit switchScreen(Screen::Search);
     }
     else
         QMessageBox::warning(this,"Invalid input","Your input is not valid. Please type in solely ASCII characters!");

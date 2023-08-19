@@ -60,6 +60,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     ui->stackedWidget->setCurrentIndex(Screen::Home);
 
     // connect signals and slot
+    // 1. Switching screens
     connect(
         &homeScreen,SIGNAL(switchScreen(Screen::Type)),
         this,SLOT(switchScreen(Screen::Type))
@@ -84,25 +85,21 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &quizScreen,SIGNAL(switchScreen(Screen::Type)),
         this,SLOT(switchScreen(Screen::Type))
     );
-//    connect(
-//        &historyScreen,SIGNAL(goBack()),
-//        this,SLOT(switchToHomeScreen())
-//    );
+    connect(
+        &searchScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
+    );
+
+    // 2. Update history when searching
     connect(
         &homeScreen,SIGNAL(updateHistory(std::string,bool)),
         &historyScreen,SLOT(updateHistory(std::string,bool))
     );
-//    connect(
-//        &homeScreen,SIGNAL(switchToSearchScreen(std::string)),
-//        this,SLOT(switchToSearchScreen(std::string))
-//    );
-//    connect(
-//        &searchScreen,SIGNAL(goBack()),
-//        this,SLOT(switchToHomeScreen())
-//    );
+
+    // 3. Send typed input to search screen
     connect(
-        this,SIGNAL(giveWord(std::string)),
-        &searchScreen,SLOT(receiveWord(std::string))
+        &homeScreen,SIGNAL(sendToSearchScreen(std::string)),
+        &searchScreen,SLOT(receiveInputString(std::string))
     );
 }
 
