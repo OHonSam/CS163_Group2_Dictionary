@@ -34,6 +34,8 @@ private slots:
 
     void on_pushButton_EditScreen_clicked();
 
+    void on_pushButton_AddScreen_clicked();
+
 private:
     Ui::HomeScreen *ui;
     QCompleter completer;
