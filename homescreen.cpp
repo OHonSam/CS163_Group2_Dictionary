@@ -95,9 +95,7 @@ void HomeScreen::updateCompleter(){
 
 void HomeScreen::on_pushButton_search_clicked()
 {
-    std::string input=ui->lineEdit_search->text().toLower().toStdString();
-    emit updateHistory(input,true);
-    emit sendToSearchScreen(input);
+    on_lineEdit_search_returnPressed();
 }
 
 void HomeScreen::showDailyWord(){
@@ -131,5 +129,17 @@ void HomeScreen::on_pushButton_AddScreen_clicked()
 void HomeScreen::on_pushButton_QuizScreen_clicked()
 {
     emit switchScreen(Screen::Quiz);
+}
+
+
+void HomeScreen::on_lineEdit_search_returnPressed()
+{
+    QString raw_word=ui->lineEdit_search->text();
+    std::string word=raw_word.toLower().toLocal8Bit().toStdString();
+    if(raw_word.toLower()==QString::fromStdString(word)){
+
+    }
+    else
+        QMessageBox::warning(this,"Invalid input","Your input is not valid. Please type in solely ASCII characters!");
 }
 

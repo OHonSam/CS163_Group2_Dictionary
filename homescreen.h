@@ -38,6 +38,8 @@ private slots:
 
     void on_pushButton_QuizScreen_clicked();
 
+    void on_lineEdit_search_returnPressed();
+
 private:
     Ui::HomeScreen *ui;
     QCompleter completer;
