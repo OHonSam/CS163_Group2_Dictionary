@@ -101,6 +101,10 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &homeScreen,SIGNAL(updateFavList()),
         &favListScreen,SLOT(update())
     );
+    connect(
+        &searchScreen,SIGNAL(updateFavList()),
+        &favListScreen,SLOT(update())
+    );
 
     // 3. Send typed input to search screen
     connect(
