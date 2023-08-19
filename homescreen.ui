@@ -18,21 +18,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="title">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Audiowide</family>
-       <pointsize>24</pointsize>
-       <italic>false</italic>
-       <bold>true</bold>
-      </font>
-     </property>
+    <widget class="QPushButton" name="pushButton_title">
      <property name="styleSheet">
       <string notr="true">padding: 20px;
 border-radius: 20px;
@@ -41,13 +27,10 @@ border-radius: 20px;
 background-image: url(:/background/images/bg/intro bg.png);
 font: 24pt &quot;Audiowide&quot;;
 font: bold;
-color: white;</string>
+color:white;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; color:#ffffff;&quot;&gt;DICTIONARY - GROUP 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <string>DICTIONARY - GROUP 2</string>
      </property>
     </widget>
    </item>
