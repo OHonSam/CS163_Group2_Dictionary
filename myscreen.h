@@ -29,8 +29,8 @@ signals:
     void switchScreen(Screen::Type id);
 
 protected slots:
-    void on_pushButton_goBack_clicked(); // not in home screen, produce warning but can ignore it
     void on_pushButton_title_clicked();
+    void on_pushButton_goBack_clicked(); // not in home screen, produce warning but can ignore it
 
 protected:
     Dict *dict;

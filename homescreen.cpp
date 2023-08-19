@@ -9,7 +9,9 @@
 HomeScreen::HomeScreen(Dict *dict, QWidget *parent) :
     MyScreen(dict,Screen::Home,parent),
     ui(new Ui::HomeScreen),
-    completer(this)
+    completer(this),
+    heartIcon(":/img/images/heart.svg"),
+    heartFillIcon(":/img/images/heart-fill.svg")
 {
     ui->setupUi(this);
 
@@ -99,7 +101,9 @@ void HomeScreen::on_pushButton_search_clicked()
 }
 
 void HomeScreen::showDailyWord(){
-    ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->getDailyWord()));
+    Word* w=dict->getDailyWord();
+    dailyWord=w->word;
+    ui->textBrowser->setHtml(HTML_Creator::toHTML(w));
 }
 
 void HomeScreen::on_pushButton_resetDailyWord_clicked()
@@ -143,5 +147,17 @@ void HomeScreen::on_lineEdit_search_returnPressed()
     }
     else
         QMessageBox::warning(this,"Invalid input","Your input is not valid. Please type in solely ASCII characters!");
+}
+
+void HomeScreen::on_pushButton_setFav_clicked(bool checked)
+{
+    if(checked){
+        ui->pushButton_setFav->setCheckable(false);
+        ui->pushButton_setFav->setIcon(heartIcon);
+    }
+    else{
+        ui->pushButton_setFav->setCheckable(true);
+        ui->pushButton_setFav->setIcon(heartFillIcon);
+    }
 }
 

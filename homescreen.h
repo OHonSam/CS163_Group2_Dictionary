@@ -40,11 +40,16 @@ private slots:
 
     void on_lineEdit_search_returnPressed();
 
+    void on_pushButton_setFav_clicked(bool checked);
+
 private:
     Ui::HomeScreen *ui;
     QCompleter completer;
 
     QStringList suggestions;
+    std::string dailyWord;
+
+    QIcon heartIcon, heartFillIcon;
 
     void showDailyWord();
     void updateCompleter();
