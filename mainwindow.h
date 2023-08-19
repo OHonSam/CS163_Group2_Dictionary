@@ -46,5 +46,7 @@ private:
     EditScreen editScreen;
     AddNewWord addScreen;
     Quiz quizScreen;
+
+    Screen::Type preScreen, curScreen;
 };
 #endif // MAINWINDOW_H

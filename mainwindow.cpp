@@ -18,6 +18,8 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     , editScreen(dict,this)
     , addScreen(dict,this)
     , quizScreen(dict,this)
+    , preScreen(Screen::Home)
+    , curScreen(Screen::Home)
 {
     ui->setupUi(this);
 
@@ -110,5 +112,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::switchScreen(Screen::Type id){
-    ui->stackedWidget->setCurrentIndex(id);
+    std::swap(curScreen,preScreen);
+    if(id!=Screen::GoBack) curScreen=id;
+    ui->stackedWidget->setCurrentIndex(curScreen);
 }

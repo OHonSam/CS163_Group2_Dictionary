@@ -5,6 +5,10 @@ MyScreen::MyScreen(Dict *dict, Screen::Type type, QWidget *parent) :
 {
 }
 
+void MyScreen::on_pushButton_goBack_clicked(){
+    emit switchScreen(Screen::GoBack);
+}
+
 void MyScreen::on_pushButton_title_clicked()
 {
     emit switchScreen(Screen::Home);

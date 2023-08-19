@@ -44,7 +44,7 @@ color:white;</string>
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="pushButton_goBack_2">
+          <widget class="QPushButton" name="pushButton_goBack">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
              <horstretch>0</horstretch>

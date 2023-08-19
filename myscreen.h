@@ -15,7 +15,7 @@ enum Type{
     Edit,
     Add,
     Quiz,
-    Count
+    GoBack, // Not a screen and below, use for a signal
 };
 }
 
@@ -29,6 +29,7 @@ signals:
     void switchScreen(Screen::Type id);
 
 protected slots:
+    void on_pushButton_goBack_clicked(); // not in home screen, produce warning but can ignore it
     void on_pushButton_title_clicked();
 
 protected:
