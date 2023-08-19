@@ -29,8 +29,15 @@ void FavListScreen::on_pushButton_remove_clicked()
 
     if(0<=delItem && delItem<ui->listWidget->count()){
         QString word=ui->listWidget->item(delItem)->text();
-        dict->removeHistory(word.mid(word.indexOf(' ')+1).toStdString());
+        dict->removeFav(word.mid(word.indexOf(' ')+1).toStdString());
         update();
     }
+}
+
+
+void FavListScreen::on_pushButton_clear_clicked()
+{
+    dict->clearFavList();
+    update();
 }
 
