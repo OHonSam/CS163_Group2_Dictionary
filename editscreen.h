@@ -18,6 +18,9 @@ public:
 public slots:
     void receiveWord(Word* word);
 
+private slots:
+    void on_comboBox_POS_currentIndexChanged(int index);
+
 private:
     Ui::EditScreen *ui;
 
