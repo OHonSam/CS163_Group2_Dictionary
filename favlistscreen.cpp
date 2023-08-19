@@ -41,3 +41,11 @@ void FavListScreen::on_pushButton_clear_clicked()
     update();
 }
 
+
+void FavListScreen::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+    QString word=item->text();
+    emit sendToSearchScreen(word.mid(word.indexOf(' ')+1).toStdString());
+    emit switchScreen(Screen::Search);
+}
+

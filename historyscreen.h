@@ -3,7 +3,6 @@
 
 #include <QListWidgetItem>
 
-#include <Dict.hpp>
 #include "myscreen.h"
 
 namespace Ui {
