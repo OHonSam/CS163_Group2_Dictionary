@@ -2,7 +2,7 @@
 #include "ui_quiz.h"
 
 Quiz::Quiz(Dict *dict, QWidget *parent) :
-    MyScreen(dict,parent),
+    MyScreen(dict,Screen::Quiz,parent),
     ui(new Ui::Quiz)
 {
     ui->setupUi(this);

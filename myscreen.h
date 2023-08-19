@@ -23,10 +23,9 @@ class MyScreen: public QWidget
 {
     Q_OBJECT
 public:
-    explicit MyScreen(Dict *dict, QWidget *parent = nullptr);
+    explicit MyScreen(Dict *dict, Screen::Type type, QWidget *parent = nullptr);
 
 signals:
-    void goBack();
     void switchScreen(Screen::Type id);
 
 protected slots:
@@ -34,6 +33,7 @@ protected slots:
 
 protected:
     Dict *dict;
+    const Screen::Type typeScreen;
 };
 
 #endif // MYSCREEN_H

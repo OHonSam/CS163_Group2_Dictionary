@@ -2,7 +2,7 @@
 #include "ui_historyscreen.h"
 
 HistoryScreen::HistoryScreen(Dict *dict, QWidget *parent) :
-    MyScreen(dict,parent),
+    MyScreen(dict,Screen::History,parent),
     ui(new Ui::HistoryScreen)
 {
     ui->setupUi(this);
@@ -19,7 +19,7 @@ HistoryScreen::~HistoryScreen()
 
 void HistoryScreen::on_pushButton_goBack_clicked()
 {
-    emit goBack();
+//    emit goBack();
 }
 
 void HistoryScreen::update(){

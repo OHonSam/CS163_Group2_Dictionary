@@ -4,7 +4,7 @@
 #include <QListView>
 
 SearchScreen::SearchScreen(Dict *dict, QWidget *parent) :
-    MyScreen(dict,parent),
+    MyScreen(dict,Screen::Search,parent),
     ui(new Ui::SearchScreen)
 {
     ui->setupUi(this);
@@ -21,6 +21,6 @@ void SearchScreen::receiveWord(const std::string &word){
 
 void SearchScreen::on_pushButton_goBack_clicked()
 {
-    emit goBack();
+//    emit goBack();
 }
 

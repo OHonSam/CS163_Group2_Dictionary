@@ -1,8 +1,7 @@
 #include "myscreen.h"
 
-MyScreen::MyScreen(Dict *dict, QWidget *parent) :
-    QWidget(parent),
-    dict(dict)
+MyScreen::MyScreen(Dict *dict, Screen::Type type, QWidget *parent) :
+    QWidget(parent), dict(dict), typeScreen(type)
 {
 }
 

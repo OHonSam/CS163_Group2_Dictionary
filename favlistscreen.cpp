@@ -2,7 +2,7 @@
 #include "ui_favlistscreen.h"
 
 FavListScreen::FavListScreen(Dict *dict, QWidget *parent) :
-    MyScreen(dict,parent),
+    MyScreen(dict,Screen::FavList,parent),
     ui(new Ui::FavListScreen)
 {
     ui->setupUi(this);
