@@ -150,7 +150,6 @@ void HomeScreen::on_lineEdit_search_returnPressed()
     QString raw=ui->lineEdit_search->text();
     std::string input=raw.toLower().toLocal8Bit().toStdString();
     if(raw.toLower()==QString::fromStdString(input)){
-        emit updateHistory();
         if(ui->comboBox_searchType->currentIndex()==int(Search::ForDef))
             emit sendToSearchScreen(input,Search::ForDef);
         else

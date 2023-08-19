@@ -91,7 +91,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
 
     // 2. Update history when searching
     connect(
-        &homeScreen,SIGNAL(updateHistory()),
+        &searchScreen,SIGNAL(updateHistory()),
         &historyScreen,SLOT(update())
     );
 

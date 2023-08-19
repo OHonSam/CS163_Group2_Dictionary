@@ -29,6 +29,8 @@ void SearchScreen::receiveInputString(const std::string &input, Search::Type typ
             ui->pushButton_setFav->setCheckable(false);
             ui->pushButton_setFav->setIcon(heartIcon);
         }
+
+        emit updateHistory();
     }
     else{ // input is a definition
         // to be continued

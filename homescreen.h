@@ -18,7 +18,6 @@ public:
     ~HomeScreen();
 
 signals:
-    void updateHistory();
     void updateFavList();
     void sendToSearchScreen(const std::string& input, Search::Type type);
 

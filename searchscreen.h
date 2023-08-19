@@ -20,6 +20,7 @@ public:
 
 signals:
     void updateFavList();
+    void updateHistory();
 
 public slots:
     void receiveInputString(const std::string& input, Search::Type type);
