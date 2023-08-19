@@ -18,7 +18,7 @@ public:
     ~HomeScreen();
 
 signals:
-    void updateHistory(const std::string& word, bool isAdd=true);
+    void updateHistory();
     void updateFavList();
     void sendToSearchScreen(const std::string& word);
 

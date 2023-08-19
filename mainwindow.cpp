@@ -92,8 +92,8 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
 
     // 2. Update history when searching
     connect(
-        &homeScreen,SIGNAL(updateHistory(std::string,bool)),
-        &historyScreen,SLOT(updateHistory(std::string,bool))
+        &homeScreen,SIGNAL(updateHistory()),
+        &historyScreen,SLOT(update())
     );
 
     // 3. Update favourite list

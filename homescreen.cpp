@@ -150,7 +150,8 @@ void HomeScreen::on_lineEdit_search_returnPressed()
     QString raw_word=ui->lineEdit_search->text();
     std::string word=raw_word.toLower().toLocal8Bit().toStdString();
     if(raw_word.toLower()==QString::fromStdString(word)){
-        emit updateHistory(word,true);
+        dict->addHistory(word);
+        emit updateHistory();
         emit sendToSearchScreen(word);
         emit switchScreen(Screen::Search);
     }

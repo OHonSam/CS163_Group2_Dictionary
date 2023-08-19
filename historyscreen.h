@@ -16,7 +16,7 @@ public:
     ~HistoryScreen();
 
 public slots:
-    void updateHistory(const std::string& word, bool isAdd);
+    void update();
 
 private slots:
     void on_pushButton_clear_clicked();
@@ -25,8 +25,6 @@ private slots:
 
 private:
     Ui::HistoryScreen *ui;
-
-    void update();
 };
 
 #endif // HISTORYSCREEN_H

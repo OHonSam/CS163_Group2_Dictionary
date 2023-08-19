@@ -7,7 +7,7 @@ HistoryScreen::HistoryScreen(Dict *dict, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->listWidget_history->clear();
+    ui->listWidget->clear();
 
     update();
 }
@@ -18,15 +18,10 @@ HistoryScreen::~HistoryScreen()
 }
 
 void HistoryScreen::update(){
-    ui->listWidget_history->clear();
+    ui->listWidget->clear();
     std::vector<std::string> v=dict->getHistory();
     for(int i=0; i<v.size(); i++)
-        ui->listWidget_history->addItem(QString::number(i+1)+". "+QString::fromStdString(v[i]));
-}
-
-void HistoryScreen::updateHistory(const std::string& word, bool isAdd){
-    if(isAdd) dict->addHistory(word); else dict->removeHistory(word);
-    update();
+        ui->listWidget->addItem(QString::number(i+1)+". "+QString::fromStdString(v[i]));
 }
 
 
@@ -39,10 +34,10 @@ void HistoryScreen::on_pushButton_clear_clicked()
 
 void HistoryScreen::on_pushButton_remove_clicked()
 {
-    int delItem = ui->listWidget_history->currentRow();
+    int delItem = ui->listWidget->currentRow();
 
-    if(0<=delItem && delItem<ui->listWidget_history->count()){
-        QString word=ui->listWidget_history->item(delItem)->text();
+    if(0<=delItem && delItem<ui->listWidget->count()){
+        QString word=ui->listWidget->item(delItem)->text();
         dict->removeHistory(word.mid(word.indexOf(' ')+1).toStdString());
         update();
     }
