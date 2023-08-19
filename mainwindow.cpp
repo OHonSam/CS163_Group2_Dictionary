@@ -14,6 +14,10 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     , homeScreen(dict,this)
     , historyScreen(dict,this)
     , searchScreen(dict,this)
+    , favListScreen(dict,this)
+    , editScreen(dict,this)
+    , addScreen(dict,this)
+    , quizScreen(dict,this)
 {
     ui->setupUi(this);
 
@@ -45,6 +49,10 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     ui->stackedWidget->addWidget(&homeScreen);
     ui->stackedWidget->addWidget(&historyScreen);
     ui->stackedWidget->addWidget(&searchScreen);
+    ui->stackedWidget->addWidget(&favListScreen);
+    ui->stackedWidget->addWidget(&editScreen);
+    ui->stackedWidget->addWidget(&addScreen);
+    ui->stackedWidget->addWidget(&quizScreen);
 
     // set default screen
     ui->stackedWidget->setCurrentIndex(Screens::Home);
@@ -73,6 +81,30 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     connect(
         this,SIGNAL(giveWord(std::string)),
         &searchScreen,SLOT(receiveWord(std::string))
+    );
+    connect(
+        &historyScreen,SIGNAL(switchToHomeScreen()),
+        this,SLOT(switchToHomeScreen())
+    );
+    connect(
+        &searchScreen,SIGNAL(switchToHomeScreen()),
+        this,SLOT(switchToHomeScreen())
+    );
+    connect(
+        &favListScreen,SIGNAL(switchToHomeScreen()),
+        this,SLOT(switchToHomeScreen())
+    );
+    connect(
+        &editScreen,SIGNAL(switchToHomeScreen()),
+        this,SLOT(switchToHomeScreen())
+    );
+    connect(
+        &addScreen,SIGNAL(switchToHomeScreen()),
+        this,SLOT(switchToHomeScreen())
+    );
+    connect(
+        &quizScreen,SIGNAL(switchToHomeScreen()),
+        this,SLOT(switchToHomeScreen())
     );
 }
 

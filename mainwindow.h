@@ -3,12 +3,13 @@
 
 #include <QMainWindow>
 
-#include <Dict.hpp>
-
 #include <homescreen.h>
 #include <historyscreen.h>
 #include <searchscreen.h>
-
+#include <favlistscreen.h>
+#include <editscreen.h>
+#include <addnewword.h>
+#include <quiz.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,6 +21,10 @@ enum Type{
     Home,
     History,
     Search,
+    FavList,
+    Edit,
+    Add,
+    Quiz,
     Count
 };
 }
@@ -53,5 +58,9 @@ private:
     HomeScreen homeScreen;
     HistoryScreen historyScreen;
     SearchScreen searchScreen;
+    FavListScreen favListScreen;
+    EditScreen editScreen;
+    AddNewWord addScreen;
+    Quiz quizScreen;
 };
 #endif // MAINWINDOW_H

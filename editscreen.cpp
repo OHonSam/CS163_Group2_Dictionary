@@ -1,14 +1,22 @@
 #include "editscreen.h"
-#include "ui_aeditscreen.h"
+#include "ui_editscreen.h"
 
-editScreen::editScreen(QWidget *parent) :
+EditScreen::EditScreen(Dict *dict, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::editScreen)
+    ui(new Ui::EditScreen),
+    dict(dict)
 {
     ui->setupUi(this);
 }
 
-editScreen::~editScreen()
+EditScreen::~EditScreen()
 {
     delete ui;
 }
+
+
+void EditScreen::on_pushButton_title_clicked()
+{
+    emit switchToHomeScreen();
+}
+

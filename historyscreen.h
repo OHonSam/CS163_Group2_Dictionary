@@ -6,7 +6,7 @@
 #include <Dict.hpp>
 
 namespace Ui {
-class HistoryScreen;
+class FavListScreen;
 }
 
 class HistoryScreen : public QWidget
@@ -19,6 +19,7 @@ public:
 
 signals:
     void goBack();
+    void switchToHomeScreen();
 
 public slots:
     void updateHistory(const std::string& word, bool isAdd);
@@ -30,8 +31,10 @@ private slots:
 
     void on_pushButton_remove_clicked();
 
+    void on_pushButton_title_clicked();
+
 private:
-    Ui::HistoryScreen *ui;
+    Ui::FavListScreen *ui;
     Dict *dict;
 
     void update();

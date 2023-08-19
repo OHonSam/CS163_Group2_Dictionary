@@ -24,7 +24,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="pushButton_title">
            <property name="styleSheet">
             <string notr="true">padding: 20px;
 border-radius: 20px;

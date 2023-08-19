@@ -20,12 +20,15 @@ public:
 
 signals:
     void goBack();
+    void switchToHomeScreen();
 
 public slots:
     void receiveWord(const std::string& word);
 
 private slots:
     void on_pushButton_goBack_clicked();
+
+    void on_pushButton_title_clicked();
 
 private:
     Ui::SearchScreen *ui;

@@ -22,7 +22,7 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,3">
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="pushButton_title">
          <property name="styleSheet">
           <string notr="true">padding: 20px;
 border-radius: 20px;
@@ -96,7 +96,7 @@ color: white;</string>
            </property>
            <property name="minimumSize">
             <size>
-             <width>19</width>
+             <width>13</width>
              <height>13</height>
             </size>
            </property>

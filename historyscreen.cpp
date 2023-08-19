@@ -3,7 +3,7 @@
 
 HistoryScreen::HistoryScreen(Dict *dict, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::HistoryScreen),
+    ui(new Ui::FavListScreen),
     dict(dict)
 {
     ui->setupUi(this);
@@ -54,3 +54,8 @@ void HistoryScreen::on_pushButton_remove_clicked()
     }
 }
 
+
+void HistoryScreen::on_pushButton_title_clicked()
+{
+    emit switchToHomeScreen();
+}

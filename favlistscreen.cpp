@@ -1,14 +1,21 @@
 #include "favlistscreen.h"
 #include "ui_favlistscreen.h"
 
-favlistscreen::favlistscreen(QWidget *parent) :
+FavListScreen::FavListScreen(Dict *dict, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::favlistscreen)
+    ui(new Ui::FavListScreen),
+    dict(dict)
 {
     ui->setupUi(this);
 }
 
-favlistscreen::~favlistscreen()
+FavListScreen::~FavListScreen()
 {
     delete ui;
 }
+
+void FavListScreen::on_pushButton_title_clicked()
+{
+    emit switchToHomeScreen();
+}
+

@@ -33,13 +33,13 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
 		searchscreen.h searchscreen.cpp searchscreen.ui
 
-#		favlistscreen.h favlistscreen.cpp favlistscreen.ui
+		favlistscreen.h favlistscreen.cpp favlistscreen.ui
 
-#		editscreen.h editscreen.cpp editscreen.ui
+		editscreen.h editscreen.cpp editscreen.ui
 
-#		addnewword.h addnewword.cpp addnewword.ui
+		addnewword.h addnewword.cpp addnewword.ui
 
-#        quiz.h quiz.cpp quiz.ui
+		quiz.h quiz.cpp quiz.ui
     )
 # Define target properties for Andro
 #    set_property(TARGET Qt_UI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

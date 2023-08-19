@@ -40,7 +40,8 @@ border-radius: 20px;
   min-width: 20px;
 background-image: url(:/background/images/bg/intro bg.png);
 font: 24pt &quot;Audiowide&quot;;
-font: bold;</string>
+font: bold;
+color: white;</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; color:#ffffff;&quot;&gt;DICTIONARY - GROUP 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

@@ -3,20 +3,29 @@
 
 #include <QWidget>
 
+#include <Dict.hpp>
+
 namespace Ui {
-class editScreen;
+class EditScreen;
 }
 
-class editScreen : public QWidget
+class EditScreen : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit editScreen(QWidget *parent = nullptr);
-    ~editScreen();
+    explicit EditScreen(Dict *dict, QWidget *parent = nullptr);
+    ~EditScreen();
+
+signals:
+    void switchToHomeScreen();
+
+private slots:
+    void on_pushButton_title_clicked();
 
 private:
-    Ui::editScreen *ui;
+    Ui::EditScreen *ui;
+    Dict *dict;
 };
 
 #endif // EDITSCREEN_H

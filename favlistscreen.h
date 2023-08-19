@@ -3,20 +3,29 @@
 
 #include <QWidget>
 
+#include <Dict.hpp>
+
 namespace Ui {
-class favlistscreen;
+class FavListScreen;
 }
 
-class favlistscreen : public QWidget
+class FavListScreen : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit favlistscreen(QWidget *parent = nullptr);
-    ~favlistscreen();
+    explicit FavListScreen(Dict *dict, QWidget *parent = nullptr);
+    ~FavListScreen();
+
+signals:
+    void switchToHomeScreen();
+
+private slots:
+    void on_pushButton_title_clicked();
 
 private:
-    Ui::favlistscreen *ui;
+    Ui::FavListScreen *ui;
+    Dict *dict;
 };
 
 #endif // FAVLISTSCREEN_H

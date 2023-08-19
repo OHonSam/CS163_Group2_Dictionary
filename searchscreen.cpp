@@ -24,3 +24,9 @@ void SearchScreen::on_pushButton_goBack_clicked()
 {
     emit goBack();
 }
+
+void SearchScreen::on_pushButton_title_clicked()
+{
+    emit switchToHomeScreen();
+}
+
