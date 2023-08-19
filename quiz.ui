@@ -39,7 +39,7 @@ color:white;</string>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,2,0">
+        <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,2,0,0">
          <property name="topMargin">
           <number>0</number>
          </property>
@@ -126,6 +126,19 @@ background-color: rgb(102, 124, 246);</string>
             </property>
            </item>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_goBack_3">

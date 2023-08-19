@@ -127,3 +127,9 @@ void HomeScreen::on_pushButton_AddScreen_clicked()
     emit switchScreen(Screen::Add);
 }
 
+
+void HomeScreen::on_pushButton_QuizScreen_clicked()
+{
+    emit switchScreen(Screen::Quiz);
+}
+
