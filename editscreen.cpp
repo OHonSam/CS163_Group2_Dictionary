@@ -12,3 +12,7 @@ EditScreen::~EditScreen()
 {
     delete ui;
 }
+
+void EditScreen::receiveWord(Word* word){
+
+}

@@ -15,6 +15,9 @@ public:
     explicit EditScreen(Dict *dict, QWidget *parent = nullptr);
     ~EditScreen();
 
+public slots:
+    void receiveWord(Word* word);
+
 private:
     Ui::EditScreen *ui;
 };

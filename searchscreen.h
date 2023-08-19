@@ -21,6 +21,7 @@ public:
 signals:
     void updateFavList();
     void updateHistory();
+    void sendToEditScreen(Word* word);
 
 public slots:
     void receiveInputString(const std::string& input, Search::Type type);
