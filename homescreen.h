@@ -23,6 +23,7 @@ signals:
     void updateHistory(const std::string& word, bool isAdd=true);
 
     void switchToSearchScreen(const std::string& word);
+    void switchToFavListScreen();
 
 private slots:
     void on_comboBox_dictVersion_currentIndexChanged(int index);
@@ -32,6 +33,8 @@ private slots:
     void on_pushButton_search_clicked();
 
     void on_pushButton_resetDailyWord_clicked();
+
+    void on_pushButton_FavScreen_clicked();
 
 private:
     Ui::HomeScreen *ui;

@@ -47,6 +47,7 @@ public slots:
     void switchToHistoryScreen();
     void switchToHomeScreen();
     void switchToSearchScreen(const std::string& word);
+    void switchToFavListScreen();
 
 private:
     const int DEF_WIDTH=1072;

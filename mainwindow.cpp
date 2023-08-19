@@ -106,6 +106,10 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &quizScreen,SIGNAL(switchToHomeScreen()),
         this,SLOT(switchToHomeScreen())
     );
+    connect(
+        &homeScreen,SIGNAL(switchToFavListScreen()),
+        this,SLOT(switchToFavListScreen())
+    );
 }
 
 MainWindow::~MainWindow()
@@ -124,4 +128,8 @@ void MainWindow::switchToHomeScreen(){
 void MainWindow::switchToSearchScreen(const std::string& word){
     ui->stackedWidget->setCurrentIndex(Screens::Search);
     emit giveWord(word);
+}
+
+void MainWindow::switchToFavListScreen(){
+    ui->stackedWidget->setCurrentIndex(Screens::FavList);
 }

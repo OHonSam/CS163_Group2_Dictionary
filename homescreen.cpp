@@ -110,3 +110,9 @@ void HomeScreen::on_pushButton_resetDailyWord_clicked()
     showDailyWord();
 }
 
+
+void HomeScreen::on_pushButton_FavScreen_clicked()
+{
+    emit switchToFavListScreen();
+}
+
