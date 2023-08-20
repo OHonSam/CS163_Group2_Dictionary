@@ -46,10 +46,13 @@ color:white;</string>
        </property>
        <property name="font">
         <font>
-         <pointsize>14</pointsize>
+         <pointsize>-1</pointsize>
          <italic>false</italic>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="toolTip">
+        <string>search</string>
        </property>
        <property name="layoutDirection">
         <enum>Qt::LeftToRight</enum>
@@ -63,7 +66,9 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
-font: bold;</string>
+font: bold;
+font-size: 13px;
+color: white;</string>
        </property>
        <property name="text">
         <string/>
@@ -409,6 +414,9 @@ border-radius: 20px;
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>set favourite</string>
+           </property>
            <property name="styleSheet">
             <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
@@ -418,7 +426,9 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
-font: bold;</string>
+font: bold;
+font-size: 13px;
+color: white;</string>
            </property>
            <property name="text">
             <string/>
@@ -438,6 +448,9 @@ font: bold;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>new daily word</string>
+           </property>
            <property name="styleSheet">
             <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
@@ -447,7 +460,9 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
-font: bold;</string>
+font: bold;
+font-size: 13px;
+color: white;</string>
            </property>
            <property name="text">
             <string/>
@@ -466,6 +481,9 @@ font: bold;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>edit daily word</string>
+           </property>
            <property name="styleSheet">
             <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
@@ -475,7 +493,9 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
-font: bold;</string>
+font: bold;
+font-size: 13px;
+color: white;</string>
            </property>
            <property name="text">
             <string/>
@@ -494,6 +514,9 @@ font: bold;</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>see full definition</string>
+           </property>
            <property name="styleSheet">
             <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
@@ -503,7 +526,9 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
-font: bold;</string>
+font: bold;
+font-size: 13px;
+color: white;</string>
            </property>
            <property name="text">
             <string/>
