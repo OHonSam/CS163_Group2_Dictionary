@@ -1,6 +1,8 @@
 #include "historyscreen.h"
 #include "ui_historyscreen.h"
 
+#include <QMessageBox>
+
 HistoryScreen::HistoryScreen(Dict *dict, QWidget *parent) :
     MyScreen(dict,Screen::History,parent),
     ui(new Ui::HistoryScreen)
@@ -45,8 +47,21 @@ void HistoryScreen::on_pushButton_remove_clicked()
 
 void HistoryScreen::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
 {
-    QString word=item->text();
-    emit sendToSearchScreen(word.mid(word.indexOf(' ')+1).toStdString());
-    emit switchScreen(Screen::Search);
+    QString raw=item->text();
+    std::string word=raw.mid(raw.indexOf(' ')+1).toStdString();
+    if(!dict->isInDict(word)){
+        QMessageBox::StandardButton rep=QMessageBox::warning(this,"Error",
+            "This word is not existed in dictionary.\nDo you want to remove it?",
+            QMessageBox::Yes|QMessageBox::No
+        );
+        if(rep==QMessageBox::Yes){
+            update();
+            QMessageBox::information(this,"Information","The word has been removed!");
+        }
+    }
+    else{
+        emit sendToSearchScreen(word);
+        emit switchScreen(Screen::Search);
+    }
 }
 
