@@ -150,7 +150,7 @@ void HomeScreen::on_lineEdit_search_returnPressed()
     std::string input=raw.toLower().toLocal8Bit().toStdString();
     if(raw.toLower()==QString::fromStdString(input)){
         if(ui->comboBox_searchType->currentIndex()==int(Search::ForDef)){
-            emit sendToSearchScreen(input,Search::ForWord);
+            emit sendToSearchScreen(input,Search::ForDef);
             emit switchScreen(Screen::Search);
         }
         else{

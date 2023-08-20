@@ -20,17 +20,22 @@ SearchScreen::~SearchScreen()
 
 void SearchScreen::receiveInputString(const std::string &input, Search::Type type){
     if(type==Search::ForDef){ // input is a word
-        ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->searchForDef(input)));
-        if(dict->isInFavList(input)){
-            ui->pushButton_setFav->setCheckable(true);
-            ui->pushButton_setFav->setIcon(heartFillIcon);
-        }
-        else{
-            ui->pushButton_setFav->setCheckable(false);
-            ui->pushButton_setFav->setIcon(heartIcon);
-        }
+        Word* res=dict->searchForDef(input);
+        if(res){
+            this->input=res->word;
+            ui->textBrowser->setHtml(HTML_Creator::toHTML(res));
+            if(dict->isInFavList(input)){
+                ui->pushButton_setFav->setCheckable(true);
+                ui->pushButton_setFav->setIcon(heartFillIcon);
+            }
+            else{
+                ui->pushButton_setFav->setCheckable(false);
+                ui->pushButton_setFav->setIcon(heartIcon);
+            }
 
-        emit updateHistory();
+            emit updateHistory();
+        }
+        else ui->textBrowser->setPlainText("");
     }
     else{ // input is a definition
         // to be continued
@@ -40,6 +45,7 @@ void SearchScreen::receiveInputString(const std::string &input, Search::Type typ
 
 void SearchScreen::on_pushButton_setFav_clicked(bool checked)
 {
+    if(ui->textBrowser->toPlainText()==QString()) return;
     if(checked){
         dict->removeFav(input);
         ui->pushButton_setFav->setCheckable(false);
