@@ -231,9 +231,9 @@ color: rgb(56, 64, 139);</string>
     </layout>
    </item>
    <item>
-    <layout class="QGridLayout" name="gridLayout">
+    <layout class="QGridLayout" name="gridLayout" rowstretch="1,1" columnstretch="1,1">
      <item row="0" column="1">
-      <widget class="QPushButton" name="pushButton_c2">
+      <widget class="QPushButton" name="pushButton_c1">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -258,7 +258,7 @@ color: rgb(56, 64, 139);</string>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QPushButton" name="pushButton_c4">
+      <widget class="QPushButton" name="pushButton_c3">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -283,7 +283,7 @@ color: rgb(56, 64, 139);</string>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QPushButton" name="pushButton_c3">
+      <widget class="QPushButton" name="pushButton_c2">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -308,7 +308,7 @@ color: rgb(56, 64, 139);</string>
       </widget>
      </item>
      <item row="0" column="0">
-      <widget class="QPushButton" name="pushButton_c1">
+      <widget class="QPushButton" name="pushButton_c0">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
