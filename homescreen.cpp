@@ -199,3 +199,10 @@ void HomeScreen::on_pushButton_reset_clicked()
     }
 }
 
+
+void HomeScreen::on_pushButton_expand_clicked()
+{
+    emit sendToSearchScreen(dailyWord->word,Search::ForDef);
+    emit switchScreen(Screen::Search);
+}
+
