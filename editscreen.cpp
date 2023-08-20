@@ -83,9 +83,11 @@ void EditScreen::on_pushButton_saveWord_clicked()
         QMessageBox::warning(this,"Invalid input","Your input is not valid. Please type in solely ASCII characters!");
 }
 
-
-Word *EditScreen::lazyUpdateWord(){
-    if(oldWord==nullptr) return nullptr;
+void EditScreen::on_pushButton_done_clicked()
+{
+    if(oldWord==nullptr) return;
     dict->updateWord(oldWord,newWord);
-    return newWord;
+    QMessageBox::information(this,"Information","The dictionary has been updated!");
+    emit updateCompleter();
 }
+

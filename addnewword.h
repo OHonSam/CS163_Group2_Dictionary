@@ -18,6 +18,9 @@ public:
     explicit AddNewWord(Dict *dict, QWidget *parent = nullptr);
     ~AddNewWord();
 
+signals:
+    void updateCompleter();
+
 private slots:
     void on_pushButton_discard_clicked();
 

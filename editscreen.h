@@ -15,7 +15,8 @@ public:
     explicit EditScreen(Dict *dict, QWidget *parent = nullptr);
     ~EditScreen();
 
-    Word* lazyUpdateWord();
+signals:
+    void updateCompleter();
 
 public slots:
     void receiveWord(Word* word);
@@ -26,6 +27,8 @@ private slots:
     void on_pushButton_saveDef_clicked();
 
     void on_pushButton_saveWord_clicked();
+
+    void on_pushButton_done_clicked();
 
 private:
     Ui::EditScreen *ui;

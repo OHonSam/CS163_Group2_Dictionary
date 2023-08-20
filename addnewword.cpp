@@ -90,5 +90,6 @@ void AddNewWord::on_pushButton_add_clicked()
 {
     dict->addWord(newWord,true);
     QMessageBox::information(this,"Information","New word has been added to dictionary!");
+    emit updateCompleter();
 }
 

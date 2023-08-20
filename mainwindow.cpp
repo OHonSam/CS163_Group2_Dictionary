@@ -124,6 +124,16 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &homeScreen,SIGNAL(sendToEditScreen(Word*)),
         &editScreen,SLOT(receiveWord(Word*))
     );
+
+    // 5. update completer after edit and add
+    connect(
+        &editScreen,SIGNAL(updateCompleter()),
+        &homeScreen,SLOT(updateCompleter())
+    );
+    connect(
+        &addScreen,SIGNAL(updateCompleter()),
+        &homeScreen,SLOT(updateCompleter())
+    );
 }
 
 MainWindow::~MainWindow()
@@ -132,18 +142,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::switchScreen(Screen::Type id){
-    Word* newWord=nullptr;
-    Screen::Type preScreen=stackScreen.top();
-    if(preScreen==Screen::Edit)
-        newWord=editScreen.lazyUpdateWord();
-
     if(id==Screen::GoBack) stackScreen.pop();
     else stackScreen.push(id);
     ui->stackedWidget->setCurrentIndex(stackScreen.top());
-    switch (stackScreen.top()){
-    case Screen::Home:
-        if(preScreen==Screen::Edit && newWord!=nullptr)
-            homeScreen.updateDailyWord(newWord);
-        break;
-    }
+    if(stackScreen.top()==Screen::Home) homeScreen.showDailyWord();
 }

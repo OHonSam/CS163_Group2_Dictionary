@@ -75,6 +75,26 @@ color: white;</string>
          </property>
         </spacer>
        </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_done">
+         <property name="styleSheet">
+          <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
+font: bold;
+color: white;</string>
+         </property>
+         <property name="text">
+          <string>Done</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
     </layout>

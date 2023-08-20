@@ -181,10 +181,6 @@ void HomeScreen::on_pushButton_editWord_clicked()
     emit switchScreen(Screen::Edit);
 }
 
-void HomeScreen::updateDailyWord(Word* newWord){
-    ui->textBrowser->setHtml(HTML_Creator::toHTML(dailyWord=newWord));
-}
-
 void HomeScreen::on_pushButton_reset_clicked()
 {
     QMessageBox::StandardButton rep=QMessageBox::warning(this,"Caution",

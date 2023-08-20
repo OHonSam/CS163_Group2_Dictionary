@@ -25,7 +25,7 @@ signals:
     void sendToEditScreen(Word* word);
 
 public slots:
-    void updateDailyWord(Word *newWord);
+    void updateCompleter();
 
 private slots:
     void on_comboBox_dictVersion_currentIndexChanged(int index);
@@ -62,8 +62,6 @@ private:
     Word *dailyWord;
 
     QIcon heartIcon, heartFillIcon;
-
-    void updateCompleter();
 };
 
 #endif // HOMESCREEN_H
