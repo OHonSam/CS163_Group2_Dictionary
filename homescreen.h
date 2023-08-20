@@ -48,6 +48,8 @@ private slots:
 
     void on_pushButton_editWord_clicked();
 
+    void on_pushButton_reset_clicked();
+
 private:
     Ui::HomeScreen *ui;
     QCompleter completer;

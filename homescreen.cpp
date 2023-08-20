@@ -184,3 +184,18 @@ void HomeScreen::on_pushButton_editWord_clicked()
 void HomeScreen::updateDailyWord(){
     ui->textBrowser->setHtml(HTML_Creator::toHTML(dailyWord));
 }
+
+void HomeScreen::on_pushButton_reset_clicked()
+{
+    QMessageBox::StandardButton rep=QMessageBox::warning(this,"Caution",
+        "All modified definitions will be removed.\nDo you want to proceed?",
+        QMessageBox::Yes|QMessageBox::No
+    );
+
+    if(rep==QMessageBox::Yes){
+        dict->reset();
+        showDailyWord();
+        QMessageBox::information(this,"Information","The dictionary has been resetten!");
+    }
+}
+

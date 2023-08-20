@@ -54,6 +54,7 @@ void EditScreen::on_pushButton_save_clicked()
         }
         curWord->def[ui->comboBox_POS->currentIndex()]=output;
         on_comboBox_POS_currentIndexChanged(ui->comboBox_POS->currentIndex());
+        QMessageBox::information(this,"Information","New definition has been saved!");
     }
 }
 
