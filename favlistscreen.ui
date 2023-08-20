@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>HistoryScreen</class>
- <widget class="QWidget" name="HistoryScreen">
+ <class>FavListScreen</class>
+ <widget class="QWidget" name="FavListScreen">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -64,7 +64,7 @@ color: white;</string>
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="pushButton_remove">
          <property name="layoutDirection">
           <enum>Qt::RightToLeft</enum>
          </property>
@@ -158,12 +158,12 @@ background-image: url(:/background/images/bg/mid button.png);
 </string>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Full favourite List&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Favourite List&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QListWidget" name="listWidget_history">
+          <widget class="QListWidget" name="listWidget">
            <property name="styleSheet">
             <string notr="true">padding: 20px;
 border-width : 2px;
@@ -183,7 +183,7 @@ color: rgb(56, 64, 139);</string>
       </layout>
      </item>
      <item row="0" column="0">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButton_title">
        <property name="styleSheet">
         <string notr="true">padding: 20px;
 border-radius: 20px;

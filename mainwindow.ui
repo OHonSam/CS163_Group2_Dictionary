@@ -17,7 +17,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Dictionary</string>
   </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
@@ -45,23 +45,6 @@
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>881</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuHomescreen">
-    <property name="title">
-     <string>Homescreen</string>
-    </property>
-   </widget>
-   <addaction name="menuHomescreen"/>
   </widget>
  </widget>
  <resources/>

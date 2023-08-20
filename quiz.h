@@ -1,18 +1,18 @@
 #ifndef QUIZ_H
 #define QUIZ_H
 
-#include <QWidget>
+#include "myscreen.h"
 
 namespace Ui {
 class Quiz;
 }
 
-class Quiz : public QWidget
+class Quiz : public MyScreen
 {
     Q_OBJECT
 
 public:
-    explicit Quiz(QWidget *parent = nullptr);
+    explicit Quiz(Dict *dict, QWidget *parent = nullptr);
     ~Quiz();
 
 private:

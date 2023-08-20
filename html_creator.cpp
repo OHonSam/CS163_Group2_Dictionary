@@ -1,5 +1,39 @@
 #include "html_creator.h"
 
+QString HTML_Creator::fromWordToHTML(const Word* word){
+    return QString(
+               "<p align=\"center\" "
+               "style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
+               "<span style=\" font-size:18pt; font-weight:1000; color:#414699;\">"
+               "%1"
+               "</span></p><hr>"
+               ).arg(QString::fromStdString(word->word));
+}
+
+QString HTML_Creator::fromDefToHTML(const Word *word){
+    QString res="";
+    for(int i=0, cnt=0; i<POS::Count; i++)
+        if(!word->def[i].empty()){
+            res+=QString(
+                       "<p align=\"left\" "
+                       "style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
+                       "<span style=\" font-size:14pt; font-weight:700; color:#414699;\">"
+                       "%1. %2: "
+                       "</span></p>"
+                       ).arg(QString::number(++cnt),QString::fromStdString(POS::TypeString[i]));
+            for(const std::string& def: word->def[i])
+                res+=QString(
+                           "<p align=\"justify\" "
+                           "style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
+                           "<span style=\" font-size:14pt; font-weight:700; color:#414699;\">"
+                           "- %1"
+                           "</span></p>"
+                           ).arg(QString::fromStdString(def));
+            res+="<br>";
+        }
+    return res;
+}
+
 QString HTML_Creator::toHTML(const Word *word){
     if(!word) return QString();
     // heading
@@ -14,33 +48,8 @@ QString HTML_Creator::toHTML(const Word *word){
 
 
     // The word itself
-    res+=QString(
-               "<p align=\"center\" "
-               "style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
-               "<span style=\" font-size:18pt; font-weight:1000; color:#414699;\">"
-               "%1"
-               "</span></p>"
-                ).arg(QString::fromStdString(word->word));
-
-    for(int i=0, cnt=0; i<POS::Count; i++)
-        if(!word->def[i].empty()){
-            res+="<br>";
-            res+=QString(
-               "<p align=\"left\" "
-               "style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
-               "<span style=\" font-size:14pt; font-weight:700; color:#414699;\">"
-               "%1. %2: "
-               "</span></p>"
-                       ).arg(QString::number(++cnt),QString::fromStdString(POS::TypeString[i]));
-            for(const std::string& def: word->def[i])
-                res+=QString(
-                   "<p align=\"justify\" "
-                   "style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
-                   "<span style=\" font-size:14pt; font-weight:700; color:#414699;\">"
-                   "    - %1"
-                   "</span></p>"
-                           ).arg(QString::fromStdString(def));
-        }
+    res+=fromWordToHTML(word);
+    res+=fromDefToHTML(word);
 
     // ending
     res+="</body></html>";

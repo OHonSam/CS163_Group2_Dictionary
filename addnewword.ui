@@ -16,17 +16,13 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(240, 243, 250);</string>
   </property>
-  <layout class="QFormLayout" name="formLayout_3">
-   <item row="0" column="0" colspan="2">
-    <layout class="QVBoxLayout" name="verticalLayout_4">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <widget class="QPushButton" name="pushButton_3">
-           <property name="styleSheet">
-            <string notr="true">padding: 20px;
+      <widget class="QPushButton" name="pushButton_title">
+       <property name="styleSheet">
+        <string notr="true">padding: 20px;
 border-radius: 20px;
   min-height: 20px;
   min-width: 20px;
@@ -34,18 +30,18 @@ background-image: url(:/background/images/bg/intro bg.png);
 font: 24pt &quot;Audiowide&quot;;
 font: bold;
 color:white;</string>
-           </property>
-           <property name="text">
-            <string>Dictionary - Group 2</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <item>
-            <widget class="QPushButton" name="pushButton_goBack">
-             <property name="styleSheet">
-              <string notr="true">padding: 6px;
+       </property>
+       <property name="text">
+        <string>Dictionary - Group 2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QPushButton" name="pushButton_goBack">
+         <property name="styleSheet">
+          <string notr="true">padding: 6px;
 border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
@@ -56,51 +52,79 @@ background-color: rgb(102, 124, 246);
 font: 11pt &quot;Comfortaa&quot;;
 font: bold;
 color: white;</string>
-             </property>
-             <property name="text">
-              <string>Back </string>
-             </property>
-             <property name="icon">
-              <iconset resource="resources.qrc">
-               <normaloff>:/img/images/back.svg</normaloff>:/img/images/back.svg</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-        </layout>
+         </property>
+         <property name="text">
+          <string>Back </string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/img/images/back.svg</normaloff>:/img/images/back.svg</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_discard">
+         <property name="styleSheet">
+          <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
+font: bold;
+color: white;</string>
+         </property>
+         <property name="text">
+          <string>Discard</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_add">
+         <property name="styleSheet">
+          <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
+font: bold;
+color: white;</string>
+         </property>
+         <property name="text">
+          <string>Add</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
     </layout>
    </item>
-   <item row="1" column="1">
-    <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,7,1">
+     <item>
+      <widget class="QLabel" name="label_2">
        <property name="styleSheet">
-        <string notr="true">padding: 12px;
-padding-left: 30px;
-padding-right: 40px;
+        <string notr="true">padding: 10px;
 border-width : 2px;
 border-style:solid;
 border-radius: 20px;
@@ -115,24 +139,78 @@ background-image: url(:/background/images/bg/mid button.png);
 </string>
        </property>
        <property name="text">
-        <string>Enter a new word</string>
+        <string>New word</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <layout class="QFormLayout" name="formLayout_2">
-       <item row="0" column="0">
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <widget class="QPushButton" name="pushButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>10</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">padding: 10px;
+     <item>
+      <widget class="QLineEdit" name="lineEdit_word">
+       <property name="styleSheet">
+        <string notr="true">padding: 20px;
+border-width : 2px;
+border-style:solid;
+border-radius: 20px;
+  min-height: 20px;
+  min-width: 20px;
+background-color: rgb(233, 240, 250);
+border-color: rgb(99, 112, 243);
+font: 13pt &quot;Comfortaa&quot;;
+color: rgb(56, 64, 139);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>New word</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_saveWord">
+       <property name="styleSheet">
+        <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
+font: bold;
+color: white;</string>
+       </property>
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,4">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="styleSheet">
+          <string notr="true">padding: 10px;
 border-width : 2px;
 border-style:solid;
 border-radius: 20px;
@@ -145,22 +223,25 @@ color: white;
 border-color: rgb(78, 91, 247);
 background-image: url(:/background/images/bg/mid button.png);
 </string>
-           </property>
-           <property name="text">
-            <string>Enter new definition(s)</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBox">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>10</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">padding: 5px;
+         </property>
+         <property name="text">
+          <string>New definition(s)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox_POS">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>10</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">padding: 5px;
 border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
@@ -173,94 +254,94 @@ selection-background-color: rgb(77, 92, 245);
 font: 11pt &quot;Comfortaa&quot;;
 font: bold;
 background-color: rgb(102, 124, 246);</string>
-           </property>
-           <property name="placeholderText">
-            <string/>
-           </property>
-           <item>
-            <property name="text">
-             <string>Noun</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Pronoun</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Verb</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Adjective</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Adverb</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Interjection</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Preposition</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Conjunction</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Others</string>
-            </property>
-           </item>
-          </widget>
+         </property>
+         <property name="placeholderText">
+          <string/>
+         </property>
+         <item>
+          <property name="text">
+           <string>Noun</string>
+          </property>
          </item>
-        </layout>
+         <item>
+          <property name="text">
+           <string>Verb</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Adjective</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Adverb</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Pronoun</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Preposition</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Conjunction</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Interjection</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Others</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_saveDef">
+         <property name="styleSheet">
+          <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
+font: bold;
+color: white;</string>
+         </property>
+         <property name="text">
+          <string>Save</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
-     <item row="0" column="1">
-      <widget class="QTextEdit" name="textEdit_4">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>34</width>
-         <height>34</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">padding: 5px;
-border-width : 2px;
-border-style:solid;
-border-radius: 20px;
-  min-height: 20px;
-  min-width: 20px;
-background-color: rgb(233, 240, 250);
-border-color: rgb(99, 112, 243);
-font: 13pt &quot;Comfortaa&quot;;
-color: rgb(56, 64, 139);</string>
-       </property>
-       <property name="placeholderText">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QTextEdit" name="textEdit_3">
+     <item>
+      <widget class="QPlainTextEdit" name="plainTextEdit_def">
        <property name="styleSheet">
         <string notr="true">padding: 20px;
 border-width : 2px;
@@ -274,7 +355,7 @@ font: 13pt &quot;Comfortaa&quot;;
 color: rgb(56, 64, 139);</string>
        </property>
        <property name="placeholderText">
-        <string/>
+        <string>New definition(s)</string>
        </property>
       </widget>
      </item>

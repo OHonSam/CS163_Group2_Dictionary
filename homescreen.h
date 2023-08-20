@@ -1,16 +1,15 @@
 #ifndef HOMESCREEN_H
 #define HOMESCREEN_H
 
-#include <QWidget>
 #include <QCompleter>
 
-#include <Dict.hpp>
+#include "myscreen.h"
 
 namespace Ui {
 class HomeScreen;
 }
 
-class HomeScreen : public QWidget
+class HomeScreen : public MyScreen
 {
     Q_OBJECT
 
@@ -18,13 +17,14 @@ public:
     explicit HomeScreen(Dict *dict, QWidget *parent = nullptr);
     ~HomeScreen();
 
+    void showDailyWord();
+
 signals:
-    void switchDataSet();
-
-    void switchToHistoryScreen();
-    void updateHistory(const std::string& word, bool isAdd=true);
-
-    void switchToSearchForDefScreen(const std::string& word);
+    void updateHistory();
+    void updateFavList();
+    void sendToSearchScreen(const std::string& input, Search::Type type);
+    void sendToDefToWordScreen(const std::string& input);
+    void sendToEditScreen(Word* word);
 
 public slots:
     void updateCompleter();
@@ -38,14 +38,32 @@ private slots:
 
     void on_pushButton_resetDailyWord_clicked();
 
+    void on_pushButton_FavScreen_clicked();
+
+    void on_pushButton_EditScreen_clicked();
+
+    void on_pushButton_AddScreen_clicked();
+
+    void on_pushButton_QuizScreen_clicked();
+
+    void on_lineEdit_search_returnPressed();
+
+    void on_pushButton_setFav_clicked(bool checked);
+
+    void on_pushButton_editWord_clicked();
+
+    void on_pushButton_reset_clicked();
+
+    void on_pushButton_expand_clicked();
+
 private:
     Ui::HomeScreen *ui;
     QCompleter completer;
 
-    Dict *dict;
     QStringList suggestions;
+    Word *dailyWord;
 
-    void showDailyWord();
+    QIcon heartIcon, heartFillIcon;
 };
 
 #endif // HOMESCREEN_H

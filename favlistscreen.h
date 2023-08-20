@@ -1,22 +1,37 @@
 #ifndef FAVLISTSCREEN_H
 #define FAVLISTSCREEN_H
 
-#include <QWidget>
+#include <QListWidgetItem>
+
+#include "myscreen.h"
 
 namespace Ui {
-class favlistscreen;
+class FavListScreen;
 }
 
-class favlistscreen : public QWidget
+class FavListScreen : public MyScreen
 {
     Q_OBJECT
 
 public:
-    explicit favlistscreen(QWidget *parent = nullptr);
-    ~favlistscreen();
+    explicit FavListScreen(Dict *dict, QWidget *parent = nullptr);
+    ~FavListScreen();
+
+signals:
+    void sendToSearchScreen(const std::string& word, Search::Type type = Search::ForDef);
+
+public slots:
+    void update();
+
+private slots:
+    void on_pushButton_remove_clicked();
+
+    void on_pushButton_clear_clicked();
+
+    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
 private:
-    Ui::favlistscreen *ui;
+    Ui::FavListScreen *ui;
 };
 
 #endif // FAVLISTSCREEN_H

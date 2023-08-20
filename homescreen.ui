@@ -18,21 +18,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="title">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Audiowide</family>
-       <pointsize>24</pointsize>
-       <italic>false</italic>
-       <bold>true</bold>
-      </font>
-     </property>
+    <widget class="QPushButton" name="pushButton_title">
      <property name="styleSheet">
       <string notr="true">padding: 20px;
 border-radius: 20px;
@@ -40,13 +26,11 @@ border-radius: 20px;
   min-width: 20px;
 background-image: url(:/background/images/bg/intro bg.png);
 font: 24pt &quot;Audiowide&quot;;
-font: bold;</string>
+font: bold;
+color:white;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; color:#ffffff;&quot;&gt;DICTIONARY - GROUP 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <string>DICTIONARY - GROUP 2</string>
      </property>
     </widget>
    </item>
@@ -139,12 +123,12 @@ background-color: rgb(102, 124, 246);</string>
        </property>
        <item>
         <property name="text">
-         <string>Key</string>
+         <string>Def</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Def</string>
+         <string>Word</string>
         </property>
        </item>
       </widget>
@@ -243,7 +227,7 @@ background-color: rgb(102, 124, 246);</string>
    <item row="2" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton_edit">
+      <widget class="QPushButton" name="pushButton_EditScreen">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
          <horstretch>12</horstretch>
@@ -280,7 +264,7 @@ border-radius: 20px;
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushButton_AddScreen">
        <property name="styleSheet">
         <string notr="true">background-image: url(:/background/images/bg/button.png);
 padding: 30px;
@@ -378,7 +362,7 @@ border-radius: 20px;
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_8">
+      <widget class="QPushButton" name="pushButton_reset">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
          <horstretch>12</horstretch>
@@ -503,7 +487,7 @@ font: bold;</string>
           </widget>
          </item>
          <item row="0" column="3">
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="pushButton_expand">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
              <horstretch>0</horstretch>

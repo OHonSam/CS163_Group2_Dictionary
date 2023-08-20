@@ -1,44 +1,42 @@
 #ifndef SEARCHSCREEN_H
 #define SEARCHSCREEN_H
 
-#include <QWidget>
-#include <QCompleter>
-#include <QStringList>
-#include <QStringListModel>
+#include <QIcon>
+
+#include "myscreen.h"
 #include "html_creator.h"
 
-#include <Dict.hpp>
-
 namespace Ui {
-class SearchForDef;
+class SearchScreen;
 }
 
-class SearchForDef : public QWidget
+class SearchScreen : public MyScreen
 {
     Q_OBJECT
 
 public:
-    explicit SearchForDef(Dict *dict, QWidget *parent = nullptr);
-    ~SearchForDef();
+    explicit SearchScreen(Dict *dict, QWidget *parent = nullptr);
+    ~SearchScreen();
 
 signals:
-    void goBack();
+    void updateFavList();
+    void updateHistory();
+    void sendToEditScreen(Word* word);
 
 public slots:
-    void receiveWord(const std::string& word);
-    void updateCompleter();
+    void receiveInputString(const std::string& input, Search::Type type);
 
 private slots:
-    void on_pushButton_goBack_clicked();
+    void on_pushButton_setFav_clicked(bool checked);
 
-    void on_pushButton_search_clicked();
+    void on_pushButton_edit_clicked();
 
 private:
-    Ui::SearchForDef *ui;
-    Dict *dict;
+    Ui::SearchScreen *ui;
 
-    QCompleter completer;
-    QStringList suggestions;
+    Word *word;
+
+    QIcon heartIcon, heartFillIcon;
 };
 
 #endif // SEARCHSCREEN_H

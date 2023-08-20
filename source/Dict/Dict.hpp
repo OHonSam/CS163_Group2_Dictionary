@@ -188,6 +188,7 @@ public:
 
 	// Edit definition of existed word
 	void updateDef(const std::string &word, unsigned int type, const std::string &oldDef, const std::string &newDef);
+    void updateWord(Word* oldWord, Word* newWord);
 
 	// Add a new word and corresponding definition
 	void addWord(Word *word, bool fromUser = true);

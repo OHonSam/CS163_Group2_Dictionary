@@ -1,22 +1,39 @@
 #ifndef EDITSCREEN_H
 #define EDITSCREEN_H
 
-#include <QWidget>
+#include "myscreen.h"
 
 namespace Ui {
-class editScreen;
+class EditScreen;
 }
 
-class editScreen : public QWidget
+class EditScreen : public MyScreen
 {
     Q_OBJECT
 
 public:
-    explicit editScreen(QWidget *parent = nullptr);
-    ~editScreen();
+    explicit EditScreen(Dict *dict, QWidget *parent = nullptr);
+    ~EditScreen();
+
+signals:
+    void updateCompleter();
+
+public slots:
+    void receiveWord(Word* word);
+
+private slots:
+    void on_comboBox_POS_currentIndexChanged(int index);
+
+    void on_pushButton_saveDef_clicked();
+
+    void on_pushButton_saveWord_clicked();
+
+    void on_pushButton_done_clicked();
 
 private:
-    Ui::editScreen *ui;
+    Ui::EditScreen *ui;
+
+    Word *oldWord, *newWord;
 };
 
 #endif // EDITSCREEN_H

@@ -13,7 +13,12 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     , dict(dict)
     , homeScreen(dict,this)
     , historyScreen(dict,this)
-    , searchForDefScreen(dict,this)
+    , searchScreen(dict,this)
+    , favListScreen(dict,this)
+    , editScreen(dict,this)
+    , addScreen(dict,this)
+    , quizScreen(dict,this)
+    , defToWordScreen(dict,this)
 {
     ui->setupUi(this);
 
@@ -44,43 +49,120 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     // set stack widget
     ui->stackedWidget->addWidget(&homeScreen);
     ui->stackedWidget->addWidget(&historyScreen);
-    ui->stackedWidget->addWidget(&searchForDefScreen);
+    ui->stackedWidget->addWidget(&searchScreen);
+    ui->stackedWidget->addWidget(&favListScreen);
+    ui->stackedWidget->addWidget(&editScreen);
+    ui->stackedWidget->addWidget(&addScreen);
+    ui->stackedWidget->addWidget(&quizScreen);
+    ui->stackedWidget->addWidget(&defToWordScreen);
 
     // set default screen
-    ui->stackedWidget->setCurrentIndex(Screens::Home);
+    ui->stackedWidget->setCurrentIndex(Screen::Home);
+    stackScreen.push(Screen::Home);
 
     // connect signals and slot
+    // 1. Switching screens
     connect(
-        &homeScreen,SIGNAL(switchToHistoryScreen()),
-        this,SLOT(switchToHistoryScreen())
+        &homeScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
     );
     connect(
-        &historyScreen,SIGNAL(goBack()),
-        this,SLOT(switchToHomeScreen())
+        &historyScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
     );
     connect(
-        &homeScreen,SIGNAL(updateHistory(std::string,bool)),
-        &historyScreen,SLOT(updateHistory(std::string,bool))
+        &favListScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
     );
     connect(
-        &homeScreen,SIGNAL(switchToSearchForDefScreen(std::string)),
-        this,SLOT(switchToSearchForDefScreen(std::string))
+        &editScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
     );
     connect(
-        &searchForDefScreen,SIGNAL(goBack()),
-        this,SLOT(switchToHomeScreen())
+        &addScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
     );
     connect(
-        this,SIGNAL(giveWord(std::string)),
-        &searchForDefScreen,SLOT(receiveWord(std::string))
+        &quizScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
     );
     connect(
-        &homeScreen,SIGNAL(switchDataSet()),
+        &searchScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
+    );
+    connect(
+        &defToWordScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
+    );
+
+    // 2. Update history when searching
+    connect(
+        &searchScreen,SIGNAL(updateHistory()),
+        &historyScreen,SLOT(update())
+    );
+
+    // 3. Update favourite list
+    connect(
+        &homeScreen,SIGNAL(updateFavList()),
+        &favListScreen,SLOT(update())
+    );
+    connect(
+        &searchScreen,SIGNAL(updateFavList()),
+        &favListScreen,SLOT(update())
+    );
+
+    // 3. Send typed input to search screen
+    connect(
+        &homeScreen,SIGNAL(sendToSearchScreen(std::string,Search::Type)),
+        &searchScreen,SLOT(receiveInputString(std::string,Search::Type))
+    );
+    connect(
+        &historyScreen,SIGNAL(sendToSearchScreen(std::string,Search::Type)),
+        &searchScreen,SLOT(receiveInputString(std::string,Search::Type))
+    );
+    connect(
+        &favListScreen,SIGNAL(sendToSearchScreen(std::string,Search::Type)),
+        &searchScreen,SLOT(receiveInputString(std::string,Search::Type))
+    );
+
+    // 4. home -> edit
+    connect(
+        &homeScreen,SIGNAL(sendToEditScreen(Word*)),
+        &editScreen,SLOT(receiveWord(Word*))
+    );
+
+    // 5. update completer after edit and add
+    connect(
+        &editScreen,SIGNAL(updateCompleter()),
         &homeScreen,SLOT(updateCompleter())
     );
     connect(
-        &homeScreen,SIGNAL(switchDataSet()),
-        &searchForDefScreen,SLOT(updateCompleter())
+        &addScreen,SIGNAL(updateCompleter()),
+        &homeScreen,SLOT(updateCompleter())
+    );
+
+    // 6. update history
+    connect(
+        &homeScreen,SIGNAL(updateHistory()),
+        &historyScreen,SLOT(update())
+    );
+
+    // 7. Send input from home to deftoword
+    connect(
+        &homeScreen,SIGNAL(sendToDefToWordScreen(std::string)),
+        &defToWordScreen,SLOT(receiveInput(std::string))
+    );
+
+    // 8. Send input from deftoword to search
+    connect(
+        &defToWordScreen,SIGNAL(sendToSearchScreen(std::string,Search::Type)),
+        &searchScreen,SLOT(receiveInputString(std::string,Search::Type))
+    );
+
+    // 9. search -> edit
+    connect(
+        &searchScreen,SIGNAL(sendToEditScreen(Word*)),
+        &editScreen,SLOT(receiveWord(Word*))
     );
 }
 
@@ -89,15 +171,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::switchToHistoryScreen(){
-    ui->stackedWidget->setCurrentIndex(Screens::History);
-}
-
-void MainWindow::switchToHomeScreen(){
-    ui->stackedWidget->setCurrentIndex(Screens::Home);
-}
-
-void MainWindow::switchToSearchForDefScreen(const std::string& word){
-    ui->stackedWidget->setCurrentIndex(Screens::SearchForDef);
-    emit giveWord(word);
+void MainWindow::switchScreen(Screen::Type id){
+    if(id==Screen::GoBack) stackScreen.pop();
+    else stackScreen.push(id);
+    ui->stackedWidget->setCurrentIndex(stackScreen.top());
+    if(stackScreen.top()==Screen::Home) homeScreen.showDailyWord();
 }

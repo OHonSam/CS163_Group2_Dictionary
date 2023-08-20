@@ -82,6 +82,7 @@ struct Word
     std::vector<std::string> def[POS::Count];
 
     Word();
+    Word(Word* o);
     Word(const std::string& word);
     Word(const std::string& word, unsigned int type);
     Word(const std::string& word, unsigned int type, const std::string& def);

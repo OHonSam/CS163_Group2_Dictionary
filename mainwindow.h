@@ -2,27 +2,20 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <stack>
 
-#include <homescreen.h>
-#include <historyscreen.h>
-#include<searchscreen.h>
-#include<cSearch.h>
-#include <Dict.hpp>
-#include<bEdit.h>
+#include "homescreen.h"
+#include "historyscreen.h"
+#include "searchscreen.h"
+#include "favlistscreen.h"
+#include "editscreen.h"
+#include "addnewword.h"
+#include "quiz.h"
+#include "deftoword.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
-
-namespace Screens{
-enum Type{
-    Dummy,
-    Home,
-    History,
-    SearchForDef,
-    Count
-};
-}
 
 class MainWindow : public QMainWindow
 {
@@ -39,9 +32,7 @@ signals:
     void giveWord(const std::string& input);
 
 public slots:
-    void switchToHistoryScreen();
-    void switchToHomeScreen();
-    void switchToSearchForDefScreen(const std::string& word);
+    void switchScreen(Screen::Type id);
 
 private:
     const int DEF_WIDTH=1072;
@@ -52,6 +43,13 @@ private:
 
     HomeScreen homeScreen;
     HistoryScreen historyScreen;
-    SearchForDef searchForDefScreen;
+    SearchScreen searchScreen;
+    FavListScreen favListScreen;
+    EditScreen editScreen;
+    AddNewWord addScreen;
+    Quiz quizScreen;
+    DefToWord defToWordScreen;
+
+    std::stack<Screen::Type> stackScreen;
 };
 #endif // MAINWINDOW_H

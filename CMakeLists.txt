@@ -24,33 +24,26 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         resources.qrc
-        historyscreen.h historyscreen.cpp historyscreen.ui
-		homescreen.h homescreen.cpp homescreen.ui
-                searchscreen.h searchscreen.cpp searchscreen.ui
+
+		myscreen.h myscreen.cpp
 
 		html_creator.h html_creator.cpp
 
-        historyscreen.h historyscreen.cpp
+		historyscreen.h historyscreen.cpp historyscreen.ui
 
-        favlistscreen.h favlistscreen.cpp
+		homescreen.h homescreen.cpp homescreen.ui
 
+		searchscreen.h searchscreen.cpp searchscreen.ui
 
-        editscreen.h editscreen.cpp
+		deftoword.h deftoword.cpp deftoword.ui
 
+		favlistscreen.h favlistscreen.cpp favlistscreen.ui
 
+		editscreen.h editscreen.cpp editscreen.ui
 
+		addnewword.h addnewword.cpp addnewword.ui
 
-        addnewword.h addnewword.cpp
-        addnewword.ui
-        quiz.h quiz.cpp quiz.ui
-        editword.ui
-        favlistscreen.ui
-
-
-
-
-
-
+		quiz.h quiz.cpp quiz.ui
     )
 # Define target properties for Andro
 #    set_property(TARGET Qt_UI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -77,7 +70,7 @@ set_target_properties(Qt_UI PROPERTIES
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
+	WIN32_EXECUTABLE TRUE
 )
 
 install(TARGETS Qt_UI

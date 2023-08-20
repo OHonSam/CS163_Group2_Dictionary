@@ -22,7 +22,7 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,3">
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="pushButton_title">
          <property name="styleSheet">
           <string notr="true">padding: 20px;
 border-radius: 20px;
@@ -39,12 +39,12 @@ color:white;</string>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,2,0">
+        <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,2,0,0">
          <property name="topMargin">
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="pushButton_goBack_2">
+          <widget class="QPushButton" name="pushButton_goBack">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -96,7 +96,7 @@ color: white;</string>
            </property>
            <property name="minimumSize">
             <size>
-             <width>19</width>
+             <width>13</width>
              <height>13</height>
             </size>
            </property>
@@ -126,6 +126,19 @@ background-color: rgb(102, 124, 246);</string>
             </property>
            </item>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_goBack_3">

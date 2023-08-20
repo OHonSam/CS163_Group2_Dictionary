@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SearchForDef</class>
- <widget class="QWidget" name="SearchForDef">
+ <class>SearchScreen</class>
+ <widget class="QWidget" name="SearchScreen">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -23,13 +23,13 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButton_title">
        <property name="font">
         <font>
          <family>Audiowide</family>
          <pointsize>24</pointsize>
          <italic>false</italic>
-         <bold>false</bold>
+         <bold>true</bold>
          <kerning>true</kerning>
         </font>
        </property>
@@ -40,7 +40,8 @@ border-radius: 20px;
   min-width: 20px;
 background-image: url(:/background/images/bg/intro bg.png);
 font: 24pt &quot;Audiowide&quot;;
-color:white;</string>
+font: bold;
+color: white;</string>
        </property>
        <property name="text">
         <string>Dictionary - Group 2</string>
@@ -215,7 +216,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700; color:#414699;&quot;&gt;Verb: To greet&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="placeholderText">
-        <string>Displaying...</string>
+        <string>Empty</string>
        </property>
       </widget>
      </item>

@@ -1,40 +1,36 @@
 #ifndef HISTORYSCREEN_H
 #define HISTORYSCREEN_H
 
-#include <QWidget>
+#include <QListWidgetItem>
 
-#include <Dict.hpp>
+#include "myscreen.h"
 
 namespace Ui {
-class AddNewWord;
+class HistoryScreen;
 }
 
-class HistoryScreen : public QWidget
+class HistoryScreen : public MyScreen
 {
     Q_OBJECT
-
 public:
     explicit HistoryScreen(Dict *dict, QWidget *parent = nullptr);
     ~HistoryScreen();
 
 signals:
-    void goBack();
+    void sendToSearchScreen(const std::string& word, Search::Type type = Search::ForDef);
 
 public slots:
-    void updateHistory(const std::string& word, bool isAdd);
+    void update();
 
 private slots:
-    void on_pushButton_goBack_clicked();
-
     void on_pushButton_clear_clicked();
 
     void on_pushButton_remove_clicked();
 
-private:
-    Ui::AddNewWord *ui;
-    Dict *dict;
+    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
-    void update();
+private:
+    Ui::HistoryScreen *ui;
 };
 
 #endif // HISTORYSCREEN_H

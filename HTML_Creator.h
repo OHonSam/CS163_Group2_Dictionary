@@ -5,6 +5,8 @@
 #include <Word.hpp>
 
 namespace HTML_Creator{
+    QString fromWordToHTML(const Word* word);
+    QString fromDefToHTML(const Word* word);
     QString toHTML(const Word* word);
 }
 

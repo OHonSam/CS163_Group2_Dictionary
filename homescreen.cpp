@@ -7,10 +7,11 @@
 #include "html_creator.h"
 
 HomeScreen::HomeScreen(Dict *dict, QWidget *parent) :
-    QWidget(parent),
+    MyScreen(dict,Screen::Home,parent),
     ui(new Ui::HomeScreen),
     completer(this),
-    dict(dict)
+    heartIcon(":/img/images/heart.svg"),
+    heartFillIcon(":/img/images/heart-fill.svg")
 {
     ui->setupUi(this);
 
@@ -70,14 +71,13 @@ void HomeScreen::on_comboBox_dictVersion_currentIndexChanged(int index)
         return;
     }
     showDailyWord();
-
-    emit switchDataSet();
+    updateCompleter();
 }
 
 
 void HomeScreen::on_pushButton_HistoryScreen_clicked()
 {
-    emit switchToHistoryScreen();
+    emit switchScreen(Screen::History);
 }
 
 void HomeScreen::updateCompleter(){
@@ -97,17 +97,113 @@ void HomeScreen::updateCompleter(){
 
 void HomeScreen::on_pushButton_search_clicked()
 {
-    std::string input=ui->lineEdit_search->text().toLower().toStdString();
-    emit updateHistory(input,true);
-    emit switchToSearchForDefScreen(input);
+    on_lineEdit_search_returnPressed();
 }
 
 void HomeScreen::showDailyWord(){
-    ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->getDailyWord()));
+    dailyWord=dict->getDailyWord();
+    ui->textBrowser->setHtml(HTML_Creator::toHTML(dailyWord));
+
+    if(dict->isInFavList(dailyWord->word)){
+        ui->pushButton_setFav->setCheckable(true);
+        ui->pushButton_setFav->setIcon(heartFillIcon);
+    }
+    else{
+        ui->pushButton_setFav->setCheckable(false);
+        ui->pushButton_setFav->setIcon(heartIcon);
+    }
 }
 
 void HomeScreen::on_pushButton_resetDailyWord_clicked()
 {
     showDailyWord();
+}
+
+
+void HomeScreen::on_pushButton_FavScreen_clicked()
+{
+    emit switchScreen(Screen::FavList);
+}
+
+
+void HomeScreen::on_pushButton_EditScreen_clicked()
+{
+    emit switchScreen(Screen::Edit);
+}
+
+
+void HomeScreen::on_pushButton_AddScreen_clicked()
+{
+    emit switchScreen(Screen::Add);
+}
+
+
+void HomeScreen::on_pushButton_QuizScreen_clicked()
+{
+    emit switchScreen(Screen::Quiz);
+}
+
+
+void HomeScreen::on_lineEdit_search_returnPressed()
+{
+    QString raw=ui->lineEdit_search->text();
+    std::string input=raw.toLower().toLocal8Bit().toStdString();
+    if(raw.toLower()==QString::fromStdString(input)){
+        if(ui->comboBox_searchType->currentIndex()==int(Search::ForDef)){
+            emit sendToSearchScreen(input,Search::ForDef);
+            emit switchScreen(Screen::Search);
+        }
+        else{
+            emit sendToDefToWordScreen(input);
+            emit switchScreen(Screen::DefToWord);
+        }
+    }
+    else
+        QMessageBox::warning(this,"Invalid input","Your input is not valid. Please type in solely ASCII characters!");
+}
+
+void HomeScreen::on_pushButton_setFav_clicked(bool checked)
+{
+    if(checked){
+        dict->removeFav(dailyWord->word);
+        ui->pushButton_setFav->setCheckable(false);
+        ui->pushButton_setFav->setIcon(heartIcon);
+    }
+    else{
+        dict->addFav(dailyWord->word);
+        ui->pushButton_setFav->setCheckable(true);
+        ui->pushButton_setFav->setIcon(heartFillIcon);
+    }
+    emit updateFavList();
+}
+
+
+void HomeScreen::on_pushButton_editWord_clicked()
+{
+    emit sendToEditScreen(dailyWord);
+    emit switchScreen(Screen::Edit);
+}
+
+void HomeScreen::on_pushButton_reset_clicked()
+{
+    QMessageBox::StandardButton rep=QMessageBox::warning(this,"Caution",
+        "All modified definitions will be removed.\nDo you want to proceed?",
+        QMessageBox::Yes|QMessageBox::No
+    );
+
+    if(rep==QMessageBox::Yes){
+        dict->reset();
+        showDailyWord();
+        QMessageBox::information(this,"Information","The dictionary has been resetten!");
+        emit updateHistory();
+        emit updateFavList();
+    }
+}
+
+
+void HomeScreen::on_pushButton_expand_clicked()
+{
+    emit sendToSearchScreen(dailyWord->word,Search::ForDef);
+    emit switchScreen(Screen::Search);
 }
 

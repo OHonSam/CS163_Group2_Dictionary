@@ -1,75 +1,68 @@
-#include "searchfordef.h"
+#include "searchscreen.h"
 #include "ui_searchscreen.h"
 
 #include <QListView>
 
-SearchForDef::SearchForDef(Dict *dict, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::SearchForDef),
-    dict(dict),
-    completer(this)
+SearchScreen::SearchScreen(Dict *dict, QWidget *parent) :
+    MyScreen(dict,Screen::Search,parent),
+    ui(new Ui::SearchScreen),
+    heartIcon(":/img/images/heart.svg"),
+    heartFillIcon(":/img/images/heart-fill.svg"),
+    word(nullptr)
 {
     ui->setupUi(this);
-
-    // setting completer
-    ui->lineEdit_search->setCompleter(&completer);
-
-    QListView *popupListView = qobject_cast<QListView *>(completer.popup());
-    if (popupListView) {
-        popupListView->setStyleSheet("QListView {"
-                                     "  padding: 9px;"
-                                     "  border-color: rgb(77, 101, 246);"
-                                     "  border-width : 1px;"
-                                     "  border-style:inset;"
-                                     "  border-radius: 8px;"
-                                     "  min-height: 1px;"
-                                     "  min-width: 1px;"
-                                     "  background-color: rgb(102, 124, 246);"
-                                     "  color: white;"
-                                     "  selection-color: rgb(39, 182, 240);"
-                                     "  selection-background-color: rgb(77, 92, 245);"
-                                     "  font: 11pt \"Comfortaa\";"
-                                     "}"
-                                     );
-    }
-
-    updateCompleter();
 }
 
-SearchForDef::~SearchForDef()
+SearchScreen::~SearchScreen()
 {
     delete ui;
 }
 
-void SearchForDef::receiveWord(const std::string &word){
-    ui->lineEdit_search->setText(QString::fromStdString(word));
-    ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->searchForDef(word)));
+void SearchScreen::receiveInputString(const std::string &input, Search::Type type){
+    if(type==Search::ForDef){ // input is a word
+        word=dict->searchForDef(input);
+        if(word){
+            ui->textBrowser->setHtml(HTML_Creator::toHTML(word));
+            if(dict->isInFavList(word->word)){
+                ui->pushButton_setFav->setCheckable(true);
+                ui->pushButton_setFav->setIcon(heartFillIcon);
+            }
+            else{
+                ui->pushButton_setFav->setCheckable(false);
+                ui->pushButton_setFav->setIcon(heartIcon);
+            }
+
+            emit updateHistory();
+        }
+        else ui->textBrowser->setPlainText("");
+    }
+    else{ // input is a definition
+        // to be continued
+    }
 }
 
-void SearchForDef::on_pushButton_goBack_clicked()
+
+void SearchScreen::on_pushButton_setFav_clicked(bool checked)
 {
-    emit goBack();
-}
-
-void SearchForDef::updateCompleter(){
-    QStringListModel *model=qobject_cast<QStringListModel*>(completer.model());
-    if(model) delete model;
-
-    model = new QStringListModel(&completer);
-    completer.setModel(model);
-
-    suggestions.clear();
-    std::vector<std::string> sug = dict->searchPrefix("");
-    for(const std::string& str:sug) suggestions<<str.c_str();
-
-    model->setStringList(suggestions);
+    if(!word) return;
+    if(checked){
+        dict->removeFav(word->word);
+        ui->pushButton_setFav->setCheckable(false);
+        ui->pushButton_setFav->setIcon(heartIcon);
+    }
+    else{
+        dict->addFav(word->word);
+        ui->pushButton_setFav->setCheckable(true);
+        ui->pushButton_setFav->setIcon(heartFillIcon);
+    }
+    emit updateFavList();
 }
 
 
-void SearchForDef::on_pushButton_search_clicked()
+void SearchScreen::on_pushButton_edit_clicked()
 {
-    ui->textBrowser->setHtml(HTML_Creator::toHTML(dict->searchForDef(
-        ui->lineEdit_search->text().toStdString()
-    )));
+    if(!word) return;
+    emit sendToEditScreen(word);
+    emit switchScreen(Screen::Edit);
 }
 
