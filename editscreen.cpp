@@ -5,7 +5,8 @@
 
 EditScreen::EditScreen(Dict *dict, QWidget *parent) :
     MyScreen(dict,Screen::Edit,parent),
-    ui(new Ui::EditScreen)
+    ui(new Ui::EditScreen),
+    oldWord(nullptr)
 {
     ui->setupUi(this);
 }
@@ -81,6 +82,7 @@ void EditScreen::on_pushButton_saveWord_clicked()
 
 
 Word *EditScreen::lazyUpdateWord(){
+    if(oldWord==nullptr) return nullptr;
     dict->updateWord(oldWord,newWord);
     return newWord;
 }

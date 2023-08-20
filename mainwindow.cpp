@@ -142,7 +142,7 @@ void MainWindow::switchScreen(Screen::Type id){
     ui->stackedWidget->setCurrentIndex(stackScreen.top());
     switch (stackScreen.top()){
     case Screen::Home:
-        if(preScreen==Screen::Edit)
+        if(preScreen==Screen::Edit && newWord!=nullptr)
             homeScreen.updateDailyWord(newWord);
         break;
     }
