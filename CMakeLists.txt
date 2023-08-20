@@ -35,6 +35,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
 		searchscreen.h searchscreen.cpp searchscreen.ui
 
+		deftoword.h deftoword.cpp deftoword.ui
+
 		favlistscreen.h favlistscreen.cpp favlistscreen.ui
 
 		editscreen.h editscreen.cpp editscreen.ui

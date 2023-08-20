@@ -53,6 +53,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     ui->stackedWidget->addWidget(&editScreen);
     ui->stackedWidget->addWidget(&addScreen);
     ui->stackedWidget->addWidget(&quizScreen);
+    ui->stackedWidget->addWidget(&defToWordScreen);
 
     // set default screen
     ui->stackedWidget->setCurrentIndex(Screen::Home);

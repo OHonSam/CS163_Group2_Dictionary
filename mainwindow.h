@@ -11,6 +11,7 @@
 #include "editscreen.h"
 #include "addnewword.h"
 #include "quiz.h"
+#include "deftoword.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -47,6 +48,7 @@ private:
     EditScreen editScreen;
     AddNewWord addScreen;
     Quiz quizScreen;
+    DefToWord defToWordScreen;
 
     std::stack<Screen::Type> stackScreen;
 };

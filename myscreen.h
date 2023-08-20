@@ -15,6 +15,7 @@ enum Type{
     Edit,
     Add,
     Quiz,
+    DefToWord,
     GoBack, // Not a screen and below, use for a signal
 };
 }
