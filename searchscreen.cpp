@@ -8,7 +8,7 @@ SearchScreen::SearchScreen(Dict *dict, QWidget *parent) :
     ui(new Ui::SearchScreen),
     heartIcon(":/img/images/heart.svg"),
     heartFillIcon(":/img/images/heart-fill.svg"),
-    input("")
+    word(nullptr)
 {
     ui->setupUi(this);
 }
@@ -20,11 +20,10 @@ SearchScreen::~SearchScreen()
 
 void SearchScreen::receiveInputString(const std::string &input, Search::Type type){
     if(type==Search::ForDef){ // input is a word
-        Word* res=dict->searchForDef(input);
-        if(res){
-            this->input=res->word;
-            ui->textBrowser->setHtml(HTML_Creator::toHTML(res));
-            if(dict->isInFavList(input)){
+        word=dict->searchForDef(input);
+        if(word){
+            ui->textBrowser->setHtml(HTML_Creator::toHTML(word));
+            if(dict->isInFavList(word->word)){
                 ui->pushButton_setFav->setCheckable(true);
                 ui->pushButton_setFav->setIcon(heartFillIcon);
             }
@@ -45,17 +44,25 @@ void SearchScreen::receiveInputString(const std::string &input, Search::Type typ
 
 void SearchScreen::on_pushButton_setFav_clicked(bool checked)
 {
-    if(ui->textBrowser->toPlainText()==QString()) return;
+    if(!word) return;
     if(checked){
-        dict->removeFav(input);
+        dict->removeFav(word->word);
         ui->pushButton_setFav->setCheckable(false);
         ui->pushButton_setFav->setIcon(heartIcon);
     }
     else{
-        dict->addFav(input);
+        dict->addFav(word->word);
         ui->pushButton_setFav->setCheckable(true);
         ui->pushButton_setFav->setIcon(heartFillIcon);
     }
     emit updateFavList();
+}
+
+
+void SearchScreen::on_pushButton_edit_clicked()
+{
+    if(!word) return;
+    emit sendToEditScreen(word);
+    emit switchScreen(Screen::Edit);
 }
 

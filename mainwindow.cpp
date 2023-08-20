@@ -158,6 +158,12 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &defToWordScreen,SIGNAL(sendToSearchScreen(std::string,Search::Type)),
         &searchScreen,SLOT(receiveInputString(std::string,Search::Type))
     );
+
+    // 9. search -> edit
+    connect(
+        &searchScreen,SIGNAL(sendToEditScreen(Word*)),
+        &editScreen,SLOT(receiveWord(Word*))
+    );
 }
 
 MainWindow::~MainWindow()

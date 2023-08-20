@@ -29,10 +29,12 @@ public slots:
 private slots:
     void on_pushButton_setFav_clicked(bool checked);
 
+    void on_pushButton_edit_clicked();
+
 private:
     Ui::SearchScreen *ui;
 
-    std::string input;
+    Word *word;
 
     QIcon heartIcon, heartFillIcon;
 };
