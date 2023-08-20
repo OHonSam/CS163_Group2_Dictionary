@@ -3,6 +3,8 @@
 
 #include "myscreen.h"
 
+#include <QListWidgetItem>
+
 namespace Ui {
 class DefToWord;
 }
@@ -15,8 +17,14 @@ public:
     explicit DefToWord(Dict *dict, QWidget *parent = nullptr);
     ~DefToWord();
 
+signals:
+    void sendToSearchScreen(const std::string& input, Search::Type type=Search::ForDef);
+
 public slots:
     void receiveInput(const std::string& input);
+
+private slots:
+    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::DefToWord *ui;

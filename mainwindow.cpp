@@ -152,6 +152,12 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &homeScreen,SIGNAL(sendToDefToWordScreen(std::string)),
         &defToWordScreen,SLOT(receiveInput(std::string))
     );
+
+    // 8. Send input from deftoword to search
+    connect(
+        &defToWordScreen,SIGNAL(sendToSearchScreen(std::string,Search::Type)),
+        &searchScreen,SLOT(receiveInputString(std::string,Search::Type))
+    );
 }
 
 MainWindow::~MainWindow()

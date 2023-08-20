@@ -19,3 +19,12 @@ void DefToWord::receiveInput(const std::string &input){
     for(int i=0; i<v.size(); i++)
         ui->listWidget->addItem(QString::number(i+1)+". "+QString::fromStdString(v[i]));
 }
+
+void DefToWord::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+    QString raw=item->text();
+    std::string word=raw.mid(raw.indexOf(' ')+1).toStdString();
+    emit sendToSearchScreen(word);
+    emit switchScreen(Screen::Search);
+}
+
