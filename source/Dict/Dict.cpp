@@ -34,6 +34,11 @@ void Dict::updateDef(const std::string &word, unsigned int type, const std::stri
     return;
 }
 
+void Dict::updateWord(Word *oldWord, Word *newWord){
+    removeWord(oldWord->word);
+    addWord(newWord,true);
+}
+
 void Dict::addWord(Word *word, bool fromUser)
 {
     if(!fromUser) {
