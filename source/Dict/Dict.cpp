@@ -11,7 +11,49 @@ bool Dict::reset(){
     defTrie.clear();
     favList.clear();
     history.clearSLL();
-    return setup();
+    switch(curDataSet){
+    case DataSet::EE:
+        return
+            words.import(DEFAULT::EE::WORDS) &&
+            wordDef.import(DEFAULT::EE::WORDDEF) &&
+            defTrie.import(DEFAULT::EE::DEFTRIE) &&
+            favList.import(DEFAULT::EE::FAVLIST) &&
+            history.importSLLStr(DEFAULT::EE::HISTORY)
+            ;
+    case DataSet::EV:
+        return
+            words.import(DEFAULT::EV::WORDS) &&
+            wordDef.import(DEFAULT::EV::WORDDEF) &&
+            defTrie.import(DEFAULT::EV::DEFTRIE) &&
+            favList.import(DEFAULT::EV::FAVLIST) &&
+            history.importSLLStr(DEFAULT::EV::HISTORY)
+            ;
+    case DataSet::VE:
+        return
+            words.import(DEFAULT::VE::WORDS) &&
+            wordDef.import(DEFAULT::VE::WORDDEF) &&
+            defTrie.import(DEFAULT::VE::DEFTRIE) &&
+            favList.import(DEFAULT::VE::FAVLIST) &&
+            history.importSLLStr(DEFAULT::VE::HISTORY)
+            ;
+    case DataSet::Slang:
+        return
+            words.import(DEFAULT::Slang::WORDS) &&
+            wordDef.import(DEFAULT::Slang::WORDDEF) &&
+            defTrie.import(DEFAULT::Slang::DEFTRIE) &&
+            favList.import(DEFAULT::Slang::FAVLIST) &&
+            history.importSLLStr(DEFAULT::Slang::HISTORY)
+            ;
+    case DataSet::Emoji:
+        return
+            words.import(DEFAULT::Emoji::WORDS) &&
+            wordDef.import(DEFAULT::Emoji::WORDDEF) &&
+            defTrie.import(DEFAULT::Emoji::DEFTRIE) &&
+            favList.import(DEFAULT::Emoji::FAVLIST) &&
+            history.importSLLStr(DEFAULT::Emoji::HISTORY)
+            ;
+    }
+    return false;
 }
 
 bool Dict::switchDataSet(DataSet::Type type)
