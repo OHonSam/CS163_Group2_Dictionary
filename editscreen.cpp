@@ -36,7 +36,7 @@ void EditScreen::on_comboBox_POS_currentIndexChanged(int index)
 }
 
 
-void EditScreen::on_pushButton_save_clicked()
+void EditScreen::on_pushButton_saveDef_clicked()
 {
     QMessageBox::StandardButton rep;
     rep=QMessageBox::question(this,"Confirm",

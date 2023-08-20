@@ -80,7 +80,7 @@ color: white;</string>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,4">
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,7,1">
      <item>
       <widget class="QLabel" name="label_2">
        <property name="styleSheet">
@@ -124,6 +124,26 @@ color: rgb(56, 64, 139);</string>
        </property>
        <property name="placeholderText">
         <string>Old word</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_saveWord">
+       <property name="styleSheet">
+        <string notr="true">padding: 6px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
+font: bold;
+color: white;</string>
+       </property>
+       <property name="text">
+        <string>Save</string>
        </property>
       </widget>
      </item>
@@ -258,7 +278,7 @@ background-color: rgb(102, 124, 246);</string>
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_save">
+        <widget class="QPushButton" name="pushButton_saveDef">
          <property name="styleSheet">
           <string notr="true">padding: 6px;
 border-color: rgb(77, 101, 246);

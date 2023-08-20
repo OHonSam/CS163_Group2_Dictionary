@@ -21,7 +21,7 @@ public slots:
 private slots:
     void on_comboBox_POS_currentIndexChanged(int index);
 
-    void on_pushButton_save_clicked();
+    void on_pushButton_saveDef_clicked();
 
 private:
     Ui::EditScreen *ui;
