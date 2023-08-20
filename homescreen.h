@@ -23,6 +23,7 @@ signals:
     void updateHistory();
     void updateFavList();
     void sendToSearchScreen(const std::string& input, Search::Type type);
+    void sendToDefToWordScreen(const std::string& input);
     void sendToEditScreen(Word* word);
 
 public slots:

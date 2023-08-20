@@ -15,6 +15,9 @@ public:
     explicit DefToWord(Dict *dict, QWidget *parent = nullptr);
     ~DefToWord();
 
+public slots:
+    void receiveInput(const std::string& input);
+
 private:
     Ui::DefToWord *ui;
 };

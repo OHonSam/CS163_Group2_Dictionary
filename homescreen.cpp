@@ -149,11 +149,14 @@ void HomeScreen::on_lineEdit_search_returnPressed()
     QString raw=ui->lineEdit_search->text();
     std::string input=raw.toLower().toLocal8Bit().toStdString();
     if(raw.toLower()==QString::fromStdString(input)){
-        if(ui->comboBox_searchType->currentIndex()==int(Search::ForDef))
-            emit sendToSearchScreen(input,Search::ForDef);
-        else
+        if(ui->comboBox_searchType->currentIndex()==int(Search::ForDef)){
             emit sendToSearchScreen(input,Search::ForWord);
-        emit switchScreen(Screen::Search);
+            emit switchScreen(Screen::Search);
+        }
+        else{
+            emit sendToDefToWordScreen(input);
+            emit switchScreen(Screen::DefToWord);
+        }
     }
     else
         QMessageBox::warning(this,"Invalid input","Your input is not valid. Please type in solely ASCII characters!");

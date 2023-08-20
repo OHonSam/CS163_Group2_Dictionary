@@ -18,6 +18,7 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     , editScreen(dict,this)
     , addScreen(dict,this)
     , quizScreen(dict,this)
+    , defToWordScreen(dict,this)
 {
     ui->setupUi(this);
 
@@ -89,6 +90,10 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &searchScreen,SIGNAL(switchScreen(Screen::Type)),
         this,SLOT(switchScreen(Screen::Type))
     );
+    connect(
+        &defToWordScreen,SIGNAL(switchScreen(Screen::Type)),
+        this,SLOT(switchScreen(Screen::Type))
+    );
 
     // 2. Update history when searching
     connect(
@@ -140,6 +145,12 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
     connect(
         &homeScreen,SIGNAL(updateHistory()),
         &historyScreen,SLOT(update())
+    );
+
+    // 7. Send input from home to deftoword
+    connect(
+        &homeScreen,SIGNAL(sendToDefToWordScreen(std::string)),
+        &defToWordScreen,SLOT(receiveInput(std::string))
     );
 }
 
