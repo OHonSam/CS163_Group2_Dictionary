@@ -1,6 +1,8 @@
 #include "favlistscreen.h"
 #include "ui_favlistscreen.h"
 
+#include <QMessageBox>
+
 FavListScreen::FavListScreen(Dict *dict, QWidget *parent) :
     MyScreen(dict,Screen::FavList,parent),
     ui(new Ui::FavListScreen)
@@ -44,8 +46,21 @@ void FavListScreen::on_pushButton_clear_clicked()
 
 void FavListScreen::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
 {
-    QString word=item->text();
-    emit sendToSearchScreen(word.mid(word.indexOf(' ')+1).toStdString());
-    emit switchScreen(Screen::Search);
+    QString raw=item->text();
+    std::string word=raw.mid(raw.indexOf(' ')+1).toStdString();
+    if(!dict->isInDict(word)){
+        QMessageBox::StandardButton rep=QMessageBox::warning(this,"Error",
+           "This word is not existed in dictionary.\nDo you want to remove it?",
+           QMessageBox::Yes|QMessageBox::No
+       );
+        if(rep==QMessageBox::Yes){
+            update();
+            QMessageBox::information(this,"Information","The word has been removed!");
+        }
+    }
+    else{
+        emit sendToSearchScreen(word);
+        emit switchScreen(Screen::Search);
+    }
 }
 
