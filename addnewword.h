@@ -12,6 +12,8 @@ class AddNewWord;
 
 class AddNewWord : public MyScreen
 {
+    Q_OBJECT
+
 public:
     explicit AddNewWord(Dict *dict, QWidget *parent = nullptr);
     ~AddNewWord();
@@ -24,6 +26,8 @@ private slots:
     void on_pushButton_saveDef_clicked();
 
     void on_comboBox_POS_currentIndexChanged(int index);
+
+    void on_pushButton_add_clicked();
 
 private:
     Ui::AddNewWord *ui;

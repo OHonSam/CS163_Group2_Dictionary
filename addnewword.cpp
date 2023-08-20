@@ -14,6 +14,7 @@ AddNewWord::AddNewWord(Dict *dict, QWidget *parent) :
 AddNewWord::~AddNewWord()
 {
     delete ui;
+    if(newWord && dict->searchForDef(newWord->word)!=newWord) delete newWord;
 }
 
 void AddNewWord::on_pushButton_discard_clicked()
@@ -79,3 +80,10 @@ void AddNewWord::on_pushButton_saveWord_clicked()
     else
         QMessageBox::warning(this,"Invalid input","Your input is not valid. Please type in solely ASCII characters!");
 }
+
+void AddNewWord::on_pushButton_add_clicked()
+{
+    dict->addWord(newWord,true);
+    QMessageBox::information(this,"Information","New word has been added to dictionary!");
+}
+
