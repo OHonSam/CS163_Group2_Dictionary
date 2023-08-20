@@ -135,6 +135,16 @@ Word* HashTable::updateDef(const std::string& word, unsigned int type, const std
     return nullptr;
 }
 
+Word* HashTable::updateDef(Word *oldWord, Word *newWord){
+    int key=HashTable::hash(oldWord->word);
+    for(int i=0; i<buckets[key].size(); i++)
+        if(buckets[key][i]==oldWord->word){
+            buckets[key][i]=newWord;
+            return newWord;
+        }
+    return nullptr;
+}
+
 bool HashTable::import(const std::string& path) {
     std::ifstream in(path, std::ios::in | std::ios::binary);
     if (!in.good() || !in.is_open()) return false;
