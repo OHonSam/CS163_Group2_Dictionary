@@ -346,6 +346,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </item>
        <item row="0" column="1" alignment="Qt::AlignHCenter">
         <widget class="QPushButton" name="pushButton_2">
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">padding: 5px;
 border-color: rgb(77, 101, 246);
@@ -357,10 +360,11 @@ border-radius: 8px;
 background-color: rgb(102, 124, 246);
 font: 10pt &quot;Comfortaa&quot;;
 font: bold;
+color:white;
 </string>
          </property>
          <property name="text">
-          <string/>
+          <string>Zoom </string>
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
@@ -448,6 +452,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </item>
        <item row="0" column="0" alignment="Qt::AlignHCenter">
         <widget class="QPushButton" name="pushButton">
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">padding: 5px;
 border-color: rgb(77, 101, 246);
@@ -459,10 +466,11 @@ border-radius: 8px;
 background-color: rgb(102, 124, 246);
 font: 10pt &quot;Comfortaa&quot;;
 font: bold;
+color:white;
 </string>
          </property>
          <property name="text">
-          <string/>
+          <string>Zoom </string>
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
@@ -472,6 +480,9 @@ font: bold;
        </item>
        <item row="2" column="0" alignment="Qt::AlignHCenter">
         <widget class="QPushButton" name="pushButton_3">
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">padding: 5px;
 border-color: rgb(77, 101, 246);
@@ -483,10 +494,11 @@ border-radius: 8px;
 background-color: rgb(102, 124, 246);
 font: 10pt &quot;Comfortaa&quot;;
 font: bold;
+color:white;
 </string>
          </property>
          <property name="text">
-          <string/>
+          <string>Zoom </string>
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
@@ -502,6 +514,9 @@ font: bold;
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">padding: 5px;
 border-color: rgb(77, 101, 246);
@@ -513,10 +528,11 @@ border-radius: 8px;
 background-color: rgb(102, 124, 246);
 font: 10pt &quot;Comfortaa&quot;;
 font: bold;
+color:white;
 </string>
          </property>
          <property name="text">
-          <string/>
+          <string>Zoom </string>
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
