@@ -58,3 +58,23 @@ void EditScreen::on_pushButton_saveDef_clicked()
     }
 }
 
+
+void EditScreen::on_pushButton_saveWord_clicked()
+{
+    QString raw=ui->lineEdit_word->text();
+    std::string word=raw.toLower().toLocal8Bit().toStdString();
+    if(raw.toLower()==QString::fromStdString(word)){
+        QMessageBox::StandardButton rep;
+        rep=QMessageBox::question(this,"Confirm",
+                                    "The old word will not be able to recovered.\nDo you want to save?",
+                                    QMessageBox::Yes|QMessageBox::No);
+        if(rep==QMessageBox::Yes){
+            curWord->word=word;
+            on_comboBox_POS_currentIndexChanged(ui->comboBox_POS->currentIndex());
+            QMessageBox::information(this,"Information","New word has been saved!");
+        }
+    }
+    else
+        QMessageBox::warning(this,"Invalid input","Your input is not valid. Please type in solely ASCII characters!");
+}
+

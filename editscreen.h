@@ -23,6 +23,8 @@ private slots:
 
     void on_pushButton_saveDef_clicked();
 
+    void on_pushButton_saveWord_clicked();
+
 private:
     Ui::EditScreen *ui;
 
