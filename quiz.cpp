@@ -21,13 +21,18 @@ void Quiz::on_pushButton_newQuiz_clicked()
     words=dict->getMultiChoices(NUMC);
     if(ui->comboBox->currentIndex()==int(MC::Def)){
         ui->label_ques->setText(QString::fromStdString(words[correctId]->getRandDef()));
-        for(int i=0; i<NUMC; i++)
+        ui->label_ques->setToolTip(QString::fromStdString(words[correctId]->getRandDef()));
+        for(int i=0; i<NUMC; i++){
             getButton(i)->setText(QString::fromStdString(words[i]->word));
+            getButton(i)->setToolTip(QString::fromStdString(words[i]->word));
+        }
     }
     else{
         ui->label_ques->setText(QString::fromStdString(words[correctId]->word));
-        for(int i=0; i<NUMC; i++)
+        for(int i=0; i<NUMC; i++){
             getButton(i)->setText(QString::fromStdString(words[i]->getRandDef()));
+            getButton(i)->setToolTip(QString::fromStdString(words[i]->getRandDef()));
+        }
     }
 
     for(int i=0; i<NUMC; i++) getButton(i)->setStyleSheet(normalStyle);
