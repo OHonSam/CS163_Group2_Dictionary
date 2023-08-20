@@ -45,17 +45,20 @@ void EditScreen::on_pushButton_saveDef_clicked()
         "The old definition will not be able to recovered.\nDo you want to save?",
                                 QMessageBox::Yes|QMessageBox::No);
     if(rep==QMessageBox::Yes){
+        int index=ui->comboBox_POS->currentIndex();
         std::vector<std::string> output;
         QStringList lines=ui->plainTextEdit_def->toPlainText().split('\n');
         foreach(QString line,lines){
             QString trimmedLine = line.trimmed();
             if (!trimmedLine.isEmpty()) {
-                QString value = trimmedLine.mid(2);  // Assuming the "- " prefix should be removed
-                output.push_back(value.toStdString());
+                std::string value = trimmedLine.mid(2).toStdString();  // Assuming the "- " prefix should be removed
+                if(!value.empty()) output.push_back(value);
             }
         }
-        newWord->def[ui->comboBox_POS->currentIndex()]=output;
-        on_comboBox_POS_currentIndexChanged(ui->comboBox_POS->currentIndex());
+        if(output.empty() && newWord->type&(1<<index))
+            newWord->type^=(1<<index);
+        newWord->def[index]=output;
+        on_comboBox_POS_currentIndexChanged(index);
         QMessageBox::information(this,"Information","New definition has been saved!");
     }
 }

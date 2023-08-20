@@ -46,6 +46,7 @@ void AddNewWord::on_pushButton_saveDef_clicked()
                                 "The old definition will not be able to recovered.\nDo you want to save?",
                                 QMessageBox::Yes|QMessageBox::No);
     if(rep==QMessageBox::Yes){
+        int index=ui->comboBox_POS->currentIndex();
         std::vector<std::string> output;
         QStringList lines=ui->plainTextEdit_def->toPlainText().split('\n');
         foreach(QString line,lines){
@@ -55,8 +56,12 @@ void AddNewWord::on_pushButton_saveDef_clicked()
                 output.push_back(value.toStdString());
             }
         }
-        newWord->def[ui->comboBox_POS->currentIndex()]=output;
-        on_comboBox_POS_currentIndexChanged(ui->comboBox_POS->currentIndex());
+        if(output.empty() && newWord->type&(1<<index))
+            newWord->type^=(1<<index);
+        else if(!output.empty())
+            newWord->type|=(1<<index);
+        newWord->def[index]=output;
+        on_comboBox_POS_currentIndexChanged(index);
         QMessageBox::information(this,"Information","New definition has been saved!");
     }
 }
