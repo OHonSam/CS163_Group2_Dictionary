@@ -29,6 +29,12 @@ Word::Word(const std::string &word, unsigned int type, const std::string &def)
             this->def[i].push_back(def);
 }
 
+Word::Word(Word* o) {
+    word=o->word;
+    type=o->type;
+    for(int i=0; i<POS::Count; i++) def[i]=o->def[i];
+}
+
 bool Word::checkDef(const std::string &def)
 {
     for(int i=0; i<POS::Count; i++)

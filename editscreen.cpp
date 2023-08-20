@@ -16,7 +16,8 @@ EditScreen::~EditScreen()
 }
 
 void EditScreen::receiveWord(Word* word){
-    curWord=word;
+    oldWord=word;
+    newWord=new Word(word);
 
     ui->lineEdit_word->setText(QString::fromStdString(word->word));
 
@@ -25,13 +26,13 @@ void EditScreen::receiveWord(Word* word){
 
 void EditScreen::on_comboBox_POS_currentIndexChanged(int index)
 {
-    if(curWord->def[index].empty()){
+    if(newWord->def[index].empty()){
         ui->plainTextEdit_def->setPlainText("");
         ui->plainTextEdit_def->setPlaceholderText("Empty");
         return;
     }
     QString res="";
-    foreach(std::string str,curWord->def[index]) res+="- "+str+"\n";
+    foreach(std::string str,newWord->def[index]) res+="- "+str+"\n";
     ui->plainTextEdit_def->setPlainText(res);
 }
 
@@ -52,7 +53,7 @@ void EditScreen::on_pushButton_saveDef_clicked()
                 output.push_back(value.toStdString());
             }
         }
-        curWord->def[ui->comboBox_POS->currentIndex()]=output;
+        newWord->def[ui->comboBox_POS->currentIndex()]=output;
         on_comboBox_POS_currentIndexChanged(ui->comboBox_POS->currentIndex());
         QMessageBox::information(this,"Information","New definition has been saved!");
     }
@@ -69,7 +70,7 @@ void EditScreen::on_pushButton_saveWord_clicked()
                                     "The old word will not be able to recovered.\nDo you want to save?",
                                     QMessageBox::Yes|QMessageBox::No);
         if(rep==QMessageBox::Yes){
-            curWord->word=word;
+            newWord->word=word;
             on_comboBox_POS_currentIndexChanged(ui->comboBox_POS->currentIndex());
             QMessageBox::information(this,"Information","New word has been saved!");
         }
@@ -78,3 +79,8 @@ void EditScreen::on_pushButton_saveWord_clicked()
         QMessageBox::warning(this,"Invalid input","Your input is not valid. Please type in solely ASCII characters!");
 }
 
+
+Word *EditScreen::lazyUpdateWord(){
+    dict->updateWord(oldWord,newWord);
+    return newWord;
+}

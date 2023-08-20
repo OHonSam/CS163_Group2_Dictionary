@@ -132,12 +132,18 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::switchScreen(Screen::Type id){
+    Word* newWord=nullptr;
+    Screen::Type preScreen=stackScreen.top();
+    if(preScreen==Screen::Edit)
+        newWord=editScreen.lazyUpdateWord();
+
     if(id==Screen::GoBack) stackScreen.pop();
     else stackScreen.push(id);
     ui->stackedWidget->setCurrentIndex(stackScreen.top());
     switch (stackScreen.top()){
     case Screen::Home:
-        homeScreen.updateDailyWord();
+        if(preScreen==Screen::Edit)
+            homeScreen.updateDailyWord(newWord);
         break;
     }
 }

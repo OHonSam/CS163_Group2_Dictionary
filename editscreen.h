@@ -15,6 +15,8 @@ public:
     explicit EditScreen(Dict *dict, QWidget *parent = nullptr);
     ~EditScreen();
 
+    Word* lazyUpdateWord();
+
 public slots:
     void receiveWord(Word* word);
 
@@ -28,7 +30,7 @@ private slots:
 private:
     Ui::EditScreen *ui;
 
-    Word *curWord;
+    Word *oldWord, *newWord;
 };
 
 #endif // EDITSCREEN_H

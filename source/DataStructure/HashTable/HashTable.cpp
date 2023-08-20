@@ -138,7 +138,7 @@ Word* HashTable::updateDef(const std::string& word, unsigned int type, const std
 Word* HashTable::updateDef(Word *oldWord, Word *newWord){
     int key=HashTable::hash(oldWord->word);
     for(int i=0; i<buckets[key].size(); i++)
-        if(buckets[key][i]==oldWord->word){
+        if(buckets[key][i]->word==oldWord->word){
             buckets[key][i]=newWord;
             return newWord;
         }

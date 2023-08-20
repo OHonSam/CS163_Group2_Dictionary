@@ -17,13 +17,15 @@ public:
     explicit HomeScreen(Dict *dict, QWidget *parent = nullptr);
     ~HomeScreen();
 
+    void showDailyWord();
+
 signals:
     void updateFavList();
     void sendToSearchScreen(const std::string& input, Search::Type type);
     void sendToEditScreen(Word* word);
 
 public slots:
-    void updateDailyWord();
+    void updateDailyWord(Word *newWord);
 
 private slots:
     void on_comboBox_dictVersion_currentIndexChanged(int index);
@@ -59,7 +61,6 @@ private:
 
     QIcon heartIcon, heartFillIcon;
 
-    void showDailyWord();
     void updateCompleter();
 };
 
