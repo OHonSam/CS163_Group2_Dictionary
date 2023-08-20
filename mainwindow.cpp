@@ -134,6 +134,12 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &addScreen,SIGNAL(updateCompleter()),
         &homeScreen,SLOT(updateCompleter())
     );
+
+    // 6. update history
+    connect(
+        &homeScreen,SIGNAL(updateHistory()),
+        &historyScreen,SLOT(update())
+    );
 }
 
 MainWindow::~MainWindow()

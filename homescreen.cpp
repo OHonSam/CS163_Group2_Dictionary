@@ -192,6 +192,8 @@ void HomeScreen::on_pushButton_reset_clicked()
         dict->reset();
         showDailyWord();
         QMessageBox::information(this,"Information","The dictionary has been resetten!");
+        emit updateHistory();
+        emit updateFavList();
     }
 }
 

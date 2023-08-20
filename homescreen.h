@@ -20,6 +20,7 @@ public:
     void showDailyWord();
 
 signals:
+    void updateHistory();
     void updateFavList();
     void sendToSearchScreen(const std::string& input, Search::Type type);
     void sendToEditScreen(Word* word);
