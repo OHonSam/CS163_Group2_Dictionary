@@ -24,6 +24,9 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
 
     this->resize(DEF_WIDTH,DEF_HEIGHT);
 
+    // Set application icon
+    this->setWindowIcon(QIcon(":/img/images/AppIcon.ico"));
+
     // Load fonts from the resource folder
 
     // 1. Audiowide

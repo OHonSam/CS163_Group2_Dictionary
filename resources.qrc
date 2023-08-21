@@ -13,6 +13,8 @@
         <file>images/remove.svg</file>
         <file>images/eraser.svg</file>
         <file>images/new.svg</file>
+        <file>images/AppIcon.ico</file>
+        <file>images/AppIcon.jpg</file>
     </qresource>
     <qresource prefix="/background">
         <file>images/bg/slash mid bg.jpg</file>
