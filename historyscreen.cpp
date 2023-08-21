@@ -22,8 +22,9 @@ HistoryScreen::~HistoryScreen()
 void HistoryScreen::update(){
     ui->listWidget->clear();
     std::vector<std::string> v=dict->getHistory();
-    for(int i=0; i<v.size(); i++)
-        ui->listWidget->addItem(QString::number(i+1)+". "+QString::fromStdString(v[i]));
+    for(int i=0, cnt=0; i<v.size(); i++)
+        if(v[i]!="")
+            ui->listWidget->addItem(QString::number(++cnt)+". "+QString::fromStdString(v[i]));
 }
 
 
