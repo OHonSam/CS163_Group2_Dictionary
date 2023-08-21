@@ -17,21 +17,27 @@ Quiz::~Quiz()
 
 void Quiz::on_pushButton_newQuiz_clicked()
 {
+    QString tmp;
     correctId=rand()%NUMC;
     words=dict->getMultiChoices(NUMC);
     if(ui->comboBox->currentIndex()==int(MC::Def)){
-        ui->label_ques->setText(QString::fromStdString(words[correctId]->getRandDef()));
-        ui->label_ques->setToolTip(QString::fromStdString(words[correctId]->getRandDef()));
+        tmp=QString::fromStdString(words[correctId]->getRandDef());
+        ui->label_ques->setText(tmp);
+        ui->label_ques->setToolTip(tmp);
         for(int i=0; i<NUMC; i++){
-            getButton(i)->setText(QString::fromStdString(words[i]->word));
-            getButton(i)->setToolTip(QString::fromStdString(words[i]->word));
+            tmp=QString::fromStdString(words[i]->word);
+            getButton(i)->setText(tmp);
+            getButton(i)->setToolTip(tmp);
         }
     }
     else{
-        ui->label_ques->setText(QString::fromStdString(words[correctId]->word));
+        tmp=QString::fromStdString(words[correctId]->word);
+        ui->label_ques->setText(tmp);
+        ui->label_ques->setToolTip(tmp);
         for(int i=0; i<NUMC; i++){
-            getButton(i)->setText(QString::fromStdString(words[i]->getRandDef()));
-            getButton(i)->setToolTip(QString::fromStdString(words[i]->getRandDef()));
+            tmp=QString::fromStdString(words[i]->getRandDef());
+            getButton(i)->setText(tmp);
+            getButton(i)->setToolTip(tmp);
         }
     }
 
