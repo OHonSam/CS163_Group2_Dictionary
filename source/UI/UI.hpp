@@ -60,6 +60,8 @@ public:
 	Button engeng;
     Button engviet;
 	Button vieteng;
+    Button emoji;
+    Button slang;
     Button clearFavList;
     Button clearHisList;
     Button removeFav[100];
@@ -88,6 +90,10 @@ public:
     std::string definition;
     Rectangle display;
 
+    std::vector <Word*> v;
+    std::vector <std::string> randef;
+    bool guessthemeaning;
+    Button guess;
     Word* dailyword;
     Word* draw;
     Word* new_word;
@@ -103,6 +109,21 @@ public:
 
     const int screenWidth = 1280;
     const int screenHeight = 832;
+
+    Button A;
+    Button B;
+    Button C;
+    Button D;
+    int textx;
+    int texty;
+    bool a;
+    bool b; 
+    bool c;
+    bool d;
+    int res; // 1 for A, 2 for B, 3 for C, 4 for D
+    std::vector <std::string> rand;
+    int result;
+    std::string exactres;
 
     Dict* dict;
     void DefaultWindow();

@@ -18,14 +18,16 @@ char DefTrie::rGetIndex(int index)
 
 std::string DefTrie::Purify(std::string s) {
     if (s[0] < 97 || s[0] > 122) {
-        if (s[0] >= 65 && s[0] <= 90) s[0] += 32;
+        if (s[0] >= 48 && s[0] <= 57) {}
+        else if (s[0] >= 65 && s[0] <= 90) s[0] += 32;
         else {
             std::string temp = s.substr(1, s.size() - 1);
             s = temp;
         }
     } 
     if (s[s.size() - 1] < 97 || s[s.size() - 1] > 122) {
-        if (s[s.size() - 1] >= 65 && s[s.size() - 1] <= 90) s[s.size() - 1] += 32;
+        if (s[0] >= 48 && s[0] <= 57) {}
+        else if (s[s.size() - 1] >= 65 && s[s.size() - 1] <= 90) s[s.size() - 1] += 32;
         else {
             std::string temp = s.substr(0, s.size() - 1);
             s = temp;

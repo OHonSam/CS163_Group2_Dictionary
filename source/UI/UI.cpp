@@ -454,6 +454,8 @@ void UI::DefaultWindow() {
 		if (cur == DataSet::EE) Datasets.SetText(title_font, "ENG-ENG", {1133, 7}, 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
 		else if (cur == DataSet::EV) Datasets.SetText(title_font, "ENG-VIET", GetCenterPos(title_font, "ENG-VIET", 36, 1, Datasets.buttonShape), 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
 		else if (cur == DataSet::VE) Datasets.SetText(title_font, "VIET-ENG", GetCenterPos(title_font, "VIET-ENG", 36, 1, Datasets.buttonShape), 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+		else if (cur == DataSet::Emoji) Datasets.SetText(title_font, "EMOJI", GetCenterPos(title_font, "EMOJI", 36, 1, Datasets.buttonShape), 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+		else if (cur == DataSet::Slang) Datasets.SetText(title_font, "SLANG", GetCenterPos(title_font, "SLANG", 36, 1, Datasets.buttonShape), 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
 		Datasets.DrawText(mouseCursor);
 		frame.x = 110;
 		frame.y = 234;
@@ -506,15 +508,37 @@ void UI::Menu() {
 	if (Game.state == 3) {
 		if (!game) {
 			status.push_back(&game);
-			wheel = 0;
+			guessthemeaning = true;
+			// guessthemeaning = true;
+			// v.clear();
+			// v = dict->getMultiChoices(4);
+			// for (int i = 0; i < 4; i++) {
+			// 	randef.clear();
+			// 	randef.push_back(v[i]->getRandDef());
+			// }
+			// wheel = 0;
 		}
+		
+		a = b = c = d = false;
+		v.clear();
+		v = dict->getMultiChoices(4);
+		randef.clear();
+		for (int i = 0; i < 4; i++) {
+			
+			randef.push_back(v[i]->getRandDef());
+		}
+		res = 0;
+		textx = 365;
+		texty = 340;
 		game = true;
+		wheel = 0;
 	}
 	if (Home.state == 3) {
 		if (!home) {
 			status.push_back(&home);
 			wheel = 0;
 		}
+		dailyword = dict -> getDailyWord();
 		home = true;
 		homestate = 0;
 	}
@@ -602,6 +626,20 @@ void UI::Menu() {
 		vieteng.SetBox(754, 390, 160, 44, {233, 220, 221, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
 		vieteng.SetText(title_font, "VIET-ENG", {767, 395}, 36, 1, {94, 32, 36, 255}, {94, 32, 36, 255}, {94, 32, 36, 255});
 		vieteng.DrawText(mouseCursor);
+		emoji.drawCorner = true;
+		emoji.colorCornerClicked = {255, 255, 255, 255};
+		emoji.colorCornerDefault = {255, 255, 255, 255};
+		emoji.colorCornerTouched = {255, 255, 255, 255};
+		emoji.SetBox(460, 450, 160, 44, {233, 220, 221, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
+		emoji.SetText(title_font, "EMOJI", GetCenterPos(title_font, "EMOJI", 36, 1, emoji.buttonShape), 36, 1, {94, 32, 36, 255}, {94, 32, 36, 255}, {94, 32, 36, 255});
+		emoji.DrawText(mouseCursor);
+		slang.drawCorner = true;
+		slang.colorCornerClicked = {255, 255, 255, 255};
+		slang.colorCornerDefault = {255, 255, 255, 255};
+		slang.colorCornerTouched = {255, 255, 255, 255};
+		slang.SetBox(660, 450, 160, 44, {233, 220, 221, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
+		slang.SetText(title_font, "SLANG", GetCenterPos(title_font, "SLANG", 36, 1, slang.buttonShape), 36, 1, {94, 32, 36, 255}, {94, 32, 36, 255}, {94, 32, 36, 255});
+		slang.DrawText(mouseCursor);
 		DrawTextureEx(noti, {787, 200}, 0, 0.3, WHITE);
 		if (vieteng.state == 3) {
 			dict -> switchDataSet(DataSet::VE);
@@ -624,6 +662,22 @@ void UI::Menu() {
 			dailyword = dict -> getDailyWord();
 			homestate = 0;
 			cur = DataSet::EV;
+			datasets = false;
+			status.pop_back();
+		}
+		else if (emoji.state == 3) {
+			dict -> switchDataSet(DataSet::Emoji);
+			dailyword = dict -> getDailyWord();
+			homestate = 0;
+			cur = DataSet::Emoji;
+			datasets = false;
+			status.pop_back();
+		}
+		else if (slang.state == 3) {
+			dict -> switchDataSet(DataSet::Slang);
+			dailyword = dict -> getDailyWord();
+			homestate = 0;
+			cur = DataSet::Slang;
 			datasets = false;
 			status.pop_back();
 		}
@@ -660,6 +714,8 @@ void UI::Menu() {
 	if (game) {
 		DrawRectangleRoundedLines(Home.buttonShape, 0.1, 10, 4, {253, 84, 145, 255});
 		DrawRectangleRoundedLines(Game.buttonShape, 0.1, 10, 4, {255, 255, 255, 255});
+		textx = 365;
+		texty = 340;
 		DrawGame();
 		// if (history || datasets || reset || favourite || home) game = false;
 	}
@@ -1524,7 +1580,6 @@ void UI::DrawModifyBox(Word* &word) {
 			dict -> addDefTrie(word);
 		}
 		else if (neww) {
-			std::cout << word -> word << "y" << '\n';
 			int cnt = 0;
 			if (typenew[0].getInput().size()) {
 				word -> word = typenew[cnt].getInput();
@@ -1642,6 +1697,223 @@ void UI::DrawModifyBox(Word* &word) {
 }
 
 void UI::DrawGame() {
+	static int wheel1 = 0;
+	static int wheel2 = 0;
+	static int wheel3 = 0;
+	static int wheel4 = 0;
+	int scrollspeed = 50;
+	wheel += GetMouseWheelMove() * scrollspeed;
+	if (guess.state == 3) {
+		guessthemeaning ^= 1;
+		v.clear();
+		v = dict->getMultiChoices(4);
+		randef.clear();
+		for (int i = 0; i < 4; i++) {
+			randef.push_back(v[i]->getRandDef());
+		}
+		wheel = 0;
+		a = false;
+		b = false;
+		c = false;
+		d = false;
+		res = 0;
+	}
+	Rectangle givenword;
+	givenword.x = 350;
+	givenword.y = 258;
+	givenword.width = 550;
+	givenword.height = 210;
+	DrawRectangleRounded(givenword, 0.1, 10, {248, 199, 199, 255});
+	DrawRectangleRoundedLines(givenword, 0.1, 10, 4, {253, 84, 145, 255});
+	DrawTextureEx(noti, {772, 160}, 0, 0.3, WHITE);
+	if (guessthemeaning) {
+		DrawTextEx(title_font, v[0] -> word.c_str(), GetCenterPos(title_font, v[0] -> word.c_str(), 60, 1, givenword), 60, 1, {227, 89, 97, 255});
+	}
+	else {
+		// DrawTextEx();
+		BeginScissorMode(350, 340, 550, 108);
+		std::vector <std::string> print = dict -> stringCut(randef[0]);
+		for (int i = 0; i < print.size(); i++) {
+			if (wheel > 0) wheel = 0;
+			if (textx + MeasureTextEx(title_font, print[i].c_str(), 36, 1).x > 890) {
+				textx = 365;
+				texty += 50;
+			}
+			DrawTextEx(title_font, print[i].c_str(), {(float) textx, (float) texty + wheel}, 36, 1, {227, 89, 97, 255});
+			textx += MeasureTextEx(title_font, print[i].c_str(), 36, 1).x + MeasureTextEx(title_font, " ", 36, 1).x;
+		}
+		EndScissorMode();
+	}
+	if (A.state == 3) {
+		a = true;
+		b = false;
+		c = false;
+		d = false;
+		res = 1;
+	}
+	else if (B.state == 3) {
+		b = true;
+		a = false;
+		c = false;
+		d = false;
+		res = 1;
+	}
+	else if (C.state == 3) {
+		c = true;
+		b = false;
+		a = false;
+		d = false;
+		res = 1;
+	}
+	else if (D.state == 3) {
+		d = true;
+		b = false;
+		c = false;
+		a = false;
+		res = 1;
+	}
+	if (a) {
+		DrawRectangleRounded(A.buttonShape, 0.1, 10, {0, 0, 0, 80});
+	} 
+	else if (b) DrawRectangleRounded(B.buttonShape, 0.1, 10, {0, 0, 0, 80});
+	else if (c) DrawRectangleRounded(C.buttonShape, 0.1, 10, {0, 0, 0, 80});
+	else if (d) DrawRectangleRounded(D.buttonShape, 0.1, 10, {0, 0, 0, 80});
+	if (res == 1) DrawRectangleRounded(A.buttonShape, 0.1, 10, {0, 228, 48, 200});
+	else if (res == 2) DrawRectangleRounded(B.buttonShape, 0.1, 10, {0, 228, 48, 200});
+	else if (res == 3) DrawRectangleRounded(C.buttonShape, 0.1, 10, {0, 228, 48, 200});
+	else if (res == 4) DrawRectangleRounded(D.buttonShape, 0.1, 10, {0, 228, 48, 200});
+	A.SetBox(120, 500, 500, 130, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 30});
+	A.SetText(word_font, "", {120, 530}, 36, 1, {255, 255, 255, 255}, {0, 0, 0, 255}, {0, 0, 0, 255});
+	DrawRectangleRoundedLines(A.buttonShape, 0.1, 10, 4, {253, 84, 145, 255});
+	A.DrawText(mouseCursor);
+	C.SetBox(120, 650, 500, 130, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 30});
+	C.SetText(word_font, "", {120, 530}, 36, 1, {255, 255, 255, 255}, {0, 0, 0, 255}, {0, 0, 0, 255});
+	DrawRectangleRoundedLines(C.buttonShape, 0.1, 10, 4, {253, 84, 145, 255});
+	C.DrawText(mouseCursor);
+	D.SetBox(658, 650, 500, 130, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 30});
+	D.SetText(word_font, "", {120, 530}, 36, 1, {255, 255, 255, 255}, {0, 0, 0, 255}, {0, 0, 0, 255});
+	DrawRectangleRoundedLines(D.buttonShape, 0.1, 10, 4, {253, 84, 145, 255});
+	D.DrawText(mouseCursor);
+	B.SetBox(658, 500, 500, 130, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 30});
+	B.SetText(word_font, "", {120, 530}, 36, 1, {255, 255, 255, 255}, {0, 0, 0, 255}, {0, 0, 0, 255});
+	DrawRectangleRoundedLines(B.buttonShape, 0.1, 10, 4, {253, 84, 145, 255});
+	B.DrawText(mouseCursor);
+	if (guessthemeaning) {
+		if (A.state == 1) {
+			wheel1 += GetMouseWheelMove() * scrollspeed;
+		}
+		else {
+			wheel1 = 0;
+		}
+		if (D.state == 1) {
+			wheel2 += GetMouseWheelMove() * scrollspeed;
+		}
+		else {
+			wheel2 = 0;
+		}
+		if (C.state == 1) {
+			wheel3 += GetMouseWheelMove() * scrollspeed;
+		}
+		else {
+			wheel3 = 0;
+		}
+		if (B.state == 1) {
+			wheel4 += GetMouseWheelMove() * scrollspeed;
+		}
+		else {
+			wheel4 = 0;
+		}
+		textx = 130;
+		texty = 510;
+		BeginScissorMode(120, 500, 500, 130);
+		std::vector <std::string> print = dict -> stringCut(randef[0]);
+		for (int i = 0; i < print.size(); i++) {
+			if (wheel1 > 0) wheel1 = 0;
+			if (textx + MeasureTextEx(word_font, print[i].c_str(), 36, 1).x > 610) {
+				textx = 130;
+				texty += 50;
+			}
+			if (A.state == 1) {
+				DrawTextEx(word_font, print[i].c_str(), {(float) textx, (float) texty + wheel1}, 36, 1, {227, 89, 97, 255});
+			}
+			else {
+				DrawTextEx(word_font, print[i].c_str(), {(float) textx, (float) texty}, 36, 1, {227, 89, 97, 255});
+			}
+			textx += MeasureTextEx(word_font, print[i].c_str(), 36, 1).x + MeasureTextEx(word_font, " ", 36, 1).x;
+		}
+		EndScissorMode();
+		textx = 668;
+		texty = 660;
+		BeginScissorMode(658, 650, 500, 130);
+		print = dict -> stringCut(randef[3]);
+		for (int i = 0; i < print.size(); i++) {
+			if (wheel2 > 0) wheel2 = 0;
+			if (textx + MeasureTextEx(word_font, print[i].c_str(), 36, 1).x > 1148) {
+				textx = 668;
+				texty += 50;
+			}
+			if (D.state == 1) {
+				DrawTextEx(word_font, print[i].c_str(), {(float) textx, (float) texty + wheel2}, 36, 1, {227, 89, 97, 255});
+			}
+			else {
+				DrawTextEx(word_font, print[i].c_str(), {(float) textx, (float) texty}, 36, 1, {227, 89, 97, 255});
+			}
+			textx += MeasureTextEx(word_font, print[i].c_str(), 36, 1).x + MeasureTextEx(word_font, " ", 36, 1).x;
+		}
+		EndScissorMode();
+		textx = 130;
+		texty = 660;
+		BeginScissorMode(130, 650, 500, 130);
+		print = dict -> stringCut(randef[2]);
+		for (int i = 0; i < print.size(); i++) {
+			if (wheel3 > 0) wheel3 = 0;
+			if (textx + MeasureTextEx(word_font, print[i].c_str(), 36, 1).x > 620) {
+				textx = 130;
+				texty += 50;
+			}
+			if (C.state == 1) {
+				DrawTextEx(word_font, print[i].c_str(), {(float) textx, (float) texty + wheel3}, 36, 1, {227, 89, 97, 255});
+			}
+			else {
+				DrawTextEx(word_font, print[i].c_str(), {(float) textx, (float) texty}, 36, 1, {227, 89, 97, 255});
+			}
+			textx += MeasureTextEx(word_font, print[i].c_str(), 36, 1).x + MeasureTextEx(word_font, " ", 36, 1).x;
+		}
+		EndScissorMode();
+		textx = 668;
+		texty = 510;
+		BeginScissorMode(658, 500, 500, 130);
+		print = dict -> stringCut(randef[1]);
+		for (int i = 0; i < print.size(); i++) {
+			if (wheel4 > 0) wheel4 = 0;
+			if (textx + MeasureTextEx(word_font, print[i].c_str(), 36, 1).x > 1148) {
+				textx = 668;
+				texty += 50;
+			}
+			if (B.state == 1) {
+				DrawTextEx(word_font, print[i].c_str(), {(float) textx, (float) texty + wheel4}, 36, 1, {227, 89, 97, 255});
+			}
+			else {
+				DrawTextEx(word_font, print[i].c_str(), {(float) textx, (float) texty}, 36, 1, {227, 89, 97, 255});
+			}
+			textx += MeasureTextEx(word_font, print[i].c_str(), 36, 1).x + MeasureTextEx(word_font, " ", 36, 1).x;
+		}
+		EndScissorMode();
+	}
+	else {
+		DrawTextEx(word_font, v[0] -> word.c_str(), GetCenterPos(word_font, v[0] -> word.c_str(), 36, 1, A.buttonShape), 36, 1, {227, 89, 97, 255});
+		DrawTextEx(word_font, v[1] -> word.c_str(), GetCenterPos(word_font, v[1] -> word.c_str(), 36, 1, B.buttonShape), 36, 1, {227, 89, 97, 255});
+		DrawTextEx(word_font, v[2] -> word.c_str(), GetCenterPos(word_font, v[2] -> word.c_str(), 36, 1, C.buttonShape), 36, 1, {227, 89, 97, 255});
+		DrawTextEx(word_font, v[3] -> word.c_str(), GetCenterPos(word_font, v[3] -> word.c_str(), 36, 1, D.buttonShape), 36, 1, {227, 89, 97, 255});
+	}
+	guess.drawCorner = true;
+	guess.colorCornerClicked = {253, 84, 145, 255};
+	guess.colorCornerDefault = {253, 84, 145, 255};
+	guess.colorCornerTouched = {253, 84, 145, 255};
+	if (guessthemeaning) guess.SetText(title_font, "GUESS THE MEANING", GetCenterPos(title_font, "GUESS THE MEANING", 36, 1, guess.buttonShape), 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+	else guess.SetText(title_font, "GUESS THE WORD", GetCenterPos(title_font, "GUESS THE WORD", 36, 1, guess.buttonShape), 36, 1, {255, 249, 249, 255}, {255, 249, 249, 255}, {255, 249, 249, 255});
+	guess.SetBox(365, 273, 330, 44, {253, 84, 145, 255}, {173, 170, 171, 255}, {93, 93, 93, 255});
+	guess.DrawText(mouseCursor);
 	return;
 }
 // add renew button to view random words, homestate = 0, get daily word again;
