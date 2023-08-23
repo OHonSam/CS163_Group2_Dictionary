@@ -527,6 +527,18 @@ void UI::Menu() {
 			
 			randef.push_back(v[i]->getRandDef());
 		}
+		rand.clear();
+		if (guessthemeaning) {
+			for (int i = 0; i < 4; i++) {
+			rand.push_back(randef[i]);
+			}
+		}
+		else {
+			for (int i = 0; i < 4; i++) {
+			rand.push_back(v[i] -> word);
+			}
+		}
+		std::shuffle(rand.begin(), rand.end(), std::mt19937(std::random_device()()));
 		res = 0;
 		textx = 365;
 		texty = 340;
@@ -1702,6 +1714,7 @@ void UI::DrawGame() {
 	static int wheel3 = 0;
 	static int wheel4 = 0;
 	int scrollspeed = 50;
+
 	wheel += GetMouseWheelMove() * scrollspeed;
 	if (guess.state == 3) {
 		guessthemeaning ^= 1;
@@ -1711,6 +1724,18 @@ void UI::DrawGame() {
 		for (int i = 0; i < 4; i++) {
 			randef.push_back(v[i]->getRandDef());
 		}
+		rand.clear();
+		if (guessthemeaning) {
+			for (int i = 0; i < 4; i++) {
+			rand.push_back(randef[i]);
+			}
+		}
+		else {
+			for (int i = 0; i < 4; i++) {
+			rand.push_back(v[i] -> word);
+			}
+		}
+		std::shuffle(rand.begin(), rand.end(), std::mt19937(std::random_device()()));
 		wheel = 0;
 		a = false;
 		b = false;
@@ -1749,28 +1774,48 @@ void UI::DrawGame() {
 		b = false;
 		c = false;
 		d = false;
-		res = 1;
+		for (int i = 0; i < 4; i++) {
+			if (guessthemeaning) {
+				if (rand[i] == randef[0]) res = i + 1;
+			}
+			else if (rand[i] == v[0] -> word) res = i + 1;
+		}
 	}
 	else if (B.state == 3) {
 		b = true;
 		a = false;
 		c = false;
 		d = false;
-		res = 1;
+		for (int i = 0; i < 4; i++) {
+			if (guessthemeaning) {
+				if (rand[i] == randef[0]) res = i + 1;
+			}
+			else if (rand[i] == v[0] -> word) res = i + 1;
+		}
 	}
 	else if (C.state == 3) {
 		c = true;
 		b = false;
 		a = false;
 		d = false;
-		res = 1;
+		for (int i = 0; i < 4; i++) {
+			if (guessthemeaning) {
+				if (rand[i] == randef[0]) res = i + 1;
+			}
+			else if (rand[i] == v[0] -> word) res = i + 1;
+		}
 	}
 	else if (D.state == 3) {
 		d = true;
 		b = false;
 		c = false;
 		a = false;
-		res = 1;
+		for (int i = 0; i < 4; i++) {
+			if (guessthemeaning) {
+				if (rand[i] == randef[0]) res = i + 1;
+			}
+			else if (rand[i] == v[0] -> word) res = i + 1;
+		}
 	}
 	if (a) {
 		DrawRectangleRounded(A.buttonShape, 0.1, 10, {0, 0, 0, 80});
@@ -1826,7 +1871,7 @@ void UI::DrawGame() {
 		textx = 130;
 		texty = 510;
 		BeginScissorMode(120, 500, 500, 130);
-		std::vector <std::string> print = dict -> stringCut(randef[0]);
+		std::vector <std::string> print = dict -> stringCut(rand[0]);
 		for (int i = 0; i < print.size(); i++) {
 			if (wheel1 > 0) wheel1 = 0;
 			if (textx + MeasureTextEx(word_font, print[i].c_str(), 36, 1).x > 610) {
@@ -1845,7 +1890,7 @@ void UI::DrawGame() {
 		textx = 668;
 		texty = 660;
 		BeginScissorMode(658, 650, 500, 130);
-		print = dict -> stringCut(randef[3]);
+		print = dict -> stringCut(rand[3]);
 		for (int i = 0; i < print.size(); i++) {
 			if (wheel2 > 0) wheel2 = 0;
 			if (textx + MeasureTextEx(word_font, print[i].c_str(), 36, 1).x > 1148) {
@@ -1864,7 +1909,7 @@ void UI::DrawGame() {
 		textx = 130;
 		texty = 660;
 		BeginScissorMode(130, 650, 500, 130);
-		print = dict -> stringCut(randef[2]);
+		print = dict -> stringCut(rand[2]);
 		for (int i = 0; i < print.size(); i++) {
 			if (wheel3 > 0) wheel3 = 0;
 			if (textx + MeasureTextEx(word_font, print[i].c_str(), 36, 1).x > 620) {
@@ -1883,7 +1928,7 @@ void UI::DrawGame() {
 		textx = 668;
 		texty = 510;
 		BeginScissorMode(658, 500, 500, 130);
-		print = dict -> stringCut(randef[1]);
+		print = dict -> stringCut(rand[1]);
 		for (int i = 0; i < print.size(); i++) {
 			if (wheel4 > 0) wheel4 = 0;
 			if (textx + MeasureTextEx(word_font, print[i].c_str(), 36, 1).x > 1148) {
@@ -1901,10 +1946,10 @@ void UI::DrawGame() {
 		EndScissorMode();
 	}
 	else {
-		DrawTextEx(word_font, v[0] -> word.c_str(), GetCenterPos(word_font, v[0] -> word.c_str(), 36, 1, A.buttonShape), 36, 1, {227, 89, 97, 255});
-		DrawTextEx(word_font, v[1] -> word.c_str(), GetCenterPos(word_font, v[1] -> word.c_str(), 36, 1, B.buttonShape), 36, 1, {227, 89, 97, 255});
-		DrawTextEx(word_font, v[2] -> word.c_str(), GetCenterPos(word_font, v[2] -> word.c_str(), 36, 1, C.buttonShape), 36, 1, {227, 89, 97, 255});
-		DrawTextEx(word_font, v[3] -> word.c_str(), GetCenterPos(word_font, v[3] -> word.c_str(), 36, 1, D.buttonShape), 36, 1, {227, 89, 97, 255});
+		DrawTextEx(word_font, rand[0].c_str(), GetCenterPos(word_font, rand[0].c_str(), 36, 1, A.buttonShape), 36, 1, {227, 89, 97, 255});
+		DrawTextEx(word_font, rand[1].c_str(), GetCenterPos(word_font, rand[1].c_str(), 36, 1, B.buttonShape), 36, 1, {227, 89, 97, 255});
+		DrawTextEx(word_font, rand[2].c_str(), GetCenterPos(word_font, rand[2].c_str(), 36, 1, C.buttonShape), 36, 1, {227, 89, 97, 255});
+		DrawTextEx(word_font, rand[3].c_str(), GetCenterPos(word_font, rand[3].c_str(), 36, 1, D.buttonShape), 36, 1, {227, 89, 97, 255});
 	}
 	guess.drawCorner = true;
 	guess.colorCornerClicked = {253, 84, 145, 255};
