@@ -40,8 +40,6 @@ private slots:
 
     void on_pushButton_FavScreen_clicked();
 
-    void on_pushButton_EditScreen_clicked();
-
     void on_pushButton_AddScreen_clicked();
 
     void on_pushButton_QuizScreen_clicked();

@@ -128,12 +128,6 @@ void HomeScreen::on_pushButton_FavScreen_clicked()
 }
 
 
-void HomeScreen::on_pushButton_EditScreen_clicked()
-{
-    emit switchScreen(Screen::Edit);
-}
-
-
 void HomeScreen::on_pushButton_AddScreen_clicked()
 {
     emit switchScreen(Screen::Add);
