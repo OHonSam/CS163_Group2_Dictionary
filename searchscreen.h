@@ -21,6 +21,7 @@ public:
 signals:
     void updateFavList();
     void updateHistory();
+    void updateCompleter();
     void sendToEditScreen(Word* word);
 
 public slots:
@@ -30,6 +31,8 @@ private slots:
     void on_pushButton_setFav_clicked(bool checked);
 
     void on_pushButton_edit_clicked();
+
+    void on_pushButton_remove_clicked();
 
 private:
     Ui::SearchScreen *ui;

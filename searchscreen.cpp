@@ -2,6 +2,7 @@
 #include "ui_searchscreen.h"
 
 #include <QListView>
+#include <QMessageBox>
 
 SearchScreen::SearchScreen(Dict *dict, QWidget *parent) :
     MyScreen(dict,Screen::Search,parent),
@@ -64,5 +65,15 @@ void SearchScreen::on_pushButton_edit_clicked()
     if(!word) return;
     emit sendToEditScreen(word);
     emit switchScreen(Screen::Edit);
+}
+
+
+void SearchScreen::on_pushButton_remove_clicked()
+{
+    if(!word) return;
+    dict->removeWord(word->word);
+    QMessageBox::information(this,"Information","The word has been deleted!");
+    emit updateCompleter();
+    emit switchScreen(Screen::Home);
 }
 

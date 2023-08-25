@@ -134,13 +134,17 @@ MainWindow::MainWindow(Dict *dict, QWidget *parent)
         &editScreen,SLOT(receiveWord(Word*))
     );
 
-    // 5. update completer after edit and add
+    // 5. update completer after edit/ add/ remove
     connect(
         &editScreen,SIGNAL(updateCompleter()),
         &homeScreen,SLOT(updateCompleter())
     );
     connect(
         &addScreen,SIGNAL(updateCompleter()),
+        &homeScreen,SLOT(updateCompleter())
+    );
+    connect(
+        &searchScreen,SIGNAL(updateCompleter()),
         &homeScreen,SLOT(updateCompleter())
     );
 
