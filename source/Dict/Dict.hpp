@@ -181,6 +181,8 @@ public:
 	// Reset to the default dataset
 	bool reset();
 
+    void clear();
+
 	bool switchDataSet(DataSet::Type type);
 
 	// Get the current dataset
