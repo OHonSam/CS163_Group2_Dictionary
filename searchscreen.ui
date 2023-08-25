@@ -56,6 +56,9 @@ color: white;</string>
           <layout class="QGridLayout" name="gridLayout_5">
            <item row="0" column="0">
             <widget class="QPushButton" name="pushButton_goBack">
+             <property name="toolTip">
+              <string>Go back</string>
+             </property>
              <property name="styleSheet">
               <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
@@ -70,7 +73,7 @@ font: bold;
 color:white;</string>
              </property>
              <property name="text">
-              <string>Back</string>
+              <string/>
              </property>
              <property name="icon">
               <iconset resource="resources.qrc">
@@ -105,6 +108,9 @@ color:white;</string>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="toolTip">
+                <string>Set favorite</string>
+               </property>
                <property name="layoutDirection">
                 <enum>Qt::RightToLeft</enum>
                </property>
@@ -122,7 +128,7 @@ font: bold;
 color:white;</string>
                </property>
                <property name="text">
-                <string>Favorite</string>
+                <string/>
                </property>
                <property name="icon">
                 <iconset resource="resources.qrc">
@@ -139,6 +145,9 @@ color:white;</string>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="toolTip">
+                <string>Edit</string>
+               </property>
                <property name="layoutDirection">
                 <enum>Qt::RightToLeft</enum>
                </property>
@@ -156,11 +165,38 @@ font: bold;
 color:white;</string>
                </property>
                <property name="text">
-                <string>Edit</string>
+                <string/>
                </property>
                <property name="icon">
                 <iconset resource="resources.qrc">
                  <normaloff>:/img/images/pencil.svg</normaloff>:/img/images/pencil.svg</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_remove">
+               <property name="toolTip">
+                <string>Remove</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 10px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
+font: bold;
+color:white;</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="resources.qrc">
+                 <normaloff>:/img/images/trash-bin.svg</normaloff>:/img/images/trash-bin.svg</iconset>
                </property>
               </widget>
              </item>
