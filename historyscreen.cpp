@@ -56,7 +56,7 @@ void HistoryScreen::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
             QMessageBox::Yes|QMessageBox::No
         );
         if(rep==QMessageBox::Yes){
-            update();
+            on_pushButton_remove_clicked();
             QMessageBox::information(this,"Information","The word has been removed!");
         }
     }
