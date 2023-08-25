@@ -72,14 +72,20 @@ void AddNewWord::on_pushButton_saveWord_clicked()
     QString raw=ui->lineEdit_word->text();
     std::string word=raw.toLower().toLocal8Bit().toStdString();
     if(raw.toLower()==QString::fromStdString(word)){
-        QMessageBox::StandardButton rep;
-        rep=QMessageBox::question(this,"Confirm",
-                                    "The old word will not be able to recovered.\nDo you want to save?",
-                                    QMessageBox::Yes|QMessageBox::No);
-        if(rep==QMessageBox::Yes){
-            newWord->word=word;
-            on_comboBox_POS_currentIndexChanged(ui->comboBox_POS->currentIndex());
-            QMessageBox::information(this,"Information","New word has been saved!");
+        if(dict->isInDict(word)){
+            QMessageBox::warning(this,"Caution","This word is already existed!");
+            ui->lineEdit_word->setText(QString::fromStdString(newWord->word));
+        }
+        else{
+            QMessageBox::StandardButton rep;
+            rep=QMessageBox::question(this,"Confirm",
+                                        "The old word will not be able to recovered.\nDo you want to save?",
+                                        QMessageBox::Yes|QMessageBox::No);
+            if(rep==QMessageBox::Yes){
+                newWord->word=word;
+                on_comboBox_POS_currentIndexChanged(ui->comboBox_POS->currentIndex());
+                QMessageBox::information(this,"Information","New word has been saved!");
+            }
         }
     }
     else
