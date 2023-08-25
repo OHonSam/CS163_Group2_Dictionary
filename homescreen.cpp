@@ -72,6 +72,8 @@ void HomeScreen::on_comboBox_dictVersion_currentIndexChanged(int index)
     }
     showDailyWord();
     updateCompleter();
+    emit updateHistory();
+    emit updateFavList();
 }
 
 
