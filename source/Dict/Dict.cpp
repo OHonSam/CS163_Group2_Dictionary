@@ -153,43 +153,7 @@ Dict::Dict(): curDataSet(DataSet::EE)
 
 Dict::~Dict()
 {
-    switch(curDataSet){
-        case DataSet::EE:
-            words.save(MAIN::EE::WORDS);
-            wordDef.save(MAIN::EE::WORDDEF);
-            defTrie.save(MAIN::EE::DEFTRIE);
-            favList.save(MAIN::EE::FAVLIST);
-            history.saveSLLStr(MAIN::EE::HISTORY);
-            break;
-        case DataSet::EV:
-            words.save(MAIN::EV::WORDS);
-            wordDef.save(MAIN::EV::WORDDEF);
-            defTrie.save(MAIN::EV::DEFTRIE);
-            favList.save(MAIN::EV::FAVLIST);
-            history.saveSLLStr(MAIN::EV::HISTORY);
-            break;
-        case DataSet::VE:
-            words.save(MAIN::VE::WORDS);
-            wordDef.save(MAIN::VE::WORDDEF);
-            defTrie.save(MAIN::VE::DEFTRIE);
-            favList.save(MAIN::VE::FAVLIST);
-            history.saveSLLStr(MAIN::VE::HISTORY);
-            break;
-        case DataSet::Slang:
-            words.save(MAIN::Slang::WORDS);
-            wordDef.save(MAIN::Slang::WORDDEF);
-            defTrie.save(MAIN::Slang::DEFTRIE);
-            favList.save(MAIN::Slang::FAVLIST);
-            history.saveSLLStr(MAIN::Slang::HISTORY);
-            break;
-        case DataSet::Emoji:
-            words.save(MAIN::Emoji::WORDS);
-            wordDef.save(MAIN::Emoji::WORDDEF);
-            defTrie.save(MAIN::Emoji::DEFTRIE);
-            favList.save(MAIN::Emoji::FAVLIST);
-            history.saveSLLStr(MAIN::Emoji::HISTORY);
-            break;
-    }
+    save();
 }
 
 bool Dict::loadFromPrev()
@@ -399,6 +363,46 @@ bool Dict::importVETxt(const std::string &path)
     }
 
     return true;
+}
+
+void Dict::save(){
+    switch(curDataSet){
+    case DataSet::EE:
+        words.save(MAIN::EE::WORDS);
+        wordDef.save(MAIN::EE::WORDDEF);
+        defTrie.save(MAIN::EE::DEFTRIE);
+        favList.save(MAIN::EE::FAVLIST);
+        history.saveSLLStr(MAIN::EE::HISTORY);
+        break;
+    case DataSet::EV:
+        words.save(MAIN::EV::WORDS);
+        wordDef.save(MAIN::EV::WORDDEF);
+        defTrie.save(MAIN::EV::DEFTRIE);
+        favList.save(MAIN::EV::FAVLIST);
+        history.saveSLLStr(MAIN::EV::HISTORY);
+        break;
+    case DataSet::VE:
+        words.save(MAIN::VE::WORDS);
+        wordDef.save(MAIN::VE::WORDDEF);
+        defTrie.save(MAIN::VE::DEFTRIE);
+        favList.save(MAIN::VE::FAVLIST);
+        history.saveSLLStr(MAIN::VE::HISTORY);
+        break;
+    case DataSet::Slang:
+        words.save(MAIN::Slang::WORDS);
+        wordDef.save(MAIN::Slang::WORDDEF);
+        defTrie.save(MAIN::Slang::DEFTRIE);
+        favList.save(MAIN::Slang::FAVLIST);
+        history.saveSLLStr(MAIN::Slang::HISTORY);
+        break;
+    case DataSet::Emoji:
+        words.save(MAIN::Emoji::WORDS);
+        wordDef.save(MAIN::Emoji::WORDDEF);
+        defTrie.save(MAIN::Emoji::DEFTRIE);
+        favList.save(MAIN::Emoji::FAVLIST);
+        history.saveSLLStr(MAIN::Emoji::HISTORY);
+        break;
+    }
 }
 
 bool Dict::isInDict(const std::string& word){

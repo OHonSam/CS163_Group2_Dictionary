@@ -182,6 +182,7 @@ public:
 	bool reset();
 
     void clear();
+    void save();
 
 	bool switchDataSet(DataSet::Type type);
 

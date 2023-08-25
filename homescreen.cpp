@@ -50,6 +50,7 @@ HomeScreen::~HomeScreen()
 
 void HomeScreen::on_comboBox_dictVersion_currentIndexChanged(int index)
 {
+    dict->save();
     switch(index){
     case 0: // EE
         dict->switchDataSet(DataSet::EE);
@@ -74,6 +75,8 @@ void HomeScreen::on_comboBox_dictVersion_currentIndexChanged(int index)
     updateCompleter();
     emit updateHistory();
     emit updateFavList();
+
+    QMessageBox::information(this,"Information","Switch version successfully!");
 }
 
 
