@@ -36,6 +36,80 @@ color:white;</string>
    </item>
    <item row="1" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="lineEdit_search">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>40</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	padding: 9px;
+	border-color: rgb(77, 101, 246);
+	border-width : 1px;
+	border-style:inset;
+	border-radius: 8px;
+	  min-height: 1px;
+	  min-width: 1px;
+	background-color: rgb(102, 124, 246);
+	color: white;
+	selection-color: rgb(39, 182, 240);
+	selection-background-color: rgb(77, 92, 245);
+	font: 11pt &quot;Comfortaa&quot;;
+	font: bold;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>Searching</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QComboBox" name="comboBox_searchType">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>4</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>10000000</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">padding: 5px;
+border-color: rgb(77, 101, 246);
+border-width : 1px;
+border-style:inset;
+border-radius: 8px;
+  min-height: 1px;
+  min-width: 1px;
+color: white;
+selection-color: rgb(39, 182, 240);
+selection-background-color: rgb(77, 92, 245);
+font: 11pt &quot;Comfortaa&quot;;
+font: bold;
+background-color: rgb(102, 124, 246);</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>Def</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Word</string>
+        </property>
+       </item>
+      </widget>
+     </item>
      <item row="0" column="4">
       <widget class="QPushButton" name="pushButton_search">
        <property name="sizePolicy">
@@ -94,55 +168,11 @@ color: white;</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
-      <widget class="QComboBox" name="comboBox_searchType">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>4</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>10000000</height>
-        </size>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">padding: 5px;
-border-color: rgb(77, 101, 246);
-border-width : 1px;
-border-style:inset;
-border-radius: 8px;
-  min-height: 1px;
-  min-width: 1px;
-color: white;
-selection-color: rgb(39, 182, 240);
-selection-background-color: rgb(77, 92, 245);
-font: 11pt &quot;Comfortaa&quot;;
-font: bold;
-background-color: rgb(102, 124, 246);</string>
-       </property>
-       <item>
-        <property name="text">
-         <string>Def</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Word</string>
-        </property>
-       </item>
-      </widget>
-     </item>
      <item row="0" column="0">
       <widget class="QComboBox" name="comboBox_dictVersion">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-         <horstretch>5</horstretch>
+         <horstretch>6</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
@@ -156,7 +186,7 @@ background-color: rgb(102, 124, 246);</string>
         <enum>Qt::DefaultContextMenu</enum>
        </property>
        <property name="styleSheet">
-        <string notr="true">padding: 5px;
+        <string notr="true">padding: 9px;
 border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
@@ -195,36 +225,6 @@ background-color: rgb(102, 124, 246);</string>
          <string>Emoji</string>
         </property>
        </item>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLineEdit" name="lineEdit_search">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>40</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLineEdit {
-	padding: 9px;
-	border-color: rgb(77, 101, 246);
-	border-width : 1px;
-	border-style:inset;
-	border-radius: 8px;
-	  min-height: 1px;
-	  min-width: 1px;
-	background-color: rgb(102, 124, 246);
-	color: white;
-	selection-color: rgb(39, 182, 240);
-	selection-background-color: rgb(77, 92, 245);
-	font: 11pt &quot;Comfortaa&quot;;
-	font: bold;
-}</string>
-       </property>
-       <property name="placeholderText">
-        <string>Searching</string>
-       </property>
       </widget>
      </item>
     </layout>
