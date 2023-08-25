@@ -44,7 +44,7 @@ color:white;</string>
           <string>Go back</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">padding: 6px;
+          <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
@@ -54,7 +54,7 @@ border-radius: 8px;
 background-color: rgb(102, 124, 246);
 font: 11pt &quot;Comfortaa&quot;;
 font: bold;
-color: white;</string>
+color:white;</string>
          </property>
          <property name="text">
           <string/>
@@ -81,7 +81,7 @@ color: white;</string>
        <item>
         <widget class="QPushButton" name="pushButton_discard">
          <property name="styleSheet">
-          <string notr="true">padding: 6px;
+          <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
@@ -91,7 +91,7 @@ border-radius: 8px;
 background-color: rgb(102, 124, 246);
 font: 11pt &quot;Comfortaa&quot;;
 font: bold;
-color: white;</string>
+color:white;</string>
          </property>
          <property name="text">
           <string>Discard</string>
@@ -101,7 +101,7 @@ color: white;</string>
        <item>
         <widget class="QPushButton" name="pushButton_add">
          <property name="styleSheet">
-          <string notr="true">padding: 6px;
+          <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
@@ -111,7 +111,7 @@ border-radius: 8px;
 background-color: rgb(102, 124, 246);
 font: 11pt &quot;Comfortaa&quot;;
 font: bold;
-color: white;</string>
+color:white;</string>
          </property>
          <property name="text">
           <string>Add</string>

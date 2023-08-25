@@ -44,7 +44,7 @@ color:white;</string>
        <item>
         <widget class="QPushButton" name="pushButton_goBack">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -53,7 +53,7 @@ color:white;</string>
           <string>Go back</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">padding: 6px;
+          <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
@@ -63,7 +63,7 @@ border-radius: 8px;
 background-color: rgb(102, 124, 246);
 font: 11pt &quot;Comfortaa&quot;;
 font: bold;
-color: white;</string>
+color:white;</string>
          </property>
          <property name="text">
           <string/>
@@ -97,24 +97,22 @@ color: white;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>13</width>
-           <height>13</height>
+           <width>23</width>
+           <height>23</height>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">padding: 5px;
+          <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
 border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
-color: white;
-selection-color: rgb(39, 182, 240);
-selection-background-color: rgb(77, 92, 245);
+background-color: rgb(102, 124, 246);
 font: 11pt &quot;Comfortaa&quot;;
 font: bold;
-background-color: rgb(102, 124, 246);</string>
+color:white;</string>
          </property>
          <item>
           <property name="text">
@@ -144,7 +142,7 @@ background-color: rgb(102, 124, 246);</string>
        <item>
         <widget class="QPushButton" name="pushButton_newQuiz">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -156,7 +154,7 @@ background-color: rgb(102, 124, 246);</string>
           <enum>Qt::RightToLeft</enum>
          </property>
          <property name="styleSheet">
-          <string notr="true">padding: 6px;
+          <string notr="true">padding: 10px;
 border-color: rgb(77, 101, 246);
 border-width : 1px;
 border-style:inset;
@@ -166,7 +164,7 @@ border-radius: 8px;
 background-color: rgb(102, 124, 246);
 font: 11pt &quot;Comfortaa&quot;;
 font: bold;
-color: white;</string>
+color:white;</string>
          </property>
          <property name="text">
           <string/>
