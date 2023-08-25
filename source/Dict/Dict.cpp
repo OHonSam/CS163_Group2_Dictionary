@@ -3,14 +3,7 @@
 // #include <iostream>
 // #include <sstream>
 bool Dict::reset(){
-    numWords=0;
-    for(int i=0; i<UNIQUE_CHARS; i++) 
-        numWordsStartsWith[i]=0;
-    words.clear();
-    wordDef.clear();
-    defTrie.clear();
-    favList.clear();
-    history.clearSLL();
+    clear();
     switch(curDataSet){
     case DataSet::EE:
         return
@@ -56,11 +49,23 @@ bool Dict::reset(){
     return false;
 }
 
+void Dict::clear(){
+    numWords=0;
+    for(int i=0; i<UNIQUE_CHARS; i++)
+        numWordsStartsWith[i]=0;
+    words.clear();
+    wordDef.clear();
+    defTrie.clear();
+    favList.clear();
+    history.clearSLL();
+}
+
 bool Dict::switchDataSet(DataSet::Type type)
 {
     if(curDataSet==type) return true;
     curDataSet=type;
-    return reset();
+    clear();
+    return setup();
 }
 
 DataSet::Type Dict::getCurDataSet() const
