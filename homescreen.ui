@@ -234,6 +234,12 @@ background-color: rgb(102, 124, 246);</string>
     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1,1,1,1">
      <item>
       <widget class="QPushButton" name="pushButton_AddScreen">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>12</horstretch>
+         <verstretch>10</verstretch>
+        </sizepolicy>
+       </property>
        <property name="styleSheet">
         <string notr="true">background-image: url(:/background/images/bg/button.png);
 padding: 30px;
@@ -255,7 +261,7 @@ border-radius: 20px;
      <item>
       <widget class="QPushButton" name="pushButton_HistoryScreen">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>12</horstretch>
          <verstretch>10</verstretch>
         </sizepolicy>
@@ -281,7 +287,7 @@ border-radius: 20px;
      <item>
       <widget class="QPushButton" name="pushButton_FavScreen">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>12</horstretch>
          <verstretch>10</verstretch>
         </sizepolicy>
@@ -307,7 +313,7 @@ border-radius: 20px;
      <item>
       <widget class="QPushButton" name="pushButton_QuizScreen">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>12</horstretch>
          <verstretch>10</verstretch>
         </sizepolicy>
@@ -333,7 +339,7 @@ border-radius: 20px;
      <item>
       <widget class="QPushButton" name="pushButton_reset">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>12</horstretch>
          <verstretch>10</verstretch>
         </sizepolicy>
