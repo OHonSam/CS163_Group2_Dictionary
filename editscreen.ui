@@ -40,6 +40,9 @@ color:white;</string>
       <layout class="QHBoxLayout" name="horizontalLayout_5">
        <item>
         <widget class="QPushButton" name="pushButton_goBack">
+         <property name="toolTip">
+          <string>Go back</string>
+         </property>
          <property name="styleSheet">
           <string notr="true">padding: 6px;
 border-color: rgb(77, 101, 246);
@@ -54,7 +57,7 @@ font: bold;
 color: white;</string>
          </property>
          <property name="text">
-          <string>Back </string>
+          <string/>
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
@@ -149,6 +152,9 @@ color: rgb(56, 64, 139);</string>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_saveWord">
+       <property name="toolTip">
+        <string>Save</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">padding: 6px;
 border-color: rgb(77, 101, 246);
@@ -163,7 +169,11 @@ font: bold;
 color: white;</string>
        </property>
        <property name="text">
-        <string>Save</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/img/images/save.png</normaloff>:/img/images/save.png</iconset>
        </property>
       </widget>
      </item>
@@ -299,6 +309,9 @@ background-color: rgb(102, 124, 246);</string>
        </item>
        <item>
         <widget class="QPushButton" name="pushButton_saveDef">
+         <property name="toolTip">
+          <string>Save</string>
+         </property>
          <property name="styleSheet">
           <string notr="true">padding: 6px;
 border-color: rgb(77, 101, 246);
@@ -313,7 +326,11 @@ font: bold;
 color: white;</string>
          </property>
          <property name="text">
-          <string>Save</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/img/images/save.png</normaloff>:/img/images/save.png</iconset>
          </property>
         </widget>
        </item>

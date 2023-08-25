@@ -20,12 +20,15 @@
    <item row="0" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,0,0">
        <property name="topMargin">
         <number>0</number>
        </property>
        <item>
         <widget class="QPushButton" name="pushButton_goBack">
+         <property name="toolTip">
+          <string>Go back</string>
+         </property>
          <property name="styleSheet">
           <string notr="true">padding: 6px;
 border-color: rgb(77, 101, 246);
@@ -40,7 +43,7 @@ font: bold;
 color: white;</string>
          </property>
          <property name="text">
-          <string>Back </string>
+          <string/>
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
@@ -63,6 +66,9 @@ color: white;</string>
        </item>
        <item>
         <widget class="QPushButton" name="pushButton_remove">
+         <property name="toolTip">
+          <string>Remove</string>
+         </property>
          <property name="layoutDirection">
           <enum>Qt::RightToLeft</enum>
          </property>
@@ -80,7 +86,7 @@ font:bold;
 color: white;</string>
          </property>
          <property name="text">
-          <string>Remove</string>
+          <string/>
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
@@ -91,7 +97,7 @@ color: white;</string>
        <item>
         <widget class="QPushButton" name="pushButton_clear">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -101,6 +107,9 @@ color: white;</string>
            <width>100</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="toolTip">
+          <string>Clear</string>
          </property>
          <property name="layoutDirection">
           <enum>Qt::RightToLeft</enum>
@@ -119,7 +128,7 @@ font:bold;
 color: white;</string>
          </property>
          <property name="text">
-          <string>Clear All</string>
+          <string/>
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">

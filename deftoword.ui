@@ -35,6 +35,9 @@ color: white;</string>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="pushButton_goBack">
+       <property name="toolTip">
+        <string>Go back</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">padding: 6px;
 border-color: rgb(77, 101, 246);
@@ -49,7 +52,7 @@ font: bold;
 color: white;</string>
        </property>
        <property name="text">
-        <string>Back </string>
+        <string/>
        </property>
        <property name="icon">
         <iconset resource="resources.qrc">

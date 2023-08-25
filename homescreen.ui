@@ -46,7 +46,8 @@ color:white;</string>
        </property>
        <property name="font">
         <font>
-         <pointsize>-1</pointsize>
+         <family>Comfortaa</family>
+         <pointsize>11</pointsize>
          <italic>false</italic>
          <bold>true</bold>
         </font>
@@ -66,8 +67,8 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
 font: bold;
-font-size: 13px;
 color: white;</string>
        </property>
        <property name="text">
@@ -389,8 +390,8 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
 font: bold;
-font-size: 13px;
 color: white;</string>
            </property>
            <property name="text">
@@ -423,8 +424,8 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
 font: bold;
-font-size: 13px;
 color: white;</string>
            </property>
            <property name="text">
@@ -456,8 +457,8 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
 font: bold;
-font-size: 13px;
 color: white;</string>
            </property>
            <property name="text">
@@ -489,8 +490,8 @@ border-radius: 8px;
   min-height: 1px;
   min-width: 1px;
 background-color: rgb(102, 124, 246);
+font: 11pt &quot;Comfortaa&quot;;
 font: bold;
-font-size: 13px;
 color: white;</string>
            </property>
            <property name="text">
