@@ -73,7 +73,7 @@ public:
     Button removehisYes;
     Button removehisNo;
     InputBox search;
-    InputBox typenew[100];
+    std::vector <InputBox> typenew;
     Button enterdef;
     Button enterkey;
     Rectangle messagebar;

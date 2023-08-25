@@ -376,6 +376,7 @@ void UI::DefaultWindow() {
     InitWindow(screenWidth, screenHeight, "Dictionary");
     SetTargetFPS(60);      
 	cur = DataSet::EE;
+	typenew.resize(100);
 	posTextY = 430;
 	posTextX = 236;
 	homestate = 0;
@@ -1371,6 +1372,7 @@ void UI::DrawWord(Word* word, bool &x, SmallTrie* highlight) {
 				i--;
 			}
 		}
+		// inputindex = 0;
 		posTextX = 236;
 		posTextY = 330;
 		inputindex = 0;
@@ -1529,7 +1531,23 @@ void UI::run() {
 }
 
 void UI::DrawModifyBox(Word* &word) {
-	
+	// inputindex = 1;
+	// for (int i = 0; i < 9; i++) {
+	// 	if (word -> def[i].size()) {
+	// 		for (int j = 0; j < word -> def[i].size(); j++)
+	// 		{
+	// 			typenew[inputindex].currentInput = word -> def[i][j];
+	// 			typenew[inputindex].posCursor = 0;
+	// 			inputindex++;
+	// 		}
+	// 	}
+	// 	else {
+	// 		word -> def[i].push_back("");
+	// 		word -> type += (1 << i);
+	// 		i--;
+	// 	}
+	// }
+	inputindex = 0;
 	if (!word) {
 		std::cout << "Error" << '\n';
 		return;
@@ -1569,7 +1587,8 @@ void UI::DrawModifyBox(Word* &word) {
 					for (int j = 0; j < word -> def[i].size(); j++) {
 						// std::cout << word -> def[i].size() << ' ' << i << ' ' << j << '\n';
 						// std::cout << typenew[cnt].getInput() << '\n';
-						if (typenew[cnt].getInput().size()) {
+						// if (typenew[cnt].getInput().size()) 
+						{
 							// dict -> updateDef(word -> word, 1 << i, word -> def[i][j], typenew[cnt].getInput());
 							// std::cout << word -> def[i].size() << ' ' << i << ' ' << j << '\n';
 							// std::cout << word -> def[0][0] << '\n';
@@ -1579,10 +1598,13 @@ void UI::DrawModifyBox(Word* &word) {
 							// std::cout << "done";
 							// break;
 						}
-						else {
-							word -> def[i].erase(word -> def[i].begin() + j);
-							j--;
-						}
+						// else {
+							if (!word -> def[i][j].size()) {
+								word -> def[i].erase(word -> def[i].begin() + j);
+							// else if (word -> def[i][j].size() && !typenew[cnt].getInput().size())
+								j--;
+							}
+						// }
 						cnt++;
 						// verb always?
 					}
@@ -1698,7 +1720,62 @@ void UI::DrawModifyBox(Word* &word) {
 		}
 	}
 	for (int i = 0; i < 9; i++) {
-		if (addpos[i].state == 3) word -> def[i].push_back("");
+		if (addpos[i].state == 3) {
+			
+			int dem = 0;
+			for (int ix = 0; ix < 9; ix++) {
+				if (word -> def[ix].size()) {
+					for (int j = 0; j < word -> def[ix].size(); j++)
+					{
+						dem++;
+					}
+				}
+				if (ix == i) break;
+				// else {
+				// 	word -> def[ix].push_back("");
+				// 	word -> type += (1 << ix);
+				// 	ix--;
+				// }
+			}
+
+			word -> def[i].push_back("");
+			InputBox typenewnew;
+			typenewnew.currentInput = "";
+			typenewnew.posCursor = 0;
+			typenew.insert(typenew.begin() + dem + 1, typenewnew);
+
+			// inputindex = 1;
+			// for (int ix = 0; ix < 9; ix++) {
+			// 	if (word -> def[ix].size()) {
+			// 		for (int j = 0; j < word -> def[ix].size(); j++)
+			// 		{
+			// 			typenew[inputindex].currentInput = word -> def[ix][j];
+			// 			typenew[inputindex].posCursor = 0;
+			// 			inputindex++;
+			// 		}
+			// 	}
+			// 	else {
+			// 		word -> def[ix].push_back("");
+			// 		word -> type += (1 << ix);
+			// 		ix--;
+			// 	}
+			// }
+			// inputindex = 0;
+
+			// inputindex = 1;
+			// for (int ix = 0; ix < 9; ix++) {
+			// 	if (word -> def[ix].size()) {
+			// 		for (int j = 0; j < word -> def[ix].size(); j++)
+			// 		{
+			// 			typenew[inputindex].currentInput = word -> def[ix][j];
+			// 			typenew[inputindex].posCursor = 0;
+			// 			inputindex++;
+			// 		}
+			// 	}
+			// 	inputindex = 0;
+			// }
+			// for (int j = 0; j < word -> def[i].size(); j++) std::cout << word -> def[i][j] << 'x' << '\n';
+		}
 	}
 	wheelModify += GetMouseWheelMove() * scrollspeed;
 	if (wheelModify + posTextY + 50 < 770) wheelModify = 770 - posTextY - 50;
