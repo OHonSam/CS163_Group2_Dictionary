@@ -235,7 +235,7 @@ background-color: rgb(102, 124, 246);</string>
      <item>
       <widget class="QPushButton" name="pushButton_AddScreen">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>12</horstretch>
          <verstretch>10</verstretch>
         </sizepolicy>
