@@ -66,7 +66,7 @@ void EditScreen::on_pushButton_saveDef_clicked()
 
 void EditScreen::on_pushButton_saveWord_clicked()
 {
-    QString raw=ui->lineEdit_word->text();
+    QString raw=ui->lineEdit_word->text().trimmed();
     std::string word=raw.toLower().toLocal8Bit().toStdString();
     if(raw.toLower()==QString::fromStdString(word)){
         if(dict->isInDict(word)){

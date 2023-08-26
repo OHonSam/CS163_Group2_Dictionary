@@ -145,8 +145,8 @@ void HomeScreen::on_pushButton_QuizScreen_clicked()
 
 void HomeScreen::on_lineEdit_search_returnPressed()
 {
-    QString raw=ui->lineEdit_search->text();
-    std::string input=raw.toLower().toLocal8Bit().toStdString();
+    QString raw=ui->lineEdit_search->text().trimmed().toLower();
+    std::string input=raw.toLocal8Bit().toStdString();
     if(raw.toLower()==QString::fromStdString(input)){
         if(ui->comboBox_searchType->currentIndex()==int(Search::ForDef)){
             emit sendToSearchScreen(input,Search::ForDef);

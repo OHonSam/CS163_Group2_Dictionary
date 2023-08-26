@@ -573,8 +573,8 @@ Word *Dict::searchForDef(const std::string &word)
 
 std::vector<std::string> Dict::searchForWord(const std::string &def)
 {
-    removeHistory(def);
-    addHistory(def);
+//    removeHistory(def);
+//    addHistory(def);
     return defTrie.searchKeyWord(def);
 }
 
